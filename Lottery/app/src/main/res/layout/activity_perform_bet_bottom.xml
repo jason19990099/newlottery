@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_remove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen_5"
+                android:src="@mipmap/icon_trashs" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="重置"
+                android:textColor="@color/textcolorfalse"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_betting_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_bg"
+            android:gravity="center"
+            android:hint="输入金额"
+            android:maxLength="6"
+            android:numeric="integer"
+            android:padding="3dp"
+            android:textColorHint="@color/textcolorfalse" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_bet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:background="@color/textcolortrue"
+            android:text="确认下注"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_bottom_num"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/bet_bottom_xz"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone"/>
+
+</FrameLayout>

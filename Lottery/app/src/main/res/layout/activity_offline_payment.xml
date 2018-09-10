@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@color/color_primary"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@mipmap/icon_left_arrow_back"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/textView_titleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/offline_pay"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_20"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_payee_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/shape_divider_line"
+                android:orientation="vertical"
+                android:showDividers="beginning|middle">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:background="@color/gray_f6f6f6"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/payment_method"
+                    android:textColor="@color/gray_4c4c4c"
+                    android:textSize="@dimen/sp_16"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pay_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:background="@color/gray_f6f6f6"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/payee_info"
+                    android:textColor="@color/gray_4c4c4c"
+                    android:textSize="@dimen/sp_16"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_bank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/dimen_44"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/open_bank"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_open_bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="工商银行"
+                        android:textColor="@color/gray_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_bank_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/dimen_44"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_address"/>
+
+                    <TextView
+                        android:id="@+id/tv_bank_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="福建泉州xx支行"
+                        android:textColor="@color/gray_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/dimen_44"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/payee_name"/>
+
+                    <TextView
+                        android:id="@+id/tv_payee_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="深圳市xx公司"
+                        android:textColor="@color/gray_666666"/>
+
+                    <TextView
+                        android:id="@+id/tv_copy_payee_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_offline_payment_method"
+                        android:paddingBottom="4dp"
+                        android:paddingEnd="12dp"
+                        android:paddingStart="12dp"
+                        android:paddingTop="4dp"
+                        android:text="复制"
+                        android:textColor="@color/color_primary"
+                        android:textSize="12sp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_bankcard_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/dimen_44"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_num"/>
+
+                    <TextView
+                        android:id="@+id/tv_bankcard_id"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/gray_666666"
+                        tools:text="123456798123"/>
+
+                    <TextView
+                        android:id="@+id/tv_copy_bankcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_offline_payment_method"
+                        android:paddingBottom="4dp"
+                        android:paddingEnd="12dp"
+                        android:paddingStart="12dp"
+                        android:paddingTop="4dp"
+                        android:text="复制"
+                        android:textColor="@color/color_primary"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_qr_code"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_160"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/gray_e6e6e6"/>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_8"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/shape_divider_line"
+                android:orientation="vertical"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:background="@color/gray_f6f6f6"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/payment_account"
+                    android:textColor="@color/gray_4c4c4c"
+                    android:textSize="@dimen/sp_16"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_select_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank2"/>
+
+                    <TextView
+                        android:id="@+id/tv_select_bankcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableEnd="@mipmap/capital_arrow_down"
+                        android:gravity="center_vertical"
+                        android:hint="@string/choice_bank_you_deposit"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textColorHint="@color/gray_4c4c4c"
+                        android:textSize="@dimen/text_normal"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_account_name"/>
+
+                    <EditText
+                        android:id="@+id/et_real_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_real_name"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deposit_amount"/>
+
+                    <EditText
+                        android:id="@+id/et_deposit_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_amount"
+                        android:inputType="numberDecimal"
+                        android:maxLength="9"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deposit_date"/>
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_color_light_gray_corners_5dp"
+                        android:padding="5dp"
+                        android:text="2017-09-02"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_24"
+                        android:text="@string/time"/>
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_color_light_gray_corners_5dp"
+                        android:padding="5dp"
+                        android:text="13:50"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_order_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/tv_order_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ali_order_num"/>
+
+                    <EditText
+                        android:id="@+id/et_order_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:hint="@string/ali_order_num_last"
+                        android:maxLength="4"
+                        android:maxLines="1"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/remarks"/>
+
+                    <EditText
+                        android:id="@+id/et_remarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/remark_username_while_deposit"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_confirm"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginBottom="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/dimen_40"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/confirm_recharge"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

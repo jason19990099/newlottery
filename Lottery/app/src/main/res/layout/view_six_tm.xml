@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><!--特码 正码 正码特-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bet_bg_color"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_tm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10" />
+
+        <LinearLayout
+            android:id="@+id/ly_tm_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:elevation="@dimen/dimen_5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ball_name"
+                style="@style/tv_title_style" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_te"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_tm_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_15"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ball_name"
+                style="@style/tv_title_style" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_dx_ds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

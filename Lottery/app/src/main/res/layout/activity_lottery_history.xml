@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@color/color_primary">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dimen_45"
+            android:layout_height="@dimen/dimen_45"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dimen_12"
+            android:src="@mipmap/icon_left_arrow_back"
+            tools:ignore="ContentDescription"/>
+
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/tv_bet_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_drop_down_stroke"
+                android:drawablePadding="5dp"
+                android:text="@string/LotteryTypeNamePK10"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/tv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/ic_calendar"
+            android:drawablePadding="3dp"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llTop"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:background="@color/default_background_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+            <TextView
+                android:id="@+id/tv_open"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="开奖期数"
+                android:textColor="@color/text_light"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_open_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_weight="1"
+                android:text="开奖号码"
+                android:textColor="@color/text_light"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_light"
+                android:textSize="14sp"
+                tools:text="2017-10-20"/>
+        </LinearLayout>
+
+        <include layout="@layout/layout_switch_page"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rlBottom"
+            android:layout_below="@id/llTop">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:scrollbars="none"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:id="@+id/bottomShadow"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_above="@id/rlBottom"
+            android:background="@drawable/shape_bottom_shadow"/>
+    </RelativeLayout>
+</LinearLayout>

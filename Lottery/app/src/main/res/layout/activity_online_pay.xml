@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d9d9d9"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@color/color_primary"
+        android:padding="@dimen/dimen_10">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@mipmap/icon_left_arrow_back" />
+
+        <TextView
+            android:id="@+id/tv_pay_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/online_pay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/online_pay"
+        android:textColor="@color/black_5151"
+        android:textSize="@dimen/text_big"
+        android:visibility="gone" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_65"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_gravity="center"
+            android:background="@color/color_cccc" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/black_08090b"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_5"
+            android:textSize="22sp" />
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:layout_marginRight="@dimen/dimen_5" />
+
+    <LinearLayout
+        android:id="@+id/ly_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dimen_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择银行："
+            android:textColor="@color/black_5151"
+            android:textSize="@dimen/sp_16" />
+
+        <Spinner
+            android:id="@+id/spinner_bank"
+            android:layout_width="@dimen/dimen_120"
+            android:layout_height="@dimen/dimen_30"
+            android:layout_marginBottom="@dimen/dimen_5"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:background="@mipmap/spinner_bg"
+            android:dropDownVerticalOffset="@dimen/dimen_30"
+            android:popupBackground="@android:color/white"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_25">
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_50"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="50"
+            android:textColor="#818828"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_100"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="100"
+            android:textColor="#818828"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_300"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="300"
+            android:textColor="#818828"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_500"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="500"
+            android:textColor="#818828"
+            android:textSize="@dimen/text_big" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_25"
+        android:layout_marginTop="@dimen/dimen_10">
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_800"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="800"
+            android:textColor="@color/gold_color"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_1000"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="1000"
+            android:textColor="@color/gold_color"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_2000"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="2000"
+            android:textColor="@color/gold_color"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_3000"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_amount"
+            android:text="3000"
+            android:textColor="@color/gold_color"
+            android:textSize="@dimen/text_big" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_limit_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_big_large"
+        android:layout_marginTop="@dimen/margin_big_large"
+        android:textSize="@dimen/text_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginLeft="@dimen/dimen_60"
+        android:layout_marginRight="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:background="@drawable/ly_pay_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/jin_e_bg"
+            android:gravity="center"
+            android:text="金额："
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+        <EditText
+            android:id="@+id/edt_recharge_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_weight="2"
+            android:background="@null"
+            android:drawablePadding="@dimen/margin_small"
+            android:hint="@string/input_amount"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/text_gray" />
+    </LinearLayout>
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/btn_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dimen_60"
+        android:layout_marginRight="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/margin_big_large"
+        android:background="@drawable/bg_btn_blue"
+        android:enabled="true"
+        android:text="@string/recharge_sure"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_20" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/btn_reset"
+        android:layout_width="252dp"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/bg_btn_amount"
+        android:text="@string/reset_amount"
+        android:textColor="@color/text_blue1"
+        android:textSize="@dimen/sp_20"
+        android:visibility="gone" />
+</LinearLayout>

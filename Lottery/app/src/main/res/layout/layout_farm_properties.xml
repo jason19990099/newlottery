@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:background="@drawable/shape_stroke_divider"
+    android:divider="@drawable/shape_vertical_divider"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/gray_f2"
+        android:gravity="center"
+        android:text="总和"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tv_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="105"/>
+
+    <TextView
+        android:id="@+id/tv_dx"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="大"/>
+
+    <TextView
+        android:id="@+id/tv_ds"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="单"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/gray_f2"
+        android:gravity="center"
+        android:text="尾大小"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tv_wei_dx"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="尾大"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/gray_f2"
+        android:gravity="center"
+        android:text="1-4球"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tv_lh1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="龙"/>
+
+    <TextView
+        android:id="@+id/tv_lh2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="龙"/>
+
+    <TextView
+        android:id="@+id/tv_lh3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="龙"/>
+
+    <TextView
+        android:id="@+id/tv_lh4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/lottery_property"
+        android:textSize="12sp"
+        tools:text="龙"/>
+</LinearLayout>

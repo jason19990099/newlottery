@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_left_arrow_back" />
+
+        <TextView
+            android:id="@+id/textView_titleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_back"
+            android:layout_centerHorizontal="true"
+            android:text="@string/account_zhls"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_rq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen_10"
+        android:paddingTop="@dimen/dimen_10"
+        android:text="DFFE"
+        android:textColor="@color/black_08090b"
+        android:textSize="@dimen/sp_16" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rlBottom"
+            android:layout_below="@+id/llTop">
+
+            <ListView
+                android:id="@+id/lv_bet_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:divider="#00000000"
+                android:dividerHeight="10dp" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:id="@+id/bottomShadow"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_above="@+id/rlBottom"
+            android:background="@drawable/shape_bottom_shadow" />
+
+        <RelativeLayout
+            android:id="@+id/rlBottom"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/llCurrentPage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:descendantFocusability="blocksDescendants"
+                android:enabled="false"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvCurrentPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:duplicateParentState="true"
+                    android:gravity="center"
+                    android:text="第1页"
+                    android:textColor="@color/selector_enable_text_color"
+                    android:textSize="13sp" />
+
+                <com.international.wtw.lottery.widget.TintableImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="4dp"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/ic_arrow_drop_up_black_24dp"
+                    app:my_tint="@color/selector_enable_text_color"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPreviousPage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_toStartOf="@id/llCurrentPage"
+                android:enabled="false"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:text="上一页"
+                android:textColor="@color/selector_enable_text_color" />
+
+            <TextView
+                android:id="@+id/tvNextPage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/llCurrentPage"
+                android:enabled="false"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:text="下一页"
+                android:textColor="@color/selector_enable_text_color" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_no_deposit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <include layout="@layout/layout_empty_view" />
+
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>

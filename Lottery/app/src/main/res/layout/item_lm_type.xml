@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~
+  ~   ~ Copyright 2017 wuya
+  ~
+  ~   ~
+  ~
+  ~
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/fy_type"
+             android:layout_width="match_parent"
+             android:layout_height="55dp"
+             android:layout_marginBottom="3dp"
+             android:layout_marginEnd="5dp"
+             android:layout_marginStart="5dp"
+             android:layout_marginTop="3dp"
+             android:background="@drawable/bg_normal_item"
+             android:clickable="true"
+             android:descendantFocusability="blocksDescendants"
+             android:focusable="true">
+
+    <ImageView
+        android:id="@+id/img_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:src="@mipmap/red_mark"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_type_name"
+            style="@style/SixTvStyle"
+            android:layout_margin="0dp"
+            android:layout_weight="1.0"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="23"/>
+
+        <TextView
+            android:id="@+id/tv_type_code"
+            style="@style/SixTvStyle"
+            android:layout_margin="0dp"
+            android:layout_weight="1.0"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="龙"
+            android:textColor="#ed0032"/>
+    </LinearLayout>
+</FrameLayout>

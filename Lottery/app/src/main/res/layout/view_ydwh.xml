@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bet_bg_color"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_ydwh_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_gj"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ydwh_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_yj"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ydwh_three"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dsm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ydwh_four"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dsim"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ydwh_five"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dwm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

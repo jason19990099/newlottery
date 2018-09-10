@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_bar_height"
+        android:background="@color/deep_blue">
+
+        <ImageView
+            android:id="@+id/imageView_toLeftArrow"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="@dimen/dimen_45"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_left_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/account_grzx"
+            android:textColor="@color/diy_white"
+            android:textSize="@dimen/sp_18" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="#efeff4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="1"
+            android:text="@string/personalcenter_zh"
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_zh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:padding="10dp"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#efeff4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="3"
+            android:text="@string/personalcenter_zhye"
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_ye"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:padding="10dp"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_recharge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:text="充值"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dimen_15"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_primary" />
+
+        <TextView
+            android:id="@+id/tv_withdrawal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:text="提现"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#efeff4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="1"
+            android:text="@string/personalcenter_zsxm"
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_zsxm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:padding="10dp"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:background="#efeff4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="1"
+            android:text="@string/personalcenter_yx"
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_yx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:padding="10dp"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efeff4" />
+
+    <LinearLayout
+        android:id="@+id/ll_phone_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="3"
+            android:text="手机号码: "
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_phone1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:padding="10dp"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_unbundling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:text="解绑"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_primary" />
+
+        <TextView
+            android:id="@+id/tv_replacement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:text="更换"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_phone_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_weight="3"
+            android:text="手机号码: "
+            android:textColor="@color/gray_4c4c4c"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/oer_tv_phone2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:padding="10dp"
+            android:text="立即绑定手机号"
+            android:textColor="@color/color_cccc"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_bundling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="10dp"
+            android:text="立即绑定"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_btn_log_bg"
+        android:text="@string/personalcenter_qdxg"
+        android:textColor="@color/diy_white"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</LinearLayout>

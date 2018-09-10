@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@color/color_primary"
+        android:padding="@dimen/dimen_10">
+
+        <ImageView
+            android:id="@+id/imageView_toLeftArrow"
+            android:layout_width="@dimen/dimen_45"
+            android:layout_height="@dimen/dimen_45"
+            android:scaleType="center"
+            android:src="@mipmap/icon_left_arrow_back"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mypasslogin_szdlmm"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/diy_gray" />
+
+    <EditText
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:id="@+id/et_update_login_pwd_old"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="@string/mypasslogin_qsrjmm"
+        android:maxLength="15"
+        android:padding="10dp"
+        android:textColorHint="@color/diy_gray"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/diy_gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/diy_gray" />
+
+    <EditText
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:id="@+id/et_update_login_pwd_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="@string/mypasslogin_qsrxmm"
+        android:maxLength="15"
+        android:padding="10dp"
+        android:textColorHint="@color/diy_gray"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/diy_gray" />
+
+    <EditText
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:id="@+id/et_update_login_pwd_newonce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="@string/mypasslogin_qzcsrxmm"
+        android:maxLength="15"
+        android:padding="10dp"
+        android:textColorHint="@color/diy_gray"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/diy_gray" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/update_loginpwd_btn_determine"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_btn_log_bg"
+        android:text="@string/personalcenter_qdxg"
+        android:textColor="@color/diy_white"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly_six_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_60"
+    android:layout_weight="1"
+    android:layout_marginRight="@dimen/dimen_5"
+    android:layout_marginLeft="@dimen/dimen_5"
+    android:layout_marginBottom="@dimen/dimen_10"
+    android:background="@drawable/bg_normal_item"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_num_bg"
+            android:layout_width="@dimen/dimen_32"
+            android:layout_height="@dimen/dimen_32"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:focusableInTouchMode="false"
+            android:text="龙"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_item_odds"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_25"
+        android:layout_centerInParent="true"
+        android:layout_margin="0dp"
+        android:gravity="center"
+        android:background="@drawable/bg_normal_bottom_item"
+        android:focusableInTouchMode="false"
+        android:text="龙"
+        android:textColor="@color/bet_text_odds_gray"
+        android:textSize="@dimen/sp_14" />
+</LinearLayout>

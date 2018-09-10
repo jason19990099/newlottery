@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginEnd="@dimen/dimen_40"
+    android:layout_marginStart="@dimen/dimen_40"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@drawable/shape_color_primary_top_corners_6dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="公告"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="2dp"
+            android:padding="8dp"
+            android:src="@mipmap/icon_close"
+            tools:ignore="ContentDescription"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_color_white_bottom_corners_6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lineSpacingExtra="4dp"
+            android:lines="3"
+            android:textColor="@color/text_dark"
+            android:textSize="14sp"
+            tools:text="尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!尊敬的用户XXX, 您好!"/>
+
+        <Button
+            android:id="@+id/btn_detail"
+            android:layout_width="88dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_color_primary_corners_5dp"
+            android:text="查看详情"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</LinearLayout>

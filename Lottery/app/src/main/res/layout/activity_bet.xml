@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_bet_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="fill_vertical"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_lottery_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_rg_container"
+                android:layout_width="match_parent"
+                android:layout_height="43dp">
+
+                <ImageView
+                    android:id="@+id/iv_show_more"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/color_primary_dark"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_following_table"
+                    android:visibility="gone"
+                    tools:ignore="ContentDescription"/>
+
+                <RadioGroup
+                    android:id="@+id/game_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/iv_show_more"
+                    android:background="@color/color_primary"
+                    android:orientation="horizontal"/>
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_odds_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_bet_bottom"/>
+</LinearLayout>

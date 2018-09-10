@@ -1,0 +1,176 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.international.wtw.lottery.fragment.money.WithdrawFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/shape_divider_line"
+        android:orientation="vertical"
+        android:showDividers="beginning">
+
+        <RelativeLayout
+            android:id="@+id/rl_bankcard_info"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_65"
+            android:background="@drawable/shape_bottom_line_width_1dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_bank_logo"
+                android:layout_width="@dimen/dimen_48"
+                android:layout_height="@dimen/dimen_48"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/bank_car_icon"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/iv_bank_logo"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@id/iv_bank_logo"
+                android:text="@string/CCB"
+                android:textColor="@color/gray_4c4c4c"
+                android:textSize="@dimen/sp_16"/>
+
+            <TextView
+                android:id="@+id/tv_bank_card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_bank_name"
+                android:layout_alignStart="@id/tv_bank_name"
+                tools:text="6217 **** **** **** 110"
+                android:textColor="@color/gray_4c4c4c"
+                android:textSize="@dimen/sp_15"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_modify"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_add_bankcard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_65"
+            android:background="@drawable/shape_bottom_line_width_1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawablePadding="@dimen/dimen_5"
+                android:drawableStart="@mipmap/icon_add_bankcard"
+                android:gravity="center"
+                android:text="@string/add_or_remove"
+                android:textColor="@color/bet_color_blue"
+                android:textSize="@dimen/sp_16"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_65"
+            android:background="@drawable/shape_bottom_line_width_1dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/dimen_10">
+
+            <TextView
+                android:id="@+id/tv_embodied_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/embodied_amount"
+                android:textColor="@color/gray_666666"
+                android:textSize="@dimen/text_normal"/>
+
+            <TextView
+                android:id="@+id/tv_account_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_embodied_amount"
+                android:layout_toEndOf="@id/tv_embodied_amount"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_small"/>
+
+            <EditText
+                android:id="@+id/et_embodied_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tv_embodied_amount"
+                android:layout_below="@+id/tv_embodied_amount"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:background="@null"
+                android:hint="@string/amount_hint"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:minEms="5"
+                android:textColorHint="@color/text_gray"
+                android:textSize="@dimen/text_normal"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_65"
+            android:background="@drawable/shape_bottom_line_width_1dp"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/embodied_pwd"
+                android:textSize="@dimen/text_normal"/>
+
+            <EditText
+                android:id="@+id/edt_tx_psd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:background="@null"
+                android:digits="1234567890"
+                android:hint="@string/pwd_hint"
+                android:inputType="numberPassword"
+                android:maxLength="4"
+                android:textColorHint="@color/text_gray"
+                android:textSize="@dimen/text_normal"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/dimen_36"
+            android:background="@drawable/bg_btn_blue"
+            android:text="@string/confirm_withdraw"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big"/>
+
+        <Button
+            android:id="@+id/btn_reset"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/bg_btn_reset"
+            android:text="@string/reset_amount"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big"/>
+    </LinearLayout>
+</ScrollView>

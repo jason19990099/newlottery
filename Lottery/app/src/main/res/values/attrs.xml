@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="TinyPoint">
+        <attr name="pInterval" format="dimension"/>
+        <attr name="pRadius" format="dimension"/>
+        <attr name="pColor" format="color"/>
+        <attr name="pCheckedColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="TypeItem">
+        <attr name="text" format="string"/>
+        <attr name="selected" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="PasswordInputView">
+        <attr name="pivBorderColor" format="color"/>
+        <attr name="pivBorderWidth" format="dimension"/>
+        <attr name="pivBorderRadius" format="dimension"/>
+        <attr name="pivPasswordColor" format="color"/>
+        <attr name="pivPasswordWidth" format="dimension"/>
+        <attr name="pivPasswordRadius" format="dimension"/>
+        <attr name="pivPasswordLength" format="integer"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="pickerview">
+        <attr name="pickerview_gravity">
+            <enum name="center" value="17"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="5"/>
+        </attr>
+        <attr name="pickerview_textSize" format="dimension"/>
+        <attr name="pickerview_textColorOut" format="color"/>
+        <attr name="pickerview_textColorCenter" format="color"/>
+        <attr name="pickerview_dividerColor" format="color"/>
+        <attr name="pickerview_lineSpacingMultiplier" format="float"/>
+    </declare-styleable>
+
+    <!-- Defines the custom XML attributes supported for a HorizontalListView -->
+    <declare-styleable name="HorizontalListView">
+        <attr name="dividerWidth" format="dimension"/>
+        <attr name="android:divider"/>
+        <attr name="android:requiresFadingEdge"/>
+        <attr name="android:fadingEdgeLength"/>
+    </declare-styleable>
+
+    <declare-styleable name="MarqueeView">
+        <attr name="speed" format="dimension"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color|reference"/>
+        <attr name="txt_spacing" format="dimension"/>
+        <attr name="txt_radius" format="float"/>
+        <attr name="txt_dx" format="float"/>
+        <attr name="txt_dy" format="float"/>
+        <attr name="text_shadowColor" format="color|reference"/>
+    </declare-styleable>
+
+    <!--TitleBar-->
+    <declare-styleable name="TitleBar">
+        <attr name="title_outPadding" format="dimension"/>
+        <attr name="title_dividerHeight" format="dimension"/>
+        <attr name="title_actionPadding" format="dimension"/>
+        <attr name="title_immersible" format="boolean"/>
+
+        <attr name="title_leftText" format="string"/>
+        <attr name="title_leftTextSize" format="dimension"/>
+        <attr name="title_leftTextColor" format="color"/>
+        <attr name="title_leftTextBackgroundColor" format="color"/>
+        <attr name="title_leftTextBackgroundResource" format="reference"/>
+        <attr name="title_leftTextDrawable" format="reference"/>
+        <attr name="title_leftTextDrawablePadding" format="dimension"/>
+
+        <attr name="title_titleMainText" format="string"/>
+        <attr name="title_titleMainTextSize" format="dimension"/>
+        <attr name="title_titleMainTextColor" format="color"/>
+        <attr name="title_titleMainTextBackgroundColor" format="color"/>
+        <attr name="title_titleMainTextBackgroundResource" format="reference"/>
+        <attr name="title_titleMainTextFakeBold" format="boolean"/>
+
+        <attr name="title_titleSubText" format="string"/>
+        <attr name="title_titleSubTextSize" format="dimension"/>
+        <attr name="title_titleSubTextColor" format="color"/>
+        <attr name="title_titleSubTextBackgroundColor" format="color"/>
+        <attr name="title_titleSubTextBackgroundResource" format="reference"/>
+
+        <attr name="title_rightText" format="string"/>
+        <attr name="title_rightTextSize" format="dimension"/>
+        <attr name="title_rightTextColor" format="color"/>
+        <attr name="title_rightTextBackgroundColor" format="color"/>
+        <attr name="title_rightTextBackgroundResource" format="reference"/>
+        <attr name="title_rightTextDrawable" format="reference"/>
+        <attr name="title_rightTextDrawablePadding" format="dimension"/>
+
+        <attr name="title_actionTextSize" format="dimension"/>
+        <attr name="title_actionTextColor" format="color"/>
+        <attr name="title_actionTextBackgroundColor" format="color"/>
+        <attr name="title_actionTextBackgroundResource" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="BannerLayoutStyle">
+        <attr name="selectedIndicatorColor" format="color|reference"/>
+        <attr name="unSelectedIndicatorColor" format="color|reference"/>
+        <attr name="indicatorShape" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+        </attr>
+
+        <attr name="selectedIndicatorHeight" format="dimension|reference"/>
+        <attr name="selectedIndicatorWidth" format="dimension|reference"/>
+
+        <attr name="unSelectedIndicatorHeight" format="dimension|reference"/>
+        <attr name="unSelectedIndicatorWidth" format="dimension|reference"/>
+
+        <attr name="indicatorPosition" format="enum">
+            <enum name="centerBottom" value="0"/>
+            <enum name="rightBottom" value="1"/>
+            <enum name="leftBottom" value="2"/>
+            <enum name="centerTop" value="3"/>
+            <enum name="rightTop" value="4"/>
+            <enum name="leftTop" value="5"/>
+        </attr>
+
+        <attr name="indicatorSpace" format="dimension|reference"/>
+        <attr name="indicatorMargin" format="dimension|reference"/>
+        <attr name="autoPlayDuration" format="integer|reference"/>
+        <attr name="scrollDuration" format="integer|reference"/>
+        <attr name="isAutoPlay" format="boolean|reference"/>
+        <attr name="isIndicatorVisible" format="boolean|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="AspectRatioLayout">
+        <attr name="arl_widthRatio" format="float"/>
+        <attr name="arl_heightRatio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="TintableImageView">
+        <attr name="my_tint" format="reference|color" />
+    </declare-styleable>
+</resources>

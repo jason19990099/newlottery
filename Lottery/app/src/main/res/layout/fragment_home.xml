@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_primary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ali_logo"
+            tools:ignore="ContentDescription"/>
+
+        <LinearLayout
+            android:id="@+id/ll_not_logged_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_login_or_register"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/login_btn_bg1"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:text="登录注册"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_try_play"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/login_btn_bg1"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:text="游客"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_logged_in"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|end"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@mipmap/icon_user_default"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:text="游客"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/login_btn_bg1"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:text="注册"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:id="@+id/iv_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingEnd="10dp"
+                android:paddingStart="8dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/more_menu"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
+
+                <com.international.wtw.lottery.widget.BannerLayout
+                    android:id="@+id/banner_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    app:isAutoPlay="true"
+                    app:isIndicatorVisible="false"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <ImageView
+                        android:id="@+id/iv_notice"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:padding="10dp"
+                        android:src="@mipmap/icon_gg"
+                        tools:ignore="ContentDescription"/>
+
+                    <FrameLayout
+                        android:id="@+id/fl_marquee_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <com.international.wtw.lottery.widget.MarqueeView
+                            android:id="@+id/marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:speed="30dp"
+                            app:text_color="@color/text_normal"
+                            app:text_size="14sp"/>
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:padding="10dp"
+                        android:src="@mipmap/icon_gg_in"
+                        android:tint="@color/gray_blue"
+                        tools:ignore="ContentDescription"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/middle_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="-2px"
+                    android:layout_marginStart="-2px"
+                    android:background="@color/divider_color"
+                    android:padding="1px"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/promotions"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/bottom_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"/>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

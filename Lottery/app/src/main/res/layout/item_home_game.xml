@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.international.wtw.lottery.widget.AspectRatioLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1px"
+    android:background="@drawable/selector_white_pressed_dim"
+    app:arl_heightRatio="1"
+    app:arl_widthRatio="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_game_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_logo_bj_pk_10"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/tv_game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="北京赛车"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_normal"/>
+    </LinearLayout>
+</com.international.wtw.lottery.widget.AspectRatioLayout>

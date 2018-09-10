@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="140dp"
+    android:layout_height="100dp"
+    android:background="@drawable/bg_white_square"
+    android:elevation="5dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/gridItem_Icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/icon_item_pj_pk10" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/LotteryTypeNamePK10"
+        android:textColor="@color/gray_4c4c4c"
+        android:textSize="14sp" />
+
+</LinearLayout>

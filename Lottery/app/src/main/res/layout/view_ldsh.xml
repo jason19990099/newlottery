@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bet_bg_color"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_ldsh_six"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dlm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ldsh_seven"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dqm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ldsh_eight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dbm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ldsh_nine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_djm"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ldsh_ten"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="@string/pk10imp_dshim"/>
+
+                <com.international.wtw.lottery.base.view.CustomListView
+                    android:id="@+id/listViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:divider="#00000000"
+                    android:dividerHeight="5dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        layout="@layout/activity_perform_bet_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45"
+                android:background="@color/color_primary">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/dimen_45"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:scaleType="center"
+        android:src="@mipmap/icon_left_arrow_back"/>
+
+    <LinearLayout
+        android:id="@+id/downArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_lotteryTypeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LotteryTypeNamePK10"
+            android:textColor="#fff"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/icon_following_table"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen_10"
+        android:src="@mipmap/more_menu"/>
+</RelativeLayout>

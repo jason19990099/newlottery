@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="10dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_round"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="80dp"
+                android:textColor="@color/text_normal"
+                android:textSize="@dimen/sp_12"
+                tools:text="20171121-045"/>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="80dp"
+                android:textColor="@color/text_normal"
+                android:textSize="11sp"
+                tools:text="时间：20:30:30"/>
+        </LinearLayout>
+
+        <com.international.wtw.lottery.widget.LotteryNumberView
+            android:id="@+id/lotteryNumberView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"/>
+    </LinearLayout>
+
+    <com.international.wtw.lottery.widget.LotteryPropertyView
+        android:id="@+id/lotteryPropertyView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/shape_stroke_divider"
+        android:divider="@drawable/shape_vertical_divider"
+        android:orientation="horizontal"
+        android:showDividers="middle"/>
+</LinearLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_home"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:scaleType="fitCenter"
+                android:src="@drawable/selector_main_home_icon"/>
+
+            <TextView
+                android:id="@+id/tv_home"
+                style="@style/main_button_text"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:text="首页"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_betting"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_betting"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:scaleType="fitCenter"
+                android:src="@drawable/selector_main_history_icon"/>
+
+            <TextView
+                android:id="@+id/tv_betting"
+                style="@style/main_button_text"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:text="游戏大厅"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_money"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_money"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:scaleType="fitCenter"
+                android:src="@drawable/selector_main_money_icon"/>
+
+            <TextView
+                android:id="@+id/tv_money"
+                style="@style/main_button_text"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:text="资金管理"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_mine"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_mine"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:scaleType="fitCenter"
+                android:src="@drawable/selector_main_mine_icon"/>
+
+            <TextView
+                android:id="@+id/tv_mine"
+                style="@style/main_button_text"
+                android:duplicateParentState="true"
+                android:focusableInTouchMode="false"
+                android:text="我的"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

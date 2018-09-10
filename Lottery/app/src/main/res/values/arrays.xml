@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--银行名称-->
+    <string-array name="bank_name_items">
+        <item>工商银行</item>
+        <item>建设银行</item>
+        <item>招商银行</item>
+        <item>农业银行</item>
+        <item>中国银行</item>
+        <item>邮政储蓄银行</item>
+        <item>民生银行</item>
+        <item>兴业银行</item>
+        <item>中信银行</item>
+        <item>渤海银行</item>
+        <item>光大银行</item>
+        <item>广发银行</item>
+        <item>华夏银行</item>
+        <item>平安银行</item>
+        <item>浦发银行</item>
+        <item>北京农商银行</item>
+        <item>上海银行</item>
+        <item>交通银行</item>
+        <item>上海农商银行</item>
+        <item>北京银行</item>
+    </string-array>
+
+</resources>

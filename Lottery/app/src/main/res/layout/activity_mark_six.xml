@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/activity_lottery_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="99"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--<include
+                layout="@layout/activity_bet_timeinfos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+
+            <FrameLayout
+                android:id="@+id/fl_lottery_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/six_rg_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/six_rb_tm"
+                        style="@style/betting_tab"
+                        android:checked="true"
+                        android:text="特码"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_zm"
+                        style="@style/betting_tab"
+                        android:text="正码"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_ztm"
+                        style="@style/betting_tab"
+                        android:text="正码特"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_zm_1_6"
+                        style="@style/betting_tab"
+                        android:text="正码1-6"/>
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/six_rg_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        style="@style/betting_tab"
+                        android:text="过关"
+                        android:visibility="gone"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_lm"
+                        style="@style/betting_tab"
+                        android:text="连码"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_bb"
+                        style="@style/betting_tab"
+                        android:text="半波"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_1x"
+                        style="@style/betting_tab"
+                        android:text="一肖/尾数"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_tmsx"
+                        style="@style/betting_tab"
+                        android:text="特码生肖"/>
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/six_rg_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/six_rb_hx"
+                        style="@style/betting_tab"
+                        android:text="合肖"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_sxl"
+                        style="@style/betting_tab"
+                        android:text="生肖连"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_wsl"
+                        style="@style/betting_tab"
+                        android:text="尾数连"/>
+
+                    <RadioButton
+                        android:id="@+id/six_rb_qbz"
+                        style="@style/betting_tab"
+                        android:text="全不中"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <com.international.wtw.lottery.widget.CustomPager
+                android:id="@+id/six_vp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/bet_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

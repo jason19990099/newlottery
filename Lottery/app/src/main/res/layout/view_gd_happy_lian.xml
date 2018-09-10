@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/layout_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/top_item_name"
+                    style="@style/tv_title_style"
+                    android:text="投注方式" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/method_one"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/selector_ly_bg">
+
+                        <ImageView
+                            android:id="@+id/img_angle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_angle"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="8dp"
+                            android:text="龙"
+                            android:textColor="#3E3E3E" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lmp_lv_item_tv_pm"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="赔率"
+                            android:textColor="#1E64FF" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/method_two"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/selector_ly_bg">
+
+                        <ImageView
+                            android:id="@+id/img_angle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_angle"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="8dp"
+                            android:text="龙"
+                            android:textColor="#3E3E3E" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lmp_lv_item_tv_pm"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="赔率"
+                            android:textColor="#1E64FF" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/method_three"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/selector_ly_bg">
+
+                        <ImageView
+                            android:id="@+id/img_angle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_angle"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="8dp"
+                            android:text="龙"
+                            android:textColor="#3E3E3E" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lmp_lv_item_tv_pm"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="赔率"
+                            android:textColor="#1E64FF" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/method_four"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/selector_ly_bg">
+
+                        <ImageView
+                            android:id="@+id/img_angle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_angle"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="8dp"
+                            android:text="龙"
+                            android:textColor="#3E3E3E" />
+
+                        <TextView
+                            android:id="@+id/lmp_lv_item_tv_pl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lmp_lv_item_tv_pm"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="赔率"
+                            android:textColor="#1E64FF" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/top_item_name"
+                style="@style/tv_title_style"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:text="连码" />
+
+            <LinearLayout
+                android:id="@+id/layout_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.international.wtw.lottery.base.view.CustomGridView
+                    android:id="@+id/gridViewItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#f2f2f2"
+                    android:horizontalSpacing="8dp"
+                    android:numColumns="4"
+                    android:verticalSpacing="8dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

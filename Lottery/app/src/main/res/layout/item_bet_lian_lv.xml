@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly_item_bet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_ly_bg">
+
+    <ImageView
+        android:id="@+id/img_angle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_angle"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lmp_lv_item_tv_pm"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="龙"
+        android:background="@drawable/bet_item_lian"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/lmp_lv_item_tv_pl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lmp_lv_item_tv_pm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:text="赔率"
+        android:visibility="gone"
+        android:textColor="#1E64FF"
+        android:textSize="16sp" />
+
+</RelativeLayout>

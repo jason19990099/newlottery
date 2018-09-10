@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--半波 特码生肖-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bet_bg_color"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ball_name"
+                style="@style/tv_title_style" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view_bb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_5"
+                android:layout_marginBottom="@dimen/dimen_15"/>
+        </LinearLayout>
+
+</ScrollView>

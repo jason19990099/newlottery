@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_56"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:text="2017-09-08 12:34:44"
+            android:textColor="@color/gray"/>
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_time"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:text="存入：333,444元"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:id="@+id/tv_record_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawablePadding="@dimen/dimen_10"
+            android:text="成功"
+            android:textSize="@dimen/sp_16"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/horizontal_divider"
+        android:layout_marginEnd="@dimen/dimen_8"
+        android:layout_marginStart="@dimen/dimen_8"/>
+
+</LinearLayout>

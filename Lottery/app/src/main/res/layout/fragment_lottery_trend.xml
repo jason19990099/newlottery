@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.international.wtw.lottery.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_primary"
+        app:title_rightTextDrawable="@mipmap/more_menu"
+        app:title_titleMainText="开奖大厅"
+        app:title_titleMainTextColor="@color/white"
+        app:title_titleMainTextSize="18sp"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_solid_white_stroke_gray_corners_5dp"
+                    android:descendantFocusability="blocksDescendants"
+                    android:divider="@drawable/shape_divider_line"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginStart="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingEnd="4dp"
+                        android:paddingStart="4dp"
+                        android:paddingTop="4dp">
+
+                        <TextView
+                            android:id="@+id/tv_website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/img_lottery_website"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/text_dark"
+                            android:textSize="16sp"
+                            tools:text="pk10tv.com开奖网"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="center_vertical"
+                            android:text="更全面的内容，更新鲜的咨询"
+                            android:textColor="@color/text_normal"
+                            android:textSize="@dimen/sp_14"/>
+
+                        <TextView
+                            android:id="@+id/iv_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:drawableEnd="@drawable/ic_arrow_right_grey"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:text="即刻前往"/>
+                    </RelativeLayout>
+
+                    <!--我多包这么多层是为了啥?-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"/>
+                </LinearLayout>
+            </FrameLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

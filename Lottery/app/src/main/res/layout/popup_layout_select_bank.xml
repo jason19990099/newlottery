@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/ly_select_bank"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_gravity="center|start"
+            android:gravity="center"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:text="@string/cancel"
+            android:textColor="@color/deep_blue"
+            android:textSize="@dimen/text_normal"/>
+
+        <TextView
+            android:id="@+id/tv_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_gravity="center|end"
+            android:gravity="center"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:text="@string/completed"
+            android:textColor="@color/deep_blue"
+            android:textSize="@dimen/text_normal"/>
+    </FrameLayout>
+
+    <com.weigan.loopview.LoopView
+        android:id="@+id/wheel_bank"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="#d2d5dc"
+        app:awv_textsize="18"/>
+</LinearLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.international.wtw.lottery.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/color_primary"
+        app:title_leftTextDrawable="@mipmap/icon_left_arrow_back"
+        app:title_titleMainText="AG游戏"
+        app:title_titleMainTextSize="18sp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_top_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@drawable/shape_divider_line"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/ag_balance_with_colon"
+                android:textColor="@color/text_normal"/>
+
+            <TextView
+                android:id="@+id/tv_ag_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/tv1"
+                android:text="0.00"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:id="@+id/tv_lottery_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="0.00"
+                android:textColor="@color/color_primary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/tv_lottery_balance"
+                android:text="@string/lottery_balance_with_colon"
+                android:textColor="@color/text_normal"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp">
+
+            <TextView
+                android:id="@+id/tv_balance_exchange"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_color_2f64d4_corners_5dp"
+                android:gravity="center"
+                android:text="@string/balance_exchange"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_ag_recharge"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_color_e74d62_corners_5dp"
+                android:gravity="center"
+                android:text="@string/ag_recharge"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_ag_withdraw"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_color_e8a14c_corners_5dp"
+                android:gravity="center"
+                android:text="@string/ag_withdraw"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_ag_bg_demo"
+        android:paddingBottom="50dp">
+
+        <ImageView
+            android:id="@+id/iv_full_game"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="36dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_ag_real_money_btn_bg"/>
+
+        <ImageView
+            android:id="@+id/iv_try_game"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="36dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_ag_try_btn_bg"/>
+    </FrameLayout>
+</LinearLayout>

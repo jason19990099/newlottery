@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_left_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_back"
+            android:layout_centerHorizontal="true"
+            android:text="活动中心"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_preferential"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/dimen_10"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/dimen_10"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/dimen_10" />
+
+</LinearLayout>

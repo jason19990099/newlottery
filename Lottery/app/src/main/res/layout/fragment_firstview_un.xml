@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topTitle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/deep_blue"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/mainlogo" />
+
+        <RelativeLayout
+            android:id="@+id/rl_home_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/dimen_6"
+            android:layout_marginTop="@dimen/dimen_6"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/img_shiwan"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/img_login_reg"
+                android:background="@drawable/login_btn_bg1"
+                android:gravity="center"
+                android:text="登录注册"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/img_login_reg"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/login_btn_bg1"
+                android:gravity="center"
+                android:text="试玩"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_5"
+            android:layout_toLeftOf="@+id/btn_shiwan_reg"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen_3"
+            android:paddingLeft="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_5"
+            android:paddingTop="@dimen/dimen_3"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/img_user_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_user_name"
+                android:paddingTop="@dimen/dimen_2"
+                android:src="@mipmap/icon_user_default"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:layout_toLeftOf="@+id/btn_shiwan_reg"
+                android:drawablePadding="@dimen/dimen_7"
+                android:maxWidth="220dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_shiwan_reg"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_5"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:layout_toLeftOf="@+id/img_menu"
+            android:background="@drawable/login_btn_bg1"
+            android:text="注册"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:padding="@dimen/dimen_3"
+            android:src="@mipmap/more_menu"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/login_bg"
+                android:visibility="gone" />
+
+
+            <RelativeLayout
+                android:id="@+id/banner_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_35"
+                android:layout_gravity="bottom|center"
+                android:background="#f2f2f2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_laba"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:layout_weight="0.1"
+                    android:src="@mipmap/icon_gg" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dimen_3"
+                    android:layout_marginStart="@dimen/dimen_3"
+                    android:layout_weight="1">
+
+                    <com.international.wtw.lottery.widget.MarqueeView
+                        android:id="@+id/marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:speed="25dp"
+                        app:text_color="@android:color/black"
+                        app:text_size="12sp" />
+                </FrameLayout>
+
+
+                <ImageView
+                    android:id="@+id/img_jiantou"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dimen_5"
+                    android:layout_weight="0.1"
+                    android:src="@mipmap/icon_gg_in" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.international.wtw.lottery.base.view.CustomGridView
+                        android:id="@+id/recycle_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#F2F2F2"
+                        android:horizontalSpacing="@dimen/dimen_1"
+                        android:numColumns="3"
+                        android:verticalSpacing="@dimen/dimen_1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:layout_marginLeft="@dimen/dimen_15"
+                    android:text="优惠活动"
+                    android:textColor="@color/text_dark"
+                    android:textSize="@dimen/sp_16" />
+
+                <ImageView
+                    android:id="@+id/img_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dimen_15"
+                    android:src="@mipmap/icon_youhui_more" />
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/bottom_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

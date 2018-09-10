@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_primary">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dimen_45"
+            android:layout_height="@dimen/dimen_45"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dimen_12"
+            android:src="@mipmap/icon_left_arrow_back"
+            android:visibility="gone"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/textView_titleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/capital_manager"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:background="@color/white"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/tv_user_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/user"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tv_user_name_title"
+            android:text="@string/loading"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_account_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/loading"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_user_balance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/tv_account_balance"
+            android:text="@string/account_yue"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_14"/>
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_deposit"
+            style="@style/RadioCapitalStyle"
+            android:checked="true"
+            android:drawableBottom="@drawable/selector_triangle_indicator"
+            android:drawableTop="@drawable/ic_triangle_transparent"
+            android:text="@string/recharge"/>
+
+        <RadioButton
+            android:id="@+id/rb_withdraw"
+            style="@style/RadioCapitalStyle"
+            android:drawableBottom="@drawable/selector_triangle_indicator"
+            android:drawableTop="@drawable/ic_triangle_transparent"
+            android:text="@string/withdraw"/>
+
+        <RadioButton
+            android:id="@+id/rb_record"
+            style="@style/RadioCapitalStyle"
+            android:drawableBottom="@drawable/selector_triangle_indicator"
+            android:drawableTop="@drawable/ic_triangle_transparent"
+            android:text="@string/rb_record"/>
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"/>
+
+</LinearLayout>

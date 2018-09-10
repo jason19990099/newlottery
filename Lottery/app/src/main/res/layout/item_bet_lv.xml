@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly_item_bet"
+    android:layout_width="@dimen/dimen_75"
+    android:layout_height="@dimen/dimen_60"
+    android:background="@drawable/bg_normal_item"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lmp_lv_item_tv_pm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_35"
+        android:gravity="center"
+        android:text="龙"
+        android:textColor="#484848"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/lmp_lv_item_tv_pl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_25"
+        android:background="@drawable/bg_normal_bottom_item"
+        android:gravity="center"
+        android:text="赔率"
+        android:textColor="@color/bet_text_odds_gray"
+        android:textSize="@dimen/sp_14" />
+
+</LinearLayout>

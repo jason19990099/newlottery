@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@color/color_primary"
+        android:padding="@dimen/dimen_10">
+
+        <ImageView
+            android:id="@+id/imageView_toLeftArrow"
+            android:layout_width="@dimen/dimen_45"
+            android:layout_height="@dimen/dimen_45"
+            android:scaleType="center"
+            android:src="@mipmap/icon_left_arrow_back"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mypasswordoldplay_czzfmm"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:text="@string/mypasswordoldplay_qsrjd6wzfmm"
+        android:textSize="15sp" />
+
+    <com.international.wtw.lottery.widget.PasswordInputView
+        android:id="@+id/edittext_withdrawl_oldpwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/login_edit_bg"
+        android:cursorVisible="false"
+        android:inputType="number"
+        android:maxLength="4"
+        android:padding="3dp"
+        app:pivBorderColor="#818fa2"
+        app:pivBorderRadius="2dp"
+        app:pivBorderWidth="1px"
+        app:pivPasswordColor="#000"
+        app:pivPasswordLength="4"
+        app:pivPasswordWidth="2dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingTop="15dp"
+        android:text="@string/mypasswordoldplay_lxkfzh"
+        android:textSize="12sp" />
+
+</LinearLayout>

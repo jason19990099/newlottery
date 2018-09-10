@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="260dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_dialog_bg">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/text_dark"
+            android:textSize="15dp"
+            tools:text="用户名必须为字母开头的6~15位字母和数字组合，请重新输入！"/>
+
+        <Button
+            android:id="@+id/btn_ok"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="127dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/shape_color_primary_corners_5dp"
+            android:text="我知道了"
+            android:textColor="#fff"
+            android:textSize="15dp"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:scaleType="fitXY"
+        tools:background="@drawable/ic_dialog_warning"/>
+</FrameLayout>

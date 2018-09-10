@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:paddingEnd="4dp"
+    android:paddingStart="4dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/tv_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_dark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="北京赛车"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="30dp"
+        android:layout_height="1px"
+        android:layout_marginStart="4dp"
+        android:background="@color/text_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_game_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_name"/>
+
+    <TextView
+        android:id="@+id/tv_round_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/text_light"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:text="2018000000期"/>
+
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_right_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="@string/prize_time"
+        android:textColor="@color/text_normal"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_round_number"
+        app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
+        app:layout_constraintTop_toTopOf="@+id/tv_round_number"/>
+
+    <com.international.wtw.lottery.widget.LotteryNumberView
+        android:id="@+id/lotteryNumberView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:minHeight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_lottery_time"
+        app:layout_constraintStart_toEndOf="@id/tv_last_round"
+        app:layout_constraintTop_toBottomOf="@+id/tv_game_name"/>
+
+    <TextView
+        android:id="@+id/tv_last_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上期 : "
+        app:layout_constraintBottom_toBottomOf="@+id/lotteryNumberView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lotteryNumberView"
+        tools:layout_editor_absoluteY="78dp"/>
+
+    <TextView
+        android:id="@+id/tv_lottery_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:textColor="#ff9200"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lotteryNumberView"
+        app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
+        app:layout_constraintTop_toTopOf="@+id/lotteryNumberView"
+        tools:text="00:00"/>
+</android.support.constraint.ConstraintLayout>

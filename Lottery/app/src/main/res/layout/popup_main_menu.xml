@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@mipmap/pop_menu_bg_new"
+        android:divider="@drawable/shape_divider_line"
+        android:orientation="vertical"
+        android:paddingEnd="3dp"
+        android:paddingStart="3dp"
+        android:paddingTop="8dp"
+        android:showDividers="middle">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/popup_item_height">
+
+            <TextView
+                style="@style/menu_popup_item"
+                android:layout_width="wrap_content"
+                android:drawableStart="@mipmap/balance"
+                android:gravity="center_vertical"
+                android:text="@string/account_balance"
+                android:textColor="@color/text_dark"/>
+
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/color_primary"
+                android:textSize="16sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_recharge"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/recharge"
+            android:text="我要充值"/>
+
+        <TextView
+            android:id="@+id/tv_withdraw"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/withdraw"
+            android:text="我要提现"/>
+
+        <TextView
+            android:id="@+id/tv_bet_record"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/records"
+            android:text="下注记录"/>
+
+        <TextView
+            android:id="@+id/tv_personal_center"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/lottery"
+            android:text="开奖大厅"/>
+
+        <TextView
+            android:id="@+id/tv_lottery_ringtone"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@drawable/selector_switch_bg"
+            android:drawableStart="@mipmap/ic_lottery_ringtone"
+            android:text="开奖音效"/>
+
+        <TextView
+            android:id="@+id/tv_game_rule"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/gamerule"
+            android:text="游戏规则"/>
+
+        <TextView
+            android:id="@+id/tv_service"
+            style="@style/menu_popup_item"
+            android:drawableEnd="@mipmap/right_arrow"
+            android:drawableStart="@mipmap/contact"
+            android:text="联系我们"/>
+
+        <TextView
+            android:id="@+id/tv_log_out"
+            style="@style/menu_popup_item"
+            android:drawableStart="@mipmap/sign_out"
+            android:text="退出"/>
+    </LinearLayout>
+</FrameLayout>

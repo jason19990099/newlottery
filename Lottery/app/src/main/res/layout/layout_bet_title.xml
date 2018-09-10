@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_45"
+    android:background="@color/color_primary"
+    tools:showIn="@layout/activity_bet">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/dimen_45"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/dimen_12"
+        android:src="@mipmap/icon_left_arrow_back"
+        tools:ignore="ContentDescription"/>
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/tv_bet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LotteryTypeNamePK10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="9dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/icon_following_table"
+            tools:ignore="ContentDescription"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="@dimen/dimen_45"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_gravity="center|end"
+        android:padding="@dimen/dimen_12"
+        android:src="@mipmap/more_menu"
+        tools:ignore="ContentDescription"/>
+</FrameLayout>

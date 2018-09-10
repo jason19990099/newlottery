@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_lottery_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="99"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--<include
+                layout="@layout/activity_bet_timeinfos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+
+            <FrameLayout
+                android:id="@+id/fl_lottery_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioGroup
+                android:id="@+id/rg_cj_ssc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_lmp"
+                    style="@style/betting_tab"
+                    android:checked="true"
+                    android:text="两面盘"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_digital"
+                    style="@style/betting_tab"
+                    android:text="数字盘"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_qzh"
+                    style="@style/betting_tab"
+                    android:text="前、中、后"
+                    android:textSize="18sp" />
+
+            </RadioGroup>
+
+            <com.international.wtw.lottery.widget.CustomPager
+                android:id="@+id/vp_cj_ssc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/bet_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:layout_weight="1" />
+</LinearLayout>
