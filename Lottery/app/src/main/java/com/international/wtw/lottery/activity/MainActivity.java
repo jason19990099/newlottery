@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Fragment[] fragments;
     private View[] mllViews;
 
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_new_main;
