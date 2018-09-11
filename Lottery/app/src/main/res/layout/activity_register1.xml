@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dimen_20"
-                android:src="@mipmap/ali_login"
+                android:src="@mipmap/regist_logo"
                 android:visibility="visible" />
 
             <LinearLayout
@@ -174,12 +174,14 @@
                 </LinearLayout>
 
                 <View
+                    android:visibility="gone"
                     android:id="@+id/view_3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#cccc" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_45"
                     android:layout_marginTop="10dp"
@@ -207,12 +209,14 @@
                 </LinearLayout>
 
                 <View
+                    android:visibility="gone"
                     android:id="@+id/view_4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#cccc" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_45"
                     android:layout_marginTop="10dp"

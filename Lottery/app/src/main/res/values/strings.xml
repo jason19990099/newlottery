@@ -369,14 +369,14 @@
     <string name="prize_time">开奖时间</string>
 
     <string name="wd_grzx">个人资料</string>
-    <string name="wd_dlmm">修改密码</string>
-    <string name="wd_xxzx">我的消息</string>
+    <string name="wd_dlmm">登录密码</string>
+    <string name="wd_xxzx">信息中心</string>
     <string name="wd_lsjl">资金管理</string>
-    <string name="wd_qkmm">银行卡</string>
-    <string name="wd_yhzh">下注记录</string>
-    <string name="wd_jryj">新闻中心</string>
-    <string name="wd_xzjl">关于我们</string>
-    <string name="wd_kfjl">客服中心</string>
+    <string name="wd_qkmm">取款密码</string>
+    <string name="wd_yhzh">银行账号</string>
+    <string name="wd_jryj">今日已结</string>
+    <string name="wd_xzjl">下注记录</string>
+    <string name="wd_kfjl">客服</string>
     <string name="only_select_one">大单 小单 大双 小双四个选项一局只能选一个投注</string>
     <string name="dadan">大单</string>
     <string name="xiaodan">小单</string>

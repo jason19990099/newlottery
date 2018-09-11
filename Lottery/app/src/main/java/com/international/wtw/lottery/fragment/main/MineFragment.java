@@ -215,7 +215,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mine_tv_name = (TextView) view.findViewById(R.id.mine_tv_name);
         mine_gv = (GridView) view.findViewById(R.id.mine_gv);
         mine_out_login = (TextView) view.findViewById(R.id.mine_out_login);
-
         mine_out_login.setOnClickListener(this);
     }
 
@@ -243,7 +242,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     public void getData() {
-        list = new ArrayList<MineBean>();
+        list = new ArrayList<>();
 
         MineBean bean1 = new MineBean();
         bean1.setType_name(getString(R.string.wd_grzx));
