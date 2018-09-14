@@ -129,8 +129,8 @@ public class StartActivity extends BaseActivity {
                             if ("4003".equals(lotteryVersion.getMsg())) {
                                 Intent intent = new Intent(StartActivity.this, MaintenanceActivity.class);
                                 //清空Activity栈
-                                intent.putExtra(MaintenanceActivity.TIME_BEGIN, lotteryVersion.getBegin());
-                                intent.putExtra(MaintenanceActivity.TIME_END, lotteryVersion.getEnd());
+//                                intent.putExtra(MaintenanceActivity.TIME_BEGIN, lotteryVersion.getBegin());
+//                                intent.putExtra(MaintenanceActivity.TIME_END, lotteryVersion.getEnd());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();

@@ -53,10 +53,8 @@ import static com.international.wtw.lottery.base.LotteryId.GAME_CODE;
 import static com.international.wtw.lottery.base.LotteryId.OID;
 
 /**
- * Created by Abin on 2017/9/9.
  * 描述：网络请求类，将网络请求的方法放到此处统一管理  单例
  * 每个请求方法都传了tag标签,Activity和Fragment中请传this,方便生命周期管理.
- * 封装的不好, 有点难用啊 ┓( ´∀` )┏
  */
 
 public class HttpRequest {
@@ -123,6 +121,22 @@ public class HttpRequest {
         private RequestBody build() {
             return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JsonUtil.toJson(params));
         }
+    }
+
+
+
+    /**
+     *  开局获取token
+     * @param tag
+     * @param callback
+     */
+
+    public void getToken(Object tag, Callback<Token> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .build();
+        Call<Token> call = mService.getToken();
+        putCall(tag, call);
+        call.enqueue(callback);
     }
 
     /**
@@ -336,14 +350,8 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    public void getToken(Object tag, Callback<Token> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(OID, getOid())
-                .build();
-        Call<Token> call = mService.getToken(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
+
+
 
     /**
      * 获取开奖信息 含本期和上期

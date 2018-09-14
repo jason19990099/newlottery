@@ -41,6 +41,14 @@ import retrofit2.http.Url;
 
 public interface ApiService {
 
+
+    /**
+     * 获取token
+     */
+    @GET("index/GetToken")
+    Call<Token> getToken();
+
+
     /**
      * 用户注册
      */
@@ -50,7 +58,7 @@ public interface ApiService {
     /**
      * 用户登录
      */
-    @POST("user/signin")
+    @POST("index/Login")
     Call<UserModel> login(@Body RequestBody body);
 
     /**
@@ -122,8 +130,7 @@ public interface ApiService {
     @POST("user/info")
     Call<BaseModel> addOrModifyBankcard(@Body RequestBody body);
 
-    @POST("getinfo/getFirstToken")
-    Call<Token> getToken(@Body RequestBody body);
+
 
     /**
      * 获取开奖信息

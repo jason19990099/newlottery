@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_40"
-        android:src="@mipmap/ali_login"
+        android:src="@mipmap/login_welcome"
         android:visibility="visible" />
 
     <LinearLayout

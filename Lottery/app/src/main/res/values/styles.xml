@@ -206,4 +206,11 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@drawable/selector_date</item>
     </style>
+
+    <style name="Theme.AppStartLoadTranslucent" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

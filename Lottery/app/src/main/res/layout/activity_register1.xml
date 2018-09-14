@@ -174,14 +174,13 @@
                 </LinearLayout>
 
                 <View
-                    android:visibility="gone"
+
                     android:id="@+id/view_3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#cccc" />
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_45"
                     android:layout_marginTop="10dp"
@@ -209,14 +208,14 @@
                 </LinearLayout>
 
                 <View
-                    android:visibility="gone"
+
                     android:id="@+id/view_4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#cccc" />
 
                 <LinearLayout
-                    android:visibility="gone"
+
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_45"
                     android:layout_marginTop="10dp"
@@ -269,7 +268,7 @@
                     android:layout_height="@dimen/dimen_45"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                  >
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -302,6 +301,8 @@
             </LinearLayout>
 
             <Button
+
+
                 android:id="@+id/btn_register"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
@@ -310,9 +311,9 @@
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:layout_marginRight="@dimen/dimen_30"
                 android:layout_marginTop="@dimen/dimen_20"
-                android:background="@drawable/login_btn_log_bg"
-                android:text="@string/register"
-                android:textColor="@color/diy_white"
+                android:background="@drawable/button_coming"
+                android:text="确定"
+                android:textColor="#ffffff"
                 android:textSize="@dimen/sp_18" />
 
             <Button
@@ -348,7 +349,7 @@
                     android:id="@+id/tv_log"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="马上登录"
+                    android:text="立即登录"
                     android:textColor="@color/deep_blue"
                     android:textSize="@dimen/sp_15" />
             </LinearLayout>

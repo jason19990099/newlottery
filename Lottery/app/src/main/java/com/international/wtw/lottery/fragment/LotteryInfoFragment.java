@@ -114,7 +114,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
         }
 
         initSound();
-        getFirstToken();
+//        getFirstToken();
 
         ll_lottery_history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,21 +152,21 @@ public class LotteryInfoFragment extends NewBaseFragment {
         }
     }
 
-    private void getFirstToken() {
-        HttpRequest.getInstance().getToken(this, new HttpCallback<Token>() {
-            @Override
-            public void onSuccess(Token data) {
-                //先把后台返回的token存起来
-                MemoryCacheManager.getInstance().putToken(data.token);
-            }
-
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
-                //请求失败把token置空
-                MemoryCacheManager.getInstance().putToken(null);
-            }
-        });
-    }
+//    private void getFirstToken() {
+//        HttpRequest.getInstance().getToken(this, new HttpCallback<Token>() {
+//            @Override
+//            public void onSuccess(Token data) {
+//                //先把后台返回的token存起来
+//                MemoryCacheManager.getInstance().putToken(data.token);
+//            }
+//
+//            @Override
+//            public void onFailure(String msgCode, String errorMsg) {
+//                //请求失败把token置空
+//                MemoryCacheManager.getInstance().putToken(null);
+//            }
+//        });
+//    }
 
     private void requestTimeInfo() {
         HttpRequest.getInstance().requestLotteryInfo(this, gameCode, new HttpCallback<TimeInfoBean>() {

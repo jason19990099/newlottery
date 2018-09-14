@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -25,9 +26,11 @@ import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.RequestResult;
+import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.listener.BaseEvent;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.RegexUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -53,8 +56,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_log;
     private ImageView img_show_pwd, img_show_pwd2;
     private boolean isShowPwd, isShowPwd2;
-    private Gson gson = new Gson();
-    private String logname, logpass;
 
     @Override
     protected int getLayoutId() {
@@ -88,6 +89,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         tv_log.setOnClickListener(this);
         setOnEditListener();
     }
+
 
     private void setOnEditListener() {
         account.addTextChangedListener(new TextWatcher() {

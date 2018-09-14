@@ -11,21 +11,30 @@ import java.io.Serializable;
 
 public class BaseModel implements Serializable {
 
-    /**
-     * 状态码
-     */
+
     protected int code;
-
-    /**
-     * 错误信息
-     */
     protected String msg;
-
     protected String info;
-
     protected String begin;
-
     protected String end;
+    protected boolean status;
+    private String data;
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public int getCode() {
         return code;
