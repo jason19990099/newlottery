@@ -29,6 +29,7 @@ import com.international.wtw.lottery.json.RequestResult;
 import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.listener.BaseEvent;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.RegexUtil;
@@ -52,6 +53,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText real_name;
     private EditText withdraw_password;
     private EditText email;
+    private EditText edittext_tuijianren;
     private View view_1, view_2, view_3, view_4, view_5, view_6;
     private TextView tv_log;
     private ImageView img_show_pwd, img_show_pwd2;
@@ -80,6 +82,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         tv_log = (TextView) findViewById(R.id.tv_log);
         img_show_pwd = holder.get(R.id.img_show_pwd);
         img_show_pwd2 = holder.get(R.id.img_show_pwd2);
+        edittext_tuijianren= holder.get(R.id.edittext_tuijianren);
 
         holder.setOnClickListener(this, R.id.btn_register);
         holder.setOnClickListener(this, R.id.btn_next);
@@ -326,10 +329,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             ToastDialog.error(getString(R.string.pwd_dif)).show(getSupportFragmentManager());
             return;
         }
-//        if (!RegexUtil.isChinese(real_name.getText().toString().trim())) {
-//            ToastDialog.error(getString(R.string.input_real_name)).show(getSupportFragmentManager());
-//            return;
-//        }
         if (TextUtils.isEmpty(withdraw_password.getText().toString().trim())) {
             ToastDialog.error(getString(R.string.draw_pwd_empty_fail)).show(getSupportFragmentManager());
             return;
@@ -343,21 +342,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             return;
         }
 
-        HttpRequest.getInstance().register(RegisterActivity.this, account.getText().toString(), password.getText().toString(), real_name.getText().toString(), withdraw_password.getText().toString(), email.getText().toString(), "", "", new HttpCallback<BaseModel>() {
+        HttpRequest.getInstance().register(RegisterActivity.this,edittext_tuijianren.getText().toString(), account.getText().toString(), password.getText().toString(), real_name.getText().toString(), withdraw_password.getText().toString(), email.getText().toString(), new HttpCallback<BaseModel>() {
             @Override
             public void onSuccess(BaseModel data) {
                 SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_NEW_REGISTER, true);
 
-                HttpRequest.getInstance().login(RegisterActivity.this, account.getText().toString(), password.getText().toString(), new HttpCallback<UserModel>() {
+                HttpRequest.getInstance().login(RegisterActivity.this, account.getText().toString(), password.getText().toString(), new HttpCallback<Login>() {
                     @Override
-                    public void onSuccess(UserModel data) {
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, data.getOid());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, data.getUsername());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, data.getRealname());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, data.getQqskype());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, data.getMoney());
-                        SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_SHI_WAN, false);
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, data.getTelphone());
+                    public void onSuccess(Login data) {
+
+                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
 
                         ToastDialog.success(getString(R.string.register_success))
                                 .setDismissListener(new ToastDialog.OnDismissListener() {

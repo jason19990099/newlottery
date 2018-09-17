@@ -35,6 +35,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -141,26 +142,18 @@ public class HttpRequest {
 
     /**
      * 用户注册
-     *
-     * @param username    用户名
-     * @param password    密码
-     * @param realName    真实姓名
-     * @param payPassword 支付密码
-     * @param qqskype     邮箱(可不传)
-     * @param telephone   电话(可不传)
-     * @param parentName  代理名称(可不传)
      */
-    public void register(Object tag, String username, String password, String realName,
-                         String payPassword, @Nullable String qqskype, @Nullable String telephone,
-                         @Nullable String parentName, HttpCallback<BaseModel> callback) {
+    public void register(Object tag,@Nullable String parentName, String username, String password, String TrueName,
+                         String payPassword,String email,
+                      HttpCallback<BaseModel> callback) {
         RequestBody body = new RequestBodyBuilder()
-                .addParam("username", username)
-                .addParam("password", password)
-                .addParam("realname", realName)
-                .addParam("paypasswd", payPassword)
-                .addParam("qqskype", qqskype)
-                .addParam("telphone", telephone)
-                .addParam("parentname", parentName)
+                .addParam("ParentUsername", parentName)
+                .addParam("Name", username)
+                .addParam("Password", password)
+                .addParam("ConfirmPassword", password)
+                .addParam("TrueName", TrueName)
+                .addParam("WithdrawPassword", payPassword)
+                .addParam("Email", email)
                 .build();
         Call<BaseModel> call = mService.register(body);
         putCall(tag, call);
@@ -169,16 +162,16 @@ public class HttpRequest {
 
     /**
      * 用户登录
-     *
-     * @param userName 用户名
+     *  @param userName 用户名
      * @param password 密码
+     * @param callback
      */
-    public void login(Object tag, String userName, String password, Callback<UserModel> callback) {
+    public void login(Object tag, String userName, String password, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.USER_NAME, userName)
                 .addParam(LotteryId.PASSWORD, password)
                 .build();
-        Call<UserModel> call = mService.login(body);
+        Call<Login> call = mService.login(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

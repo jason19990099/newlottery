@@ -27,6 +27,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Login;
 
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public interface ApiService {
      * 用户登录
      */
     @POST("index/Login")
-    Call<UserModel> login(@Body RequestBody body);
+    Call<Login> login(@Body RequestBody body);
 
     /**
      * 试玩登录

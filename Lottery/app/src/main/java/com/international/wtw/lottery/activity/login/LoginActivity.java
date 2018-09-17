@@ -26,6 +26,7 @@ import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.RandomCode;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -204,26 +205,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username_remember, name);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_paw_remember, pwd);
-                HttpRequest.getInstance().login(LoginActivity.this, name, pwd, new HttpCallback<UserModel>() {
+                HttpRequest.getInstance().login(LoginActivity.this, name, pwd, new HttpCallback<Login>() {
                     @Override
-                    public void onSuccess(UserModel data) {
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, data.getOid());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, data.getUsername());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, data.getRealname());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, data.getQqskype());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, data.getMoney());
-                        SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_SHI_WAN, false);
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, data.getTelphone());
-                        if ("2018".equals(data.getMsg())) {
-                            ToastDialog.error(data.getErrorCodeInfo())
-                                    .setDismissListener(new ToastDialog.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(ToastDialog dialog) {
-                                            startActivity(new Intent(LoginActivity.this, MyPasswordLoginActivity.class));
-                                            finish();
-                                        }
-                                    }).show(getSupportFragmentManager());
-                        } else {
+                    public void onSuccess(Login data) {
+
+                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
+
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
                                 public void onDismiss(ToastDialog dialog) {
@@ -233,7 +220,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 }
                             }).show(getSupportFragmentManager());
                         }
-                    }
+
 
                     @Override
                     public void onFailure(String msgCode, String errorMsg) {

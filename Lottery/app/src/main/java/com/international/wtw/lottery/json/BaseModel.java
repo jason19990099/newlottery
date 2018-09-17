@@ -5,7 +5,6 @@ import com.international.wtw.lottery.base.Constants;
 import java.io.Serializable;
 
 /**
- * Created by Abin on 2017/9/9.
  * 描述：Model基类 其他model需继承该类
  */
 
