@@ -40,19 +40,16 @@ import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface ApiService {
-
-
     /**
      * 获取token
      */
     @GET("index/GetToken")
     Call<Token> getToken();
 
-
     /**
      * 用户注册
      */
-    @POST("user/signup")
+    @POST("index/Register")
     Call<BaseModel> register(@Body RequestBody body);
 
     /**
@@ -64,8 +61,19 @@ public interface ApiService {
     /**
      * 试玩登录
      */
-    @GET("user/signdemo")
+    @GET("index/LoginTry")
     Call<UserModel> loginDemo();
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 获取版本服务器apk信息

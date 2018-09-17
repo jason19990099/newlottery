@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEDED"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -33,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +55,42 @@
                 android:layout_marginRight="@dimen/dimen_30"
                 android:layout_marginTop="@dimen/dimen_25"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_45"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@mipmap/person_on" />
+
+                    <EditText
+                        android:id="@+id/edittext_tuijianren"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@null"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:gravity="center_vertical"
+                        android:hint="推荐人,如果没有可不填写"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="15"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColorHint="#cfcfcf"
+                        android:textSize="@dimen/sp_15" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#cccc" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_45"
@@ -101,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="center"
-                        android:src="@mipmap/lock" />
+                        android:src="@mipmap/regist_psw_off" />
 
                     <EditText
                         android:id="@+id/edittext_pwd"
@@ -145,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="center"
-                        android:src="@mipmap/lock" />
+                        android:src="@mipmap/regist_psw_off" />
 
                     <EditText
                         android:id="@+id/edittext_confirm_pwd"
@@ -190,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="center"
-                        android:src="@mipmap/user2" />
+                        android:src="@mipmap/regist_realname_off" />
 
                     <EditText
                         android:id="@+id/edittext_real_name"
@@ -198,7 +235,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:background="@null"
-                        android:hint="您的姓名(与提款的银行户名一致)"
+                        android:hint="真实姓名"
                         android:imeOptions="actionNext"
                         android:paddingLeft="10dp"
                         android:singleLine="true"
@@ -225,7 +262,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="center"
-                        android:src="@mipmap/lock2" />
+                        android:src="@mipmap/regist_takeoff_off" />
 
                     <com.international.wtw.lottery.widget.PasswordInputView
                         android:id="@+id/edittext_withdrawl_pwd"
@@ -274,7 +311,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:scaleType="center"
-                        android:src="@mipmap/recommend" />
+                        android:src="@mipmap/regist_email_off" />
 
                     <EditText
                         android:id="@+id/edittext_email"
@@ -282,7 +319,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:background="@null"
-                        android:hint="邮箱(请输入常用的电子邮箱方便找回密码)"
+                        android:hint="邮箱"
                         android:imeOptions="actionDone"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="10dp"
