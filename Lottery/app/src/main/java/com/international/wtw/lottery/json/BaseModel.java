@@ -17,15 +17,7 @@ public class BaseModel implements Serializable {
     protected String begin;
     protected String end;
     protected boolean status;
-    private String data;
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 
     public boolean isStatus() {
         return status;

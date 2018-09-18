@@ -58,31 +58,31 @@ public class MineAdapter extends BaseAdapter {
         String type_name = list.get(position).getType_name();
         viewHolder.mine_item_tv_type.setText(type_name);
         if (type_name.equals("个人资料")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_grzl1);
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_person);
         }
-        if (type_name.equals("修改密码")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_xgmm1);
+        if (type_name.equals("登录密码")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_denglumima);
         }
-        if (type_name.equals("我的消息")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_xxzx1);
+        if (type_name.equals("信息中心")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_xinxizhongxin);
         }
         if (type_name.equals("资金管理")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_zjgl1);
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_zijijnguanli);
         }
-        if (type_name.equals("银行卡")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_yhk1);
+        if (type_name.equals("取款密码")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_qukuanmima);
+        }
+        if (type_name.equals("银行账号")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_yinhangzhanghao);
+        }
+        if (type_name.equals("今日已结")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_jinriyijie);
         }
         if (type_name.equals("下注记录")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_xzjl1);
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_xiazhujilu);
         }
-        if (type_name.equals("新闻中心")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_ggzx1);
-        }
-        if (type_name.equals("关于我们")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_gywm1);
-        }
-        if (type_name.equals("客服中心")) {
-            viewHolder.mine_item_img_type.setImageResource(R.mipmap.icon_mine_kfzx1);
+        if (type_name.equals("客服")) {
+            viewHolder.mine_item_img_type.setImageResource(R.mipmap.mine_kefu);
         }
 
         return view;

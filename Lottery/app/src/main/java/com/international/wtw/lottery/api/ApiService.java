@@ -24,9 +24,9 @@ import com.international.wtw.lottery.json.Quick3Odds;
 import com.international.wtw.lottery.json.SummaryBean;
 import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
-import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 
 import java.util.Map;
@@ -44,8 +44,8 @@ public interface ApiService {
     /**
      * 获取token
      */
-    @GET("index/GetToken")
-    Call<Token> getToken();
+    @POST("index/GetToken")
+    Call<Login> getToken();
 
     /**
      * 用户注册
@@ -60,10 +60,35 @@ public interface ApiService {
     Call<Login> login(@Body RequestBody body);
 
     /**
+     * 用户登出
+     */
+    @POST("index/Logout")
+    Call<Login> loginout(@Body RequestBody body);
+
+    /**
      * 试玩登录
      */
-    @GET("index/LoginTry")
+    @POST("index/LoginTry")
     Call<UserModel> loginDemo();
+
+
+    /**
+     * 获取登录信息
+     */
+    @POST("User/GetLoginInfo")
+    Call<GetUserinfo> getLoginfo(@Body RequestBody body);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

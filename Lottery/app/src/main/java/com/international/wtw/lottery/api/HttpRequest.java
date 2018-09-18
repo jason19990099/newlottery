@@ -32,9 +32,9 @@ import com.international.wtw.lottery.json.Quick3Odds;
 import com.international.wtw.lottery.json.SummaryBean;
 import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
-import com.international.wtw.lottery.json.Token;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -132,10 +132,10 @@ public class HttpRequest {
      * @param callback
      */
 
-    public void getToken(Object tag, Callback<Token> callback) {
+    public void getToken(Object tag, Callback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .build();
-        Call<Token> call = mService.getToken();
+        Call<Login> call = mService.getToken();
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -184,6 +184,53 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     *   获取登录信息
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getLoginfo(Object tag, String token,HttpCallback<GetUserinfo> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<GetUserinfo> call = mService.getLoginfo(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     *  登出
+     */
+    public void Loginout(Object tag, String token,HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<Login> call = mService.loginout(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 获取Banner及公告数据

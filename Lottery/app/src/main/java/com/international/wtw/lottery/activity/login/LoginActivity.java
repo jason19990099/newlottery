@@ -14,6 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.mine.ForgetPwd1Activity;
@@ -26,12 +28,18 @@ import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.RandomCode;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
+import com.international.wtw.lottery.utils.ShareUtil;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText username;
@@ -43,6 +51,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private boolean isShow;
     private View view1, view2, view3;
     private boolean isChecked = false;
+    private Gson gson=new Gson();
 
     @Override
     protected int getLayoutId() {
@@ -214,9 +223,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
                                 public void onDismiss(ToastDialog dialog) {
-                                    Login_Main();
-                                    EventBus.getDefault().postSticky(new LoginEvent());
-                                    finish();
+
+                                    getLoginInfo();
+
                                 }
                             }).show(getSupportFragmentManager());
                         }
@@ -276,13 +285,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 HttpRequest.getInstance().loginDemo(LoginActivity.this, new HttpCallback<UserModel>() {
                     @Override
                     public void onSuccess(UserModel data) {
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, data.getOid());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, data.getUsername());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, data.getRealname());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, data.getQqskype());
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, data.getMoney());
-                        SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_SHI_WAN, true);
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, data.getTelphone());
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, data.getOid());
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, data.getUsername());
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, data.getRealname());
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, data.getQqskype());
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, data.getMoney());
+//                        SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_SHI_WAN, true);
+//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, data.getTelphone());
 
                         ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                             @Override
@@ -307,6 +316,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 });
                 break;
         }
+    }
+
+    private void getLoginInfo() {
+        String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
+        HttpRequest.getInstance().getLoginfo(LoginActivity.this,token, new HttpCallback<GetUserinfo>() {
+            @Override
+            public void onSuccess(GetUserinfo data)  {
+                Login_Main();
+                EventBus.getDefault().postSticky(new LoginEvent());
+                finish();
+            }
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                    ToastDialog.error(errorMsg).show(getSupportFragmentManager());
+            }
+        });
+
+
     }
 
     public void Login_Main() {

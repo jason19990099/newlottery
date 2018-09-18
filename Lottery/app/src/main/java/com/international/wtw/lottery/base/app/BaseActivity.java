@@ -21,9 +21,7 @@ import java.util.concurrent.TimeUnit;
 import butterknife.ButterKnife;
 import okhttp3.OkHttpClient;
 
-/**
- * Created by wuya on 2017/5/2.
- */
+
 public abstract class BaseActivity extends AppCompatActivity {
     protected RequestClient mRequestClient;
     protected ViewHolder mViewHolder;

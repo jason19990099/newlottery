@@ -7,17 +7,17 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.international.wtw.lottery.R;
+import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
+import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
-import com.international.wtw.lottery.json.Token;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 public class SplashActivity extends BaseActivity {
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_start;
@@ -37,7 +37,11 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                if (null==SharePreferencesUtil.getString(SplashActivity.this, LotteryId.TOKEN,null)){
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                }else{
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                }
                 finish();
             }
 
@@ -49,14 +53,11 @@ public class SplashActivity extends BaseActivity {
 
     }
 
-
     private void getToken() {
-        HttpRequest.getInstance().getToken(SplashActivity.this, new HttpCallback<Token>() {
+        HttpRequest.getInstance().getToken(SplashActivity.this, new HttpCallback<Login>() {
             @Override
-            public void onSuccess(Token data) {
-
+            public void onSuccess(Login data) {
                 SharePreferencesUtil.addString(SplashActivity.this,"token",data.getData());
-                LogUtil.e("======================");
             }
 
             @Override

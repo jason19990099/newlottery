@@ -11,10 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -26,13 +24,9 @@ import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.RequestResult;
-import com.international.wtw.lottery.json.Token;
-import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.listener.BaseEvent;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
-import com.international.wtw.lottery.utils.LogUtil;
-import com.international.wtw.lottery.utils.RegexUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import org.greenrobot.eventbus.EventBus;

@@ -5,11 +5,16 @@
     android:background="#F2F2F2"
     android:orientation="vertical">
 
+    <LinearLayout  android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@mipmap/mine_bg">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="215dp"
-        android:background="@drawable/mine_main_bg">
+ >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -66,7 +71,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/mine_main_bg"
         android:orientation="horizontal">
 
         <TextView
@@ -89,10 +93,10 @@
             android:drawablePadding="20dip"
             android:gravity="center_vertical"
             android:paddingLeft="40dip"
-            android:text="紅包查詢" />
+            android:text="红包查询" />
 
     </LinearLayout>
-
+    </LinearLayout>
     <GridView
         android:id="@+id/mine_gv"
         android:layout_width="match_parent"

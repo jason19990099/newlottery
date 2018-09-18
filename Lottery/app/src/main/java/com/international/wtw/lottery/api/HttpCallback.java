@@ -47,7 +47,11 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
             }
 
             if (model.isStatus()) {
-                onSuccess(model);
+                try {
+                    onSuccess(model);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
                 onApiFailure(model);
             }
@@ -103,7 +107,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         }
     }
 
-    public abstract void onSuccess(T data);
+    public abstract void onSuccess(T data) throws Exception;
 
     public abstract void onFailure(String msgCode, String errorMsg);
 }

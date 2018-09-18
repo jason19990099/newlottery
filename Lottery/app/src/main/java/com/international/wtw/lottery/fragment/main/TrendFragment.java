@@ -42,7 +42,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by XiaoXin on 2017/10/4.
  * 描述：开奖趋势
  * 主要逻辑: 每10秒轮询一次服务器获取数据, 因为上一期的开奖数据不会在这一期开始时马上刷出来,
  * 为了及时更新开奖数据, 暂时的想法是每15秒轮询1次服务器数据

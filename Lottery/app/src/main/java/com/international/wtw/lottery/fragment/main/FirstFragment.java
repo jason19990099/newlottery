@@ -68,12 +68,14 @@ import com.international.wtw.lottery.json.Notice;
 import com.international.wtw.lottery.json.PreferentialBean;
 import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;
 import com.international.wtw.lottery.utils.ScreenUtils;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
+import com.international.wtw.lottery.utils.ShareUtil;
 import com.international.wtw.lottery.utils.SizeUtils;
 import com.international.wtw.lottery.widget.MarqueeView;
 import com.international.wtw.lottery.widget.banner.BannerBaseView;
@@ -385,9 +387,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         list.add(new HomeMsgBean(getString(R.string.lucy_28),
                 Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY,
                 R.mipmap.icon_item_pc_dd));
-//        list.add(new HomeMsgBean(getString(R.string.real_more),
-//                Constants.LOTTERY_TYPE.REAL_MORE,
-//                R.mipmap.icon_more));
         list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameCJucky),
                 Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY,
                 R.mipmap.icon_item_cj_lucky_lottery));
