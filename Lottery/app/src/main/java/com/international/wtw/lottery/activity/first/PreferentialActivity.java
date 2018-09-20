@@ -20,7 +20,7 @@ import com.international.wtw.lottery.json.PreferentialProBean;
 import java.util.List;
 
 /**
- * Created by XIAOYAN on 2017/10/4. 活动中心
+ *  活动中心
  */
 
 public class PreferentialActivity extends BaseActivity {

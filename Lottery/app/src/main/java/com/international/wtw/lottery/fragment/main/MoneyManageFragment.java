@@ -27,7 +27,6 @@ import java.util.Locale;
 import butterknife.BindView;
 
 /**
- * Created by Abin on 2017/9/9.
  * 描述：资金管理页面
  */
 

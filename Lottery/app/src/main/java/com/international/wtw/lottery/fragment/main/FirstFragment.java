@@ -559,14 +559,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 HttpRequest.getInstance().loginDemo(getActivity(), new HttpCallback<UserModel>() {
                     @Override
                     public void onSuccess(UserModel data) {
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_oid, data.getOid());
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_username, data.getUsername());
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_realname, data.getRealname());
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_qqskype, data.getQqskype());
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_monery, data.getMoney());
-                        SharePreferencesUtil.addBoolean(getContext(), LotteryId.IS_SHI_WAN, true);
-                        SharePreferencesUtil.addString(getContext(), LotteryId.Login_phone, data.getTelphone());
-
+                        SharePreferencesUtil.addString(getContext(), LotteryId.TOKEN, data.getOid());
                         startActivity(new Intent(getActivity(), MainActivity.class));
                         EventBus.getDefault().postSticky(new LoginEvent());
                         ToastDialog.success(getString(R.string.login_success)).show(getFragmentManager());

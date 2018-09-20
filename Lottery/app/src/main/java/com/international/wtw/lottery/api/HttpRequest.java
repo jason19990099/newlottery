@@ -213,12 +213,32 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 获取消息列表
+     */
+    public void getMessageList(Object tag, String token,String pageIndex,String pageSize,HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("pageIndex", pageIndex)
+                .addParam("pageSize", pageSize)
+                .build();
+        Call<Login> call = mService.getMessageList(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
-
-
-
-
+    /**
+     *  获取余额
+     */
+    public void getBalance(Object tag, String token, HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<Login> call = mService.getBanlance(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

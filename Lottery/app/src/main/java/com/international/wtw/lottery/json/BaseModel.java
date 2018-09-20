@@ -18,7 +18,6 @@ public class BaseModel implements Serializable {
     protected String end;
     protected boolean status;
 
-
     public boolean isStatus() {
         return status;
     }

@@ -12,7 +12,7 @@ import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.json.LunbotuBean;
 
 /**
- * Created by 18Steven on 2017/9/22. 消息中心
+ * 消息中心
  */
 
 public class InfoCenterActivity extends BaseActivity implements View.OnClickListener {

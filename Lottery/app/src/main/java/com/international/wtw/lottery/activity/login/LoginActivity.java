@@ -14,12 +14,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.mine.ForgetPwd1Activity;
-import com.international.wtw.lottery.activity.mine.MyPasswordLoginActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -34,12 +31,8 @@ import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.RandomCode;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-import com.international.wtw.lottery.utils.ShareUtil;
-
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText username;
@@ -51,8 +44,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private boolean isShow;
     private View view1, view2, view3;
     private boolean isChecked = false;
-    private Gson gson=new Gson();
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -219,7 +210,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     public void onSuccess(Login data) {
 
                         SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
-
+                        LogUtil.e("=========token==login====="+ data.getData());
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
                                 public void onDismiss(ToastDialog dialog) {

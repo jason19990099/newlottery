@@ -120,11 +120,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_NEW_REGISTER, false);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //super.onSaveInstanceState(outState);
-    }
-
 
     @Override
     protected void onNewIntent(Intent intent) {

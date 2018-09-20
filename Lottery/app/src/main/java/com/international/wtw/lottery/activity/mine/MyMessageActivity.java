@@ -15,15 +15,13 @@ import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.MessageBean;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 
 import java.util.List;
 
 
-/**
- * Created by XIAOYAN on 2017/12/5.
- */
 
 public class MyMessageActivity extends BaseActivity implements View.OnClickListener {
 
@@ -78,20 +76,20 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void SetData() {
-        String login_oid = SharePreferencesUtil.getString(getApplicationContext(), LotteryId.Login_oid, "");
-        HttpRequest.getInstance().getMyMessage(MyMessageActivity.this, login_oid, new HttpCallback<MessageBean>() {
+        String token=SharePreferencesUtil.getString(MyMessageActivity.this,LotteryId.TOKEN,"");
+        HttpRequest.getInstance().getMessageList(MyMessageActivity.this, token,"1","100", new HttpCallback<Login>() {
             @Override
-            public void onSuccess(MessageBean data) {
-                List<MessageBean.MsgListBean> msgList = data.getMsgList();
-                if (null != msgList && msgList.size() != 0) {
-                    adapter = new MyMessageAdapter(MyMessageActivity.this, msgList);
-                    listView.setAdapter(adapter);
-                    listView.setVisibility(View.VISIBLE);
-                    fl_no_deposit.setVisibility(View.GONE);
-                } else {
-                    listView.setVisibility(View.GONE);
-                    fl_no_deposit.setVisibility(View.VISIBLE);
-                }
+            public void onSuccess(Login data) {
+//                List<MessageBean.MsgListBean> msgList = data.getMsgList();
+//                if (null != msgList && msgList.size() != 0) {
+//                    adapter = new MyMessageAdapter(MyMessageActivity.this, msgList);
+//                    listView.setAdapter(adapter);
+//                    listView.setVisibility(View.VISIBLE);
+//                    fl_no_deposit.setVisibility(View.GONE);
+//                } else {
+//                    listView.setVisibility(View.GONE);
+//                    fl_no_deposit.setVisibility(View.VISIBLE);
+//                }
             }
 
             @Override

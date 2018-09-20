@@ -33,7 +33,7 @@ import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.fragment.BaseFragment;
 import com.international.wtw.lottery.json.LunbotuBean;
 import com.international.wtw.lottery.json.MineBean;
-import com.international.wtw.lottery.json.MoneyInfo;
+import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -46,7 +46,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class MineFragment extends BaseFragment implements View.OnClickListener {
+    @BindView(R.id.tv_balance)
+    TextView tvBalance;
+    Unbinder unbinder;
     private View view;
     private TextView mine_tv_name;
     private GridView mine_gv;
@@ -63,8 +70,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         getData();
 
         getBannerData(getActivity());
-
-        getUserInfoMoney();
 
         MineAdapter adapter = new MineAdapter(getActivity(), list);
         mine_gv.setAdapter(adapter);
@@ -140,9 +145,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
-    
+
     public void getBannerData(Context context) {
         String Login_oid = SharePreferencesUtil.getString(context, LotteryId.Login_oid, "");
         HttpRequest.getInstance().getNewsCenter(context, Login_oid, new HttpCallback<LunbotuBean>() {
@@ -158,53 +164,33 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         });
     }
 
+
     private void getUserInfoMoney() {
-        MoneyInfo moneyInfo = MoneyInfoManager.get().getMoneyInfo();
-        if (moneyInfo != null) {
-            String hello = gettime();
-            mine_tv_name.setText(String.format(hello + "%s", moneyInfo.getUsername()));
-        }
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        LogUtil.e("========token==" + token);
+        HttpRequest.getInstance().getBalance(getActivity(), token, new HttpCallback<Login>() {
+            @Override
+            public void onSuccess(Login data) {
+                String money = data.getData();
+                tvBalance.setText("余额:"+money+"元");
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                ToastDialog.error(errorMsg).show(getFragmentManager());
+            }
+        });
+
     }
 
     @Subscribe
     public void onEvent(MoneyInfoRefreshEvent event) {
         if (event.moneyInfo != null) {
-            String hello = gettime();
-            mine_tv_name.setText(String.format(hello + "%s", event.moneyInfo.getUsername()));
+
+            mine_tv_name.setText(String.format("hello" + "%s", event.moneyInfo.getUsername()));
         }
     }
 
-    public String gettime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HH");
-        Date curDate = new Date(System.currentTimeMillis());
-        String str = formatter.format(curDate);
-        int time = Integer.parseInt(str);
-        LogUtil.e("time---" + time);
-
-        String hello = null;
-        if (time >= 0 && time <= 5) {
-            hello = "晚上好！";
-        }
-        if (time > 5 && time <= 8) {
-            hello = "早上好！";
-        }
-        if (time > 8 && time <= 10) {
-            hello = "上午好!";
-        }
-        if (time > 10 && time <= 12) {
-            hello = "中午好！";
-        }
-        if (time > 12 && time <= 16) {
-            hello = "下午好！";
-        }
-        if (time > 16 && time <= 18) {
-            hello = "傍晚好！";
-        }
-        if (time > 18) {
-            hello = "晚上好！";
-        }
-        return hello;
-    }
 
     private void InitView() {
         mine_tv_name = (TextView) view.findViewById(R.id.mine_tv_name);
@@ -225,14 +211,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+
         if (null != getActivity()) {
-            String Login_oid = SharePreferencesUtil.getString(getActivity(), LotteryId.Login_oid, null);
+            String Login_oid = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, null);
             if (Login_oid == null) {
                 mine_out_login.setVisibility(View.GONE);
             } else {
                 mine_out_login.setVisibility(View.VISIBLE);
             }
         }
+
+        getUserInfoMoney();
     }
 
     public void getData() {
@@ -301,7 +290,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         btn_out_login_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharePreferencesUtil.addString(getActivity(), LotteryId.Login_oid, null);
+                SharePreferencesUtil.addString(getActivity(), LotteryId.TOKEN, null);
                 MoneyInfoManager.get().setMoneyInfo(null);
                 SharePreferencesUtil.addString(getActivity(), LotteryId.Login_username, "");
                 SharePreferencesUtil.addString(getActivity(), LotteryId.Login_phone, null);
@@ -316,5 +305,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     public void onDestroyView() {
         EventBus.getDefault().unregister(this);
         super.onDestroyView();
+        unbinder.unbind();
     }
 }

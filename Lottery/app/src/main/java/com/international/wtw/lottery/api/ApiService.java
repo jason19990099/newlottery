@@ -78,10 +78,17 @@ public interface ApiService {
     @POST("User/GetLoginInfo")
     Call<GetUserinfo> getLoginfo(@Body RequestBody body);
 
+    /**
+     * 消息列表
+     */
+    @POST("Message/List")
+    Call<Login> getMessageList(@Body RequestBody body);
 
-
-
-
+    /**
+     * 获取余额
+     */
+    @POST("User/GetBalance")
+    Call<Login> getBanlance(@Body RequestBody body);
 
 
 
