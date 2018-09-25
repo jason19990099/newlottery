@@ -35,18 +35,14 @@ import org.greenrobot.eventbus.Subscribe;
  */
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-
     public static final String EXTRA_CURRENT_FRAGMENT_INDEX = "EXTRA_CURRENT_FRAGMENT_INDEX";
     public static final String EXTRA_CURRENT_MONEY_INDEX = "EXTRA_CURRENT_MONEY_INDEX";
-
     private FragmentManager mFragmentManager;  // Fragment管理器
     private MoneyManageFragment moneyFragment;
     private long mClickTime;
     private int currentFragmentIndex = -1; //记录当前显示的fragment
-
     private Fragment[] fragments;
     private View[] mllViews;
-
 
     @Override
     protected int getLayoutId() {
@@ -75,9 +71,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mFragmentManager = getSupportFragmentManager();
         changeShowFragment(0);
-
-        //首次注册的新用户,弹出充值引导弹窗
-        initRechargeDialog();
+//
+//        //首次注册的新用户,弹出充值引导弹窗
+//        initRechargeDialog();
     }
 
     private void initRechargeDialog() {

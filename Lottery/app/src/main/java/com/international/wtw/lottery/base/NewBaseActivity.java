@@ -58,7 +58,7 @@ public abstract class NewBaseActivity extends AppCompatActivity {
      * @return 是否使用EventBus接收消息, 默认false, 如需使用重新该方法返回true
      */
     protected boolean useEventBus() {
-        return false;
+        return true;
     }
 
     public void showProgressDialog(@NonNull String message) {

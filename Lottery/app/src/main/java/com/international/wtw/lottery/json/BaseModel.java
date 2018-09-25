@@ -17,6 +17,15 @@ public class BaseModel implements Serializable {
     protected String begin;
     protected String end;
     protected boolean status;
+    protected int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public boolean isStatus() {
         return status;

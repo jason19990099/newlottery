@@ -2,7 +2,7 @@ package com.international.wtw.lottery.base;
 
 
 public class Constants {
-    public static final String BASE_URL = "http://10.7.0.2/";//此行链接不允许改动
+    public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许改动
 
     public static final String LOTTERY_WEBSITE = "https://pk10tv.com/";//开奖网
     public static final String GAME_WEBSITE = "http://wap.alcp66.com/#/todayRule";//游戏规则

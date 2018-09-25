@@ -276,13 +276,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 HttpRequest.getInstance().loginDemo(LoginActivity.this, new HttpCallback<UserModel>() {
                     @Override
                     public void onSuccess(UserModel data) {
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, data.getOid());
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, data.getUsername());
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, data.getRealname());
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, data.getQqskype());
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, data.getMoney());
-//                        SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_SHI_WAN, true);
-//                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, data.getTelphone());
 
                         ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                             @Override
@@ -297,12 +290,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     @Override
                     public void onFailure(String msgCode, String errorMsg) {
-                        if ("2013".equals(msgCode)) {
-                            //如果用户被禁, 不自动消失
-                            ToastDialog.error(errorMsg, false).show(getSupportFragmentManager());
-                        } else {
                             ToastDialog.error(errorMsg).show(getSupportFragmentManager());
-                        }
                     }
                 });
                 break;

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_odd_bank_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/shape_divider_line"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_36"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/bind_card_tip1"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/sp_12" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_name"
+                        android:textColor="@color/text_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_bank_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/text_normal"
+                        tools:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_num"
+                        android:textColor="@color/text_normal" />
+
+                    <com.international.wtw.lottery.widget.BankNumEditText
+                        android:id="@+id/et_odd_bankcard_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_odd_card_num"
+                        android:inputType="number"
+                        android:maxLength="23"
+                        android:maxLines="1"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/shape_divider_line"
+                android:orientation="vertical"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    android:id="@+id/tv_tips"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_36"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/bind_card_tip2"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/sp_12" />
+
+                <LinearLayout
+                    android:id="@+id/ll_real_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/real_name"/>
+
+                    <TextView
+                        android:id="@+id/tv_real_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_4c4c4c"
+                        android:textSize="@dimen/sp_14"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_select_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_bank"
+                        android:textColor="@color/text_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_select_bankcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableEnd="@mipmap/capital_arrow_down"
+                        android:gravity="center_vertical"
+                        android:hint="@string/choice_bank_you_deposit"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_num"
+                        android:textColor="@color/text_normal" />
+
+                    <com.international.wtw.lottery.widget.BankNumEditText
+                        android:id="@+id/et_bankcard_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_card_num"
+                        android:inputType="number"
+                        android:maxLength="23"
+                        android:maxLines="1"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bank_num"
+                        android:textColor="@color/text_normal" />
+
+                    <com.international.wtw.lottery.widget.BankNumEditText
+                        android:id="@+id/et_bankcard_number_again"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_card_num_again"
+                        android:inputType="number"
+                        android:maxLength="23"
+                        android:maxLines="1"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_address"
+                        android:textColor="@color/text_normal" />
+
+                    <EditText
+                        android:id="@+id/et_open_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/input_address"
+                        android:maxLines="1"
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_commit"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginBottom="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/dimen_35"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/commit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

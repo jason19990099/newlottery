@@ -18,11 +18,11 @@ import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.first.InfoCenterActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
-import com.international.wtw.lottery.activity.mine.AboutUsActivity;
-import com.international.wtw.lottery.activity.mine.BetOnRecordActivity;
+import com.international.wtw.lottery.activity.mine.BankcardContralActivity;
 import com.international.wtw.lottery.activity.mine.MyMessageActivity;
-import com.international.wtw.lottery.activity.mine.MyPasswordActivity;
-import com.international.wtw.lottery.activity.mine.PersonalCenterActivity;
+import com.international.wtw.lottery.activity.mine.MyPasswordLoginActivity;
+import com.international.wtw.lottery.activity.mine.PersonalActiovity;
+import com.international.wtw.lottery.activity.mine.TakeoutMoneyPasswordActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.MineAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -41,9 +41,7 @@ import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -83,14 +81,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 String type_name = list.get(position).getType_name();
                 if (type_name.equals(getString(R.string.wd_grzx))) {
                     if (!aBoolean) {
-                        startActivity(new Intent(getActivity(), PersonalCenterActivity.class));
+                        startActivity(new Intent(getActivity(), PersonalActiovity.class));
                     } else {
                         ToastDialog.error(getString(R.string.login_is_shiwan)).show(getFragmentManager());
                     }
                 }
                 if (type_name.equals(getString(R.string.wd_dlmm))) {
                     if (!aBoolean) {
-                        startActivity(new Intent(getActivity(), MyPasswordActivity.class));
+                        startActivity(new Intent(getActivity(), MyPasswordLoginActivity.class));
                     } else {
                         ToastDialog.error(getString(R.string.login_is_shiwan)).show(getFragmentManager());
                     }
@@ -109,7 +107,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 if (type_name.equals(getString(R.string.wd_qkmm))) {
                     if (!aBoolean) {
-                        Intent intent = new Intent(getActivity(), BankcardActivity.class);
+                        Intent intent = new Intent(getActivity(), TakeoutMoneyPasswordActivity.class);
                         intent.putExtra(BankcardActivity.TITLE, getResources().getString(R.string.modify_bank_info));
                         startActivity(intent);
                     } else {
@@ -117,7 +115,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }
                 if (type_name.equals(getString(R.string.wd_yhzh))) {
-                    Intent intent = new Intent(getActivity(), BetOnRecordActivity.class);
+                    Intent intent = new Intent(getActivity(), BankcardContralActivity.class);
                     intent.putExtra("is_shi_wan", aBoolean);
                     startActivity(intent);
                 }
@@ -130,7 +128,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
-                    startActivity(new Intent(getActivity(), AboutUsActivity.class));
+//                    startActivity(new Intent(getActivity(), AboutUsActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_kfjl))) {
                     String serviceUrl = SharePreferencesUtil.getString(getActivity(), LotteryId.SERVICE_URL, "");

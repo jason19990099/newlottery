@@ -241,6 +241,80 @@ public class HttpRequest {
     }
 
 
+    /**
+     * 修改登录密码
+     *
+     * @param token         用户id
+     * @param password 旧密码
+     * @param newPassword    新密码
+     */
+    public void getLoginPassword(Object tag, String token, String password, String newPassword, HttpCallback<BaseModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("password", password)
+                .addParam("newPassword", newPassword)
+                .addParam("confirmPassword", newPassword)
+                .build();
+        Call<BaseModel> call = mService.getLoginPassword(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 修改取款密码
+     * @param tag
+     * @param token
+     * @param password
+     * @param newPassword
+     * @param callback
+     */
+    public void changeTakeoutMoneyPassword(Object tag, String token, String password, String newPassword, HttpCallback<BaseModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("password", password)
+                .addParam("newPassword", newPassword)
+                .addParam("confirmPassword", newPassword)
+                .build();
+        Call<BaseModel> call = mService.changeMoneyPass(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     *  查询用户银行卡
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getUserBank(Object tag, String token, HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<Login> call = mService.getUserbank(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 查询所有游戏
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getAllgames(Object tag, String token, HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<Login> call = mService.getAllgames(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
 
 
 
@@ -684,23 +758,7 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 修改登录密码
-     *
-     * @param oid         用户id
-     * @param oldpassword 旧密码
-     * @param password    新密码
-     */
-    public void getLoginPassword(Object tag, String oid, String oldpassword, String password, HttpCallback<BaseModel> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(LotteryId.OID, oid)
-                .addParam("oldpassword", oldpassword)
-                .addParam("password", password)
-                .build();
-        Call<BaseModel> call = mService.getLoginPassword(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
+
 
     /**
      * 修改支付密码

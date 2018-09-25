@@ -288,10 +288,10 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
     public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
 
-        // Add the parent state to the bundle
+        // AddcardsFragment the parent state to the bundle
         bundle.putParcelable(BUNDLE_ID_PARENT_STATE, super.onSaveInstanceState());
 
-        // Add our state to the bundle
+        // AddcardsFragment our state to the bundle
         bundle.putInt(BUNDLE_ID_CURRENT_X, mCurrentX);
 
         return bundle;
@@ -693,7 +693,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             edge = child.getRight();
         }
 
-        // Add new children views to the right, until past the edge of the screen
+        // AddcardsFragment new children views to the right, until past the edge of the screen
         fillListRight(edge, dx);
 
         // Get the leftmost child and determine its left edge
@@ -703,7 +703,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             edge = child.getLeft();
         }
 
-        // Add new children views to the left, until past the edge of the screen
+        // AddcardsFragment new children views to the left, until past the edge of the screen
         fillListLeft(edge, dx);
     }
 
@@ -717,7 +717,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             // You need to add since its being removed from the left side, i.e. shifting the offset to the right.
             mDisplayOffset += isLastItemInAdapter(mLeftViewAdapterIndex) ? child.getMeasuredWidth() : mDividerWidth + child.getMeasuredWidth();
 
-            // Add the removed view to the cache
+            // AddcardsFragment the removed view to the cache
             recycleView(mLeftViewAdapterIndex, child);
 
             // Actually remove the view

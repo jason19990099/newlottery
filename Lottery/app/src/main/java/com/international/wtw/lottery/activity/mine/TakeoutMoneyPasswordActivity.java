@@ -1,11 +1,13 @@
 package com.international.wtw.lottery.activity.mine;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -15,15 +17,19 @@ import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.BaseModel;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
- * 修改登录密码
+ * 修改取款密码
  */
-public class MyPasswordLoginActivity extends BaseActivity implements View.OnClickListener {
+public class TakeoutMoneyPasswordActivity extends BaseActivity implements View.OnClickListener {
 
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private Button update_loginpwd_btn_determine;
     private EditText et_update_login_pwd_old, et_update_login_pwd_new, et_update_login_pwd_newonce;
     private ImageView imageView_toLeftArrow;
@@ -39,6 +45,7 @@ public class MyPasswordLoginActivity extends BaseActivity implements View.OnClic
     }
 
     private void InitView() {
+        tvTitle.setText("取款密码修改");
         update_loginpwd_btn_determine = (Button) findViewById(R.id.update_loginpwd_btn_determine);
         update_loginpwd_btn_determine.setOnClickListener(this);
 
@@ -89,15 +96,15 @@ public class MyPasswordLoginActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
-                String token = SharePreferencesUtil.getString(MyPasswordLoginActivity.this, LotteryId.TOKEN, null);
-                HttpRequest.getInstance().getLoginPassword(MyPasswordLoginActivity.this, token, pwd_old, pwd_new, new HttpCallback<BaseModel>() {
+                String token = SharePreferencesUtil.getString(TakeoutMoneyPasswordActivity.this, LotteryId.TOKEN, null);
+                HttpRequest.getInstance().changeTakeoutMoneyPassword(TakeoutMoneyPasswordActivity.this, token, pwd_old, pwd_new, new HttpCallback<BaseModel>() {
                     @Override
                     public void onSuccess(BaseModel data) {
                         ToastDialog.success(getString(R.string.updatelogin_xgcg)).setDismissListener(new ToastDialog.OnDismissListener() {
                             @Override
                             public void onDismiss(ToastDialog dialog) {
-                                startActivity(new Intent(MyPasswordLoginActivity.this, UpdateLoginPwdActivity.class));
-                                SharePreferencesUtil.addString(MyPasswordLoginActivity.this, LotteryId.Login_oid, null);
+                                startActivity(new Intent(TakeoutMoneyPasswordActivity.this, UpdateLoginPwdActivity.class));
+                                SharePreferencesUtil.addString(TakeoutMoneyPasswordActivity.this, LotteryId.Login_oid, null);
                                 finish();
                             }
                         }).show(getSupportFragmentManager());
@@ -115,4 +122,10 @@ public class MyPasswordLoginActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

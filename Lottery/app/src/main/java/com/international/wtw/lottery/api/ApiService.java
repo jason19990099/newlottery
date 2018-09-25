@@ -90,16 +90,32 @@ public interface ApiService {
     @POST("User/GetBalance")
     Call<Login> getBanlance(@Body RequestBody body);
 
+    /**
+     * 修改登录密码
+     */
+    @POST("User/UpdatePassword")
+    Call<BaseModel> getLoginPassword(@Body RequestBody body);
+
+    /**
+     * 修改资金密码
+     */
+    @POST("User/UpdateWithdrawPassword")
+    Call<BaseModel> changeMoneyPass(@Body RequestBody body);
 
 
 
+    /**
+     *  查询用户银行卡
+     */
+    @POST("User/GetUserBank")
+    Call<Login> getUserbank(@Body RequestBody body);
 
 
-
-
-
-
-
+    /**
+     * 查询所有游戏
+     */
+    @POST("Game/GetGame")
+    Call<Login> getAllgames(@Body RequestBody body);
 
 
 
@@ -263,14 +279,7 @@ public interface ApiService {
     @POST("user/getPersonalCenter")
     Call<PersonalBean> getPersonalData(@Body RequestBody body);
 
-    /**
-     * 修改登录密码
-     *
-     * @param body
-     * @return
-     */
-    @POST("user/info")
-    Call<BaseModel> getLoginPassword(@Body RequestBody body);
+
 
     /**
      * 修改支付密码

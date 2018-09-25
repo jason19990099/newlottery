@@ -21,7 +21,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by Abin on 2017/9/10.
  * 描述：Fragment基类
  */
 
