@@ -36,7 +36,6 @@ import java.util.Locale;
 import butterknife.BindView;
 
 /**
- * Created by XiaoXin on 2017/9/29.
  * 描述：开奖信息的部分单独在一个Fragment中处理
  */
 

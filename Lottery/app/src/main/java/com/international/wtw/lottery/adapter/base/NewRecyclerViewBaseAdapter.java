@@ -7,42 +7,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.json.HomeMsgBean;
-
+import com.international.wtw.lottery.newJason.Lotteryinfo;
 import java.util.List;
 
-/**
- * Created by XIAOYAN on 2017/9/15.
- */
 
 public class NewRecyclerViewBaseAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<HomeMsgBean> mDatas;
-    private int itemCount = 9;
+    private List<Lotteryinfo> mDatas;
 
-    public NewRecyclerViewBaseAdapter(Context mContext, List<HomeMsgBean> mDatas) {
+    public NewRecyclerViewBaseAdapter(Context mContext, List<Lotteryinfo> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }
 
     @Override
-    public int getCount() {
-//        if (mDatas.size() > 9) {
-//            return itemCount;
-//        } else {
-//            return mDatas.size();
-//        }
-        return null==mDatas?0:mDatas.size();
-    }
-
-    public void addItemNum(int number)
-    {
-        itemCount = number;
-    }
-
+    public int getCount() { return null==mDatas?0:mDatas.size(); }
     @Override
     public Object getItem(int position) {
         return mDatas.get(position);
@@ -67,45 +48,8 @@ public class NewRecyclerViewBaseAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.tv_type_name.setText(mDatas.get(position).getType_name());
-        /*String type_name = mDatas.get(position).getType_name();
-
-        if (type_name.equals("北京赛车")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_pj_pk10);
-        }
-        if (type_name.equals("幸运飞艇")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_lucky_fly);
-        }
-        if (type_name.equals("广东快乐十分")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_gd_happy);
-        }
-        if (type_name.equals("重庆幸运农场")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_cj_lucky_lottery);
-        }
-        if (type_name.equals("重庆时时彩")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_cj_lottery);
-        }
-        if (type_name.equals("PC蛋蛋")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_pc_dd);
-        }
-        if (type_name.equals("香港六合彩")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_hk_mark_six);
-        }
-        if (type_name.equals("在线客服")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_kf);
-        }
-        if (type_name.equals("真人视讯")) {
-            viewHolder.img_type.setImageResource(R.mipmap.icon_item_ag);
-        }*/
-
-        String type_name = mDatas.get(position).getType_name();
-        if ("真人视讯".equals(type_name)) {
-            viewHolder.img_hot.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.img_hot.setVisibility(View.GONE);
-        }
-
-        viewHolder.img_type.setImageResource(mDatas.get(position).getType_img());
+        viewHolder.tv_type_name.setText(mDatas.get(position).getName());
+        viewHolder.img_type.setImageResource(mDatas.get(position).getPic());
 
         return view;
     }

@@ -68,7 +68,10 @@ import com.international.wtw.lottery.json.Notice;
 import com.international.wtw.lottery.json.PreferentialBean;
 import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
+import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.Lotteryinfo;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.NetWorkUtils;
@@ -91,7 +94,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 18Steven on 2017/6/24. 首页
+ *  首页
  */
 
 public class FirstFragment extends BaseFragment implements View.OnClickListener {
@@ -104,6 +107,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private MarqueeView noteTextView;
     private ImageView img_menu;
     private List<HomeMsgBean> list = new ArrayList<>();
+    private List<Lotteryinfo> list2 = new ArrayList<>();
     private RecyclerView bottom_recycler;
     private LunbotuBean lunbotus;
     private ImageView img_user_default;
@@ -143,13 +147,17 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         view.findViewById(R.id.img_jiantou).setOnClickListener(this);
         //轮播图
         setDefaultImag();
+
         if (null != getActivity()) {
             if (NetWorkUtils.isNetworkAvailable(getActivity())) {
                 getBannerData(getActivity());
             }
         }
 
-        getLotterySorting();
+        //获取彩票信息
+        getLotteryInfo();
+
+//        getLotterySorting();
 
         setBottomActivities(3);
         initBottomRecycler();
@@ -172,23 +180,51 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         return view;
     }
 
-    private void getLotterySorting() {
-        HttpRequest.getInstance().getLotterySorting(getActivity(), new HttpCallback<LotterySortingModel>() {
+
+    /**
+     * 获取彩票彩种信息
+     */
+    private void getLotteryInfo() {
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getAllgames(FirstFragment.this, token, new HttpCallback<Allgame>() {
             @Override
-            public void onSuccess(LotterySortingModel data) {
-                sort = data.getSort();
-                setLotteryOrder();
-                initLotteryData(list);
+            public void onSuccess(Allgame data) {
+                int  size=data.getData().size();
+                for (int i=0;i<size;i++){
+                    list2.add(new Lotteryinfo(data.getData().get(i).getName(),
+                            data.getData().get(i).getGameTypeCode(),
+                            R.mipmap.ic_launcher));
+                }
+
+                initLotteryData(list2);
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                setLotteryNormalOrder();
-                initLotteryData(list);
-                LogUtil.e("LotterySorting-onFailure-" + msgCode + "-" + errorMsg);
+
             }
         });
     }
+
+
+
+//    private void getLotterySorting() {
+//        HttpRequest.getInstance().getLotterySorting(getActivity(), new HttpCallback<LotterySortingModel>() {
+//            @Override
+//            public void onSuccess(LotterySortingModel data) {
+//                sort = data.getSort();
+//                setLotteryOrder();
+//                initLotteryData(list);
+//            }
+//
+//            @Override
+//            public void onFailure(String msgCode, String errorMsg) {
+//                setLotteryNormalOrder();
+//                initLotteryData(list);
+//                LogUtil.e("LotterySorting-onFailure-" + msgCode + "-" + errorMsg);
+//            }
+//        });
+//    }
 
     private void initBottomRecycler() {
         mBottomAdapter = new BaseQuickAdapter<PreferentialProBean, BaseViewHolder>(R.layout.item_home_bottom) {
@@ -220,7 +256,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     /**
      * 彩票信息
      */
-    private void initLotteryData(List<HomeMsgBean> msgBeen) {
+    private void initLotteryData(List<Lotteryinfo> msgBeen) {
         if (null == getActivity())
             return;
         recycle_menu.setFocusable(false);
@@ -229,8 +265,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         recycle_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                HomeMsgBean homeMsgBean = list.get(position);
-                navToTargetActivity(homeMsgBean.getGame_code());
+                Lotteryinfo homeMsgBean = list2.get(position);
+                navToTargetActivity(homeMsgBean.getGameTypeCode());
             }
         });
     }
@@ -468,72 +504,16 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      *
      * @param lotteryType
      */
-    private void navToTargetActivity(int lotteryType) {
+    private void navToTargetActivity(String lotteryType) {
         if (null == getActivity())
             return;
         switch (lotteryType) {
-            case Constants.LOTTERY_TYPE.JS_QUICK_3:
-                startActivity(new Intent(getActivity(), Quick3Activity.class));
-                break;
-            case Constants.LOTTERY_TYPE.PJ_PK_10:
-                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
-                break;
-            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX:
-                getActivity().startActivity(new Intent(getActivity(), SpeedMarkSixActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.HORSE_88:
-                getActivity().startActivity(new Intent(getActivity(), Horse88Activity.class));
-                break;
-            case Constants.LOTTERY_TYPE.SPEED_CAR:
-                getActivity().startActivity(new Intent(getActivity(), SpeedCarActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.SPEED_SSC:
-                getActivity().startActivity(new Intent(getActivity(), SpeedSSCActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.CJ_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), SSCaiActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.ROME_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), RomeSSCaiActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), LuckyFlyActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), GDHappyActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), CJLuckyActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), MarkSixActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY:
-                getActivity().startActivity(new Intent(getActivity(), Lucky28Activity.class));
-                break;
-            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT:
-                getActivity().startActivity(new Intent(getActivity(), VeniceActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.ONLINE_SERVICE:
-                if (!TextUtils.isEmpty(serviceUrl)) {
-                    Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                    intent.putExtra(WebViewActivity.EXTRA_WEB_TITLE, getString(R.string.service_online));
-                    intent.putExtra(WebViewActivity.EXTRA_WEB_URL, serviceUrl);
-                    intent.putExtra(WebViewActivity.EXTRA_IS_THIRD, true);
-                    getActivity().startActivity(intent);
-                }
-                break;
-            case Constants.LOTTERY_TYPE.REAL_VIDEO:
-                getActivity().startActivity(new Intent(getActivity(), NewAgGameActivity.class));
-                break;
-            case Constants.LOTTERY_TYPE.REAL_MORE:
-                if (menuAdapter.getCount() == 9) {
-                    menuAdapter.addItemNum(list.size());
-                } else {
-                    menuAdapter.addItemNum(9);
-                }
-                menuAdapter.notifyDataSetChanged();
-                break;
+//            case Constants.LOTTERY_TYPE.JS_QUICK_3:
+//                startActivity(new Intent(getActivity(), Quick3Activity.class));
+//                break;
+//            case Constants.LOTTERY_TYPE.PJ_PK_10:
+//                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+//                break;
             default:
                 Intent intent = new Intent(getActivity(), BetActivity.class);
                 intent.putExtra(BetActivity.GAME_CODE, lotteryType);

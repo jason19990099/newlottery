@@ -34,6 +34,7 @@ import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.JsonUtil;
@@ -304,11 +305,11 @@ public class HttpRequest {
      * @param token
      * @param callback
      */
-    public void getAllgames(Object tag, String token, HttpCallback<Login> callback) {
+    public void getAllgames(Object tag, String token, HttpCallback<Allgame> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .build();
-        Call<Login> call = mService.getAllgames(body);
+        Call<Allgame> call = mService.getAllgames(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

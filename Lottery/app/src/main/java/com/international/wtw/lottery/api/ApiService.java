@@ -26,6 +26,7 @@ import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
+import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 
@@ -115,7 +116,7 @@ public interface ApiService {
      * 查询所有游戏
      */
     @POST("Game/GetGame")
-    Call<Login> getAllgames(@Body RequestBody body);
+    Call<Allgame> getAllgames(@Body RequestBody body);
 
 
 

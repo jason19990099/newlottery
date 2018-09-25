@@ -53,7 +53,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by XiaoXin on 2017/9/17.
  * 描述：下注页面
  */
 
