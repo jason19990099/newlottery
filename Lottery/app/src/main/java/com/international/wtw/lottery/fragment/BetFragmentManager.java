@@ -8,7 +8,6 @@ import android.support.v4.util.ArrayMap;
 import android.util.SparseArray;
 
 /**
- * Created by XiaoXin on 2017/9/30.
  * 描述：使用工厂类创建和保存Fragment
  */
 
@@ -16,8 +15,7 @@ public class BetFragmentManager {
 
     private static ArrayMap<Integer, SparseArray<BetFragment>> sArrayMap = new ArrayMap<>();
 
-    public static void setFragment(FragmentActivity context, @IdRes int container, int gameCode,
-                                   int position, boolean isClosed) {
+    public static void setFragment(FragmentActivity context, @IdRes int container, int gameCode, int position, boolean isClosed) {
         SparseArray<BetFragment> sFragments = sArrayMap.get(gameCode);
         if (sFragments == null) {
             sFragments = new SparseArray<>();

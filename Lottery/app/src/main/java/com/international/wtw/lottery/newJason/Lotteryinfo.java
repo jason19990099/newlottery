@@ -6,6 +6,7 @@ public class Lotteryinfo implements Serializable {
 
     private String name;
     private String gameTypeCode;
+    private String code;
     private int pic;
 
     public String getName() {
@@ -32,9 +33,17 @@ public class Lotteryinfo implements Serializable {
         this.pic = pic;
     }
 
+    public String getCode() {
+        return code;
+    }
 
-    public Lotteryinfo(String name, String gameTypeCode, int pic) {
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Lotteryinfo(String name, String gameTypeCode,String code, int pic) {
         this.name = name;
+        this.code=code;
         this.gameTypeCode = gameTypeCode;
         this.pic = pic;
     }

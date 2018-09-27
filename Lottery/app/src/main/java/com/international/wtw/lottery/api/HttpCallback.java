@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 
 import com.google.gson.JsonParseException;
 import com.international.wtw.lottery.activity.login.LoginActivity;
@@ -14,8 +13,6 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseApplication;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.BaseModel;
-import com.international.wtw.lottery.json.Notice;
-import com.international.wtw.lottery.json.QRModel;
 import com.international.wtw.lottery.utils.ActivityManager;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;

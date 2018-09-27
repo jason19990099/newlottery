@@ -100,7 +100,6 @@ public class BetActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        Logger.d("onCreate");
         EventBus.getDefault().register(this);
         gameCode = getIntent().getIntExtra(GAME_CODE, Constants.LOTTERY_TYPE.PJ_PK_10);
         mTvBetTitle.setText(LotteryUtil.get().getPageTitle(gameCode));
@@ -177,7 +176,7 @@ public class BetActivity extends NewBaseActivity {
     }
 
     private void initFragment() {
-        mLotteryInfoFragment = LotteryInfoFragment.newInstance(gameCode);
+        mLotteryInfoFragment = LotteryInfoFragment.newInstance(gameCode+"");
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_lottery_container, mLotteryInfoFragment)
                 .commit();

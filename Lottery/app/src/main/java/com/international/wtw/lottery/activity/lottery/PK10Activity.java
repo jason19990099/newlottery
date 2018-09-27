@@ -38,7 +38,7 @@ import java.util.List;
 
 
 /**
- * Created by 18Steven on 2017/7/11. 新的PK10
+ *  北京PK10
  */
 
 public class PK10Activity extends BetBaseActivity implements RadioGroup.OnCheckedChangeListener,
@@ -117,6 +117,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
     public int getLotteryType() {
         return Constants.LOTTERY_TYPE.PJ_PK_10;
     }
+
 
 
     @Override

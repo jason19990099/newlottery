@@ -15,12 +15,10 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.ButterKnife;
 
 /**
- * Created by Abin on 2017/9/15.
  * 描述：Activity基类
  */
 
 public abstract class NewBaseActivity extends AppCompatActivity {
-
     private SimpleProgressDialog mProgressDialog;
 
     @Override

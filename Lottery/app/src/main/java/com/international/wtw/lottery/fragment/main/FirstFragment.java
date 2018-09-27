@@ -24,25 +24,10 @@ import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.first.InfoCenterActivity;
 import com.international.wtw.lottery.activity.first.InfoDetailActivity;
-import com.international.wtw.lottery.activity.first.NewAgGameActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
-import com.international.wtw.lottery.activity.lottery.BetActivity;
-import com.international.wtw.lottery.activity.lottery.CJLuckyActivity;
-import com.international.wtw.lottery.activity.lottery.Horse88Activity;
-import com.international.wtw.lottery.activity.lottery.SpeedCarActivity;
-import com.international.wtw.lottery.activity.lottery.GDHappyActivity;
-import com.international.wtw.lottery.activity.lottery.Lucky28Activity;
-import com.international.wtw.lottery.activity.lottery.LuckyFlyActivity;
-import com.international.wtw.lottery.activity.lottery.MarkSixActivity;
 import com.international.wtw.lottery.activity.lottery.PK10Activity;
-import com.international.wtw.lottery.activity.lottery.Quick3Activity;
-import com.international.wtw.lottery.activity.lottery.SSCaiActivity;
-import com.international.wtw.lottery.activity.lottery.RomeSSCaiActivity;
-import com.international.wtw.lottery.activity.lottery.SpeedMarkSixActivity;
-import com.international.wtw.lottery.activity.lottery.SpeedSSCActivity;
-import com.international.wtw.lottery.activity.lottery.VeniceActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -61,24 +46,18 @@ import com.international.wtw.lottery.dialog.nice.ViewConvertListener;
 import com.international.wtw.lottery.dialog.nice.ViewHolder;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.fragment.BaseFragment;
-import com.international.wtw.lottery.json.HomeMsgBean;
-import com.international.wtw.lottery.json.LotterySortingModel;
 import com.international.wtw.lottery.json.LunbotuBean;
 import com.international.wtw.lottery.json.Notice;
 import com.international.wtw.lottery.json.PreferentialBean;
 import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
-import com.international.wtw.lottery.newJason.GetUserinfo;
-import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.newJason.Lotteryinfo;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;
 import com.international.wtw.lottery.utils.ScreenUtils;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-import com.international.wtw.lottery.utils.ShareUtil;
 import com.international.wtw.lottery.utils.SizeUtils;
 import com.international.wtw.lottery.widget.MarqueeView;
 import com.international.wtw.lottery.widget.banner.BannerBaseView;
@@ -106,7 +85,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private NewRecyclerViewBaseAdapter menuAdapter;
     private MarqueeView noteTextView;
     private ImageView img_menu;
-    private List<HomeMsgBean> list = new ArrayList<>();
     private List<Lotteryinfo> list2 = new ArrayList<>();
     private RecyclerView bottom_recycler;
     private LunbotuBean lunbotus;
@@ -120,7 +98,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private BaseQuickAdapter<PreferentialProBean, BaseViewHolder> mBottomAdapter;
     private String serviceUrl;
     private Handler mHandler = new Handler();
-    private List<String> sort;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -157,9 +134,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         //获取彩票信息
         getLotteryInfo();
 
-//        getLotterySorting();
-
         setBottomActivities(3);
+
         initBottomRecycler();
 
         noteTextView.setOnTouchListener(new View.OnTouchListener() {
@@ -192,7 +168,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 int  size=data.getData().size();
                 for (int i=0;i<size;i++){
                     list2.add(new Lotteryinfo(data.getData().get(i).getName(),
-                            data.getData().get(i).getGameTypeCode(),
+                            data.getData().get(i).getGameTypeCode(), data.getData().get(i).getCode(),
                             R.mipmap.ic_launcher));
                 }
 
@@ -206,25 +182,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         });
     }
 
-
-
-//    private void getLotterySorting() {
-//        HttpRequest.getInstance().getLotterySorting(getActivity(), new HttpCallback<LotterySortingModel>() {
-//            @Override
-//            public void onSuccess(LotterySortingModel data) {
-//                sort = data.getSort();
-//                setLotteryOrder();
-//                initLotteryData(list);
-//            }
-//
-//            @Override
-//            public void onFailure(String msgCode, String errorMsg) {
-//                setLotteryNormalOrder();
-//                initLotteryData(list);
-//                LogUtil.e("LotterySorting-onFailure-" + msgCode + "-" + errorMsg);
-//            }
-//        });
-//    }
 
     private void initBottomRecycler() {
         mBottomAdapter = new BaseQuickAdapter<PreferentialProBean, BaseViewHolder>(R.layout.item_home_bottom) {
@@ -265,8 +222,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         recycle_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Lotteryinfo homeMsgBean = list2.get(position);
-                navToTargetActivity(homeMsgBean.getGameTypeCode());
+                Lotteryinfo lotteryinfo = list2.get(position);
+                navToTargetActivity(lotteryinfo.getCode());
             }
         });
     }
@@ -286,163 +243,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         });
     }
 
-    /**
-     * 设置彩票顺序（接口返回参数排序）
-     */
-    public void setLotteryOrder() {
-        if (sort != null) {
-            for (int i = 0; i < sort.size(); i++) {
-                String s = sort.get(i);
-                int code = Integer.parseInt(s);
-                switch (code) {
-                    case Constants.LOTTERY_TYPE.HORSE_88:
-                        list.add(new HomeMsgBean(getString(R.string.horse_88),
-                                Constants.LOTTERY_TYPE.HORSE_88,
-                                R.mipmap.icon_item_hores_88));
-                        break;
-                    case Constants.LOTTERY_TYPE.SPEED_MARK_SIX:
-                        list.add(new HomeMsgBean(getString(R.string.speed_mark_six),
-                                Constants.LOTTERY_TYPE.SPEED_MARK_SIX,
-                                R.mipmap.icon_item_speed_mark_six));
-                        break;
-                    case Constants.LOTTERY_TYPE.SPEED_CAR:
-                        list.add(new HomeMsgBean(getString(R.string.speed_car),
-                                Constants.LOTTERY_TYPE.SPEED_CAR,
-                                R.mipmap.icon_item_speed_car));
-                        break;
-                    case Constants.LOTTERY_TYPE.SPEED_SSC:
-                        list.add(new HomeMsgBean(getString(R.string.speed_ssc),
-                                Constants.LOTTERY_TYPE.SPEED_SSC,
-                                R.mipmap.icon_item_speed_ssc));
-                        break;
-                    case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT:
-                        list.add(new HomeMsgBean(getString(R.string.real_rowing),
-                                Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT,
-                                R.mipmap.icon_rowing));
-                        break;
-                    case Constants.LOTTERY_TYPE.ROME_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.roma_ssc),
-                                Constants.LOTTERY_TYPE.ROME_LOTTERY,
-                                R.mipmap.icon_item_roma));
-                        break;
-                    case Constants.LOTTERY_TYPE.PJ_PK_10:
-                        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNamePK10),
-                                Constants.LOTTERY_TYPE.PJ_PK_10,
-                                R.mipmap.icon_item_pj_pk10));
-                        break;
-                    case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.mark_six),
-                                Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY,
-                                R.mipmap.icon_item_hk_mark_six));
-                        break;
-                    case Constants.LOTTERY_TYPE.REAL_VIDEO:
-                        list.add(new HomeMsgBean(getString(R.string.real_video),
-                                Constants.LOTTERY_TYPE.REAL_VIDEO,
-                                R.mipmap.icon_item_ag));
-                        break;
-                    case Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.lucy_28),
-                                Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY,
-                                R.mipmap.icon_item_pc_dd));
-                        break;
-                    case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameCJucky),
-                                Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY,
-                                R.mipmap.icon_item_cj_lucky_lottery));
-                        break;
-                    case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameGDHappy),
-                                Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY,
-                                R.mipmap.icon_item_gd_happy));
-                        break;
-                    case Constants.LOTTERY_TYPE.CJ_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.cq_ssc),
-                                Constants.LOTTERY_TYPE.CJ_LOTTERY,
-                                R.mipmap.icon_item_cj_lottery));
-                        break;
-                    case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY:
-                        list.add(new HomeMsgBean(getString(R.string.lucy_fly),
-                                Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY,
-                                R.mipmap.icon_item_lucky_fly));
-                        break;
-                    case Constants.LOTTERY_TYPE.JS_QUICK_3:
-                        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameJSQuick3),
-                                Constants.LOTTERY_TYPE.JS_QUICK_3,
-                                R.mipmap.icon_item_quick_3));
-                        break;
-                    case Constants.LOTTERY_TYPE.ONLINE_SERVICE:
-                        list.add(new HomeMsgBean(getString(R.string.service_online),
-                                Constants.LOTTERY_TYPE.ONLINE_SERVICE,
-                                R.mipmap.icon_item_kf));
-                        break;
-                    case Constants.LOTTERY_TYPE.REAL_MORE:
-                        list.add(new HomeMsgBean(getString(R.string.real_more),
-                                Constants.LOTTERY_TYPE.REAL_MORE,
-                                R.mipmap.icon_more));
-                        break;
-                }
-            }
-        } else {
-            setLotteryNormalOrder();
-        }
-    }
-
-
-    /***
-     *   设置彩票默认顺序
-     */
-    private void setLotteryNormalOrder() {
-        list.add(new HomeMsgBean(getString(R.string.horse_88),
-                Constants.LOTTERY_TYPE.HORSE_88,
-                R.mipmap.icon_item_hores_88));
-        list.add(new HomeMsgBean(getString(R.string.speed_mark_six),
-                Constants.LOTTERY_TYPE.SPEED_MARK_SIX,
-                R.mipmap.icon_item_speed_mark_six));
-        list.add(new HomeMsgBean(getString(R.string.speed_car),
-                Constants.LOTTERY_TYPE.SPEED_CAR,
-                R.mipmap.icon_item_speed_car));
-        list.add(new HomeMsgBean(getString(R.string.speed_ssc),
-                Constants.LOTTERY_TYPE.SPEED_SSC,
-                R.mipmap.icon_item_speed_ssc));
-        list.add(new HomeMsgBean(getString(R.string.real_rowing),
-                Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT,
-                R.mipmap.icon_rowing));
-        list.add(new HomeMsgBean(getString(R.string.roma_ssc),
-                Constants.LOTTERY_TYPE.ROME_LOTTERY,
-                R.mipmap.icon_item_roma));
-        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNamePK10),
-                Constants.LOTTERY_TYPE.PJ_PK_10,
-                R.mipmap.icon_item_pj_pk10));
-        list.add(new HomeMsgBean(getString(R.string.mark_six),
-                Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY,
-                R.mipmap.icon_item_hk_mark_six));
-
-        list.add(new HomeMsgBean(getString(R.string.real_video),
-                Constants.LOTTERY_TYPE.REAL_VIDEO,
-                R.mipmap.icon_item_ag));
-        list.add(new HomeMsgBean(getString(R.string.lucy_28),
-                Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY,
-                R.mipmap.icon_item_pc_dd));
-        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameCJucky),
-                Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY,
-                R.mipmap.icon_item_cj_lucky_lottery));
-        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameGDHappy),
-                Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY,
-                R.mipmap.icon_item_gd_happy));
-        list.add(new HomeMsgBean(getString(R.string.cq_ssc),
-                Constants.LOTTERY_TYPE.CJ_LOTTERY,
-                R.mipmap.icon_item_cj_lottery));
-        list.add(new HomeMsgBean(getString(R.string.lucy_fly),
-                Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY,
-                R.mipmap.icon_item_lucky_fly));
-        list.add(new HomeMsgBean(getString(R.string.LotteryTypeNameJSQuick3),
-                Constants.LOTTERY_TYPE.JS_QUICK_3,
-                R.mipmap.icon_item_quick_3));
-
-        list.add(new HomeMsgBean(getString(R.string.service_online),
-                Constants.LOTTERY_TYPE.ONLINE_SERVICE,
-                R.mipmap.icon_item_kf));
-    }
 
     @Override
     public void onResume() {
@@ -508,16 +308,19 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         if (null == getActivity())
             return;
         switch (lotteryType) {
-//            case Constants.LOTTERY_TYPE.JS_QUICK_3:
+            case "msssc":   //秒速时时彩
 //                startActivity(new Intent(getActivity(), Quick3Activity.class));
-//                break;
-//            case Constants.LOTTERY_TYPE.PJ_PK_10:
+                break;
+            case "msft":  //秒速飞艇
 //                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
-//                break;
-            default:
-                Intent intent = new Intent(getActivity(), BetActivity.class);
-                intent.putExtra(BetActivity.GAME_CODE, lotteryType);
-                startActivity(intent);
+                break;
+            case "bjscpk10":  //北京赛车PK10
+                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+                break;
+            case "mssc":  //秒速赛车
+//                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+                break;
+
         }
     }
 
@@ -600,7 +403,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                ToastDialog.error(errorMsg).show(getFragmentManager());
+                noteTextView.setText("欢迎加入爱购彩，祝您游戏开心。。、");
+                noteTextView.start();
             }
         });
 

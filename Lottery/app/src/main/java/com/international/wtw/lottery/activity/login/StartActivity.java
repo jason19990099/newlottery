@@ -19,7 +19,6 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.json.LotteryVersion;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.dialog.UploadApkDialog;
 
@@ -34,7 +33,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /**
- * 启动页 检查是否更新
+ * 启动页 检查是否更新（新版本废弃）
  */
 public class StartActivity extends BaseActivity {
     private LotteryVersion lotteryVersion;

@@ -1,5 +1,4 @@
-package com.international.wtw.lottery.base.app;
-
+package com.international.wtw.lottery.base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,16 +25,13 @@ import com.international.wtw.lottery.activity.lottery.LuckyFlyActivity;
 import com.international.wtw.lottery.activity.lottery.MarkSixActivity;
 import com.international.wtw.lottery.activity.lottery.PK10Activity;
 import com.international.wtw.lottery.activity.lottery.Quick3Activity;
-import com.international.wtw.lottery.activity.lottery.SSCaiActivity;
 import com.international.wtw.lottery.activity.lottery.RomeSSCaiActivity;
+import com.international.wtw.lottery.activity.lottery.SSCaiActivity;
 import com.international.wtw.lottery.activity.lottery.SpeedCarActivity;
 import com.international.wtw.lottery.activity.lottery.SpeedMarkSixActivity;
 import com.international.wtw.lottery.activity.lottery.SpeedSSCActivity;
 import com.international.wtw.lottery.activity.lottery.VeniceActivity;
-import com.international.wtw.lottery.activity.manager.BankcardActivity;
-import com.international.wtw.lottery.api.HttpLoggingInterceptor;
-import com.international.wtw.lottery.base.Constants;
-import com.international.wtw.lottery.base.LotteryId;
+import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.MenuPopupWindow;
 import com.international.wtw.lottery.dialog.SimpleProgressDialog;
 import com.international.wtw.lottery.dialog.SwitchGamePopupWindow;
@@ -50,17 +46,9 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
-
-/**
- *  彩票的父类
- */
-
-public abstract class BetBaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class NewBetBaseActivity   extends AppCompatActivity implements View.OnClickListener {
     public static final String GAME_CODE = "game_code";
-    protected OkHttpClient client;
     protected ViewHolder viewHolder;
     protected List<RightMenu> mMenuList = new ArrayList<>();
     protected Handler handler = new Handler();
@@ -75,7 +63,6 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         mContext = this;
         viewHolder = new ViewHolder(getLayoutInflater(), null, getLayoutId());
-        initalOKHttpClient();
         setContentView(viewHolder.getRootView());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); //默认不弹出软键盘
         initRightMenu();
@@ -94,7 +81,7 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
                 finish();
                 break;
             case R.id.downArrow:
-                showSwitchGamePopup();
+//                showSwitchGamePopup();
                 break;
             case R.id.img_menu:
                 SetMenu();
@@ -122,76 +109,62 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
         MobclickAgent.onResume(this);
     }
 
-    /**
-     * 初始化okhttp
-     */
-    private void initalOKHttpClient() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        // 配置 client
-        client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)                // 设置拦截器
-                .retryOnConnectionFailure(true)             // 是否重试
-                .connectTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)        // 连接超时事件
-                .readTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)           // 读取超时时间
-                .build();
-    }
-
-    private void showSwitchGamePopup() {
-        new SwitchGamePopupWindow(this, getLotteryType())
-                .setOnItemClickListener(new SwitchGamePopupWindow.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(int gameCode) {
-                        switch (gameCode) {
-                            case Constants.LOTTERY_TYPE.PJ_PK_10:
-                                startActivity(new Intent(mContext, PK10Activity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.CJ_LOTTERY:
-                                startActivity(new Intent(mContext, SSCaiActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.ROME_LOTTERY:
-                                startActivity(new Intent(mContext, RomeSSCaiActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY:
-                                startActivity(new Intent(mContext, LuckyFlyActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY:
-                                startActivity(new Intent(mContext, GDHappyActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY:
-                                startActivity(new Intent(mContext, CJLuckyActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY:
-                                startActivity(new Intent(mContext, MarkSixActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY:
-                                startActivity(new Intent(mContext, Lucky28Activity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.JS_QUICK_3:
-                                startActivity(new Intent(mContext, Quick3Activity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT:
-                                startActivity(new Intent(mContext, VeniceActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.SPEED_CAR:
-                                startActivity(new Intent(mContext, SpeedCarActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.SPEED_SSC:
-                                startActivity(new Intent(mContext, SpeedSSCActivity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.HORSE_88:
-                                startActivity(new Intent(mContext, Horse88Activity.class));
-                                break;
-                            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX:
-                                startActivity(new Intent(mContext, SpeedMarkSixActivity.class));
-                                break;
-                        }
-                        finish();
-                    }
-                })
-                .createPopup()
-                .showAtAnchorView(mDownArrow, VerticalGravity.BELOW, HorizontalGravity.CENTER);
-    }
+//
+//    private void showSwitchGamePopup() {
+//        new SwitchGamePopupWindow(this, getLotteryType())
+//                .setOnItemClickListener(new SwitchGamePopupWindow.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int gameCode) {
+//                        switch (gameCode) {
+//                            case Constants.LOTTERY_TYPE.PJ_PK_10:
+//                                startActivity(new Intent(mContext, PK10Activity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.CJ_LOTTERY:
+//                                startActivity(new Intent(mContext, SSCaiActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.ROME_LOTTERY:
+//                                startActivity(new Intent(mContext, RomeSSCaiActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY:
+//                                startActivity(new Intent(mContext, LuckyFlyActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY:
+//                                startActivity(new Intent(mContext, GDHappyActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY:
+//                                startActivity(new Intent(mContext, CJLuckyActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY:
+//                                startActivity(new Intent(mContext, MarkSixActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY:
+//                                startActivity(new Intent(mContext, Lucky28Activity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.JS_QUICK_3:
+//                                startActivity(new Intent(mContext, Quick3Activity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT:
+//                                startActivity(new Intent(mContext, VeniceActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.SPEED_CAR:
+//                                startActivity(new Intent(mContext, SpeedCarActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.SPEED_SSC:
+//                                startActivity(new Intent(mContext, SpeedSSCActivity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.HORSE_88:
+//                                startActivity(new Intent(mContext, Horse88Activity.class));
+//                                break;
+//                            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX:
+//                                startActivity(new Intent(mContext, SpeedMarkSixActivity.class));
+//                                break;
+//                        }
+//                        finish();
+//                    }
+//                })
+//                .createPopup()
+//                .showAtAnchorView(mDownArrow, VerticalGravity.BELOW, HorizontalGravity.CENTER);
+//    }
 
 
     /**
@@ -216,7 +189,7 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {//点击的是返回键
-            Intent intent = new Intent(BetBaseActivity.this, MainActivity.class);
+            Intent intent = new Intent(NewBetBaseActivity.this, MainActivity.class);
             intent.putExtra("position", LotteryId.TYPE_ONE);
             startActivity(intent);
             finish();
@@ -240,7 +213,7 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
     /**
      * 获取彩票彩种
      */
-    public abstract int getLotteryType();
+    public abstract String getLotteryType();
 
     /**
      * 实现子类的View操作逻辑
@@ -281,10 +254,10 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
             @Override
             public void run() {
                 if (mProgressDialog == null) {
-                    mProgressDialog = new SimpleProgressDialog(BetBaseActivity.this, message);
+                    mProgressDialog = new SimpleProgressDialog(NewBetBaseActivity.this, message);
                 }
                 mProgressDialog.setText(message);
-                if (!mProgressDialog.isShowing() && !BetBaseActivity.this.isFinishing()) {
+                if (!mProgressDialog.isShowing() && !NewBetBaseActivity.this.isFinishing()) {
                     mProgressDialog.show();
                 }
             }
@@ -301,6 +274,5 @@ public abstract class BetBaseActivity extends AppCompatActivity implements View.
             }
         });
     }
-
 
 }
