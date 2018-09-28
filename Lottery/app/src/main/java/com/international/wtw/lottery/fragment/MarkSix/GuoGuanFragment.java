@@ -137,7 +137,7 @@ public class GuoGuanFragment extends BetBaseFragment implements View.OnClickList
     }
 
     private void requestOddsInfo(int type_code) {
-        requestOdds(mActivity.getLotteryType(), type_code);
+//        requestOdds(mActivity.getLotteryType(), type_code);
     }
 
     @Override

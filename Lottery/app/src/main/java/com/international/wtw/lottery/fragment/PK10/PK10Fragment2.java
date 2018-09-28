@@ -60,7 +60,7 @@ public class PK10Fragment2 extends BetBaseFragment implements BetItemAdapter.Ite
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.PK_10_PLAY_TYPE_SERVER.GOLD_SILVER_COMBINE);
+//        requestOdds(mActivity.getLotteryType(), Constants.PK_10_PLAY_TYPE_SERVER.GOLD_SILVER_COMBINE);
     }
 
     @Override

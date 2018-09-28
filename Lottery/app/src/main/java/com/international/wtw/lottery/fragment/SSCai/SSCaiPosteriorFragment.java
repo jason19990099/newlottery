@@ -79,7 +79,7 @@ public class SSCaiPosteriorFragment extends BetBaseFragment implements BetItemAd
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.FRONT_MINDDLE_BACK);
+//        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.FRONT_MINDDLE_BACK);
     }
 
     @Override

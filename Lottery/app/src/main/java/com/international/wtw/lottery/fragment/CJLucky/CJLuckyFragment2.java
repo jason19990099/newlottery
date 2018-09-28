@@ -77,7 +77,7 @@ public class CJLuckyFragment2 extends BetBaseFragment implements BetItemAdapter.
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.ONE_TO_FOUR);
+//        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.ONE_TO_FOUR);
     }
 
     @Override

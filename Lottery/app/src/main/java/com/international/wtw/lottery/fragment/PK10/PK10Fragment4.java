@@ -71,7 +71,7 @@ public class PK10Fragment4 extends BetBaseFragment implements BetItemAdapter.Ite
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), currentPlayTypeCode);
+//        requestOdds(mActivity.getLotteryType(), currentPlayTypeCode);
     }
 
     @Override

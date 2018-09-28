@@ -70,7 +70,7 @@ public class Lucky28Fragment1 extends BetBaseFragment implements BetItemAdapter.
 
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.LUCKY_28_PLAY_TYPE_SERVER.MIX_TYPE);
+//        requestOdds(mActivity.getLotteryType(), Constants.LUCKY_28_PLAY_TYPE_SERVER.MIX_TYPE);
     }
 
     @Override

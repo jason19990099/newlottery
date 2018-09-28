@@ -66,15 +66,15 @@ public class CJLuckyActivity extends BetBaseActivity implements RadioGroup.OnChe
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            IsFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            cjLuckyFragment1.close(IsFeng);
-            cjLuckyFragment2.close(IsFeng);
-            cjLuckyFragment3.close(IsFeng);
-            cjLuckyFragment4.close(IsFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            IsFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            cjLuckyFragment1.close(IsFeng);
+//            cjLuckyFragment2.close(IsFeng);
+//            cjLuckyFragment3.close(IsFeng);
+//            cjLuckyFragment4.close(IsFeng);
+//        }
     }
 
     /**
@@ -96,8 +96,8 @@ public class CJLuckyActivity extends BetBaseActivity implements RadioGroup.OnChe
 
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY+"";
     }
 
 

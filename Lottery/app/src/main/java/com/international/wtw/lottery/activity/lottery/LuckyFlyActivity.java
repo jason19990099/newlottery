@@ -16,7 +16,7 @@ public class LuckyFlyActivity extends PK10Activity {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY+"";
     }
 }

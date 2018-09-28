@@ -140,7 +140,7 @@ public class WeiShuLianFragment extends BetBaseFragment implements BetColorsItem
     }
 
     private void requestOddsInfo(int type_code) {
-        requestOdds(mActivity.getLotteryType(), type_code);
+//        requestOdds(mActivity.getLotteryType(), type_code);
     }
 
     @Override

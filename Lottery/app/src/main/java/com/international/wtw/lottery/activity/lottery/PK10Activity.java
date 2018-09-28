@@ -66,15 +66,15 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            IsFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            fragment1.close(IsFeng);
-            fragment2.close(IsFeng);
-            fragment3.close(IsFeng);
-            fragment4.close(IsFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            IsFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            fragment1.close(IsFeng);
+//            fragment2.close(IsFeng);
+//            fragment3.close(IsFeng);
+//            fragment4.close(IsFeng);
+//        }
     }
 
     /**
@@ -114,8 +114,8 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.PJ_PK_10;
+    public String getLotteryType() {
+        return "bjscpk10";
     }
 
 

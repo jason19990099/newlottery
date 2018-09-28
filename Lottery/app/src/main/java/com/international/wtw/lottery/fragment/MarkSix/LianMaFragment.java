@@ -108,7 +108,7 @@ public class LianMaFragment extends BetBaseFragment implements BetColorsItemAdap
     }
 
     private void requestOddsInfo() {
-        requestOdds(mActivity.getLotteryType(), 13);
+//        requestOdds(mActivity.getLotteryType(), 13);
     }
 
     @Override

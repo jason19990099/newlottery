@@ -64,8 +64,8 @@ public class Quick3Activity extends BetBaseActivity {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.JS_QUICK_3;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.JS_QUICK_3+"";
     }
 
 
@@ -80,7 +80,7 @@ public class Quick3Activity extends BetBaseActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, LotteryUtil.TOTAL_SPAN_SIZE));
-        mDataAdapter = new BetDataAdapter(getLotteryType(), null);
+//        mDataAdapter = new BetDataAdapter(getLotteryType(), null);
         //设置每个item的宽度
         mDataAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
@@ -143,17 +143,17 @@ public class Quick3Activity extends BetBaseActivity {
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            dismissProgressDialog();
-            isClosed = event.isClosed;
-            mDataAdapter.setClosed(isClosed);
-            if (isClosed && mBetDetailDialog != null && mBetDetailDialog.isVisible()) {
-                mBetDetailDialog.dismiss();
-            }
-
-            //清除下注信息
-            clearSelection();
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            dismissProgressDialog();
+//            isClosed = event.isClosed;
+//            mDataAdapter.setClosed(isClosed);
+//            if (isClosed && mBetDetailDialog != null && mBetDetailDialog.isVisible()) {
+//                mBetDetailDialog.dismiss();
+//            }
+//
+//            //清除下注信息
+//            clearSelection();
+//        }
     }
 
     private void initListener() {
@@ -220,23 +220,23 @@ public class Quick3Activity extends BetBaseActivity {
     }
 
     private void requestOdds() {
-        HttpRequest.getInstance().requestAllOdds(this, getLotteryType(), new HttpCallback<Quick3Odds>() {
-
-            @Override
-            public void onSuccess(Quick3Odds data) {
-                dismissProgressDialog();
-                List<MultiBetItem> betData = LotteryUtil.get().getBetData(getLotteryType(), data);
-                mDataAdapter.setNewData(betData);
-            }
-
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
-                dismissProgressDialog();
-                mDataAdapter.setNewData(null);
-                mTvError.setText(errorMsg);
-                mDataAdapter.setEmptyView(mErrorView);
-            }
-        });
+//        HttpRequest.getInstance().requestAllOdds(this, getLotteryType(), new HttpCallback<Quick3Odds>() {
+//
+//            @Override
+//            public void onSuccess(Quick3Odds data) {
+//                dismissProgressDialog();
+////                List<MultiBetItem> betData = LotteryUtil.get().getBetData(getLotteryType(), data);
+////                mDataAdapter.setNewData(betData);
+//            }
+//
+//            @Override
+//            public void onFailure(String msgCode, String errorMsg) {
+//                dismissProgressDialog();
+//                mDataAdapter.setNewData(null);
+//                mTvError.setText(errorMsg);
+//                mDataAdapter.setEmptyView(mErrorView);
+//            }
+//        });
     }
 
     private void commitBetting() {
@@ -258,17 +258,17 @@ public class Quick3Activity extends BetBaseActivity {
         //打开下注弹窗, 显示下注详情, 点击确认后请求下注接口(下注接口代码在BetDetailDialog中实现)
         //显示下注结果和提示信息
         //刷新余额
-        mBetDetailDialog = BetDetailDialog.init(getLotteryType(), 0, 0, Integer.valueOf(money), round,
-                null, selectBeans, new BetDetailDialog.OnBetResultListener() {
-                    @Override
-                    public void onBetResult(boolean isSuccess, String msg) {
-                        //显示下注结果和提示信息
-                        ToastDialog.success(msg).show(getSupportFragmentManager());
-                        //刷新余额
-                        MoneyInfoManager.get().requestMoneyInfo();
-                    }
-                })
-                .setMargin(40)
-                .showDialog(getSupportFragmentManager());
+//        mBetDetailDialog = BetDetailDialog.init(getLotteryType(), 0, 0, Integer.valueOf(money), round,
+//                null, selectBeans, new BetDetailDialog.OnBetResultListener() {
+//                    @Override
+//                    public void onBetResult(boolean isSuccess, String msg) {
+//                        //显示下注结果和提示信息
+//                        ToastDialog.success(msg).show(getSupportFragmentManager());
+//                        //刷新余额
+//                        MoneyInfoManager.get().requestMoneyInfo();
+//                    }
+//                })
+//                .setMargin(40)
+//                .showDialog(getSupportFragmentManager());
     }
 }

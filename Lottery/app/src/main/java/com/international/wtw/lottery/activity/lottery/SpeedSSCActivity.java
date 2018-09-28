@@ -15,8 +15,8 @@ public class SpeedSSCActivity extends SSCaiActivity {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.SPEED_SSC;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.SPEED_SSC+"";
     }
 
 }

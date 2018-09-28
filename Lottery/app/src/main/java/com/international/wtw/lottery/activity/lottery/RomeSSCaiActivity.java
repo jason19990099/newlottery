@@ -11,7 +11,7 @@ public class RomeSSCaiActivity extends SSCaiActivity {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.ROME_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.ROME_LOTTERY+"";
     }
 }

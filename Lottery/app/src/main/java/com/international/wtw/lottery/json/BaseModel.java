@@ -14,8 +14,6 @@ public class BaseModel implements Serializable {
     protected int code;
     protected String msg;
     protected String info;
-    protected String begin;
-    protected String end;
     protected boolean status;
     protected int count;
 
@@ -59,21 +57,6 @@ public class BaseModel implements Serializable {
         this.info = info;
     }
 
-    public String getBegin() {
-        return begin;
-    }
-
-    public void setBegin(String begin) {
-        this.begin = begin;
-    }
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
 
     public String getErrorCodeInfo() {
         return Constants.getErrorCodeInfo(msg);

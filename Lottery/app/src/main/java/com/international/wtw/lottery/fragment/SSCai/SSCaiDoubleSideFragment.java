@@ -51,7 +51,6 @@ public class SSCaiDoubleSideFragment extends BetBaseFragment implements BetColor
     private SSCaiActivity ssCaiActivity;
     //两面盘
     private List<View> lmpTopItemView = new ArrayList<View>();
-    private final int ODDS_SUCESSFULLY = 0x01;
     private RecyclerViewDialog mDialog;
 
     @Override
@@ -86,7 +85,7 @@ public class SSCaiDoubleSideFragment extends BetBaseFragment implements BetColor
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.DOUBLE_SIDE);
+//        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.DOUBLE_SIDE);
     }
 
     @Override

@@ -81,7 +81,7 @@ public class PK10Fragment1 extends BetBaseFragment implements
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.PK_10_PLAY_TYPE_SERVER.DOUBLE_SIDE);
+//        requestOdds(mActivity.getLotteryType(), Constants.PK_10_PLAY_TYPE_SERVER.DOUBLE_SIDE);
     }
 
     @Override

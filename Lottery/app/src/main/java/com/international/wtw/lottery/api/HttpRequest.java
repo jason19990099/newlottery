@@ -37,6 +37,9 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.PK10;
+import com.international.wtw.lottery.newJason.PK10Number;
+import com.international.wtw.lottery.newJason.getGameOpentime;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -244,10 +247,6 @@ public class HttpRequest {
 
     /**
      * 修改登录密码
-     *
-     * @param token         用户id
-     * @param password 旧密码
-     * @param newPassword    新密码
      */
     public void getLoginPassword(Object tag, String token, String password, String newPassword, HttpCallback<BaseModel> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -264,11 +263,6 @@ public class HttpRequest {
 
     /**
      * 修改取款密码
-     * @param tag
-     * @param token
-     * @param password
-     * @param newPassword
-     * @param callback
      */
     public void changeTakeoutMoneyPassword(Object tag, String token, String password, String newPassword, HttpCallback<BaseModel> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -285,9 +279,6 @@ public class HttpRequest {
 
     /**
      *  查询用户银行卡
-     * @param tag
-     * @param token
-     * @param callback
      */
     public void getUserBank(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -301,9 +292,6 @@ public class HttpRequest {
 
     /**
      * 查询所有游戏
-     * @param tag
-     * @param token
-     * @param callback
      */
     public void getAllgames(Object tag, String token, HttpCallback<Allgame> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -313,6 +301,58 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     *  获取最新期号的开奖号码
+     */
+    public void getGameOpenCode(Object tag,String token, String gameCode, HttpCallback<PK10Number> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("gameCode", gameCode)
+                .build();
+        Call<PK10Number> call = mService.getGameOpenCode(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     *  获取最新期号的开奖时间
+     * @param tag
+     * @param gameCode
+     * @param callback
+     */
+    public void getGameOpenTime(Object tag, String token,String gameCode, HttpCallback<getGameOpentime> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("gameCode", gameCode)
+                .build();
+        Call<getGameOpentime> call = mService.getGameOpenTime(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

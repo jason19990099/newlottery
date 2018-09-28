@@ -58,7 +58,7 @@ public class BetDataAdapter extends BaseMultiItemQuickAdapter<MultiBetItem, Base
                         && gameCode != Constants.LOTTERY_TYPE.JS_QUICK_3) {
                     helper.setText(R.id.tv_item_name, item.getBetItem().getName());
                 }
-                helper.setBackgroundRes(R.id.tv_item_name, LotteryUtil.get().getBackgroundRes(gameCode, item.getBetItem().getName()));
+                helper.setBackgroundRes(R.id.tv_item_name, LotteryUtil.get().getBackgroundRes(gameCode+"", item.getBetItem().getName()));
                 break;
             case MultiBetItem.CONTENT_LIAN://连码的选项
                 helper.getView(R.id.tv_item_odds).setVisibility(View.GONE);
@@ -74,7 +74,7 @@ public class BetDataAdapter extends BaseMultiItemQuickAdapter<MultiBetItem, Base
                     }
                     helper.getView(R.id.ll_bet_item).setSelected(false);
                 }
-                helper.setBackgroundRes(R.id.tv_item_name, LotteryUtil.get().getBackgroundRes(gameCode, String.valueOf(item.getNumber())));
+                helper.setBackgroundRes(R.id.tv_item_name, LotteryUtil.get().getBackgroundRes(gameCode+"", String.valueOf(item.getNumber())));
                 break;
             case MultiBetItem.CONTENT_MULTI_NUM:
                 setData(helper, item);
@@ -89,7 +89,7 @@ public class BetDataAdapter extends BaseMultiItemQuickAdapter<MultiBetItem, Base
                     textView.setTextColor(Color.WHITE);
                     textView.setGravity(Gravity.CENTER);
                     //textView.setText(number);
-                    textView.setBackgroundResource(LotteryUtil.get().getBackgroundRes(gameCode, number));
+                    textView.setBackgroundResource(LotteryUtil.get().getBackgroundRes(gameCode+"", number));
                     llNumberContainer.addView(textView, layoutParams);
                 }
                 break;

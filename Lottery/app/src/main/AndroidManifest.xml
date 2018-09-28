@@ -115,10 +115,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.lottery.SpeedCarActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".activity.lottery.SpeedSSCActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
@@ -314,6 +310,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
 
         <meta-data
             android:name="UMENG_APPKEY"

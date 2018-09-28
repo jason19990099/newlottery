@@ -214,9 +214,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
                                 public void onDismiss(ToastDialog dialog) {
-
                                     getLoginInfo();
-
                                 }
                             }).show(getSupportFragmentManager());
                         }

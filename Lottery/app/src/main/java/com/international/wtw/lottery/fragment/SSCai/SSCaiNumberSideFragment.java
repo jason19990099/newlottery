@@ -82,7 +82,7 @@ public class SSCaiNumberSideFragment extends BetBaseFragment implements BetItemA
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.NUMBER_SIDE);
+//        requestOdds(mActivity.getLotteryType(), Constants.CJ_LOTTERY_PLAY_TYPE.NUMBER_SIDE);
     }
 
     @Override

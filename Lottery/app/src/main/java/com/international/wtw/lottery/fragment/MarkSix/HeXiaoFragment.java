@@ -132,7 +132,7 @@ public class HeXiaoFragment extends BetBaseFragment implements BetColorsItemAdap
     }
 
     private void requestOddsInfo(int type_code) {
-        requestOdds(mActivity.getLotteryType(), type_code);
+//        requestOdds(mActivity.getLotteryType(), type_code);
     }
 
     @Override

@@ -3,8 +3,6 @@ package com.international.wtw.lottery.base;
 
 public class Constants {
     public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许改动
-
-    public static final String LOTTERY_WEBSITE = "https://pk10tv.com/";//开奖网
     public static final String GAME_WEBSITE = "http://wap.alcp66.com/#/todayRule";//游戏规则
     public static final String USER_MSGBYID = "user/getMsgById";//消息详情
     public static final String GET_VERSION_ANDROID = "systems/getVersionAndroid";
@@ -31,9 +29,6 @@ public class Constants {
         public static final int LUCKY_28_LOTTERY = 160;  //PC 蛋蛋
         public static final int JS_QUICK_3 = 172;  //江苏快3
         public static final int VENICE_SPEEDBOAT = 210;  //威尼斯赛艇
-        public static final int ONLINE_SERVICE = 0;//真人视讯
-        public static final int REAL_VIDEO = 1;//在线客服
-        public static final int REAL_MORE = 121212;
         public static final int SPEED_CAR = 240;//极速赛车
         public static final int SPEED_SSC = 250;//极速时时彩
         public static final int HORSE_88 = 260;//88赛马

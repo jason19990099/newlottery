@@ -81,7 +81,7 @@ public class GDHappyFragment1 extends BetBaseFragment implements BetItemAdapter.
 
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.DOUBLE_SIDE);
+//        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.DOUBLE_SIDE);
     }
 
     @Override

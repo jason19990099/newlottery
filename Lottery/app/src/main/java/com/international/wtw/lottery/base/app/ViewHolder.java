@@ -1,8 +1,5 @@
 package com.international.wtw.lottery.base.app;
 
-/**
- * Created by wuya on 2017/5/2.
- */
 
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;

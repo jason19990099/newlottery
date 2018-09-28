@@ -17,7 +17,7 @@ public class VeniceActivity extends PK10Activity  {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT+"";
     }
 }

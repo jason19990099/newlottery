@@ -15,8 +15,8 @@ public class SpeedMarkSixActivity extends MarkSixActivity{
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.SPEED_MARK_SIX;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.SPEED_MARK_SIX+"";
     }
 
 }

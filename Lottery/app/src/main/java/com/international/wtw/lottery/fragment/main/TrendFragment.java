@@ -89,7 +89,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 helper.setText(R.id.tv_round_number, String.format(Locale.CHINESE, "%s期", item.getRound()));
                 LotteryNumberView lotteryNumberView = helper.getView(R.id.lotteryNumberView);
                 String[] numbers = item.getResult().split(" ");
-                lotteryNumberView.setNumbers(item.getGame_code(), Arrays.asList(numbers));
+//                lotteryNumberView.setNumbers(item.getGame_code(), Arrays.asList(numbers));
                 if (null != item.getIsOpen() && item.getIsOpen().equals("1") && !TextUtils.isEmpty(item.getTime()) && item.getServerTime() != null) {
                     int openTime = (int) (Long.parseLong(item.getTime()) - item.getServerTime());
                     if (openTime > 0) {

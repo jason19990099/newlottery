@@ -63,13 +63,13 @@ public class Lucky28Activity extends BetBaseActivity implements RadioGroup.OnChe
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            IsFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            lucky28Fragment1.close(IsFeng);
-            lucky28Fragment2.close(IsFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            IsFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            lucky28Fragment1.close(IsFeng);
+//            lucky28Fragment2.close(IsFeng);
+//        }
     }
 
     /**
@@ -90,8 +90,8 @@ public class Lucky28Activity extends BetBaseActivity implements RadioGroup.OnChe
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY+"";
     }
 
     @Override

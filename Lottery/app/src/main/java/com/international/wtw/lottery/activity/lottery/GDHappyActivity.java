@@ -63,15 +63,15 @@ public class GDHappyActivity extends BetBaseActivity implements RadioGroup.OnChe
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            IsFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            gdHappyFragment1.close(IsFeng);
-            gdHappyFragment2.close(IsFeng);
-            gdHappyFragment3.close(IsFeng);
-            gdHappyFragment4.close(IsFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            IsFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            gdHappyFragment1.close(IsFeng);
+//            gdHappyFragment2.close(IsFeng);
+//            gdHappyFragment3.close(IsFeng);
+//            gdHappyFragment4.close(IsFeng);
+//        }
     }
 
     @Override
@@ -81,8 +81,8 @@ public class GDHappyActivity extends BetBaseActivity implements RadioGroup.OnChe
 
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY+"";
     }
 
 

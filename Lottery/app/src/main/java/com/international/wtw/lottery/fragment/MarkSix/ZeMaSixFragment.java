@@ -79,7 +79,7 @@ public class ZeMaSixFragment extends BetBaseFragment implements BetColorsItemAda
     }
 
     private void requestOddsInfo(int type_code) {
-        requestOdds(mActivity.getLotteryType(), type_code);
+//        requestOdds(mActivity.getLotteryType(), type_code);
     }
 
     @Override

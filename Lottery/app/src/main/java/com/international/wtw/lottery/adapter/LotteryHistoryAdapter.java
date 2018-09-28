@@ -31,8 +31,8 @@ public class LotteryHistoryAdapter extends BaseQuickAdapter<HistoryResult.Result
         helper.setText(R.id.tv_time, format.format(time));
         String[] numbers = item.getNumber().split(",");
         LotteryNumberView numberView = helper.getView(R.id.lotteryNumberView);
-        numberView.setNumbers(mGameCode, Arrays.asList(numbers));
-        LotteryPropertyView propertyView = helper.getView(R.id.lotteryPropertyView);
-        propertyView.setNumbers(time,mGameCode, Arrays.asList(numbers));
+//        numberView.setNumbers(mGameCode, Arrays.asList(numbers));
+//        LotteryPropertyView propertyView = helper.getView(R.id.lotteryPropertyView);
+//        propertyView.setNumbers(time,mGameCode, Arrays.asList(numbers));
     }
 }

@@ -61,14 +61,14 @@ public class SSCaiActivity extends BetBaseActivity implements RadioGroup.OnCheck
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            isFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            doubleSideFragment.close(isFeng);
-            numberSideFragment.close(isFeng);
-            posteriorFragment.close(isFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            isFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            doubleSideFragment.close(isFeng);
+//            numberSideFragment.close(isFeng);
+//            posteriorFragment.close(isFeng);
+//        }
     }
 
     /**
@@ -105,8 +105,8 @@ public class SSCaiActivity extends BetBaseActivity implements RadioGroup.OnCheck
 
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.CJ_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.CJ_LOTTERY+"";
     }
 
 

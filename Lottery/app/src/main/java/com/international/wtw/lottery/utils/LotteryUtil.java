@@ -433,23 +433,23 @@ public class LotteryUtil {
         return 0;
     }
 
-    public int getBackgroundRes(int gameCode, String number) {
+    public int getBackgroundRes(String gameCode, String number) {
         switch (gameCode) {
-            case Constants.LOTTERY_TYPE.PJ_PK_10://北京赛车
-            case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
-            case Constants.LOTTERY_TYPE.HORSE_88://88赛马
-            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY://幸运飞艇
-            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
+            case "bjscpk10"://北京赛车
+//            case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
+//            case Constants.LOTTERY_TYPE.HORSE_88://88赛马
+//            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY://幸运飞艇
+//            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
                 return getItemBg0(number);
-            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY://香港六合彩:
-            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX://极速六合彩:
-                return getItemBg1(number);
-            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY://广东快乐十分
-                return getItemBg2(number);
-            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY://重庆幸运农场
-                return getLuckyFarmBg(number);
-            case Constants.LOTTERY_TYPE.JS_QUICK_3:
-                return getQuick3Bg(number);
+//            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY://香港六合彩:
+//            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX://极速六合彩:
+//                return getItemBg1(number);
+//            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY://广东快乐十分
+//                return getItemBg2(number);
+//            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY://重庆幸运农场
+//                return getLuckyFarmBg(number);
+//            case Constants.LOTTERY_TYPE.JS_QUICK_3:
+//                return getQuick3Bg(number);
             default:
                 return R.mipmap.img_lottery_common_bg;
         }

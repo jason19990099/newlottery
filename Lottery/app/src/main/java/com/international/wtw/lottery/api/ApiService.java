@@ -29,6 +29,9 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.PK10;
+import com.international.wtw.lottery.newJason.PK10Number;
+import com.international.wtw.lottery.newJason.getGameOpentime;
 
 import java.util.Map;
 
@@ -117,6 +120,47 @@ public interface ApiService {
      */
     @POST("Game/GetGame")
     Call<Allgame> getAllgames(@Body RequestBody body);
+
+
+    /**
+     * 获取最新期号的开奖号码
+     */
+    @POST("Game/GetGameOpenCode")
+    Call<PK10Number> getGameOpenCode(@Body RequestBody body);
+
+
+
+    /**
+     * 获取当前期进行投注的期号和时间
+     */
+    @POST("Game/GetGameOpenTime")
+    Call<getGameOpentime> getGameOpenTime(@Body RequestBody body);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

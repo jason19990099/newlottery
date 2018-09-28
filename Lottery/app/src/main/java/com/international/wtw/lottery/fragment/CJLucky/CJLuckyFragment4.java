@@ -234,7 +234,7 @@ public class CJLuckyFragment4 extends BetBaseFragment implements StateInterface 
     }
 
     private void getData() {
-        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.JOINT_MARK);
+//        requestOdds(mActivity.getLotteryType(), Constants.GD_HAPPY_PLAY_TYPE.JOINT_MARK);
     }
 
     @Override

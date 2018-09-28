@@ -53,6 +53,7 @@ import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.Lotteryinfo;
+import com.international.wtw.lottery.newJason.PK10;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;

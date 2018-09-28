@@ -84,24 +84,24 @@ public class MarkSixActivity extends BetBaseActivity implements RadioGroup.OnChe
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-        if (getLotteryType() == event.gameCode) {
-            isFeng = event.isClosed;
-            initFragment();
-            dismissRedNumberText();
-            teMaFragment.close(isFeng);
-            zeMaFragment.close(isFeng);
-            zMaTeFragment.close(isFeng);
-            zMaSixFragment.close(isFeng);
-            //guoGuanFragment.close(isFeng);
-            banBoFragment.close(isFeng);
-            yXwSFragment.close(isFeng);
-            teMaSXFragment.close(isFeng);
-            heXiaoFragment.close(isFeng);
-            sXiaoLianFragment.close(isFeng);
-            weiShuLianFragment.close(isFeng);
-            qbzFragment.close(isFeng);
-            lianMaFragment.close(isFeng);
-        }
+//        if (getLotteryType() == event.gameCode) {
+//            isFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            teMaFragment.close(isFeng);
+//            zeMaFragment.close(isFeng);
+//            zMaTeFragment.close(isFeng);
+//            zMaSixFragment.close(isFeng);
+//            //guoGuanFragment.close(isFeng);
+//            banBoFragment.close(isFeng);
+//            yXwSFragment.close(isFeng);
+//            teMaSXFragment.close(isFeng);
+//            heXiaoFragment.close(isFeng);
+//            sXiaoLianFragment.close(isFeng);
+//            weiShuLianFragment.close(isFeng);
+//            qbzFragment.close(isFeng);
+//            lianMaFragment.close(isFeng);
+//        }
     }
 
     /**
@@ -156,8 +156,8 @@ public class MarkSixActivity extends BetBaseActivity implements RadioGroup.OnChe
 
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY+"";
     }
 
 

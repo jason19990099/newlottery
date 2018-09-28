@@ -15,8 +15,8 @@ public class Horse88Activity extends PK10Activity {
     }
 
     @Override
-    public int getLotteryType() {
-        return Constants.LOTTERY_TYPE.HORSE_88;
+    public String getLotteryType() {
+        return Constants.LOTTERY_TYPE.HORSE_88+"";
     }
 
 }
