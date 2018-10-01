@@ -1,9 +1,8 @@
 package com.international.wtw.lottery.fragment;
 
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,8 +13,8 @@ import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
-import com.international.wtw.lottery.newJason.PK10Number;
 import com.international.wtw.lottery.newJason.getGameOpentime;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.LotteryNumberView;
@@ -45,8 +44,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
     LinearLayout mLlTime;
     @BindView(R.id.tv_time_minute)
     TextView mTvTimeMinute;
-    @BindView(R.id.tv_time_seconds)
-    TextView mTvTimeSeconds;
+
     @BindView(R.id.ll_time2)
     LinearLayout mLlTime2;
     @BindView(R.id.tv_time_hour)
@@ -69,13 +67,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
     //离封盘时间秒数
     private int closeSeconds;
     private Handler mHandler;
-    //开奖提示音的播放, 一般这种提示音会用SoundPool播放,
-    //但产品给定MP3文件资源太大, SoundPool播放不全, 直接用MediaPlayer了..
-    //SoundPool的音频文件大小不能超过1M同时时间超过5-6秒可能会出错。
-    private SoundPool soundPool;//声明一个SoundPool
-    private int soundID;//创建某个声音对应的音频ID
-    private int streamID;
-    private boolean isFirstTime = true;
     private String mNextRound = "";
 
     public static LotteryInfoFragment newInstance(String gameCode) {
@@ -108,7 +99,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
         mLlTime2.setVisibility(View.GONE);
         mTvLotteryTime.setText("00:00");
 
-        initSound();
+
 
 //        ll_lottery_history.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -155,7 +146,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
                 if (isAdded()) {
                     setLotteryInfothisRound(data);
                 }
-
             }
 
             @Override
@@ -183,163 +173,106 @@ public class LotteryInfoFragment extends NewBaseFragment {
             for(int i=0,len=strs.length;i<len;i++){
                 list.add(strs[i]);
             }
+             //设置上一期的开奖号码
             showLastLotteryNumbers(00,data.getData().getExpectNo(),list);
-        }
 
-    }
+            //设置本期的开奖时间
+            String serverTime=data.getData().getServerTime();
+            String OpenTime=data.getData().getOpenTime();
+            String CloseTime=data.getData().getCloseTime();
 
-    /**
-     * 上期的开奖信息
-     */
-    private void setLotteryInfo(PK10Number data) {
-        if (null!=data.getData().getExpectNo()&&null!=data.getData().getCode()){
-            String str = data.getData().getCode();
-            String[] strs=str.split(",");
-            List list=new ArrayList();
-            for(int i=0,len=strs.length;i<len;i++){
-                list.add(strs[i]);
+                if (TextUtils.isEmpty(CloseTime) || TextUtils.isEmpty(serverTime)) {
+                    closeSeconds = 0;
+                } else {
+                    closeSeconds = (int) (Long.parseLong(CloseTime) - Long.parseLong(serverTime));
+                }
+
+
+                if (TextUtils.isEmpty(OpenTime) || TextUtils.isEmpty(serverTime)) {
+                    endSeconds = 0;
+                } else {
+                    endSeconds = (int) (Long.parseLong(OpenTime) - Long.parseLong(serverTime));
+                }
+
+            //如果开奖倒计时大于0 开始倒计时
+            if (endSeconds > 0) {
+                mHandler.removeCallbacksAndMessages(null);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (endSeconds > 0) {
+                            endSeconds--;
+                            closeSeconds--;
+                            if (closeSeconds == 0) {
+                                LogUtil.e("" + closeSeconds);
+                                //发送通知
+//                                    EventBus.getDefault().post(new BetClosedEvent(gameCode, true));
+                            }
+                            refreshTime(data);
+                            mHandler.postDelayed(this, 1000);
+                        }
+                        if (endSeconds <= 0) {
+                            mHandler.removeCallbacks(this);
+                            getGameOpenTime();
+                        }
+                    }
+                }, 1000);
             }
 
-            showLastLotteryNumbers(00,data.getData().getExpectNo(),list);
         }
 
-//        TimeInfoBean.NextBean nextBean = data.getNext();
-//        TimeInfoBean.LastBean lastBean = data.getLast();
-//        //余额
-//        mTvBalance.setText(String.format(Locale.getDefault(), "%.2f", data.getLcurrency()));
-//        //这时间去通知修改右上角弹框的金额、因为requestMoneyInfo是异步请求 没有及时刷新 所以提前刷新一次（待优化）
-//        MoneyInfoManager.get().requestMoneyInfo();
-//        //下期开奖数据
-//        if (nextBean != null) {
-//            String nextRound = nextBean.getRound();
-//            if (nextRound != null && !nextRound.equals(mNextRound)) {
-//                mNextRound = nextBean.getRound();
-//                SharePreferencesUtil.addString(mActivity, LotteryId.ROUND, mNextRound);
-//                mTvNextRoundNo.setText(String.format(Locale.getDefault(), "%s期", mNextRound));
-//                if (nextBean.getEndtime() == null || nextBean.getClosetime() == null || nextBean.getTimestap() == null) {
-//                    mHandler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            getGameOpenCode();
-//                        }
-//                    }, 5000);
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(nextBean.getEndtime()) || TextUtils.isEmpty(nextBean.getTimestap())) {
-//                    endSeconds = 0;
-//                } else {
-//                    endSeconds = (int) (Long.parseLong(nextBean.getEndtime())
-//                            - Long.parseLong(nextBean.getTimestap()));
-//                }
-//                if (TextUtils.isEmpty(nextBean.getClosetime()) || TextUtils.isEmpty(nextBean.getTimestap())) {
-//                    closeSeconds = 0;
-//                } else {
-//                    closeSeconds = (int) (Long.parseLong(nextBean.getClosetime())
-//                            - Long.parseLong(nextBean.getTimestap()));
-//                }
-//
-//                //是否封盘
-//                //如果返回了isclose参数(只有晚上封盘时返回), 则判断isclose参数
-//                //否则还是以返回的封盘时间作判断
-//                boolean isClose = nextBean.isclose() != null && nextBean.isclose() || closeSeconds <= 0;
-//                LogUtil.e("=======gameCode=====" + gameCode);
-////                EventBus.getDefault().post(new BetClosedEvent(gameCode, isClose));
-//                LogUtil.e("是否封盘: =========" + isClose);
-//                //显示开奖/封盘时间, 并倒计时
-//                refreshTime(isClose);
-//                if (endSeconds > 0) {//如果开奖倒计时大于0 开始倒计时
-//                    mHandler.removeCallbacksAndMessages(null);
-//                    mHandler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            if (endSeconds > 0) {
-//                                endSeconds--;
-//                                closeSeconds--;
-//                                if (closeSeconds == 0) {
-//                                    LogUtil.e("" + closeSeconds);
-////                                    EventBus.getDefault().post(new BetClosedEvent(gameCode, true));
-//                                }
-//                                refreshTime(isClose);
-//                                mHandler.postDelayed(this, 1000);
-//                            }
-//                            if (endSeconds == 0) {
-//                                mHandler.removeCallbacks(this);
-//                                getGameOpenCode();
-//                            }
-//                        }
-//                    }, 1000);
-//                }
-//            }
-//        }
-//
-//        //上一期开奖数据
-//        if (lastBean == null) {
-//            return;
-//        }
-//        String lastRound = lastBean.getRound();
-//        if (lastRound != null && lastBean.getNumber() != null) {
-//            showLastLotteryNumbers(Long.valueOf(lastBean.getEndtime() + "000"), lastRound, lastBean.getNumber());
-//        }
-//
-//        if (TextUtils.isEmpty(mNextRound) || TextUtils.isEmpty(lastRound)) {
-//            return;
-//        }
-//        String[] nextS = mNextRound.split("-");
-//        String[] lastS = lastRound.split("-");
-//        long roundDiff = Long.valueOf(nextS[nextS.length - 1]) - Long.valueOf(lastS[lastS.length - 1]);
-//        LogUtil.e(roundDiff + "");
-//        //如果上一期开奖还没刷新出来, 则每过10秒请求一次数据, 直到刷出开奖结果为止
-//        if (Math.abs(roundDiff) != 1) {
-//            if (isFirstTime) {
-//                isFirstTime = false;
-//            }
-//            mHandler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    getGameOpenCode();
-//                }
-//            }, 10 * 1000);
-//        } else {
-//            //播放音频
-//            boolean isPlay = SharePreferencesUtil.getBoolean(mActivity, LotteryId.PLAY_RINGTONE, false);
-//            if (isFirstTime) {
-//                isFirstTime = false;
-//            } else if (isPlay) {
-//                playSound();
-//            }
-//        }
     }
 
-    private void refreshTime(boolean isClose) {
+
+    /**
+     * 刷新倒计时
+     */
+    private void refreshTime(getGameOpentime data) {
         String timeEnd = TimeFormatter.seconds2Time(endSeconds);
+        String timeClose = TimeFormatter.seconds2Time(closeSeconds);
         if (!isAdded()) {
             mHandler.removeCallbacksAndMessages(null);
             return;
         }
         mTvLotteryTime.setText(timeEnd);
+
         if (closeSeconds > 0) {
-            String hour = TimeFormatter.getHour(closeSeconds);
-            String minute = TimeFormatter.getMinuteOfHour(closeSeconds);
-            String second = TimeFormatter.getSecondOfMinute(closeSeconds);
-            if (!"00".equals(hour)) {
-                mLlTime.setVisibility(View.GONE);
-                mLlTime2.setVisibility(View.VISIBLE);
-                mTvTimeHour.setText(isClose ? "--" : hour);
-                mTvTimeMinute2.setText(isClose ? "--" : minute);
-                mTvTimeSeconds2.setText(isClose ? "--" : second);
-            } else {
-                mLlTime.setVisibility(View.VISIBLE);
-                mLlTime2.setVisibility(View.GONE);
-                mTvTimeMinute.setText(isClose ? "--" : minute);
-                mTvTimeSeconds.setText(isClose ? "--" : second);
-            }
-        } else {
-            mTvTimeHour.setText("--");
-            mTvTimeMinute.setText("--");
-            mTvTimeSeconds.setText("--");
-            mTvTimeMinute2.setText("--");
-            mTvTimeSeconds2.setText("--");
+            mTvTimeMinute.setText(timeClose);
+        }else{
+            mTvTimeMinute.setText("--:--");
         }
+
+        //如果上一期的号码一直没开出来，5秒刷新一次
+        if (Integer.valueOf(data.getData().getExpectNoNext())-Integer.valueOf(data.getData().getExpectNo())>1){
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getGameOpenTime();
+                }
+            },5*1000);
+        }
+
+//        if (closeSeconds > 0) {
+//            String hour = TimeFormatter.getHour(closeSeconds);
+//            String minute = TimeFormatter.getMinuteOfHour(closeSeconds);
+//            String second = TimeFormatter.getSecondOfMinute(closeSeconds);
+//            if (!"00".equals(hour)) {
+//                mLlTime.setVisibility(View.GONE);
+//                mLlTime2.setVisibility(View.VISIBLE);
+//                mTvTimeHour.setText(isClose ? "--" : hour);
+//                mTvTimeMinute2.setText(isClose ? "--" : minute);
+//                mTvTimeSeconds2.setText(isClose ? "--" : second);
+//            } else {
+//                mLlTime.setVisibility(View.VISIBLE);
+//                mLlTime2.setVisibility(View.GONE);
+//                mTvTimeMinute.setText(isClose ? "--" : minute);
+//            }
+//        } else {
+//            mTvTimeHour.setText("--");
+//            mTvTimeMinute.setText("--");
+//            mTvTimeMinute2.setText("--");
+//            mTvTimeSeconds2.setText("--");
+//        }
     }
 
     /**
@@ -363,38 +296,4 @@ public class LotteryInfoFragment extends NewBaseFragment {
         mNextRound = "";
     }
 
-
-    private void initSound() {
-        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        soundID = soundPool.load(getContext(), R.raw.lottery_ring, 1);
-    }
-
-    /**
-     * 播放开奖音频
-     */
-    private void playSound() {
-        streamID = soundPool.play(soundID,
-                1,//左耳道音量【0~1】
-                1,//右耳道音量【0~1】
-                100, //播放优先级【0表示最低优先级】
-                0, //循环模式【0表示播放一次，-1表示一直循环，其他表示数字+1表示当前数字对应的循环次数】
-                1//播放速度【1是正常，范围从0~2】
-        );
-    }
-
-    /**
-     * 停止播放音频
-     */
-    private void stopSound() {
-        if (null!=soundPool)
-        soundPool.stop(streamID);
-    }
-
-
-
-    @Override
-    public void onDestroy() {
-        stopSound();
-        super.onDestroy();
-    }
 }

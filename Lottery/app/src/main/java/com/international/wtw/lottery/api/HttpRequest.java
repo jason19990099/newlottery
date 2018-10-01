@@ -132,8 +132,6 @@ public class HttpRequest {
 
     /**
      *  开局获取token
-     * @param tag
-     * @param callback
      */
 
     public void getToken(Object tag, Callback<Login> callback) {
@@ -166,14 +164,13 @@ public class HttpRequest {
 
     /**
      * 用户登录
-     *  @param userName 用户名
-     * @param password 密码
-     * @param callback
      */
-    public void login(Object tag, String userName, String password, HttpCallback<Login> callback) {
+    public void login(Object tag,String token, String userName, String password,String CheckCode , HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.USER_NAME, userName)
                 .addParam(LotteryId.PASSWORD, password)
+                .addParam("CheckCode", CheckCode)
+                .addParam("token", token)
                 .build();
         Call<Login> call = mService.login(body);
         putCall(tag, call);
@@ -192,9 +189,6 @@ public class HttpRequest {
 
     /**
      *   获取登录信息
-     * @param tag
-     * @param token
-     * @param callback
      */
     public void getLoginfo(Object tag, String token,HttpCallback<GetUserinfo> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -333,12 +327,17 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-
-
-
-
-
-
+    /**
+     *   获取验证码
+     */
+    public void getCheckCode(Object tag, String token,HttpCallback<Login> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .build();
+        Call<Login> call = mService.getCheckCode(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

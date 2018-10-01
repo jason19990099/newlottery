@@ -249,10 +249,10 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         rl_home_logo = (RelativeLayout) view.findViewById(R.id.rl_home_logo);
-        String Login_oid = SharePreferencesUtil.getString(getActivity(), LotteryId.Login_oid, null);
+        String token = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, "");
         if (null != getActivity()) {
             if (SharePreferencesUtil.getBoolean(getActivity(), LotteryId.IS_SHI_WAN, false)) {
-                if (null != Login_oid) {
+                if (token.equals("")) {
                     rl_home_logo.setVisibility(View.GONE);
                     img_user_default.setVisibility(View.VISIBLE);
                     tv_user_name.setVisibility(View.VISIBLE);
@@ -272,7 +272,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                     tv_user_name.setText(userName);
                 }
             } else {
-                if (null != Login_oid) {
+                if (token.equals("")) {
                     img_user_default.setVisibility(View.VISIBLE);
                     tv_user_name.setVisibility(View.VISIBLE);
                     rl_home_logo.setVisibility(View.GONE);
@@ -294,9 +294,9 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             }
         }
 
-        if (!TextUtils.isEmpty(Login_oid)) {
-            MoneyInfoManager.get().requestMoneyInfo();
-        }
+//        if (!TextUtils.isEmpty(Login_oid)) {
+//            MoneyInfoManager.get().requestMoneyInfo();
+//        }
     }
 
 
@@ -337,7 +337,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 startActivity(new Intent(getActivity(), RegisterActivity.class));
                 break;
             case R.id.img_shiwan:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.img_login_reg:
                 HttpRequest.getInstance().loginDemo(getActivity(), new HttpCallback<UserModel>() {

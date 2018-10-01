@@ -27,6 +27,7 @@ import com.international.wtw.lottery.json.RequestResult;
 import com.international.wtw.lottery.listener.BaseEvent;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
+import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,6 +53,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_log;
     private ImageView img_show_pwd, img_show_pwd2;
     private boolean isShowPwd, isShowPwd2;
+    private String   psw;
 
     @Override
     protected int getLayoutId() {
@@ -92,9 +94,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         account.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
@@ -182,7 +182,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     view_5.setBackgroundColor(ContextCompat.getColor(RegisterActivity.this, R.color.color_cccc));
                 } else {
                     view_5.setBackgroundColor(ContextCompat.getColor(RegisterActivity.this, R.color.middle_blue));
-                    if (s.length() == 4) {
+                    if (s.length() == 32) {
                         KeyBoardUtils.closeKeyboard(RegisterActivity.this, withdraw_password);
                     } else {
                         KeyBoardUtils.openKeyboard(RegisterActivity.this, withdraw_password);
@@ -335,36 +335,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             ToastDialog.error(getString(R.string.fill_register_info)).show(getSupportFragmentManager());
             return;
         }
-
-        HttpRequest.getInstance().register(RegisterActivity.this,edittext_tuijianren.getText().toString(), account.getText().toString(), password.getText().toString(), real_name.getText().toString(), withdraw_password.getText().toString(), email.getText().toString(), new HttpCallback<BaseModel>() {
+        psw=password.getText().toString();
+        psw= MD5util.MD5Encode(MD5util.MD5Encode(psw,"utf-8"),"utf-8");
+        HttpRequest.getInstance().register(RegisterActivity.this,edittext_tuijianren.getText().toString(), account.getText().toString(), psw, real_name.getText().toString(), withdraw_password.getText().toString(), email.getText().toString(), new HttpCallback<BaseModel>() {
             @Override
             public void onSuccess(BaseModel data) {
-                SharePreferencesUtil.addBoolean(getApplicationContext(), LotteryId.IS_NEW_REGISTER, true);
-
-                HttpRequest.getInstance().login(RegisterActivity.this, account.getText().toString(), password.getText().toString(), new HttpCallback<Login>() {
-                    @Override
-                    public void onSuccess(Login data) {
-
-                        SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
-
-                        ToastDialog.success(getString(R.string.register_success))
-                                .setDismissListener(new ToastDialog.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(ToastDialog dialog) {
-                                        Login_Main();
-                                        EventBus.getDefault().postSticky(new LoginEvent());
-                                        finish();
-                                    }
-                                })
-                                .show(getSupportFragmentManager());
-                    }
-
-                    @Override
-                    public void onFailure(String msgCode, String errorMsg) {
-                        ToastDialog.error(errorMsg).show(getSupportFragmentManager());
-                    }
-
-                });
+                ToastDialog.success("注冊成功").show(getSupportFragmentManager());
+                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
             }
 
             @Override
@@ -374,11 +351,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-    public void Login_Main() {
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-        intent.putExtra("Login_Main", true);
-        startActivity(intent);
-    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

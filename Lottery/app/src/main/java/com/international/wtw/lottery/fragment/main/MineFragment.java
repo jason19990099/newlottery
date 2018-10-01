@@ -1,7 +1,6 @@
 package com.international.wtw.lottery.fragment.main;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,7 +30,6 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.fragment.BaseFragment;
-import com.international.wtw.lottery.json.LunbotuBean;
 import com.international.wtw.lottery.json.MineBean;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.LogUtil;
@@ -57,18 +55,13 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private GridView mine_gv;
     private List<MineBean> list;
     private TextView mine_out_login;
-    private LunbotuBean lunbotu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mine, null);
         EventBus.getDefault().register(this);
         InitView();
-
         getData();
-
-        getBannerData(getActivity());
-
         MineAdapter adapter = new MineAdapter(getActivity(), list);
         mine_gv.setAdapter(adapter);
 
@@ -120,15 +113,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     startActivity(intent);
                 }
                 if (type_name.equals(getString(R.string.wd_jryj))) {
-                    if (null != lunbotu) {
-                        Intent intetn = new Intent(new Intent(getActivity(), InfoCenterActivity.class));
-                        intetn.putExtra(LotteryId.LUN_BO_TU, lunbotu);
-                        intetn.putExtra("title", "新闻中心");
-                        startActivity(intetn);
-                    }
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
-//                    startActivity(new Intent(getActivity(), AboutUsActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_kfjl))) {
                     String serviceUrl = SharePreferencesUtil.getString(getActivity(), LotteryId.SERVICE_URL, "");
@@ -147,20 +133,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         return view;
     }
 
-    public void getBannerData(Context context) {
-        String Login_oid = SharePreferencesUtil.getString(context, LotteryId.Login_oid, "");
-        HttpRequest.getInstance().getNewsCenter(context, Login_oid, new HttpCallback<LunbotuBean>() {
-            @Override
-            public void onSuccess(LunbotuBean data) {
-                lunbotu = data;
-            }
-
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
-                ToastDialog.error(errorMsg).show(getFragmentManager());
-            }
-        });
-    }
 
 
     private void getUserInfoMoney() {
@@ -211,8 +183,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         super.onResume();
 
         if (null != getActivity()) {
-            String Login_oid = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, null);
-            if (Login_oid == null) {
+            String token = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, "");
+            if (token.equals("")) {
                 mine_out_login.setVisibility(View.GONE);
             } else {
                 mine_out_login.setVisibility(View.VISIBLE);
@@ -288,10 +260,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         btn_out_login_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharePreferencesUtil.addString(getActivity(), LotteryId.TOKEN, null);
                 MoneyInfoManager.get().setMoneyInfo(null);
                 SharePreferencesUtil.addString(getActivity(), LotteryId.Login_username, "");
-                SharePreferencesUtil.addString(getActivity(), LotteryId.Login_phone, null);
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 getActivity().finish();
                 dialog.dismiss();

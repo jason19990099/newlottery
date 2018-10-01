@@ -366,7 +366,7 @@
     <string name="confirm_text">马上更新</string>
     <string name="close_app">关闭应用</string>
     <string name="cancle_text">以后在说</string>
-    <string name="prize_time">开奖时间</string>
+    <string name="prize_time">开奖:</string>
 
     <string name="wd_grzx">个人资料</string>
     <string name="wd_dlmm">登录密码</string>

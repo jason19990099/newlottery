@@ -29,7 +29,6 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.newJason.PK10;
 import com.international.wtw.lottery.newJason.PK10Number;
 import com.international.wtw.lottery.newJason.getGameOpentime;
 
@@ -50,6 +49,12 @@ public interface ApiService {
      */
     @POST("index/GetToken")
     Call<Login> getToken();
+
+    /**
+     * 获取验证码
+     */
+    @POST("index/CheckCode")
+    Call<Login> getCheckCode(@Body RequestBody body);
 
     /**
      * 用户注册
@@ -106,8 +111,6 @@ public interface ApiService {
     @POST("User/UpdateWithdrawPassword")
     Call<BaseModel> changeMoneyPass(@Body RequestBody body);
 
-
-
     /**
      *  查询用户银行卡
      */
@@ -128,14 +131,11 @@ public interface ApiService {
     @POST("Game/GetGameOpenCode")
     Call<PK10Number> getGameOpenCode(@Body RequestBody body);
 
-
-
     /**
      * 获取当前期进行投注的期号和时间
      */
     @POST("Game/GetGameOpenTime")
     Call<getGameOpentime> getGameOpenTime(@Body RequestBody body);
-
 
 
 

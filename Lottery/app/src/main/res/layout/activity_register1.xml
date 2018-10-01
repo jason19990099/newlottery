@@ -245,7 +245,6 @@
                 </LinearLayout>
 
                 <View
-
                     android:id="@+id/view_4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -264,7 +263,7 @@
                         android:scaleType="center"
                         android:src="@mipmap/regist_takeoff_off" />
 
-                    <com.international.wtw.lottery.widget.PasswordInputView
+                    <EditText android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:id="@+id/edittext_withdrawl_pwd"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/dimen_40"
@@ -273,16 +272,9 @@
                         android:background="@null"
                         android:cursorVisible="false"
                         android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="4"
+                        android:maxLength="32"
                         android:padding="3dp"
-                        android:singleLine="true"
-                        app:pivBorderColor="#cccc"
-                        app:pivBorderRadius="2dp"
-                        app:pivBorderWidth="1px"
-                        app:pivPasswordColor="#000"
-                        app:pivPasswordLength="4"
-                        app:pivPasswordWidth="2dp" />
+                        android:singleLine="true"/>
 
                     <ImageView
                         android:layout_width="0dp"

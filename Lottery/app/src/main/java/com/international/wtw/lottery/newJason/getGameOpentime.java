@@ -6,7 +6,7 @@ public class getGameOpentime extends BaseModel {
 
 
     /**
-     * data : {"GameCode":"bjscpk10","ExpectNo":"706386","ExpectNoNext":"706387","StartTime":"2018/9/28 16:12:30","Code":"03,09,02,06,04,07,01,05,08,10","CloseTime":"2018/9/28 16:17:00","OpenTime":"2018/9/28 16:17:30","IsToday":false,"Sort":0,"ServerTime":"2018-09-28 16:15:14"}
+     * data : {"GameCode":"bjscpk10","ExpectNo":"706925","ExpectNoNext":"706926","StartTime":1538382150,"Code":"05,03,07,02,06,09,04,08,10,01","CloseTime":1538382420,"OpenTime":1538382450,"IsToday":false,"Sort":0,"ServerTime":1538382397}
      */
 
     private DataBean data;
@@ -22,15 +22,15 @@ public class getGameOpentime extends BaseModel {
     public static class DataBean {
         /**
          * GameCode : bjscpk10
-         * ExpectNo : 706386
-         * ExpectNoNext : 706387
-         * StartTime : 2018/9/28 16:12:30
-         * Code : 03,09,02,06,04,07,01,05,08,10
-         * CloseTime : 2018/9/28 16:17:00
-         * OpenTime : 2018/9/28 16:17:30
+         * ExpectNo : 706925
+         * ExpectNoNext : 706926
+         * StartTime : 1538382150
+         * Code : 05,03,07,02,06,09,04,08,10,01
+         * CloseTime : 1538382420
+         * OpenTime : 1538382450
          * IsToday : false
          * Sort : 0
-         * ServerTime : 2018-09-28 16:15:14
+         * ServerTime : 1538382397
          */
 
         private String GameCode;
@@ -48,80 +48,80 @@ public class getGameOpentime extends BaseModel {
             return GameCode;
         }
 
-        public void setGameCode(String GameCode) {
-            this.GameCode = GameCode;
+        public void setGameCode(String gameCode) {
+            GameCode = gameCode;
         }
 
         public String getExpectNo() {
             return ExpectNo;
         }
 
-        public void setExpectNo(String ExpectNo) {
-            this.ExpectNo = ExpectNo;
+        public void setExpectNo(String expectNo) {
+            ExpectNo = expectNo;
         }
 
         public String getExpectNoNext() {
             return ExpectNoNext;
         }
 
-        public void setExpectNoNext(String ExpectNoNext) {
-            this.ExpectNoNext = ExpectNoNext;
+        public void setExpectNoNext(String expectNoNext) {
+            ExpectNoNext = expectNoNext;
         }
 
         public String getStartTime() {
             return StartTime;
         }
 
-        public void setStartTime(String StartTime) {
-            this.StartTime = StartTime;
+        public void setStartTime(String startTime) {
+            StartTime = startTime;
         }
 
         public String getCode() {
             return Code;
         }
 
-        public void setCode(String Code) {
-            this.Code = Code;
+        public void setCode(String code) {
+            Code = code;
         }
 
         public String getCloseTime() {
             return CloseTime;
         }
 
-        public void setCloseTime(String CloseTime) {
-            this.CloseTime = CloseTime;
+        public void setCloseTime(String closeTime) {
+            CloseTime = closeTime;
         }
 
         public String getOpenTime() {
             return OpenTime;
         }
 
-        public void setOpenTime(String OpenTime) {
-            this.OpenTime = OpenTime;
+        public void setOpenTime(String openTime) {
+            OpenTime = openTime;
         }
 
-        public boolean isIsToday() {
+        public boolean isToday() {
             return IsToday;
         }
 
-        public void setIsToday(boolean IsToday) {
-            this.IsToday = IsToday;
+        public void setToday(boolean today) {
+            IsToday = today;
         }
 
         public int getSort() {
             return Sort;
         }
 
-        public void setSort(int Sort) {
-            this.Sort = Sort;
+        public void setSort(int sort) {
+            Sort = sort;
         }
 
         public String getServerTime() {
             return ServerTime;
         }
 
-        public void setServerTime(String ServerTime) {
-            this.ServerTime = ServerTime;
+        public void setServerTime(String serverTime) {
+            ServerTime = serverTime;
         }
     }
 }

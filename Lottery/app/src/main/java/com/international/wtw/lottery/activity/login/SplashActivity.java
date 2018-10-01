@@ -14,6 +14,7 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 public class SplashActivity extends BaseActivity {
@@ -31,17 +32,13 @@ public class SplashActivity extends BaseActivity {
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                getToken();
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (null==SharePreferencesUtil.getString(SplashActivity.this, LotteryId.TOKEN,null)){
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                }else{
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                }
-                finish();
+                getToken();
+
             }
 
             @Override
@@ -56,7 +53,13 @@ public class SplashActivity extends BaseActivity {
         HttpRequest.getInstance().getToken(SplashActivity.this, new HttpCallback<Login>() {
             @Override
             public void onSuccess(Login data) {
-                SharePreferencesUtil.addString(SplashActivity.this,"token",data.getData());
+                SharePreferencesUtil.addString(SplashActivity.this,LotteryId.TOKEN,data.getData());
+                if (SharePreferencesUtil.getString(SplashActivity.this, LotteryId.TOKEN,"").equals("")){
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                }else{
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                }
+                finish();
             }
 
             @Override

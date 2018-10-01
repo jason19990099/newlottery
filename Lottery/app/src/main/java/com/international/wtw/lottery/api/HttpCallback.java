@@ -65,15 +65,15 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         LogUtil.e("========msgCode==="+msgCode);
         if ("请先登录 !".equals(msgCode)) {
             FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
-            SharePreferencesUtil.addString(BaseApplication.getAppContext(), LotteryId.TOKEN, null);
-            ToastDialog.error(Constants.getErrorCodeInfo("4001"))
-                    .setDismissListener(new ToastDialog.OnDismissListener() {
-                        @Override
-                        public void onDismiss(ToastDialog dialog) {
-                            Intent intent = new Intent(currActivity, LoginActivity.class);
-                            currActivity.startActivity(intent);
-                        }
-                    }).show(currActivity.getSupportFragmentManager());
+            Intent intent = new Intent(currActivity, LoginActivity.class);
+            currActivity.startActivity(intent);
+//            ToastDialog.error(Constants.getErrorCodeInfo("4001"))
+//                    .setDismissListener(new ToastDialog.OnDismissListener() {
+//                        @Override
+//                        public void onDismiss(ToastDialog dialog) {
+//
+//                        }
+//                    }).show(currActivity.getSupportFragmentManager());
         } else if ("4003".equals(msgCode)) {
             //系统维护, 跳转到维护页面
             Activity currActivity = ActivityManager.getInstance().getCurrentActivity();

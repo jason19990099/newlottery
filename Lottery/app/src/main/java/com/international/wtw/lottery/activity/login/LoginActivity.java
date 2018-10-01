@@ -27,19 +27,19 @@ import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.utils.BitmapUtil;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.LogUtil;
-import com.international.wtw.lottery.utils.RandomCode;
+import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.EventBus;
 
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class   LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText username;
     private EditText password;
     private EditText edittext_yzm;
     private ImageView iv_showCode, img_show_pwd;
-    private String realCode;  //产生的验证码
     private boolean isShi;
     private boolean isShow;
     private View view1, view2, view3;
@@ -61,18 +61,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         holder.setOnClickListener(this, R.id.bt_shi_wan);
 
         edittext_yzm = holder.get(R.id.edittext_yzm);
-
         iv_showCode = holder.get(R.id.iv_showCode);
-        iv_showCode.setImageBitmap(RandomCode.getInstance().createBitmap());
-        realCode = RandomCode.getInstance().getCode().toLowerCase();
         iv_showCode.setOnClickListener(this);
-
         img_show_pwd = holder.get(R.id.img_show_pwd);
         img_show_pwd.setOnClickListener(this);
 
         view1 = findViewById(R.id.view1);
         view2 = findViewById(R.id.view2);
         view3 = findViewById(R.id.view3);
+
+        getCheckcode();
 
         if (username.getText().length() > 0) {
             view1.setBackgroundColor(ContextCompat.getColor(LoginActivity.this, R.color.middle_blue));
@@ -97,10 +95,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void afterTextChanged(Editable s) {
             }
         });
+
         password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -121,7 +119,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         edittext_yzm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -131,7 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     KeyBoardUtils.openKeyboard(LoginActivity.this, edittext_yzm);
                 } else {
                     view3.setBackgroundColor(ContextCompat.getColor(LoginActivity.this, R.color.middle_blue));
-                    if (s.length() == 4) {
+                    if (s.length() == 5) {
                         KeyBoardUtils.closeKeyboard(LoginActivity.this, edittext_yzm);
                     } else {
                         KeyBoardUtils.openKeyboard(LoginActivity.this, edittext_yzm);
@@ -171,15 +168,34 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
+    /**
+     *  获取验证码
+     */
+    private void getCheckcode() {
+        String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
+        HttpRequest.getInstance().getCheckCode(LoginActivity.this, token, new HttpCallback<Login>() {
+            @Override
+            public void onSuccess(Login data)  {
+                iv_showCode.setImageBitmap(BitmapUtil.stringToBitmap(data.getData()));
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+
+            }
+        });
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
                 String name = username.getText().toString();
                 String pwd = password.getText().toString();
+
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, name);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.USER_PSW, pwd);
-                String yzm = edittext_yzm.getText().toString();
                 if (name.isEmpty()) {
                     ToastDialog.error(getString(R.string.type_in_username)).show(getSupportFragmentManager());
                     return;
@@ -198,19 +214,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
-                if (!yzm.equals(realCode)) {
-                    ToastDialog.error(getString(R.string.yzm_fail)).show(getSupportFragmentManager());
-                    return;
-                }
 
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username_remember, name);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_paw_remember, pwd);
-                HttpRequest.getInstance().login(LoginActivity.this, name, pwd, new HttpCallback<Login>() {
+
+                pwd= MD5util.MD5Encode(MD5util.MD5Encode(pwd,"utf-8"),"utf-8");
+                pwd=pwd+edittext_yzm.getText().toString().trim();
+                pwd=MD5util.MD5Encode(pwd,"utf-8");
+
+                String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
+                HttpRequest.getInstance().login(LoginActivity.this,token, name, pwd,edittext_yzm.getText().toString().trim(), new HttpCallback<Login>() {
                     @Override
                     public void onSuccess(Login data) {
-
                         SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
-                        LogUtil.e("=========token==login====="+ data.getData());
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
                                 public void onDismiss(ToastDialog dialog) {
@@ -222,12 +238,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     @Override
                     public void onFailure(String msgCode, String errorMsg) {
-                        if ("2013".equals(msgCode)) {
-                            //如果用户被禁, 不自动消失
-                            ToastDialog.error(errorMsg, false).show(getSupportFragmentManager());
-                        } else {
                             ToastDialog.error(errorMsg).show(getSupportFragmentManager());
-                        }
                     }
                 });
                 break;
@@ -243,18 +254,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.imageView_toLeftArrow:
                 Login_Main();
                 isShi = !isShi;
-                SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_oid, null);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username, null);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.USER_PSW, null);
-                SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_realname, null);
-                SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_qqskype, null);
-                SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_monery, null);
-                SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_phone, null);
                 finish();
                 break;
             case R.id.iv_showCode:
-                iv_showCode.setImageBitmap(RandomCode.getInstance().createBitmap());
-                realCode = RandomCode.getInstance().getCode().toLowerCase();
+                getCheckcode();
                 break;
 
             case R.id.img_show_pwd:
@@ -331,5 +336,4 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
         return super.dispatchTouchEvent(ev);
     }
-
 }
