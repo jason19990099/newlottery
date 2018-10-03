@@ -37,8 +37,7 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.newJason.PK10;
-import com.international.wtw.lottery.newJason.PK10Number;
+import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.newJason.getGameOpentime;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -298,20 +297,6 @@ public class HttpRequest {
 
 
     /**
-     *  获取最新期号的开奖号码
-     */
-    public void getGameOpenCode(Object tag,String token, String gameCode, HttpCallback<PK10Number> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(LotteryId.TOKEN, token)
-                .addParam("gameCode", gameCode)
-                .build();
-        Call<PK10Number> call = mService.getGameOpenCode(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
-
-
-    /**
      *  获取最新期号的开奖时间
      * @param tag
      * @param gameCode
@@ -340,7 +325,20 @@ public class HttpRequest {
     }
 
 
-
+    /**
+     *  获取玩法赔率
+     */
+    public void getPlayRate(Object tag, String token,String playtype,HttpCallback<PK10Rate> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("Code", playtype)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<PK10Rate> call = mService.getPlayRate(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

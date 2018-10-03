@@ -60,13 +60,14 @@
     </style>
 
     <style name="betting_tab">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">@dimen/sp_18</item>
         <item name="android:layout_weight">1.0</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:paddingTop">@dimen/dimen_5</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@drawable/tab_textcolor</item>

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.BetItemAdapter;
 import com.international.wtw.lottery.base.Constants;
@@ -16,6 +15,7 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.view.CustomListView;
 import com.international.wtw.lottery.dialog.RecyclerViewDialog;
 import com.international.wtw.lottery.dialog.ToastDialog;
+import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.BetBaseFragment;
 import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
@@ -24,6 +24,8 @@ import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 /**
- * Created by 18Steven on 2017/7/11.PK1O两面盘
+ * PK1O两面盘
  */
 
 public class PK10Fragment1 extends BetBaseFragment implements
@@ -46,16 +48,18 @@ public class PK10Fragment1 extends BetBaseFragment implements
     private List<NewOddsBean> currentOddBeans = new ArrayList<>();  //请求到的赔率数据
     private RecyclerViewDialog mDialog;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
         view = inflater.inflate(R.layout.view_lmp, null);
         mFlOddsContainer.addView(view);
         InitViewLmp();
         getData();
         return rootView;
     }
+
+
 
     /**
      * 两面盘
@@ -137,6 +141,17 @@ public class PK10Fragment1 extends BetBaseFragment implements
             }
 
         }
+    }
+
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(Pk10RateEvent pk10RateEvent) {
+
+        int size=pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(0).getListPlay().size();
+        LogUtil.e("====size==="+size);
+
+
     }
 
 
@@ -288,6 +303,7 @@ public class PK10Fragment1 extends BetBaseFragment implements
     public void onDestroy() {
         super.onDestroy();
         dismissDialog();
+
     }
 
 }

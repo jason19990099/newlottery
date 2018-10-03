@@ -21,11 +21,9 @@ import com.international.wtw.lottery.widget.LotteryNumberView;
 import com.international.wtw.lottery.widget.LotteryPropertyView;
 
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
 
 /**
@@ -44,7 +42,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
     LinearLayout mLlTime;
     @BindView(R.id.tv_time_minute)
     TextView mTvTimeMinute;
-
     @BindView(R.id.ll_time2)
     LinearLayout mLlTime2;
     @BindView(R.id.tv_time_hour)
@@ -99,8 +96,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
         mLlTime2.setVisibility(View.GONE);
         mTvLotteryTime.setText("00:00");
 
-
-
 //        ll_lottery_history.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -124,8 +119,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
         getGameOpenTime();
     }
 
-
-
     @Override
     protected boolean useEventBus() {
         return true;
@@ -138,6 +131,8 @@ public class LotteryInfoFragment extends NewBaseFragment {
             mTvBalance.setText(String.format(Locale.getDefault(), "%.2f", event.moneyInfo.getMoney()));
         }
     }
+
+
     private void getGameOpenTime() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().getGameOpenTime(this,token, gameCode, new HttpCallback<getGameOpentime>() {

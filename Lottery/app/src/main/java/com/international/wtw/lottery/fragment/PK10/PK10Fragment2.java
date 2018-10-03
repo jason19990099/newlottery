@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.BetItemAdapter;
 import com.international.wtw.lottery.base.Constants;
@@ -16,13 +15,17 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.view.CustomGridView;
 import com.international.wtw.lottery.dialog.RecyclerViewDialog;
 import com.international.wtw.lottery.dialog.ToastDialog;
+import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.BetBaseFragment;
 import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
 import com.international.wtw.lottery.listener.StateInterface;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -68,6 +71,13 @@ public class PK10Fragment2 extends BetBaseFragment implements BetItemAdapter.Ite
         currentOddBeans = data;
         showOdds();
         setupGyjhOddsView(gyjzhTopItemView, currentOddBeans);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(Pk10RateEvent data) {
+
+        LogUtil.e("=====Pk10RateEvent==2===="+data.toString());
+
     }
 
     private void InitViewGyjh() {

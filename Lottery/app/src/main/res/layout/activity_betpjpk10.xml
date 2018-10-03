@@ -17,44 +17,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <FrameLayout
                 android:id="@+id/fl_lottery_info_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <RadioGroup
-                android:id="@+id/betbjpk10_tab_RadioGroup"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radio_lmp"
-                    style="@style/betting_tab"
-                    android:checked="true"
-                    android:text="@string/two_face_betting" />
+                <RadioGroup
+                    android:id="@+id/betbjpk10_tab_RadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/radio_gyjh"
-                    style="@style/betting_tab"
-                    android:text="@string/win_two_three_he" />
+                    <RadioButton
+                        android:id="@+id/radio_lmp"
+                        style="@style/betting_tab"
+                        android:checked="true"
+                        android:text="@string/two_face_betting" />
 
-                <RadioButton
-                    android:id="@+id/radio_1_5"
-                    style="@style/betting_tab"
-                    android:text="@string/first_five" />
+                    <RadioButton
+                        android:id="@+id/radio_gyjh"
+                        style="@style/betting_tab"
+                        android:text="@string/win_two_three_he" />
 
-                <RadioButton
-                    android:id="@+id/radio_6_10"
-                    style="@style/betting_tab"
-                    android:text="@string/six_ten" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radio_1_5"
+                        style="@style/betting_tab"
+                        android:text="@string/first_five" />
 
-            <com.international.wtw.lottery.widget.CustomPager
-                android:id="@+id/betbjpk10_vp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:id="@+id/radio_6_10"
+                        style="@style/betting_tab"
+                        android:text="@string/six_ten" />
+                </RadioGroup>
+
+                <com.international.wtw.lottery.widget.CustomPager
+                    android:id="@+id/betbjpk10_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="999" />
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </ScrollView>
 

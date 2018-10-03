@@ -15,6 +15,7 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.view.CustomListView;
 import com.international.wtw.lottery.dialog.RecyclerViewDialog;
 import com.international.wtw.lottery.dialog.ToastDialog;
+import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.BetBaseFragment;
 import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
@@ -23,6 +24,8 @@ import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -64,6 +67,14 @@ public class PK10Fragment4 extends BetBaseFragment implements BetItemAdapter.Ite
         ydwdTopItemView.add(view.findViewById(R.id.layout_ldsh_ten));
 
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(Pk10RateEvent data) {
+
+        LogUtil.e("=====Pk10RateEvent=4====="+data.toString());
+
+    }
+
 
     @Override
     protected void refreshOdds() {

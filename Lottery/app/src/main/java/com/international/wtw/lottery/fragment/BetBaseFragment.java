@@ -20,6 +20,8 @@ import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -57,6 +59,13 @@ public abstract class BetBaseFragment extends BaseFragment {
             }
         });
         return rootView;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     protected void showOdds() {
@@ -119,4 +128,11 @@ public abstract class BetBaseFragment extends BaseFragment {
     protected abstract void onGetOdds(List<NewOddsBean> data);
 
     protected abstract void refreshOdds();
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

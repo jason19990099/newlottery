@@ -13,26 +13,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.FragmentAdapter;
-import com.international.wtw.lottery.base.Constants;
+import com.international.wtw.lottery.api.HttpCallback;
+import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseApplication;
 import com.international.wtw.lottery.base.app.BetBaseActivity;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.BetClosedEvent;
+import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment1;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment2;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment3;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment4;
+import com.international.wtw.lottery.fragment.PK10.PK10newFragment;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
+import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.utils.EditTextTools;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,11 +60,22 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
     private ImageView iv_isselect;
     private Button btn_bet;
 
-
     @Override
     protected String getLotteryTypeName() {
         return getString(R.string.LotteryTypeNamePK10);
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_betpjpk10;
+    }
+
+
+    @Override
+    public String getLotteryType() {
+        return LotteryId.BJSCPK10;
+    }
+
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
@@ -106,18 +119,6 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
             fragment4 = new PK10Fragment4();
         }
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_betpjpk10;
-    }
-
-
-    @Override
-    public String getLotteryType() {
-        return "bjscpk10";
-    }
-
 
 
     @Override
@@ -168,6 +169,8 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 
             }
         });
+
+
         //下注投注
         findViewById(R.id.btn_bet).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,13 +217,34 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
                         fragment4.clearbettingseleter();
                         break;
                 }
-
                 dismissRedNumberText();
-
             }
         });
 
 
+        //获取PK10的投注数据
+        getPK10rate();
+
+    }
+
+
+
+    /**
+     * 获取PK10的投注数据
+     */
+    private void getPK10rate() {
+        String token = SharePreferencesUtil.getString(PK10Activity.this, LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getPlayRate(PK10Activity.this, token,getLotteryType(), new HttpCallback<PK10Rate>() {
+            @Override
+            public void onSuccess(PK10Rate data)  {
+                EventBus.getDefault().post(new Pk10RateEvent(data));
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+
+            }
+        });
     }
 
 

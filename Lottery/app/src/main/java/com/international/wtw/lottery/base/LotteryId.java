@@ -58,7 +58,12 @@ public class LotteryId {
     public static final String IF_REMEMBER_PASSWORD = "ifrememberpassword";
     public static final String USER_PSW = "userpsw";
     public static final String SERVICE_URL = "serviceUrl";
-
     public static final String PLAY_RINGTONE = "play_ringtone";//是否开启开奖音效
+
+
+
+    public static final String BJSCPK10 = "bjscpk10"; //北京赛车PK10
+    public static final String sourcetype = "4";
+    public static final String version = "1.0";
 
 }
