@@ -89,6 +89,13 @@
             android:name=".activity.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.lottery.Newlottery.Bjscpk10Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+
         <activity
             android:name=".activity.login.RegisterActivity"
             android:launchMode="singleTask"

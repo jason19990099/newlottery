@@ -101,7 +101,7 @@ public class BetActivity extends NewBaseActivity {
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
-        gameCode = getIntent().getIntExtra(GAME_CODE, Constants.LOTTERY_TYPE.PJ_PK_10);
+//        gameCode = getIntent().getIntExtra(GAME_CODE, Constants.LOTTERY_TYPE.PJ_PK_10);
         mTvBetTitle.setText(LotteryUtil.get().getPageTitle(gameCode));
         initFragment();
         initBetType();

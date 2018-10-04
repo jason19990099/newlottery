@@ -125,7 +125,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
     protected void initalSubClassViewInital() {
         betbjpk10_tab_RadioGroup = (RadioGroup) findViewById(R.id.betbjpk10_tab_RadioGroup);
         betbjpk10_tab_RadioGroup.setOnCheckedChangeListener(this);
-        betbjpk10_vp = (com.international.wtw.lottery.widget.CustomPager) findViewById(R.id.betbjpk10_vp);
+//        betbjpk10_vp = (com.international.wtw.lottery.widget.CustomPager) findViewById(R.id.betbjpk10_vp);
         initFragment();
         tv_selectnum = (TextView) findViewById(R.id.tv_selectnum);
         iv_isselect = (ImageView) findViewById(R.id.iv_isselect);

@@ -29,7 +29,7 @@ import okhttp3.RequestBody;
 /**
  * 下注页面, 把一些方法抽出来..!
  */
-public abstract class BetBaseFragment extends BaseFragment {
+public abstract class BetBaseFragment extends BaseFragment  {
 
     protected View rootView;
     protected FrameLayout mFlOddsContainer;

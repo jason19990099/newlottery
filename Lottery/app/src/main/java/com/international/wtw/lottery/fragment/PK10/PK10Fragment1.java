@@ -6,10 +6,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.BetItemAdapter;
+import com.international.wtw.lottery.adapter.PK10adapter;
 import com.international.wtw.lottery.base.Constants;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.view.CustomListView;
@@ -20,6 +22,7 @@ import com.international.wtw.lottery.fragment.BetBaseFragment;
 import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
 import com.international.wtw.lottery.listener.StateInterface;
+import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -31,6 +34,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -40,6 +46,10 @@ import okhttp3.RequestBody;
 
 public class PK10Fragment1 extends BetBaseFragment implements
         BetItemAdapter.ItemBettingCallback, StateInterface {
+
+    @BindView(R.id.lv_item)
+    ListView lvItem;
+    Unbinder unbinder;
     private View view;
     private boolean IsFeng;
     private BetItemAdapter adapter;
@@ -48,34 +58,35 @@ public class PK10Fragment1 extends BetBaseFragment implements
     private List<NewOddsBean> currentOddBeans = new ArrayList<>();  //请求到的赔率数据
     private RecyclerViewDialog mDialog;
 
+    private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        view = inflater.inflate(R.layout.view_lmp, null);
+        view = inflater.inflate(R.layout.activity_pk10, null);
         mFlOddsContainer.addView(view);
         InitViewLmp();
         getData();
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
-
-
 
     /**
      * 两面盘
      */
     private void InitViewLmp() {
-        lmpTopItemView.clear();
-        lmpTopItemView.add(view.findViewById(R.id.layout_one));
-        lmpTopItemView.add(view.findViewById(R.id.layout_two));
-        lmpTopItemView.add(view.findViewById(R.id.layout_three));
-        lmpTopItemView.add(view.findViewById(R.id.layout_four));
-        lmpTopItemView.add(view.findViewById(R.id.layout_five));
-        lmpTopItemView.add(view.findViewById(R.id.layout_six));
-        lmpTopItemView.add(view.findViewById(R.id.layout_seven));
-        lmpTopItemView.add(view.findViewById(R.id.layout_eight));
-        lmpTopItemView.add(view.findViewById(R.id.layout_nine));
-        lmpTopItemView.add(view.findViewById(R.id.layout_ten));
+//        lmpTopItemView.clear();
+//        lmpTopItemView.add(view.findViewById(R.id.layout_one));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_two));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_three));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_four));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_five));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_six));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_seven));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_eight));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_nine));
+//        lmpTopItemView.add(view.findViewById(R.id.layout_ten));
 
     }
 
@@ -90,9 +101,9 @@ public class PK10Fragment1 extends BetBaseFragment implements
 
     @Override
     protected void onGetOdds(List<NewOddsBean> data) {
-        currentOddBeans = data;
-        showOdds();
-        setupLmpOddsView(lmpTopItemView, currentOddBeans);
+//        currentOddBeans = data;
+//        showOdds();
+//        setupLmpOddsView(lmpTopItemView, currentOddBeans);
     }
 
     @Override
@@ -144,12 +155,25 @@ public class PK10Fragment1 extends BetBaseFragment implements
     }
 
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessage(Pk10RateEvent pk10RateEvent) {
+        //找到兩面盤的數據
+        int size = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().size();
+        for (int i = 0; i < size; i++) {
+            if (pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("liangmianpan")) {
+                listPlayGroupBean = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i);
+            }
+        }
 
-        int size=pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(0).getListPlay().size();
-        LogUtil.e("====size==="+size);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                PK10adapter adapter = new PK10adapter(getActivity(), listPlayGroupBean);
+                lvItem.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
 
 
     }
@@ -247,20 +271,20 @@ public class PK10Fragment1 extends BetBaseFragment implements
      * 清除选中
      */
     public void clearbettingseleter() {
-        selectedBeans = findTheSelectedBeans();
-        int selectSize = selectedBeans.size();
-        if (selectSize > 0) {
-            for (int i = 0; i < selectSize; i++) {
-                NewOddsBean.ListBean listBean = selectedBeans.get(i);
-                listBean.setSelectedState(false);
-            }
-            selectedBeans.clear();
-            setupLmpOddsView(lmpTopItemView, currentOddBeans);
-        }
-
-        if (null != getActivity()) {
-            ((ShowSelectNumbersInterface) getActivity()).showSelextNum(0);
-        }
+//        selectedBeans = findTheSelectedBeans();
+//        int selectSize = selectedBeans.size();
+//        if (selectSize > 0) {
+//            for (int i = 0; i < selectSize; i++) {
+//                NewOddsBean.ListBean listBean = selectedBeans.get(i);
+//                listBean.setSelectedState(false);
+//            }
+//            selectedBeans.clear();
+//            setupLmpOddsView(lmpTopItemView, currentOddBeans);
+//        }
+//
+//        if (null != getActivity()) {
+//            ((ShowSelectNumbersInterface) getActivity()).showSelextNum(0);
+//        }
 
     }
 
@@ -268,18 +292,18 @@ public class PK10Fragment1 extends BetBaseFragment implements
      * 开封盘刷新界面
      */
     private void openAndCloseInitView() {
-        clearbettingseleter();
-        setupLmpOddsView(lmpTopItemView, currentOddBeans);
+//        clearbettingseleter();
+//        setupLmpOddsView(lmpTopItemView, currentOddBeans);
     }
 
 
     @Override
     public void ItemClick() {
-        int size = findTheSelectedBeans().size();
-
-        if (null != getActivity()) {
-            ((ShowSelectNumbersInterface) getActivity()).showSelextNum(size);
-        }
+//        int size = findTheSelectedBeans().size();
+//
+//        if (null != getActivity()) {
+//            ((ShowSelectNumbersInterface) getActivity()).showSelextNum(size);
+//        }
 
     }
 
@@ -306,4 +330,9 @@ public class PK10Fragment1 extends BetBaseFragment implements
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

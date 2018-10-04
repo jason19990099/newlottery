@@ -26,6 +26,7 @@ import com.international.wtw.lottery.activity.first.InfoCenterActivity;
 import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
 import com.international.wtw.lottery.activity.lottery.PK10Activity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
@@ -313,7 +314,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 //                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
                 break;
             case "bjscpk10":  //北京赛车PK10
-                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+                getActivity().startActivity(new Intent(getActivity(), Bjscpk10Activity.class));
                 break;
             case "mssc":  //秒速赛车
 //                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
