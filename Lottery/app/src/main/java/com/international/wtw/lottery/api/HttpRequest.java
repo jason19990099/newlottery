@@ -170,6 +170,8 @@ public class HttpRequest {
                 .addParam(LotteryId.PASSWORD, password)
                 .addParam("CheckCode", CheckCode)
                 .addParam("token", token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.login(body);
         putCall(tag, call);
