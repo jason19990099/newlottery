@@ -4,7 +4,6 @@ package com.international.wtw.lottery.activity.lottery.Newlottery;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.newJason.PK10Rate;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.ClearableEditText;
 
@@ -56,8 +54,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     RadioButton radio610;
     @BindView(R.id.betbjpk10_tab_RadioGroup)
     RadioGroup betbjpk10TabRadioGroup;
-    @BindView(R.id.view)
-    View view;
     @BindView(R.id.iv_isselect)
     ImageView ivIsselect;
     @BindView(R.id.tv_selectnum)
@@ -68,6 +64,8 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     Button llBottomRemove;
     @BindView(R.id.btn_bet)
     Button btnBet;
+    @BindView(R.id.frameLayout)
+    FrameLayout frameLayout;
     private int current = 0;
 
     private NewPK10Fragment fragment1;
@@ -86,14 +84,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         betbjpk10TabRadioGroup.check(0);
 
         getPK10rate();
-
-
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.view, fragment1);
-        fragmentTransaction.commit();
-
-
     }
 
     @Override
@@ -102,15 +92,14 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     }
 
 
-
     /**
      * 获取PK10的投注数据
      */
     private void getPK10rate() {
         String token = SharePreferencesUtil.getString(Bjscpk10Activity.this, LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token,getLotteryType(), new HttpCallback<PK10Rate>() {
+        HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token, getLotteryType(), new HttpCallback<PK10Rate>() {
             @Override
-            public void onSuccess(PK10Rate data)  {
+            public void onSuccess(PK10Rate data) {
                 EventBus.getDefault().post(new Pk10RateEvent(data));
             }
 
@@ -120,6 +109,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
             }
         });
     }
+
     /**
      * 初始化frament
      */
@@ -137,6 +127,9 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
             fragment4 = new NewPK10Fragment();
         }
 
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment1);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -156,9 +149,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                 break;
         }
         showView(current);
-        LogUtil.e("===================" + current);
-
-
     }
 
 

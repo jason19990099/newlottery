@@ -9,21 +9,18 @@ import com.international.wtw.lottery.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class NewBaseFragment1 extends Fragment {
+public class NewBaseFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtil.e("======onCreateView=======onCreate======");
         EventBus.getDefault().register(this);
     }
-
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        LogUtil.e("======onCreateView=======onDestroy======");
     }
 }

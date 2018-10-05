@@ -6,15 +6,10 @@
 
     <include layout="@layout/activity_lottery_title" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="99"
-        android:orientation="vertical">
-
         <LinearLayout
+            android:layout_weight="99"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <FrameLayout
@@ -26,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
 
                 <RadioGroup
                     android:id="@+id/betbjpk10_tab_RadioGroup"
@@ -55,17 +51,17 @@
                         android:text="@string/six_ten" />
                 </RadioGroup>
 
-                <View
-                    android:id="@+id/view"
+                <FrameLayout
+                    android:id="@+id/frameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/light_yellow" />
+                  />
 
             </LinearLayout>
 
 
         </LinearLayout>
-    </ScrollView>
+
 
     <include
         layout="@layout/bet_bottom"
