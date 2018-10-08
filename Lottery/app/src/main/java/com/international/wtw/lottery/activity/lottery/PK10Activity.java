@@ -83,7 +83,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 //            initFragment();
 //            dismissRedNumberText();
 //            fragment1.close(IsFeng);
-//            fragment2.close(IsFeng);
+            fragment2.close(IsFeng);
 //            fragment3.close(IsFeng);
 //            fragment4.close(IsFeng);
         }

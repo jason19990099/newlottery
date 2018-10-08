@@ -179,13 +179,21 @@ public class LotteryInfoFragment extends NewBaseFragment {
             String OpenTime=data.getData().getOpenTime();
             String CloseTime=data.getData().getCloseTime();
 
+                //closeSeconds 剩余封盘时间
                 if (TextUtils.isEmpty(CloseTime) || TextUtils.isEmpty(serverTime)) {
                     closeSeconds = 0;
                 } else {
                     closeSeconds = (int) (Long.parseLong(CloseTime) - Long.parseLong(serverTime));
                 }
 
+                if (closeSeconds>0){
+                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, false));
+                }else{
+                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, true));
+                }
 
+
+                 //endSeconds  剩余开奖时间
                 if (TextUtils.isEmpty(OpenTime) || TextUtils.isEmpty(serverTime)) {
                     endSeconds = 0;
                 } else {
@@ -202,19 +210,17 @@ public class LotteryInfoFragment extends NewBaseFragment {
                             endSeconds--;
                             closeSeconds--;
                             if (closeSeconds == 0) {
-                                LogUtil.e("" + closeSeconds);
                                 //发送通知
-                                    EventBus.getDefault().post(new OpenAndClosedEvent(gameCode, true));
+                                 EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, true));
                             }
                             refreshTime(data);
                             mHandler.postDelayed(this, 1000);
-                        }
-                        if (endSeconds <= 0) {
+                        }else{
                             mHandler.removeCallbacks(this);
                             getGameOpenTime();
                         }
                     }
-                }, 1000);
+                }, 100);
             }
 
         }

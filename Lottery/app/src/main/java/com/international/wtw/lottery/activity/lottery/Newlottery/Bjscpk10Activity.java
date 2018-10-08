@@ -30,6 +30,7 @@ import com.international.wtw.lottery.widget.ClearableEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,6 +82,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private PK10LiangmianpanFragment fragment3;
     private PK10LiangmianpanFragment fragment4;
     private FragmentManager mFragmentManager;  // Fragment管理器
+    boolean IsFeng=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,23 +98,27 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     }
 
     @Override
-    public String getLotteryType() {
+    public  String getLotteryType() {
         return LotteryId.BJSCPK10;
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
         if (getLotteryType().equals(event.gameCode)) {
-//            IsFeng = event.isClosed;
+            IsFeng = event.isClosed;
 //            initFragment();
 //            dismissRedNumberText();
 //            fragment1.close(IsFeng);
 //            fragment2.close(IsFeng);
 //            fragment3.close(IsFeng);
 //            fragment4.close(IsFeng);
+            IsFeng = event.isClosed;
+//            //发送开封盘事件
+//            EventBus.getDefault().postSticky(event);
+
+            LogUtil.e("===============kaifengpan============");
         }
-        LogUtil.e("======gameCode=====" + event.gameCode);
-        LogUtil.e("======gameCode=====" + event.isClosed);
+
     }
 
     /**

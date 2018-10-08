@@ -168,9 +168,9 @@ public class PK10Fragment1 extends BetBaseFragment implements
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                PK10adapter adapter = new PK10adapter(getActivity(), listPlayGroupBean);
-                lvItem.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+//                PK10adapter adapter = new PK10adapter(getActivity(), listPlayGroupBean);
+//                lvItem.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
             }
         });
 

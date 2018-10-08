@@ -9,12 +9,12 @@ import android.widget.ListView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.PK10adapter;
+import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.NewBaseFragment;
 import com.international.wtw.lottery.newJason.PK10Rate;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,6 +25,7 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
     Unbinder unbinder;
     private View view;
     private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
+    private PK10adapter adapter;
 
     @Nullable
     @Override
@@ -44,10 +45,18 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
             }
         }
 
-        PK10adapter adapter = new PK10adapter(getActivity(), listPlayGroupBean);
+        adapter = new PK10adapter(getActivity(), listPlayGroupBean,false);
         lvItem.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void onEvent(OpenAndClosedEvent event) {
+        if (event.gameCode.equals("bjscpk10")) {
+            adapter=new PK10adapter(getActivity(), listPlayGroupBean,event.isClosed);
+            lvItem.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

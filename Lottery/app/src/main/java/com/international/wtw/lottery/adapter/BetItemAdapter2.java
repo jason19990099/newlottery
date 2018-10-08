@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.utils.LogUtil;
 
 import java.util.List;
 
@@ -33,11 +34,12 @@ public class BetItemAdapter2 extends BaseAdapter {
 
     private List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
     private Context context;
-    public  BetItemAdapter2(Context context,List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate){
+    private boolean IsFeng;
+    public  BetItemAdapter2(Context context,List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate,boolean IsFeng){
         this.context=context;
         this.listPlayRate=listPlayRate;
+        this.IsFeng=IsFeng;
     }
-
 
     @Override
     public int getCount() {
@@ -67,24 +69,40 @@ public class BetItemAdapter2 extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+
         PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean  listPlayRateBean=listPlayRate.get(position);
         viewHolder.tv_item_name.setText(listPlayRateBean.getName());
-        viewHolder.tv_item_odds.setText(String.valueOf(listPlayRateBean.getPlayRateValue().getValue()));
-        final int pos  = position; //pos必须声明为final
 
-//        if (IsFeng) {
-//            viewHolder.tv_item_odds.setText("--");
-//        } else {
-//            viewHolder.tv_item_odds.setText(itemBean.getOdds());
-//        }
+        if (IsFeng) {
+            viewHolder.tv_item_odds.setText("--");
+            viewHolder.tv_item_odds.setTextColor(ContextCompat.getColor(context,R.color.bet_text_odds_gray));
+            viewHolder.tv_item_name.setTextColor(ContextCompat.getColor(context,R.color.bet_text_name_black));
+            viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_item));
+            viewHolder.tv_item_odds.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_bottom_item));
+        } else {
+            viewHolder.tv_item_odds.setText(String.valueOf(listPlayRateBean.getPlayRateValue().getValue()));
+            boolean ischecked=listPlayRateBean.isSelect();
+            if (ischecked) {
+                viewHolder.tv_item_name.setTextColor(ContextCompat.getColor(context,R.color.bet_color_blue));
+                viewHolder.tv_item_odds.setTextColor(ContextCompat.getColor(context,R.color.white));
+                viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_selected_item));
+                viewHolder.tv_item_odds.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_selected_bottom_item));
+            } else {
+                viewHolder.tv_item_odds.setTextColor(ContextCompat.getColor(context,R.color.bet_text_odds_gray));
+                viewHolder.tv_item_name.setTextColor(ContextCompat.getColor(context,R.color.bet_text_name_black));
+                viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_item));
+                viewHolder.tv_item_odds.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_bottom_item));
+            }
+        }
 
         viewHolder.ly_item_bjpk10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (IsFeng) {
-//                    viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_item));
-//                } else {
+                if (IsFeng) {
+                    viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_item));
+                } else {
                     boolean selected = listPlayRateBean.isSelect();
+                    LogUtil.e("=========selected========="+selected);
                     listPlayRateBean.setSelect(!selected);
                     listPlayRate.get(position).setSelect(!selected);
                     if (selected) {
@@ -100,7 +118,7 @@ public class BetItemAdapter2 extends BaseAdapter {
                     }
 //                    itemBettingCallback.ItemClick();
 
-//                }
+                }
             }
         });
 

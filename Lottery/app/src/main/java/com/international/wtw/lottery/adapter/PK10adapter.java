@@ -21,15 +21,18 @@ public class PK10adapter extends BaseAdapter {
     private Context context;
     private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
     private LayoutInflater mInflater;
+    private boolean isFeng;
+    private List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
 
-    public PK10adapter( Context context,PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean){
+    public PK10adapter( Context context,PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean,boolean isFeng){
         this.context=context;
         this.listPlayGroupBean=listPlayGroupBean;
+        this.isFeng=isFeng;
     }
 
     @Override
     public int getCount() {
-        return null==listPlayGroupBean.getListPlay()?0:listPlayGroupBean.getListPlay().size();
+        return null==listPlayGroupBean?0:listPlayGroupBean.getListPlay().size();
     }
 
     @Override
@@ -56,9 +59,8 @@ public class PK10adapter extends BaseAdapter {
             viewHolder = (ViewHolder)view.getTag();
         }
         viewHolder.tv_name.setText(listPlayGroupBean.getListPlay().get(position).getName());
-        List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean>
-                listPlayRate=listPlayGroupBean.getListPlay().get(position).getListPlayRate();
-        BetItemAdapter2 adapter=new BetItemAdapter2(context,listPlayRate);
+        listPlayRate=listPlayGroupBean.getListPlay().get(position).getListPlayRate();
+        BetItemAdapter2 adapter=new BetItemAdapter2(context,listPlayRate,isFeng);
         viewHolder.gridView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         return view;
