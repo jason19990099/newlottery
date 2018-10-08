@@ -3,7 +3,9 @@ package com.international.wtw.lottery.activity.lottery.Newlottery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,12 +19,17 @@ import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
+import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
+import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10GuanyaheFragment;
+import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10LiangmianpanFragment;
 import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.ClearableEditText;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,12 +73,14 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     Button btnBet;
     @BindView(R.id.frameLayout)
     FrameLayout frameLayout;
+    @BindView(R.id.tv_betsize)
+    TextView tvBetsize;
     private int current = 0;
-
-    private NewPK10Fragment fragment1;
-    private NewPK10Fragment fragment2;
-    private NewPK10Fragment fragment3;
-    private NewPK10Fragment fragment4;
+    private PK10LiangmianpanFragment fragment1;
+    private PK10GuanyaheFragment fragment2;
+    private PK10LiangmianpanFragment fragment3;
+    private PK10LiangmianpanFragment fragment4;
+    private FragmentManager mFragmentManager;  // Fragment管理器
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,10 +88,10 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         setContentView(R.layout.activity_betpjpk10);
         ButterKnife.bind(this);
         betbjpk10TabRadioGroup.setOnCheckedChangeListener(this);
-        initFragment();
-
-        betbjpk10TabRadioGroup.check(0);
-
+        mFragmentManager = getSupportFragmentManager();
+        onCheckedChanged(betbjpk10TabRadioGroup, R.id.radio_lmp);
+        String text="已经选中<font color='#FF0000'>0</font>注";
+        tvBetsize.setText(Html.fromHtml(text));
         getPK10rate();
     }
 
@@ -91,6 +100,20 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         return LotteryId.BJSCPK10;
     }
 
+    @Subscribe
+    public void onEvent(OpenAndClosedEvent event) {
+        if (getLotteryType().equals(event.gameCode)) {
+//            IsFeng = event.isClosed;
+//            initFragment();
+//            dismissRedNumberText();
+//            fragment1.close(IsFeng);
+//            fragment2.close(IsFeng);
+//            fragment3.close(IsFeng);
+//            fragment4.close(IsFeng);
+        }
+        LogUtil.e("======gameCode=====" + event.gameCode);
+        LogUtil.e("======gameCode=====" + event.isClosed);
+    }
 
     /**
      * 获取PK10的投注数据
@@ -100,37 +123,15 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token, getLotteryType(), new HttpCallback<PK10Rate>() {
             @Override
             public void onSuccess(PK10Rate data) {
-                EventBus.getDefault().post(new Pk10RateEvent(data));
+                EventBus.getDefault().postSticky(new Pk10RateEvent(data));
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
             }
         });
     }
 
-    /**
-     * 初始化frament
-     */
-    private void initFragment() {
-        if (null == fragment1) {
-            fragment1 = new NewPK10Fragment();
-        }
-        if (null == fragment2) {
-            fragment2 = new NewPK10Fragment();
-        }
-        if (null == fragment3) {
-            fragment3 = new NewPK10Fragment();
-        }
-        if (null == fragment4) {
-            fragment4 = new NewPK10Fragment();
-        }
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment1);
-        fragmentTransaction.commit();
-    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -154,41 +155,60 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
 
     /**
      * 展示相关页
-     *
-     * @param current
      */
     private void showView(int current) {
-//        FragmentManager fm = getFragmentManager();          //获得Fragment管理器
-//        FragmentTransaction ft = fm.beginTransaction();     //开启一个事务
-//        hidtFragment(ft);                                  //先隐藏 Fragment
-
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        hidtFragment(transaction);
         switch (current) {
             case 0:
+                if (fragment1 == null) {
+                    fragment1 = new PK10LiangmianpanFragment();
+                    transaction.add(R.id.frameLayout, fragment1);
+                } else {
+                    transaction.show(fragment1);
+                }
                 break;
             case 1:
+                if (fragment2 == null) {
+                    fragment2 = new PK10GuanyaheFragment();
+                    transaction.add(R.id.frameLayout, fragment2);
+                } else {
+                    transaction.show(fragment2);
+                }
+                break;
+            case 2:
+                if (fragment3 == null) {
+                    fragment3 = new PK10LiangmianpanFragment();
+                    transaction.add(R.id.frameLayout, fragment3);
+                } else {
+                    transaction.show(fragment3);
+                }
                 break;
             case 3:
-                break;
-            case 4:
+                if (fragment4 == null) {
+                    fragment4 = new PK10LiangmianpanFragment();
+                    transaction.add(R.id.frameLayout, fragment4);
+                } else {
+                    transaction.show(fragment4);
+                }
                 break;
         }
-
-
+        transaction.commit();
     }
 
     //隐藏所有Fragment
     private void hidtFragment(FragmentTransaction fragmentTransaction) {
-//        if (fragment1 != null) {
-//            fragmentTransaction.hide(fragment1);
-//        }
-//        if (fragment2 != null) {
-//            fragmentTransaction.hide(fragment2);
-//        }
-//        if (fragment3 != null) {
-//            fragmentTransaction.hide(fragment3);
-//        }
-//        if (fragment4 != null) {
-//            fragmentTransaction.hide(fragment4);
-//        }
+        if (fragment1 != null) {
+            fragmentTransaction.hide(fragment1);
+        }
+        if (fragment2 != null) {
+            fragmentTransaction.hide(fragment2);
+        }
+        if (fragment3 != null) {
+            fragmentTransaction.hide(fragment3);
+        }
+        if (fragment4 != null) {
+            fragmentTransaction.hide(fragment4);
+        }
     }
 }

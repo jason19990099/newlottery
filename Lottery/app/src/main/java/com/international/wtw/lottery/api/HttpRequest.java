@@ -135,8 +135,10 @@ public class HttpRequest {
 
     public void getToken(Object tag, Callback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getToken();
+        Call<Login> call = mService.getToken(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -155,6 +157,8 @@ public class HttpRequest {
                 .addParam("TrueName", TrueName)
                 .addParam("WithdrawPassword", payPassword)
                 .addParam("Email", email)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<BaseModel> call = mService.register(body);
         putCall(tag, call);
@@ -194,6 +198,8 @@ public class HttpRequest {
     public void getLoginfo(Object tag, String token,HttpCallback<GetUserinfo> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<GetUserinfo> call = mService.getLoginfo(body);
         putCall(tag, call);
@@ -206,6 +212,8 @@ public class HttpRequest {
     public void Loginout(Object tag, String token,HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.loginout(body);
         putCall(tag, call);
@@ -220,6 +228,8 @@ public class HttpRequest {
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("pageIndex", pageIndex)
                 .addParam("pageSize", pageSize)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.getMessageList(body);
         putCall(tag, call);
@@ -233,6 +243,8 @@ public class HttpRequest {
     public void getBalance(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.getBanlance(body);
         putCall(tag, call);
@@ -249,6 +261,8 @@ public class HttpRequest {
                 .addParam("password", password)
                 .addParam("newPassword", newPassword)
                 .addParam("confirmPassword", newPassword)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<BaseModel> call = mService.getLoginPassword(body);
         putCall(tag, call);
@@ -265,6 +279,8 @@ public class HttpRequest {
                 .addParam("password", password)
                 .addParam("newPassword", newPassword)
                 .addParam("confirmPassword", newPassword)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<BaseModel> call = mService.changeMoneyPass(body);
         putCall(tag, call);
@@ -278,6 +294,8 @@ public class HttpRequest {
     public void getUserBank(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.getUserbank(body);
         putCall(tag, call);
@@ -291,6 +309,8 @@ public class HttpRequest {
     public void getAllgames(Object tag, String token, HttpCallback<Allgame> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Allgame> call = mService.getAllgames(body);
         putCall(tag, call);
@@ -308,6 +328,8 @@ public class HttpRequest {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("gameCode", gameCode)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<getGameOpentime> call = mService.getGameOpenTime(body);
         putCall(tag, call);
@@ -320,6 +342,8 @@ public class HttpRequest {
     public void getCheckCode(Object tag, String token,HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
                 .build();
         Call<Login> call = mService.getCheckCode(body);
         putCall(tag, call);

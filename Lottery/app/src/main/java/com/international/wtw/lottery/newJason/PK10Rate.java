@@ -887,6 +887,23 @@ public class PK10Rate extends BaseModel {
                     private long CreateTime;
                     private String UpdateBy;
                     private long UpdateTime;
+                    private boolean select=false;
+
+                    public boolean isDisable() {
+                        return IsDisable;
+                    }
+
+                    public void setDisable(boolean disable) {
+                        IsDisable = disable;
+                    }
+
+                    public boolean isSelect() {
+                        return select;
+                    }
+
+                    public void setSelect(boolean select) {
+                        this.select = select;
+                    }
 
                     public String getId() {
                         return Id;

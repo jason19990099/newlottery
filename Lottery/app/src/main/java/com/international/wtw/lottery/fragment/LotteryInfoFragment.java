@@ -12,7 +12,9 @@ import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
+import com.international.wtw.lottery.event.BetClosedEvent;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
+import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.newJason.getGameOpentime;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -20,6 +22,7 @@ import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.LotteryNumberView;
 import com.international.wtw.lottery.widget.LotteryPropertyView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
@@ -201,7 +204,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
                             if (closeSeconds == 0) {
                                 LogUtil.e("" + closeSeconds);
                                 //发送通知
-//                                    EventBus.getDefault().post(new BetClosedEvent(gameCode, true));
+                                    EventBus.getDefault().post(new OpenAndClosedEvent(gameCode, true));
                             }
                             refreshTime(data);
                             mHandler.postDelayed(this, 1000);
@@ -244,7 +247,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
                 public void run() {
                     getGameOpenTime();
                 }
-            },5*1000);
+            },8*1000);
         }
 
 //        if (closeSeconds > 0) {

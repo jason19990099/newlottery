@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.fragment.LotteryInfoFragment;
 
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -30,14 +31,14 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
-//        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
     }
 
 
     @Override
     public void onStop() {
         super.onStop();
-//        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
 

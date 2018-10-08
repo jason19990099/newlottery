@@ -27,7 +27,6 @@ import com.international.wtw.lottery.fragment.PK10.PK10Fragment1;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment2;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment3;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment4;
-import com.international.wtw.lottery.fragment.PK10.PK10newFragment;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
 import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.utils.EditTextTools;
@@ -79,7 +78,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 
     @Subscribe
     public void onEvent(BetClosedEvent event) {
-//        if (getLotteryType() == event.gameCode) {
+        if (getLotteryType().equals(event.gameCode) ) {
 //            IsFeng = event.isClosed;
 //            initFragment();
 //            dismissRedNumberText();
@@ -87,7 +86,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
 //            fragment2.close(IsFeng);
 //            fragment3.close(IsFeng);
 //            fragment4.close(IsFeng);
-//        }
+        }
     }
 
     /**
@@ -237,7 +236,7 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
         HttpRequest.getInstance().getPlayRate(PK10Activity.this, token,getLotteryType(), new HttpCallback<PK10Rate>() {
             @Override
             public void onSuccess(PK10Rate data)  {
-                EventBus.getDefault().post(new Pk10RateEvent(data));
+                EventBus.getDefault().postSticky(new Pk10RateEvent(data));
             }
 
             @Override

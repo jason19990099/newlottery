@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery;
+package com.international.wtw.lottery.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

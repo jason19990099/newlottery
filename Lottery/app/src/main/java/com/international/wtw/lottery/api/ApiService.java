@@ -48,7 +48,7 @@ public interface ApiService {
      * 获取token
      */
     @POST("index/GetToken")
-    Call<Login> getToken();
+    Call<Login> getToken(@Body RequestBody body);
 
     /**
      * 获取验证码

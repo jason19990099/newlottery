@@ -18,7 +18,7 @@
 
 
 
-    <com.international.wtw.lottery.activity.lottery.Newlottery.NewGradview
+    <com.international.wtw.lottery.widget.NewGradview
         android:padding="@dimen/dimen_5"
         android:columnWidth="60dp"
         android:stretchMode="spacingWidthUniform"
