@@ -137,7 +137,11 @@ public interface ApiService {
     @POST("Game/GetGamePlayRate")
     Call<PK10Rate> getPlayRate(@Body RequestBody body);
 
-
+    /**
+     * 投注
+     */
+    @POST("Game/SaveOrders")
+    Call<PK10Rate> saveOrders(@Body RequestBody body);
 
 
 

@@ -35,11 +35,13 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.Allgame;
+import com.international.wtw.lottery.newJason.BetData;
 import com.international.wtw.lottery.newJason.GetUserinfo;
 import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.newJason.getGameOpentime;
 import com.international.wtw.lottery.utils.JsonUtil;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import java.util.ArrayList;
@@ -128,9 +130,8 @@ public class HttpRequest {
     }
 
 
-
     /**
-     *  开局获取token
+     * 开局获取token
      */
 
     public void getToken(Object tag, Callback<Login> callback) {
@@ -146,9 +147,9 @@ public class HttpRequest {
     /**
      * 用户注册
      */
-    public void register(Object tag,@Nullable String parentName, String username, String password, String TrueName,
-                         String payPassword,String email,
-                      HttpCallback<BaseModel> callback) {
+    public void register(Object tag, @Nullable String parentName, String username, String password, String TrueName,
+                         String payPassword, String email,
+                         HttpCallback<BaseModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam("ParentUsername", parentName)
                 .addParam("Name", username)
@@ -168,7 +169,7 @@ public class HttpRequest {
     /**
      * 用户登录
      */
-    public void login(Object tag,String token, String userName, String password,String CheckCode , HttpCallback<Login> callback) {
+    public void login(Object tag, String token, String userName, String password, String CheckCode, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.USER_NAME, userName)
                 .addParam(LotteryId.PASSWORD, password)
@@ -193,9 +194,9 @@ public class HttpRequest {
 
 
     /**
-     *   获取登录信息
+     * 获取登录信息
      */
-    public void getLoginfo(Object tag, String token,HttpCallback<GetUserinfo> callback) {
+    public void getLoginfo(Object tag, String token, HttpCallback<GetUserinfo> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -207,9 +208,9 @@ public class HttpRequest {
     }
 
     /**
-     *  登出
+     * 登出
      */
-    public void Loginout(Object tag, String token,HttpCallback<Login> callback) {
+    public void Loginout(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -223,7 +224,7 @@ public class HttpRequest {
     /**
      * 获取消息列表
      */
-    public void getMessageList(Object tag, String token,String pageIndex,String pageSize,HttpCallback<Login> callback) {
+    public void getMessageList(Object tag, String token, String pageIndex, String pageSize, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("pageIndex", pageIndex)
@@ -238,7 +239,7 @@ public class HttpRequest {
 
 
     /**
-     *  获取余额
+     * 获取余额
      */
     public void getBalance(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -289,7 +290,7 @@ public class HttpRequest {
 
 
     /**
-     *  查询用户银行卡
+     * 查询用户银行卡
      */
     public void getUserBank(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -319,12 +320,13 @@ public class HttpRequest {
 
 
     /**
-     *  获取最新期号的开奖时间
+     * 获取最新期号的开奖时间
+     *
      * @param tag
      * @param gameCode
      * @param callback
      */
-    public void getGameOpenTime(Object tag, String token,String gameCode, HttpCallback<getGameOpentime> callback) {
+    public void getGameOpenTime(Object tag, String token, String gameCode, HttpCallback<getGameOpentime> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("gameCode", gameCode)
@@ -337,9 +339,9 @@ public class HttpRequest {
     }
 
     /**
-     *   获取验证码
+     * 获取验证码
      */
-    public void getCheckCode(Object tag, String token,HttpCallback<Login> callback) {
+    public void getCheckCode(Object tag, String token, HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -352,9 +354,9 @@ public class HttpRequest {
 
 
     /**
-     *  获取玩法赔率
+     * 获取玩法赔率
      */
-    public void getPlayRate(Object tag, String token,String playtype,HttpCallback<PK10Rate> callback) {
+    public void getPlayRate(Object tag, String token, String playtype, HttpCallback<PK10Rate> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("Code", playtype)
@@ -366,7 +368,23 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-
+    /**
+     * 投注
+     */
+    public void saveOrders(Object tag, String token, String gameCode, String expectNo, Object betdata,
+                           HttpCallback<PK10Rate> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("GameCode", gameCode)
+                .addParam("ExpectNo", expectNo)
+                .addParam("Data", betdata)
+                .build();
+        Call<PK10Rate> call = mService.saveOrders(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 
@@ -547,8 +565,6 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
-
-
 
 
     /**
@@ -821,7 +837,6 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
-
 
 
     /**

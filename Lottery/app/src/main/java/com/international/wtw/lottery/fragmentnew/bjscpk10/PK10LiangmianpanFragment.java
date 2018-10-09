@@ -52,8 +52,8 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
-        if (event.gameCode.equals("bjscpk10")) {
-            adapter=new PK10adapter(getActivity(), listPlayGroupBean,event.isClosed);
+        if (event.getGameCode().equals("bjscpk10")) {
+            adapter=new PK10adapter(getActivity(), listPlayGroupBean,event.isClosed());
             lvItem.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }

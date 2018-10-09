@@ -187,9 +187,9 @@ public class LotteryInfoFragment extends NewBaseFragment {
                 }
 
                 if (closeSeconds>0){
-                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, false));
+                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),false));
                 }else{
-                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, true));
+                    EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),true));
                 }
 
 
@@ -211,7 +211,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
                             closeSeconds--;
                             if (closeSeconds == 0) {
                                 //发送通知
-                                 EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, true));
+                                 EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),true));
                             }
                             refreshTime(data);
                             mHandler.postDelayed(this, 1000);

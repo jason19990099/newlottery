@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -14,11 +15,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
+import com.international.wtw.lottery.event.BetGo;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10GuanyaheFragment;
@@ -34,6 +37,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 北京赛车
@@ -82,7 +86,11 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private PK10LiangmianpanFragment fragment3;
     private PK10LiangmianpanFragment fragment4;
     private FragmentManager mFragmentManager;  // Fragment管理器
-    boolean IsFeng=false;
+    boolean IsFeng = false;
+    private String expectNo;
+    private String betmoney;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,33 +100,22 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         betbjpk10TabRadioGroup.setOnCheckedChangeListener(this);
         mFragmentManager = getSupportFragmentManager();
         onCheckedChanged(betbjpk10TabRadioGroup, R.id.radio_lmp);
-        String text="已经选中<font color='#FF0000'>0</font>注";
+        String text = "已经选中<font color='#FF0000'>0</font>注";
         tvBetsize.setText(Html.fromHtml(text));
         getPK10rate();
     }
 
     @Override
-    public  String getLotteryType() {
+    public String getLotteryType() {
         return LotteryId.BJSCPK10;
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
-        if (getLotteryType().equals(event.gameCode)) {
-            IsFeng = event.isClosed;
-//            initFragment();
-//            dismissRedNumberText();
-//            fragment1.close(IsFeng);
-//            fragment2.close(IsFeng);
-//            fragment3.close(IsFeng);
-//            fragment4.close(IsFeng);
-            IsFeng = event.isClosed;
-//            //发送开封盘事件
-//            EventBus.getDefault().postSticky(event);
-
-            LogUtil.e("===============kaifengpan============");
+        if (getLotteryType().equals(event.getGameCode())) {
+            IsFeng = event.isClosed();
+            expectNo=event.getExpectNo();
         }
-
     }
 
     /**
@@ -215,6 +212,25 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         }
         if (fragment4 != null) {
             fragmentTransaction.hide(fragment4);
+        }
+    }
+
+    @OnClick({R.id.btn_bet,R.id.ll_bottom_remove})
+    public void onViewClicked(View view) {
+        switch(view.getId()){
+            case R.id.btn_bet:
+                betmoney=etBettingAmount.getText().toString();
+                if (betmoney.equals("")){
+                    Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
+                    return;
+                }
+               if (!IsFeng){
+               EventBus.getDefault().post(new BetGo(expectNo,betmoney)); }
+                break;
+            case R.id.ll_bottom_remove://重置
+                etBettingAmount.setText("");
+
+                break;
         }
     }
 }
