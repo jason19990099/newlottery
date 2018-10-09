@@ -83,8 +83,8 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private int current = 0;
     private PK10LiangmianpanFragment fragment1;
     private PK10GuanyaheFragment fragment2;
-    private PK10LiangmianpanFragment fragment3;
-    private PK10LiangmianpanFragment fragment4;
+//    private PK10LiangmianpanFragment fragment3;
+//    private PK10LiangmianpanFragment fragment4;
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;
@@ -100,8 +100,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         betbjpk10TabRadioGroup.setOnCheckedChangeListener(this);
         mFragmentManager = getSupportFragmentManager();
         onCheckedChanged(betbjpk10TabRadioGroup, R.id.radio_lmp);
-        String text = "已经选中<font color='#FF0000'>0</font>注";
-        tvBetsize.setText(Html.fromHtml(text));
+
         getPK10rate();
     }
 
@@ -179,22 +178,22 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                     transaction.show(fragment2);
                 }
                 break;
-            case 2:
-                if (fragment3 == null) {
-                    fragment3 = new PK10LiangmianpanFragment();
-                    transaction.add(R.id.frameLayout, fragment3);
-                } else {
-                    transaction.show(fragment3);
-                }
-                break;
-            case 3:
-                if (fragment4 == null) {
-                    fragment4 = new PK10LiangmianpanFragment();
-                    transaction.add(R.id.frameLayout, fragment4);
-                } else {
-                    transaction.show(fragment4);
-                }
-                break;
+//            case 2:
+//                if (fragment3 == null) {
+//                    fragment3 = new PK10LiangmianpanFragment();
+//                    transaction.add(R.id.frameLayout, fragment3);
+//                } else {
+//                    transaction.show(fragment3);
+//                }
+//                break;
+//            case 3:
+//                if (fragment4 == null) {
+//                    fragment4 = new PK10LiangmianpanFragment();
+//                    transaction.add(R.id.frameLayout, fragment4);
+//                } else {
+//                    transaction.show(fragment4);
+//                }
+//                break;
         }
         transaction.commit();
     }
@@ -207,12 +206,12 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         if (fragment2 != null) {
             fragmentTransaction.hide(fragment2);
         }
-        if (fragment3 != null) {
-            fragmentTransaction.hide(fragment3);
-        }
-        if (fragment4 != null) {
-            fragmentTransaction.hide(fragment4);
-        }
+//        if (fragment3 != null) {
+//            fragmentTransaction.hide(fragment3);
+//        }
+//        if (fragment4 != null) {
+//            fragmentTransaction.hide(fragment4);
+//        }
     }
 
     @OnClick({R.id.btn_bet,R.id.ll_bottom_remove})
@@ -229,7 +228,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                 break;
             case R.id.ll_bottom_remove://重置
                 etBettingAmount.setText("");
-
                 break;
         }
     }

@@ -372,7 +372,7 @@ public class HttpRequest {
      * 投注
      */
     public void saveOrders(Object tag, String token, String gameCode, String expectNo, Object betdata,
-                           HttpCallback<PK10Rate> callback) {
+                           HttpCallback<Login> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -381,7 +381,7 @@ public class HttpRequest {
                 .addParam("ExpectNo", expectNo)
                 .addParam("Data", betdata)
                 .build();
-        Call<PK10Rate> call = mService.saveOrders(body);
+        Call<Login> call = mService.saveOrders(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

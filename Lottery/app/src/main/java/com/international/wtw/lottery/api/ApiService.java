@@ -141,7 +141,7 @@ public interface ApiService {
      * 投注
      */
     @POST("Game/SaveOrders")
-    Call<PK10Rate> saveOrders(@Body RequestBody body);
+    Call<Login> saveOrders(@Body RequestBody body);
 
 
 

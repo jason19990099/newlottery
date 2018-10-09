@@ -10,6 +10,9 @@ public class BetData implements Serializable {
     private String PlayRateValueId;
     private String PlayRateValue;
     private String Amount;
+    private String playname;
+    private String betitemname;
+
 
     public String getPlayGroupCode() {
         return PlayGroupCode;
@@ -65,5 +68,21 @@ public class BetData implements Serializable {
 
     public void setAmount(String amount) {
         Amount = amount;
+    }
+
+    public String getPlayname() {
+        return playname;
+    }
+
+    public void setPlayname(String playname) {
+        this.playname = playname;
+    }
+
+    public String getBetitemname() {
+        return betitemname;
+    }
+
+    public void setBetitemname(String betitemname) {
+        this.betitemname = betitemname;
     }
 }

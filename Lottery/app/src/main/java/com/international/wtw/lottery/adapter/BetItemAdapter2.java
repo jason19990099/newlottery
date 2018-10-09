@@ -8,35 +8,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.event.BetSelectData;
-import com.international.wtw.lottery.event.Pk10RateEvent;
-import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.newJason.BetData;
 import com.international.wtw.lottery.newJason.PK10Rate;
 import com.international.wtw.lottery.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
 
 public class BetItemAdapter2 extends BaseAdapter {
-//
-//    private List<NewOddsBean.ListBean> list;
-//    private Context context;
-//    private ItemBettingCallback itemBettingCallback;
-//    private boolean IsFeng;
-//    public BetItemAdapter2(List<NewOddsBean.ListBean> list, Context context,
-//                           ItemBettingCallback itemBettingCallback, boolean IsFeng) {
-//        this.list = list;
-//        this.context = context;
-//        this.itemBettingCallback = itemBettingCallback;
-//        this.IsFeng = IsFeng;
-//    }
-
-
     private List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
     private Context context;
     private boolean IsFeng;
@@ -85,6 +67,7 @@ public class BetItemAdapter2 extends BaseAdapter {
             viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_item));
             viewHolder.tv_item_odds.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_normal_bottom_item));
         } else {
+            if (null!=listPlayRateBean.getPlayRateValue())
             viewHolder.tv_item_odds.setText(String.valueOf(listPlayRateBean.getPlayRateValue().getValue()));
             boolean ischecked=listPlayRateBean.isSelect();
             if (ischecked) {
@@ -127,7 +110,11 @@ public class BetItemAdapter2 extends BaseAdapter {
                     betData.setPlayRateValueType(String.valueOf(listPlayRateBean.getPlayRateValueType()));
                     betData.setPlayRateValueId(listPlayRateBean.getPlayRateValue().getId());
                     betData.setPlayRateValue(String.valueOf(listPlayRateBean.getPlayRateValue().getValue()));
+                    betData.setPlayname(listPlayRateBean.getPlayName());
+                    betData.setBetitemname(listPlayRateBean.getName());
+
                     EventBus.getDefault().postSticky(new BetSelectData(!selected,betData));
+
                 }
             }
         });
