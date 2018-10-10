@@ -13,6 +13,7 @@ import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.event.BetClosedEvent;
+import com.international.wtw.lottery.event.BetSelectData;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.newJason.getGameOpentime;
@@ -192,7 +193,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
                     EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),true,true));
                 }
 
-
                  //endSeconds  剩余开奖时间
                 if (TextUtils.isEmpty(OpenTime) || TextUtils.isEmpty(serverTime)) {
                     endSeconds = 0;
@@ -210,8 +210,11 @@ public class LotteryInfoFragment extends NewBaseFragment {
                             endSeconds--;
                             closeSeconds--;
                             if (closeSeconds == 0) {
+                                //清除选中的数据
+                                EventBus.getDefault().postSticky(new BetSelectData(false,null,true));
                                 //发送通知
-                            EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),true,true));
+                                EventBus.getDefault().postSticky(new OpenAndClosedEvent(gameCode, data.getData().getExpectNoNext(),true,true));
+
                             }
                             refreshTime(data);
                             mHandler.postDelayed(this, 1000);

@@ -7,7 +7,7 @@ public class OpenAndClosedEvent extends BaseEvent {
     private boolean isClosed;
 
     private String expectNo;//正在投注的期号
-    private boolean isClearSelect;
+    private boolean isClearSelect;  //是否清除已经选中的选项
 
 
     public OpenAndClosedEvent(String gameCode, String expectNo,boolean isClosed,boolean isClearSelect) {

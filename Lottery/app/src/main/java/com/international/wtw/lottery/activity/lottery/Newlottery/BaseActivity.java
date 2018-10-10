@@ -8,16 +8,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
-import com.international.wtw.lottery.dialog.ClickableToast;
 import com.international.wtw.lottery.dialog.RecyclerViewDialog2;
 import com.international.wtw.lottery.event.BetGo;
 import com.international.wtw.lottery.event.BetSelectData;
@@ -25,19 +22,16 @@ import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.fragment.LotteryInfoFragment;
 import com.international.wtw.lottery.newJason.BetData;
 import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.utils.ActivityManager;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
+import com.international.wtw.lottery.widget.ClearableEditText;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import butterknife.BindView;
 
 
 /**
@@ -46,6 +40,8 @@ import butterknife.BindView;
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
     private List<BetData> betdatalist; //下注数据的容器
     private RecyclerViewDialog2 mDialog;
+    private ClearableEditText etBettingAmount;
+    private String betmoney;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,8 +56,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
         betdatalist = new ArrayList<>();
         betdatalist.clear();
-
-
     }
 
     @Override
@@ -73,6 +67,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
         findViewById(R.id.ll_bottom_remove).setOnClickListener(this);
         findViewById(R.id.iv_back).setOnClickListener(this);
+        findViewById(R.id.btn_bet).setOnClickListener(this);
+        etBettingAmount= (ClearableEditText) findViewById(R.id.et_betting_amount);
     }
 
 
@@ -93,7 +89,11 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      */
     public abstract String getexpectNo();
 
-
+    /**
+     *  获取当前开盘状态
+     * @return
+     */
+    public abstract boolean isClosed();
 
     /**
      * 此方法收集下注数据的
@@ -139,7 +139,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             for (int i = 0; i < size; i++) {
                 betdatalist.get(i).setAmount(event.getBetMoney());
             }
-
             mDialog = new RecyclerViewDialog2(this, betdatalist, event.getBetMoney(), new RecyclerViewDialog2.SureCallBack() {
                 @Override
                 public void onSure() {
@@ -149,7 +148,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
                 @Override
                 public void onCancel() {
-
                 }
             });
             mDialog.show();
@@ -157,7 +155,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         } else {
             Toast.makeText(this, "请选择投注项", Toast.LENGTH_LONG).show();
         }
-
     }
 
 
@@ -186,6 +183,15 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
                break;
            case  R.id.iv_back:
                finish();
+               break;
+           case  R.id.btn_bet:
+               betmoney=etBettingAmount.getText().toString();
+               if (betmoney.equals("")){
+                   Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
+                   return;
+               }
+               if (!isClosed()){
+                   EventBus.getDefault().post(new BetGo(getexpectNo(),betmoney)); }
                break;
        }
     }

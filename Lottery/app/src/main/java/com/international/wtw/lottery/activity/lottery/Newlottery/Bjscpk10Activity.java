@@ -44,8 +44,6 @@ import butterknife.OnClick;
  */
 public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
     @BindView(R.id.textView_lotteryTypeName)
     TextView textViewLotteryTypeName;
     @BindView(R.id.downArrow)
@@ -70,12 +68,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     ImageView ivIsselect;
     @BindView(R.id.tv_selectnum)
     TextView tvSelectnum;
-    @BindView(R.id.et_betting_amount)
-    ClearableEditText etBettingAmount;
-    @BindView(R.id.ll_bottom_remove)
-    Button llBottomRemove;
-    @BindView(R.id.btn_bet)
-    Button btnBet;
     @BindView(R.id.frameLayout)
     FrameLayout frameLayout;
     @BindView(R.id.tv_betsize)
@@ -88,9 +80,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;
-    private String betmoney;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +89,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         betbjpk10TabRadioGroup.setOnCheckedChangeListener(this);
         mFragmentManager = getSupportFragmentManager();
         onCheckedChanged(betbjpk10TabRadioGroup, R.id.radio_lmp);
-
         getPK10rate();
     }
 
@@ -114,12 +102,16 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         return expectNo;
     }
 
+    @Override
+    public boolean isClosed() {
+        return IsFeng;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
         if (getLotteryType().equals(event.getGameCode())) {
             IsFeng = event.isClosed();
             expectNo=event.getExpectNo();
-            LogUtil.e("============OpenAndClosedEvent========="+expectNo);
         }
     }
 
@@ -220,24 +212,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
 //        }
     }
 
-    @OnClick({R.id.btn_bet,R.id.ll_bottom_remove})
-    public void onViewClicked(View view) {
-        switch(view.getId()){
-            case R.id.btn_bet:
-                betmoney=etBettingAmount.getText().toString();
-                if (betmoney.equals("")){
-                    Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
-                    return;
-                }
-               if (!IsFeng){
-                   LogUtil.e("============expectNo========="+expectNo);
-               EventBus.getDefault().post(new BetGo(expectNo,betmoney)); }
-                break;
-            case R.id.ll_bottom_remove://重置
-                etBettingAmount.setText("");
-                break;
-        }
-    }
+
 
 
 }
