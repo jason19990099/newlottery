@@ -6,23 +6,26 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
-import com.international.wtw.lottery.dialog.RecyclerViewDialog;
+import com.international.wtw.lottery.dialog.ClickableToast;
 import com.international.wtw.lottery.dialog.RecyclerViewDialog2;
 import com.international.wtw.lottery.event.BetGo;
 import com.international.wtw.lottery.event.BetSelectData;
+import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.fragment.LotteryInfoFragment;
 import com.international.wtw.lottery.newJason.BetData;
 import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.utils.ActivityManager;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -40,9 +43,7 @@ import butterknife.BindView;
 /**
  * 新的彩票的父类
  */
-public abstract class BaseActivity extends FragmentActivity {
-    @BindView(R.id.btn_bet)
-    Button btnBet;
+public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
     private List<BetData> betdatalist; //下注数据的容器
     private RecyclerViewDialog2 mDialog;
 
@@ -59,6 +60,8 @@ public abstract class BaseActivity extends FragmentActivity {
 
         betdatalist = new ArrayList<>();
         betdatalist.clear();
+
+
     }
 
     @Override
@@ -68,6 +71,8 @@ public abstract class BaseActivity extends FragmentActivity {
             EventBus.getDefault().register(this);
         }
 
+        findViewById(R.id.ll_bottom_remove).setOnClickListener(this);
+        findViewById(R.id.iv_back).setOnClickListener(this);
     }
 
 
@@ -83,29 +88,45 @@ public abstract class BaseActivity extends FragmentActivity {
      */
     public abstract String getLotteryType();
 
+    /**
+     * 获取当前投注期号
+     */
+    public abstract String getexpectNo();
+
+
 
     /**
      * 此方法收集下注数据的
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(BetSelectData event) {
-        if (event.isSelect()) {
-            betdatalist.add(event.getBetData());
-        } else {
-            Iterator<BetData> iterator = betdatalist.iterator();
-            while (iterator.hasNext()) {
-                BetData betData = iterator.next();
-                if (betData.getPlayRateCode().equals(event.getBetData().getPlayRateCode())) {
-                    iterator.remove();
+        //首先判断是否需要清除
+        if (event.isClearSelect()){
+            //清除数据
+            betdatalist.clear();
+            //通知更新界面
+            EventBus.getDefault().postSticky(new OpenAndClosedEvent(getLotteryType(), getexpectNo(),false,true));
+        }else{
+            if (event.isSelect()) {
+                betdatalist.add(event.getBetData());
+            } else {
+                Iterator<BetData> iterator = betdatalist.iterator();
+                while (iterator.hasNext()) {
+                    BetData betData = iterator.next();
+                    if (betData.getPlayRateValueId().equals(event.getBetData().getPlayRateValueId())) {
+                        iterator.remove();
+                    }
                 }
             }
-            LogUtil.e("=========betdatalist========="+betdatalist.size());
         }
 
+        LogUtil.e("=========betdatalist========="+new Gson().toJson(betdatalist));
 
         TextView tv_selectNum = (TextView) findViewById(R.id.tv_betsize);
         String text = "已经选中<font color='#FF0000'>" + betdatalist.size() + "</font>注";
         tv_selectNum.setText(Html.fromHtml(text));
+
+
     }
 
     /**
@@ -141,20 +162,31 @@ public abstract class BaseActivity extends FragmentActivity {
 
 
     private void getBet(String expectNo, Object betjason) {
-
         String token = SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().saveOrders(BaseActivity.this, token, getLotteryType(), expectNo, betjason, new HttpCallback<Login>() {
             @Override
             public void onSuccess(Login data) throws Exception {
                 Toast.makeText(BaseActivity.this, "投注成功", Toast.LENGTH_LONG).show();
+                EventBus.getDefault().postSticky(new BetSelectData(false,null,true));
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                Toast.makeText(BaseActivity.this, "投注失败", Toast.LENGTH_LONG).show();
+                Toast.makeText(BaseActivity.this, errorMsg, Toast.LENGTH_LONG).show();
             }
         });
     }
 
 
+    @Override
+    public void onClick(View v) {
+       switch (v.getId()){
+           case R.id.ll_bottom_remove :
+               EventBus.getDefault().postSticky(new BetSelectData(false,null,true));
+               break;
+           case  R.id.iv_back:
+               finish();
+               break;
+       }
+    }
 }

@@ -12,6 +12,8 @@ import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.NewBaseFragment;
 import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.utils.LogUtil;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
@@ -52,6 +54,15 @@ public class PK10GuanyaheFragment extends NewBaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
         if (event.getGameCode().equals("bjscpk10")) {
+            if (event.isClearSelect()){
+                int size=listPlayGroupBean.getListPlay().size();
+                for (int i=0;i<size;i++){
+                    int size2=listPlayGroupBean.getListPlay().get(i).getListPlayRate().size();
+                    for (int m=0;m<size2;m++){
+                        listPlayGroupBean.getListPlay().get(i).getListPlayRate().get(m).setSelect(false);
+                    }
+                }
+            }
             adapter=new PK10adapter(getActivity(), listPlayGroupBean,event.isClosed());
             lvItem.setAdapter(adapter);
             adapter.notifyDataSetChanged();

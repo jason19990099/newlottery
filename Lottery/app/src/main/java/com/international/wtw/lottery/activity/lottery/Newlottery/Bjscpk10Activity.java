@@ -109,11 +109,17 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         return LotteryId.BJSCPK10;
     }
 
+    @Override
+    public String getexpectNo() {
+        return expectNo;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
         if (getLotteryType().equals(event.getGameCode())) {
             IsFeng = event.isClosed();
             expectNo=event.getExpectNo();
+            LogUtil.e("============OpenAndClosedEvent========="+expectNo);
         }
     }
 
@@ -224,6 +230,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                     return;
                 }
                if (!IsFeng){
+                   LogUtil.e("============expectNo========="+expectNo);
                EventBus.getDefault().post(new BetGo(expectNo,betmoney)); }
                 break;
             case R.id.ll_bottom_remove://重置
@@ -231,4 +238,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                 break;
         }
     }
+
+
 }

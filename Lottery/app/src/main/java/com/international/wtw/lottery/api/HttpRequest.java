@@ -406,8 +406,6 @@ public class HttpRequest {
 
 
 
-
-
     /**
      * 获取Banner及公告数据
      */

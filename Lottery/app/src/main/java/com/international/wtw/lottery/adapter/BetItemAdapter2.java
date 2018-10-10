@@ -113,7 +113,7 @@ public class BetItemAdapter2 extends BaseAdapter {
                     betData.setPlayname(listPlayRateBean.getPlayName());
                     betData.setBetitemname(listPlayRateBean.getName());
 
-                    EventBus.getDefault().postSticky(new BetSelectData(!selected,betData));
+                    EventBus.getDefault().postSticky(new BetSelectData(!selected,betData,false));
 
                 }
             }

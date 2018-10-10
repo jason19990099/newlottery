@@ -7,11 +7,14 @@ public class OpenAndClosedEvent extends BaseEvent {
     private boolean isClosed;
 
     private String expectNo;//正在投注的期号
+    private boolean isClearSelect;
 
-    public OpenAndClosedEvent(String gameCode, String expectNo,boolean isClosed) {
+
+    public OpenAndClosedEvent(String gameCode, String expectNo,boolean isClosed,boolean isClearSelect) {
         this.gameCode = gameCode;
         this.expectNo=expectNo;
         this.isClosed = isClosed;
+        this.isClearSelect =isClearSelect;
     }
 
     public String getGameCode() {
@@ -36,5 +39,13 @@ public class OpenAndClosedEvent extends BaseEvent {
 
     public void setExpectNo(String expectNo) {
         this.expectNo = expectNo;
+    }
+
+    public boolean isClearSelect() {
+        return isClearSelect;
+    }
+
+    public void setClearSelect(boolean clearSelect) {
+        this.isClearSelect = clearSelect;
     }
 }
