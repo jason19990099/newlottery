@@ -63,7 +63,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
     private void onApiFailure(T model) {
         String msgCode = model.getMsg();
         LogUtil.e("========msgCode==="+msgCode);
-        if ("请先登录 !".equals(msgCode)) {
+        if (msgCode.contains("登录")) {
             FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
             Intent intent = new Intent(currActivity, LoginActivity.class);
             currActivity.startActivity(intent);

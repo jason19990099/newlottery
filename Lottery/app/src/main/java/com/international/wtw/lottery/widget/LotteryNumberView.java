@@ -8,7 +8,8 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.international.wtw.lottery.base.Constants;
+import com.international.wtw.lottery.base.LotteryId;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.LotteryUtil;
 import com.international.wtw.lottery.utils.SizeUtils;
 
@@ -53,11 +54,8 @@ public class LotteryNumberView extends LinearLayout {
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(12);
             switch (gameCode) {
-                case "bjscpk10"://北京赛车
-//                case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
-//                case Constants.LOTTERY_TYPE.HORSE_88://88赛马
-//                case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY://幸运飞艇
-//                case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
+                case LotteryId.BJSCPK10://北京赛车PK10
+                case LotteryId.Miaosufeiting://秒速飛艇
 //                case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY://幸运农场
 //                case Constants.LOTTERY_TYPE.JS_QUICK_3://江苏快3
                     //这几个彩种直接使用图片作为背景, 且图片中已包含了数字, 不再设置号码

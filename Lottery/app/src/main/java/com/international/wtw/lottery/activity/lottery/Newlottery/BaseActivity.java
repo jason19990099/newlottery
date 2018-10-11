@@ -69,6 +69,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.btn_bet).setOnClickListener(this);
         etBettingAmount= (ClearableEditText) findViewById(R.id.et_betting_amount);
+        TextView tv_lotteryname= (TextView) findViewById(R.id.textView_lotteryTypeName);
+        tv_lotteryname.setText(getLotteryname());
     }
 
 
@@ -83,6 +85,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
      * 获取彩票彩种
      */
     public abstract String getLotteryType();
+
+
+    public abstract String getLotteryname();
 
     /**
      * 获取当前投注期号

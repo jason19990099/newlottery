@@ -26,7 +26,6 @@
             android:id="@+id/textView_lotteryTypeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/LotteryTypeNamePK10"
             android:textColor="#fff"
             android:textSize="18sp"/>
 

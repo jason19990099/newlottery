@@ -1,7 +1,6 @@
 package com.international.wtw.lottery.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,9 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.login.SplashActivity;
-import com.international.wtw.lottery.api.HttpCallback;
-import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
@@ -25,8 +21,6 @@ import com.international.wtw.lottery.fragment.main.FirstFragment;
 import com.international.wtw.lottery.fragment.main.MineFragment;
 import com.international.wtw.lottery.fragment.main.MoneyManageFragment;
 import com.international.wtw.lottery.fragment.main.TrendFragment;
-import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.orhanobut.logger.Logger;
 

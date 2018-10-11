@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.base.Constants;
+import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.utils.LotteryUtil;
 
 import java.util.List;
@@ -54,10 +55,11 @@ public class LotteryPropertyView extends LinearLayout {
 //                    addPropertyView(LotteryUtil.get().getZodiac(time,number));
 //                }
 //                break;
-            case "bjscpk10"://北京赛车
+            case LotteryId.BJSCPK10://北京赛车
+            case LotteryId.Miaosufeiting://秒速飞艇
 //            case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
 //            case Constants.LOTTERY_TYPE.HORSE_88://88赛马
-//            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY://幸运飞艇
+//
 //            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
                 //冠亚和属性
                 int sum1 = Integer.parseInt(numbers.get(0)) + Integer.parseInt(numbers.get(1));

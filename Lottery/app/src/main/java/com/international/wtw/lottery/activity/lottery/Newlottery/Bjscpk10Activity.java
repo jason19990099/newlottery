@@ -98,6 +98,11 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     }
 
     @Override
+    public String getLotteryname() {
+        return getIntent().getStringExtra("lotteryname");
+    }
+
+    @Override
     public String getexpectNo() {
         return expectNo;
     }

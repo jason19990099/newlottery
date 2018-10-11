@@ -27,6 +27,7 @@ import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
 import com.international.wtw.lottery.activity.lottery.PK10Activity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
@@ -222,7 +223,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Lotteryinfo lotteryinfo = list2.get(position);
-                navToTargetActivity(lotteryinfo.getCode());
+                navToTargetActivity(lotteryinfo.getCode(),lotteryinfo.getName());
             }
         });
     }
@@ -303,24 +304,28 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      *
      * @param lotteryType
      */
-    private void navToTargetActivity(String lotteryType) {
+    private void navToTargetActivity(String lotteryType,String lotteryname) {
         if (null == getActivity())
             return;
+        Intent intent = null;
         switch (lotteryType) {
             case "msssc":   //秒速时时彩
-//                startActivity(new Intent(getActivity(), Quick3Activity.class));
+//                startActivity(new Intent(getActivity(), MiaosufeitingActivity.class));
                 break;
             case "msft":  //秒速飞艇
-//                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+                intent =new Intent(getActivity(), MiaosufeitingActivity.class);
                 break;
             case "bjscpk10":  //北京赛车PK10
-                getActivity().startActivity(new Intent(getActivity(), Bjscpk10Activity.class));
+                intent=new Intent(getActivity(), Bjscpk10Activity.class);
+
                 break;
             case "mssc":  //秒速赛车
 //                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
                 break;
 
         }
+            intent.putExtra("lotteryname",lotteryname);
+            getActivity().startActivity(intent);
     }
 
     @Override

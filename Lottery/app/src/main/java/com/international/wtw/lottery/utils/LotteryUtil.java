@@ -6,6 +6,7 @@ import android.util.SparseArray;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.base.Constants;
+import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.json.BetTypeItem;
 import com.international.wtw.lottery.json.MultiBetItem;
 import com.international.wtw.lottery.json.OddsItem;
@@ -435,11 +436,8 @@ public class LotteryUtil {
 
     public int getBackgroundRes(String gameCode, String number) {
         switch (gameCode) {
-            case "bjscpk10"://北京赛车
-//            case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
-//            case Constants.LOTTERY_TYPE.HORSE_88://88赛马
-//            case Constants.LOTTERY_TYPE.LUCKY_FLY_LOTTERY://幸运飞艇
-//            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
+            case LotteryId.BJSCPK10://北京赛车
+            case LotteryId.Miaosufeiting://秒速飞艇
                 return getItemBg0(number);
 //            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY://香港六合彩:
 //            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX://极速六合彩:

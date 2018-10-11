@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.PK10adapter;
+import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.NewBaseFragment;
@@ -54,7 +55,7 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
-        if (event.getGameCode().equals("bjscpk10")) {
+        if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)) {
             if (event.isClearSelect()){
                 int size=listPlayGroupBean.getListPlay().size();
                 for (int i=0;i<size;i++){

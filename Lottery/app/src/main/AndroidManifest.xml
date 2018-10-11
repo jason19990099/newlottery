@@ -94,6 +94,10 @@
             android:name=".activity.lottery.Newlottery.Bjscpk10Activity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.MiaosufeitingActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
 
 
         <activity
