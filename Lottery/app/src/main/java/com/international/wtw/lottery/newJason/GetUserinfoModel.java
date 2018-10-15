@@ -2,7 +2,7 @@ package com.international.wtw.lottery.newJason;
 
 import com.international.wtw.lottery.json.BaseModel;
 
-public class GetUserinfo extends BaseModel {
+public class GetUserinfoModel extends BaseModel {
 
     /**
      * data : {"Id":"180917160400828906","Name":"it0001","SourceType":0,"SourceTypeName":null,"Ip":"10.1.246.46","IpInfo":"对方和您在同一内部网","AgentIp":"10.1.246.46","AgentIpInfo":"对方和您在同一内部网","BrowserInfo":"okhttp/3.8.0","Domain":"10.7.0.2","LoginTime":"/Date(1537248634077)/","LastActionPageUrl":"","LastActionTime":"/Date(1537248634077)/","UserStatus":1,"UserStatusName":"正常","UserOnlineType":1,"UserOnlineTypeName":"用户","Amount":0,"Token":"b65903e783444a2991bf160f66fe10c6","pageIndex":1,"pageSize":10,"pageSort":null,"minAmount":0,"maxAmount":0,"beginTime":"/Date(-2209017600000)/","endTime":"/Date(-2209017600000)/","Sort":0,"IsDisable":false,"CreateBy":"0","CreateTime":"/Date(-2209017600000)/","UpdateBy":"0","UpdateTime":"/Date(-2209017600000)/"}

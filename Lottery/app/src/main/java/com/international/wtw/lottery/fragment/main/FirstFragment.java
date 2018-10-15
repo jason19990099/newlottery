@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -28,7 +29,8 @@ import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
-import com.international.wtw.lottery.activity.lottery.PK10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusaicheActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusscActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -52,8 +54,8 @@ import com.international.wtw.lottery.json.Notice;
 import com.international.wtw.lottery.json.PreferentialBean;
 import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
-import com.international.wtw.lottery.newJason.Allgame;
-import com.international.wtw.lottery.newJason.Lotteryinfo;
+import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.LotteryinfoModel;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;
 import com.international.wtw.lottery.utils.ScreenUtils;
@@ -85,7 +87,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private NewRecyclerViewBaseAdapter menuAdapter;
     private MarqueeView noteTextView;
     private ImageView img_menu;
-    private List<Lotteryinfo> list2 = new ArrayList<>();
+    private List<LotteryinfoModel> list2 = new ArrayList<>();
     private RecyclerView bottom_recycler;
     private LunbotuBean lunbotus;
     private ImageView img_user_default;
@@ -133,11 +135,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
         //获取彩票信息
         getLotteryInfo();
-
         setBottomActivities(3);
-
         initBottomRecycler();
-
         noteTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -162,12 +161,12 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      */
     private void getLotteryInfo() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getAllgames(FirstFragment.this, token, new HttpCallback<Allgame>() {
+        HttpRequest.getInstance().getAllgames(FirstFragment.this, token, new HttpCallback<AllgameModel>() {
             @Override
-            public void onSuccess(Allgame data) {
+            public void onSuccess(AllgameModel data) {
                 int  size=data.getData().size();
                 for (int i=0;i<size;i++){
-                    list2.add(new Lotteryinfo(data.getData().get(i).getName(),
+                    list2.add(new LotteryinfoModel(data.getData().get(i).getName(),
                             data.getData().get(i).getGameTypeCode(), data.getData().get(i).getCode(),
                             R.mipmap.ic_launcher));
                 }
@@ -177,7 +176,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
+                Toast.makeText(getActivity(),errorMsg,Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -213,7 +212,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     /**
      * 彩票信息
      */
-    private void initLotteryData(List<Lotteryinfo> msgBeen) {
+    private void initLotteryData(List<LotteryinfoModel> msgBeen) {
         if (null == getActivity())
             return;
         recycle_menu.setFocusable(false);
@@ -222,7 +221,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         recycle_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Lotteryinfo lotteryinfo = list2.get(position);
+                LotteryinfoModel lotteryinfo = list2.get(position);
                 navToTargetActivity(lotteryinfo.getCode(),lotteryinfo.getName());
             }
         });
@@ -309,18 +308,17 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             return;
         Intent intent = null;
         switch (lotteryType) {
-            case "msssc":   //秒速时时彩
-//                startActivity(new Intent(getActivity(), MiaosufeitingActivity.class));
+            case LotteryId.Miaosusscai:   //秒速时时彩
+                intent =new Intent(getActivity(), MiaosusscActivity.class);
                 break;
-            case "msft":  //秒速飞艇
+            case LotteryId.Miaosufeiting:  //秒速飞艇
                 intent =new Intent(getActivity(), MiaosufeitingActivity.class);
                 break;
-            case "bjscpk10":  //北京赛车PK10
+            case LotteryId.BJSCPK10:  //北京赛车PK10
                 intent=new Intent(getActivity(), Bjscpk10Activity.class);
-
                 break;
-            case "mssc":  //秒速赛车
-//                getActivity().startActivity(new Intent(getActivity(), PK10Activity.class));
+            case LotteryId.MiaosuSaiche:  //秒速赛车
+                intent=new Intent(getActivity(), MiaosusaicheActivity.class);
                 break;
 
         }
@@ -351,7 +349,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                         EventBus.getDefault().postSticky(new LoginEvent());
                         ToastDialog.success(getString(R.string.login_success)).show(getFragmentManager());
                     }
-
                     @Override
                     public void onFailure(String msgCode, String errorMsg) {
                         ToastDialog.error(errorMsg).show(getFragmentManager());

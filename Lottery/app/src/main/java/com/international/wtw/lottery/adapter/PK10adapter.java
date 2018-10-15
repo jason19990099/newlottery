@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.widget.NewGradview;
 
 import java.util.List;
@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class PK10adapter extends BaseAdapter {
     private Context context;
-    private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
+    private PK10RateModel.DataBean.ListPlayGroupBean listPlayGroupBean;
     private LayoutInflater mInflater;
     private boolean isFeng;
-    private List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
+    private List<PK10RateModel.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
 
-    public PK10adapter( Context context,PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean,boolean isFeng){
+    public PK10adapter(Context context, PK10RateModel.DataBean.ListPlayGroupBean listPlayGroupBean, boolean isFeng){
         this.context=context;
         this.listPlayGroupBean=listPlayGroupBean;
         this.isFeng=isFeng;

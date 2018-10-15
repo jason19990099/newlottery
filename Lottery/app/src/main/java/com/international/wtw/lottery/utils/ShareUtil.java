@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Base64;
 
 
-import com.international.wtw.lottery.newJason.GetUserinfo;
+import com.international.wtw.lottery.newJason.GetUserinfoModel;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,7 +24,7 @@ public class ShareUtil {
      * @param user
      * @throws Exception
      */
-    public static void saveUser(Context context, String preferenceName, String key, ArrayList<GetUserinfo> user) throws Exception {
+    public static void saveUser(Context context, String preferenceName, String key, ArrayList<GetUserinfoModel> user) throws Exception {
         if(user instanceof Serializable) {
             SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceName, context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -51,14 +51,14 @@ public class ShareUtil {
      * @param key
      * @return
      */
-    public static ArrayList<GetUserinfo> getUser(Context context, String preferenceName, String key) {
+    public static ArrayList<GetUserinfoModel> getUser(Context context, String preferenceName, String key) {
         SharedPreferences sharedPreferences=context.getSharedPreferences(preferenceName,context.MODE_PRIVATE);
         String temp = sharedPreferences.getString(key, "");
         ByteArrayInputStream bais =  new ByteArrayInputStream(Base64.decode(temp.getBytes(), Base64.DEFAULT));
-        ArrayList<GetUserinfo> user = null;
+        ArrayList<GetUserinfoModel> user = null;
         try {
             ObjectInputStream ois = new ObjectInputStream(bais);
-            user = (ArrayList<GetUserinfo>) ois.readObject();
+            user = (ArrayList<GetUserinfoModel>) ois.readObject();
         } catch (IOException e) {
         }catch(ClassNotFoundException e1) {
 

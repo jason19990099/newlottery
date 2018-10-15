@@ -2,7 +2,7 @@ package com.international.wtw.lottery.newJason;
 
 import java.io.Serializable;
 
-public class Lotteryinfo implements Serializable {
+public class LotteryinfoModel implements Serializable {
 
     private String name;
     private String gameTypeCode;
@@ -41,7 +41,7 @@ public class Lotteryinfo implements Serializable {
         this.code = code;
     }
 
-    public Lotteryinfo(String name, String gameTypeCode,String code, int pic) {
+    public LotteryinfoModel(String name, String gameTypeCode, String code, int pic) {
         this.name = name;
         this.code=code;
         this.gameTypeCode = gameTypeCode;
@@ -50,7 +50,7 @@ public class Lotteryinfo implements Serializable {
 
     @Override
     public String toString() {
-        return "Lotteryinfo{" +
+        return "LotteryinfoModel{" +
                 "name='" + name + '\'' +
                 ", gameTypeCode='" + gameTypeCode + '\'' +
                 ", pic=" + pic +

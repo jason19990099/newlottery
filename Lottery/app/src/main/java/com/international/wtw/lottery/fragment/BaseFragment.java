@@ -16,7 +16,6 @@ import okhttp3.OkHttpClient;
 
 /**
  * fragment父类
- * Created by 18Steven on 2017/6/24.
  */
 
 public class BaseFragment extends Fragment {

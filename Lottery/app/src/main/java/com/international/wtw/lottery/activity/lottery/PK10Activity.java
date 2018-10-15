@@ -28,7 +28,7 @@ import com.international.wtw.lottery.fragment.PK10.PK10Fragment2;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment3;
 import com.international.wtw.lottery.fragment.PK10.PK10Fragment4;
 import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
-import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.EditTextTools;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -233,9 +233,9 @@ public class PK10Activity extends BetBaseActivity implements RadioGroup.OnChecke
      */
     private void getPK10rate() {
         String token = SharePreferencesUtil.getString(PK10Activity.this, LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getPlayRate(PK10Activity.this, token,getLotteryType(), new HttpCallback<PK10Rate>() {
+        HttpRequest.getInstance().getPlayRate(PK10Activity.this, token,getLotteryType(), new HttpCallback<PK10RateModel>() {
             @Override
-            public void onSuccess(PK10Rate data)  {
+            public void onSuccess(PK10RateModel data)  {
                 EventBus.getDefault().postSticky(new Pk10RateEvent(data));
             }
 

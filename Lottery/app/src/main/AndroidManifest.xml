@@ -95,6 +95,16 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".activity.lottery.Newlottery.MiaosusaicheActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.lottery.Newlottery.MiaosusscActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".activity.lottery.Newlottery.MiaosufeitingActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

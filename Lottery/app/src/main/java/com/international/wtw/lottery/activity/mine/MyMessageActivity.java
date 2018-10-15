@@ -14,13 +14,9 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
-import com.international.wtw.lottery.json.MessageBean;
-import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
-
-import java.util.List;
-
 
 
 public class MyMessageActivity extends BaseActivity implements View.OnClickListener {
@@ -77,9 +73,9 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
 
     private void SetData() {
         String token=SharePreferencesUtil.getString(MyMessageActivity.this,LotteryId.TOKEN,"");
-        HttpRequest.getInstance().getMessageList(MyMessageActivity.this, token,"1","100", new HttpCallback<Login>() {
+        HttpRequest.getInstance().getMessageList(MyMessageActivity.this, token,"1","100", new HttpCallback<MessageModel>() {
             @Override
-            public void onSuccess(Login data) {
+            public void onSuccess(MessageModel data) {
 //                List<MessageBean.MsgListBean> msgList = data.getMsgList();
 //                if (null != msgList && msgList.size() != 0) {
 //                    adapter = new MyMessageAdapter(MyMessageActivity.this, msgList);

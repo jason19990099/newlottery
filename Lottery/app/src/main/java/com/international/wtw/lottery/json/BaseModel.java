@@ -1,6 +1,5 @@
 package com.international.wtw.lottery.json;
 
-import com.international.wtw.lottery.base.Constants;
 
 import java.io.Serializable;
 
@@ -57,8 +56,4 @@ public class BaseModel implements Serializable {
         this.info = info;
     }
 
-
-    public String getErrorCodeInfo() {
-        return Constants.getErrorCodeInfo(msg);
-    }
 }

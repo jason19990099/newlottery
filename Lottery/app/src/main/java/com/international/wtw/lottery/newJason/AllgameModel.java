@@ -4,7 +4,7 @@ import com.international.wtw.lottery.json.BaseModel;
 
 import java.util.List;
 
-public class Allgame extends BaseModel {
+public class AllgameModel extends BaseModel {
 
 
     private List<DataBean> data;

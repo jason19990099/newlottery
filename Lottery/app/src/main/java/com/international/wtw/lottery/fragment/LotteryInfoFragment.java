@@ -12,12 +12,10 @@ import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
-import com.international.wtw.lottery.event.BetClosedEvent;
 import com.international.wtw.lottery.event.BetSelectData;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
-import com.international.wtw.lottery.newJason.getGameOpentime;
-import com.international.wtw.lottery.utils.LogUtil;
+import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.LotteryNumberView;
@@ -139,9 +137,9 @@ public class LotteryInfoFragment extends NewBaseFragment {
 
     private void getGameOpenTime() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getGameOpenTime(this,token, gameCode, new HttpCallback<getGameOpentime>() {
+        HttpRequest.getInstance().getGameOpenTime(this,token, gameCode, new HttpCallback<getGameOpentimeModel>() {
             @Override
-            public void onSuccess(getGameOpentime data) {
+            public void onSuccess(getGameOpentimeModel data) {
                 if (isAdded()) {
                     setLotteryInfothisRound(data);
                 }
@@ -163,7 +161,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
      *  设置本期的开奖时间
      * @param data
      */
-    private void setLotteryInfothisRound(getGameOpentime data) {
+    private void setLotteryInfothisRound(getGameOpentimeModel data) {
         mTvNextRoundNo.setText(String.format(Locale.getDefault(), "%s期", data.getData().getExpectNoNext()));
         if (null!=data.getData().getExpectNo()&&null!=data.getData().getCode()){
             String str = data.getData().getCode();
@@ -234,7 +232,7 @@ public class LotteryInfoFragment extends NewBaseFragment {
     /**
      * 刷新倒计时
      */
-    private void refreshTime(getGameOpentime data) {
+    private void refreshTime(getGameOpentimeModel data) {
         String timeEnd = TimeFormatter.seconds2Time(endSeconds);
         String timeClose = TimeFormatter.seconds2Time(closeSeconds);
         if (!isAdded()) {

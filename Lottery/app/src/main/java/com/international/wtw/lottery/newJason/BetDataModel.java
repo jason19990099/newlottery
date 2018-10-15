@@ -2,7 +2,7 @@ package com.international.wtw.lottery.newJason;
 
 import java.io.Serializable;
 
-public class BetData implements Serializable {
+public class BetDataModel implements Serializable {
     private String PlayGroupCode;
     private String PlayCode;
     private String PlayRateCode;

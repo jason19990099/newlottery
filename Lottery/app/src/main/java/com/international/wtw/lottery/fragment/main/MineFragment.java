@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
-import com.international.wtw.lottery.activity.first.InfoCenterActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
 import com.international.wtw.lottery.activity.mine.BankcardContralActivity;
@@ -31,7 +30,7 @@ import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.fragment.BaseFragment;
 import com.international.wtw.lottery.json.MineBean;
-import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -138,9 +137,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private void getUserInfoMoney() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
         LogUtil.e("========token==" + token);
-        HttpRequest.getInstance().getBalance(getActivity(), token, new HttpCallback<Login>() {
+        HttpRequest.getInstance().getBalance(getActivity(), token, new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(Login data) {
+            public void onSuccess(LoginModel data) {
                 String money = data.getData();
                 tvBalance.setText("余额:"+money+"元");
             }
@@ -156,7 +155,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Subscribe
     public void onEvent(MoneyInfoRefreshEvent event) {
         if (event.moneyInfo != null) {
-
             mine_tv_name.setText(String.format("hello" + "%s", event.moneyInfo.getUsername()));
         }
     }
@@ -260,13 +258,25 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         btn_out_login_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MoneyInfoManager.get().setMoneyInfo(null);
-                SharePreferencesUtil.addString(getActivity(), LotteryId.Login_username, "");
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                getActivity().finish();
-                dialog.dismiss();
+                loginout();
             }
         });
+    }
+
+    private void loginout() {
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().Loginout(MineFragment.this, token, new HttpCallback<LoginModel>() {
+            @Override
+            public void onSuccess(LoginModel data) throws Exception {
+                 //重新获取token
+                getToken();
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+            }
+        });
+
     }
 
     @Override
@@ -274,5 +284,26 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         EventBus.getDefault().unregister(this);
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    /**
+     * 重新获取token 不然没有办法登陆
+     */
+    private void getToken() {
+        HttpRequest.getInstance().getToken(MineFragment.this, new HttpCallback<LoginModel>() {
+            @Override
+            public void onSuccess(LoginModel data) {
+                SharePreferencesUtil.addString(MineFragment.this.getActivity(),LotteryId.TOKEN,data.getData());
+                MoneyInfoManager.get().setMoneyInfo(null);
+                SharePreferencesUtil.addString(getActivity(), LotteryId.Login_username, "");
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+                dialog.dismiss();
+            }
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+            }
+        });
     }
 }

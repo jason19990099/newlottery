@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.base.ViewHolder;
-import com.international.wtw.lottery.json.NewOddsBean;
-import com.international.wtw.lottery.newJason.BetData;
+import com.international.wtw.lottery.newJason.BetDataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 public class BetDialogAdapter2 extends RecyclerView.Adapter<ViewHolder> {
     protected Context mContext;
     protected int mLayoutId;
-    protected List<BetData>  mDatas;
+    protected List<BetDataModel>  mDatas;
     protected LayoutInflater mInflater;
 
     protected OnItemClickListener mOnItemClickListener;
@@ -30,7 +29,7 @@ public class BetDialogAdapter2 extends RecyclerView.Adapter<ViewHolder> {
     private RecyclerView mRecyclerView;
     private String money;
 
-    public BetDialogAdapter2(Context context, int layoutId, List<BetData> betdatalist, String money, RecyclerView recyclerView) {
+    public BetDialogAdapter2(Context context, int layoutId, List<BetDataModel> betdatalist, String money, RecyclerView recyclerView) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
         mLayoutId = layoutId;
@@ -65,7 +64,7 @@ public class BetDialogAdapter2 extends RecyclerView.Adapter<ViewHolder> {
         }
     }
 
-    public void convert(ViewHolder holder, BetData betData) {
+    public void convert(ViewHolder holder, BetDataModel betData) {
         holder.setText(R.id.tv_type_name, betData.getPlayname());
         holder.setText(R.id.tv_name, betData.getBetitemname());
         if (betData.getPlayRateValue() != null)
@@ -105,6 +104,6 @@ public class BetDialogAdapter2 extends RecyclerView.Adapter<ViewHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(ViewGroup parent, View view, BetData bean, int position);
+        void onItemClick(ViewGroup parent, View view, BetDataModel bean, int position);
     }
 }

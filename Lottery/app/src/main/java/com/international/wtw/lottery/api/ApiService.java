@@ -26,11 +26,12 @@ import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
-import com.international.wtw.lottery.newJason.Allgame;
-import com.international.wtw.lottery.newJason.GetUserinfo;
-import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.newJason.PK10Rate;
-import com.international.wtw.lottery.newJason.getGameOpentime;
+import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.GetUserinfoModel;
+import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.MessageModel;
+import com.international.wtw.lottery.newJason.PK10RateModel;
+import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 
 import java.util.Map;
 
@@ -48,13 +49,13 @@ public interface ApiService {
      * 获取token
      */
     @POST("index/GetToken")
-    Call<Login> getToken(@Body RequestBody body);
+    Call<LoginModel> getToken(@Body RequestBody body);
 
     /**
      * 获取验证码
      */
     @POST("index/CheckCode")
-    Call<Login> getCheckCode(@Body RequestBody body);
+    Call<LoginModel> getCheckCode(@Body RequestBody body);
 
     /**
      * 用户注册
@@ -66,13 +67,13 @@ public interface ApiService {
      * 用户登录
      */
     @POST("index/Login")
-    Call<Login> login(@Body RequestBody body);
+    Call<LoginModel> login(@Body RequestBody body);
 
     /**
      * 用户登出
      */
     @POST("index/Logout")
-    Call<Login> loginout(@Body RequestBody body);
+    Call<LoginModel> loginout(@Body RequestBody body);
 
     /**
      * 试玩登录
@@ -85,19 +86,19 @@ public interface ApiService {
      * 获取登录信息
      */
     @POST("User/GetLoginInfo")
-    Call<GetUserinfo> getLoginfo(@Body RequestBody body);
+    Call<GetUserinfoModel> getLoginfo(@Body RequestBody body);
 
     /**
      * 消息列表
      */
-    @POST("Message/List")
-    Call<Login> getMessageList(@Body RequestBody body);
+    @POST("MessageModel/List")
+    Call<MessageModel> getMessageList(@Body RequestBody body);
 
     /**
      * 获取余额
      */
     @POST("User/GetBalance")
-    Call<Login> getBanlance(@Body RequestBody body);
+    Call<LoginModel> getBanlance(@Body RequestBody body);
 
     /**
      * 修改登录密码
@@ -115,33 +116,33 @@ public interface ApiService {
      *  查询用户银行卡
      */
     @POST("User/GetUserBank")
-    Call<Login> getUserbank(@Body RequestBody body);
+    Call<LoginModel> getUserbank(@Body RequestBody body);
 
 
     /**
      * 查询所有游戏
      */
     @POST("Game/GetGame")
-    Call<Allgame> getAllgames(@Body RequestBody body);
+    Call<AllgameModel> getAllgames(@Body RequestBody body);
 
 
     /**
      * 获取当前期进行投注的期号和时间
      */
     @POST("Game/GetGameOpenTime")
-    Call<getGameOpentime> getGameOpenTime(@Body RequestBody body);
+    Call<getGameOpentimeModel> getGameOpenTime(@Body RequestBody body);
 
     /**
      * 获取玩法赔率
      */
     @POST("Game/GetGamePlayRate")
-    Call<PK10Rate> getPlayRate(@Body RequestBody body);
+    Call<PK10RateModel> getPlayRate(@Body RequestBody body);
 
     /**
      * 投注
      */
     @POST("Game/SaveOrders")
-    Call<Login> saveOrders(@Body RequestBody body);
+    Call<LoginModel> saveOrders(@Body RequestBody body);
 
 
 

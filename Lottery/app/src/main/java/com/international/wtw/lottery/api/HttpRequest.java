@@ -34,14 +34,13 @@ import com.international.wtw.lottery.json.SummaryDetailsBean;
 import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
-import com.international.wtw.lottery.newJason.Allgame;
-import com.international.wtw.lottery.newJason.BetData;
-import com.international.wtw.lottery.newJason.GetUserinfo;
-import com.international.wtw.lottery.newJason.Login;
-import com.international.wtw.lottery.newJason.PK10Rate;
-import com.international.wtw.lottery.newJason.getGameOpentime;
+import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.GetUserinfoModel;
+import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.MessageModel;
+import com.international.wtw.lottery.newJason.PK10RateModel;
+import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import java.util.ArrayList;
@@ -134,12 +133,12 @@ public class HttpRequest {
      * 开局获取token
      */
 
-    public void getToken(Object tag, Callback<Login> callback) {
+    public void getToken(Object tag, Callback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getToken(body);
+        Call<LoginModel> call = mService.getToken(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -169,7 +168,7 @@ public class HttpRequest {
     /**
      * 用户登录
      */
-    public void login(Object tag, String token, String userName, String password, String CheckCode, HttpCallback<Login> callback) {
+    public void login(Object tag, String token, String userName, String password, String CheckCode, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.USER_NAME, userName)
                 .addParam(LotteryId.PASSWORD, password)
@@ -178,7 +177,7 @@ public class HttpRequest {
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.login(body);
+        Call<LoginModel> call = mService.login(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -196,13 +195,13 @@ public class HttpRequest {
     /**
      * 获取登录信息
      */
-    public void getLoginfo(Object tag, String token, HttpCallback<GetUserinfo> callback) {
+    public void getLoginfo(Object tag, String token, HttpCallback<GetUserinfoModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<GetUserinfo> call = mService.getLoginfo(body);
+        Call<GetUserinfoModel> call = mService.getLoginfo(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -210,13 +209,13 @@ public class HttpRequest {
     /**
      * 登出
      */
-    public void Loginout(Object tag, String token, HttpCallback<Login> callback) {
+    public void Loginout(Object tag, String token, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.loginout(body);
+        Call<LoginModel> call = mService.loginout(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -224,7 +223,7 @@ public class HttpRequest {
     /**
      * 获取消息列表
      */
-    public void getMessageList(Object tag, String token, String pageIndex, String pageSize, HttpCallback<Login> callback) {
+    public void getMessageList(Object tag, String token, String pageIndex, String pageSize, HttpCallback<MessageModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("pageIndex", pageIndex)
@@ -232,7 +231,7 @@ public class HttpRequest {
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getMessageList(body);
+        Call<MessageModel> call = mService.getMessageList(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -241,13 +240,13 @@ public class HttpRequest {
     /**
      * 获取余额
      */
-    public void getBalance(Object tag, String token, HttpCallback<Login> callback) {
+    public void getBalance(Object tag, String token, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getBanlance(body);
+        Call<LoginModel> call = mService.getBanlance(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -292,13 +291,13 @@ public class HttpRequest {
     /**
      * 查询用户银行卡
      */
-    public void getUserBank(Object tag, String token, HttpCallback<Login> callback) {
+    public void getUserBank(Object tag, String token, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getUserbank(body);
+        Call<LoginModel> call = mService.getUserbank(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -307,13 +306,13 @@ public class HttpRequest {
     /**
      * 查询所有游戏
      */
-    public void getAllgames(Object tag, String token, HttpCallback<Allgame> callback) {
+    public void getAllgames(Object tag, String token, HttpCallback<AllgameModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Allgame> call = mService.getAllgames(body);
+        Call<AllgameModel> call = mService.getAllgames(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -326,14 +325,14 @@ public class HttpRequest {
      * @param gameCode
      * @param callback
      */
-    public void getGameOpenTime(Object tag, String token, String gameCode, HttpCallback<getGameOpentime> callback) {
+    public void getGameOpenTime(Object tag, String token, String gameCode, HttpCallback<getGameOpentimeModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("gameCode", gameCode)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<getGameOpentime> call = mService.getGameOpenTime(body);
+        Call<getGameOpentimeModel> call = mService.getGameOpenTime(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -341,13 +340,13 @@ public class HttpRequest {
     /**
      * 获取验证码
      */
-    public void getCheckCode(Object tag, String token, HttpCallback<Login> callback) {
+    public void getCheckCode(Object tag, String token, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<Login> call = mService.getCheckCode(body);
+        Call<LoginModel> call = mService.getCheckCode(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -356,14 +355,14 @@ public class HttpRequest {
     /**
      * 获取玩法赔率
      */
-    public void getPlayRate(Object tag, String token, String playtype, HttpCallback<PK10Rate> callback) {
+    public void getPlayRate(Object tag, String token, String playtype, HttpCallback<PK10RateModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("Code", playtype)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<PK10Rate> call = mService.getPlayRate(body);
+        Call<PK10RateModel> call = mService.getPlayRate(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -372,7 +371,7 @@ public class HttpRequest {
      * 投注
      */
     public void saveOrders(Object tag, String token, String gameCode, String expectNo, Object betdata,
-                           HttpCallback<Login> callback) {
+                           HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -381,7 +380,7 @@ public class HttpRequest {
                 .addParam("ExpectNo", expectNo)
                 .addParam("Data", betdata)
                 .build();
-        Call<Login> call = mService.saveOrders(body);
+        Call<LoginModel> call = mService.saveOrders(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

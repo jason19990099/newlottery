@@ -4,29 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-
 import com.google.gson.JsonParseException;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.login.MaintenanceActivity;
 import com.international.wtw.lottery.base.Constants;
-import com.international.wtw.lottery.base.LotteryId;
-import com.international.wtw.lottery.base.app.BaseApplication;
-import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.utils.ActivityManager;
 import com.international.wtw.lottery.utils.LogUtil;
-import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
 import org.json.JSONException;
-
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
-
 import javax.net.ssl.SSLHandshakeException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,6 +29,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         if (call.isCanceled()) {
             return;
         }
+
         if (response.isSuccessful()) {
             T model = response.body();
             if (model == null) {
@@ -54,7 +46,6 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
                 onApiFailure(model);
             }
 
-
         } else {
             onFailure(call, new IOException("Unexpected code " + response.code()));
         }
@@ -62,18 +53,10 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
 
     private void onApiFailure(T model) {
         String msgCode = model.getMsg();
-        LogUtil.e("========msgCode==="+msgCode);
-        if (msgCode.contains("登录")) {
+        if (null!=msgCode&&msgCode.contains("登录")) {
             FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
             Intent intent = new Intent(currActivity, LoginActivity.class);
             currActivity.startActivity(intent);
-//            ToastDialog.error(Constants.getErrorCodeInfo("4001"))
-//                    .setDismissListener(new ToastDialog.OnDismissListener() {
-//                        @Override
-//                        public void onDismiss(ToastDialog dialog) {
-//
-//                        }
-//                    }).show(currActivity.getSupportFragmentManager());
         } else if ("4003".equals(msgCode)) {
             //系统维护, 跳转到维护页面
             Activity currActivity = ActivityManager.getInstance().getCurrentActivity();
@@ -82,6 +65,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             currActivity.startActivity(intent);
         }
+
         onFailure(msgCode,msgCode);
     }
 
@@ -91,8 +75,13 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         if (call.isCanceled()) {
             return;
         }
+        LogUtil.e("=======Throwable.======="+t.toString());
         if (t instanceof JSONException || t instanceof JsonParseException || t instanceof ParseException) {
             onFailure("10011", Constants.getErrorCodeInfo("10011"));
+            //TODO 解析错误去登录,等待修改
+            FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
+            Intent intent = new Intent(currActivity, LoginActivity.class);
+            currActivity.startActivity(intent);
         } else if (t instanceof ConnectException) {
             onFailure("10012", Constants.getErrorCodeInfo("10012"));
         } else if (t instanceof SSLHandshakeException) {

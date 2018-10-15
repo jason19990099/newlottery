@@ -2,7 +2,7 @@ package com.international.wtw.lottery.newJason;
 
 import com.international.wtw.lottery.json.BaseModel;
 
-public class getGameOpentime extends BaseModel {
+public class getGameOpentimeModel extends BaseModel {
 
 
     /**

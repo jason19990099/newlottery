@@ -17,6 +17,7 @@ import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.BaseModel;
+import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import butterknife.BindView;
@@ -96,8 +97,10 @@ public class TakeoutMoneyPasswordActivity extends BaseActivity implements View.O
                     return;
                 }
 
+                String psw_old= MD5util.MD5Encode(MD5util.MD5Encode(pwd_old,"utf-8"),"utf-8");
+                String psw_new= MD5util.MD5Encode(MD5util.MD5Encode(pwd_new,"utf-8"),"utf-8");
                 String token = SharePreferencesUtil.getString(TakeoutMoneyPasswordActivity.this, LotteryId.TOKEN, null);
-                HttpRequest.getInstance().changeTakeoutMoneyPassword(TakeoutMoneyPasswordActivity.this, token, pwd_old, pwd_new, new HttpCallback<BaseModel>() {
+                HttpRequest.getInstance().changeTakeoutMoneyPassword(TakeoutMoneyPasswordActivity.this, token, psw_old, psw_new, new HttpCallback<BaseModel>() {
                     @Override
                     public void onSuccess(BaseModel data) {
                         ToastDialog.success(getString(R.string.updatelogin_xgcg)).setDismissListener(new ToastDialog.OnDismissListener() {

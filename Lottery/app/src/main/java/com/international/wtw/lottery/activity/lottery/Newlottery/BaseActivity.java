@@ -20,8 +20,8 @@ import com.international.wtw.lottery.event.BetGo;
 import com.international.wtw.lottery.event.BetSelectData;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.fragment.LotteryInfoFragment;
-import com.international.wtw.lottery.newJason.BetData;
-import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.BetDataModel;
+import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.ClearableEditText;
@@ -38,7 +38,7 @@ import java.util.List;
  * 新的彩票的父类
  */
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
-    private List<BetData> betdatalist; //下注数据的容器
+    private List<BetDataModel> betdatalist; //下注数据的容器
     private RecyclerViewDialog2 mDialog;
     private ClearableEditText etBettingAmount;
     private String betmoney;
@@ -96,7 +96,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     /**
      *  获取当前开盘状态
-     * @return
      */
     public abstract boolean isClosed();
 
@@ -115,9 +114,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             if (event.isSelect()) {
                 betdatalist.add(event.getBetData());
             } else {
-                Iterator<BetData> iterator = betdatalist.iterator();
+                Iterator<BetDataModel> iterator = betdatalist.iterator();
                 while (iterator.hasNext()) {
-                    BetData betData = iterator.next();
+                    BetDataModel betData = iterator.next();
                     if (betData.getPlayRateValueId().equals(event.getBetData().getPlayRateValueId())) {
                         iterator.remove();
                     }
@@ -130,8 +129,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         TextView tv_selectNum = (TextView) findViewById(R.id.tv_betsize);
         String text = "已经选中<font color='#FF0000'>" + betdatalist.size() + "</font>注";
         tv_selectNum.setText(Html.fromHtml(text));
-
-
     }
 
     /**
@@ -165,9 +162,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     private void getBet(String expectNo, Object betjason) {
         String token = SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().saveOrders(BaseActivity.this, token, getLotteryType(), expectNo, betjason, new HttpCallback<Login>() {
+        HttpRequest.getInstance().saveOrders(BaseActivity.this, token, getLotteryType(), expectNo, betjason, new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(Login data) throws Exception {
+            public void onSuccess(LoginModel data) throws Exception {
                 Toast.makeText(BaseActivity.this, "投注成功", Toast.LENGTH_LONG).show();
                 EventBus.getDefault().postSticky(new BetSelectData(false,null,true));
             }

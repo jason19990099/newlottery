@@ -26,9 +26,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 
-/**
- * Created by 18Steven on 2017/9/23.
- */
 
 public class MsgDetailActivity extends BaseActivity {
     private TextView tv_time, tv_title;

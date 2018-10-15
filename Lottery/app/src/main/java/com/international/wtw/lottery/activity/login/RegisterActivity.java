@@ -14,21 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
-import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
-import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.RequestResult;
 import com.international.wtw.lottery.listener.BaseEvent;
-import com.international.wtw.lottery.newJason.Login;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
 import com.international.wtw.lottery.utils.MD5util;
-import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -38,7 +33,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * a bin 注册界面
+ * 注册界面
  */
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     public final String REGISTER_SUCESS = "22";

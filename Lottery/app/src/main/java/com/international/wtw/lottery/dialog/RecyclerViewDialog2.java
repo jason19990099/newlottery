@@ -12,11 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.adapter.BetDialogAdapter;
 import com.international.wtw.lottery.adapter.BetDialogAdapter2;
-import com.international.wtw.lottery.json.NewOddsBean;
 import com.international.wtw.lottery.listener.OnSingleClickListener;
-import com.international.wtw.lottery.newJason.BetData;
+import com.international.wtw.lottery.newJason.BetDataModel;
 import com.international.wtw.lottery.utils.SizeUtils;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public class RecyclerViewDialog2 extends Dialog  {
     private Context mContext;
     private RecyclerView recyclerView;
 
-    public RecyclerViewDialog2(Context context, final List<BetData> betdatalist, String money, SureCallBack callBack) {
+    public RecyclerViewDialog2(Context context, final List<BetDataModel> betdatalist, String money, SureCallBack callBack) {
         super(context, R.style.DialogTheme);
         setCancelable(false);
         mContext = context;
@@ -54,7 +52,7 @@ public class RecyclerViewDialog2 extends Dialog  {
         ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
         adapter.setOnItemClickListener(new BetDialogAdapter2.OnItemClickListener() {
             @Override
-            public void onItemClick(ViewGroup parent, View view,BetData bean, int position) {
+            public void onItemClick(ViewGroup parent, View view, BetDataModel bean, int position) {
                 //bean.setSelectedState(false);
                 betdatalist.remove(bean);
                 adapter.notifyItemRemoved(position);

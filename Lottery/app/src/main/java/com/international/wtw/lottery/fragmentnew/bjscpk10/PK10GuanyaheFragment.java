@@ -12,7 +12,7 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.NewBaseFragment;
-import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.LogUtil;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -26,7 +26,7 @@ public class PK10GuanyaheFragment extends NewBaseFragment {
     ListView lvItem;
     Unbinder unbinder;
     private View view;
-    private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
+    private PK10RateModel.DataBean.ListPlayGroupBean listPlayGroupBean;
     private PK10adapter adapter;
 
     @Nullable
@@ -55,7 +55,8 @@ public class PK10GuanyaheFragment extends NewBaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
         LogUtil.e("=======PK10GuanyaheFragment========="+event.getGameCode());
-        if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)) {
+        if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)
+                ||event.getGameCode().equals(LotteryId.MiaosuSaiche)) {
             if (event.isClearSelect()){
                 int size=listPlayGroupBean.getListPlay().size();
                 for (int i=0;i<size;i++){

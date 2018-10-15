@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.BetItemAdapter;
-import com.international.wtw.lottery.adapter.PK10adapter;
 import com.international.wtw.lottery.base.Constants;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.view.CustomListView;
@@ -20,9 +19,8 @@ import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.BetBaseFragment;
 import com.international.wtw.lottery.json.NewOddsBean;
-import com.international.wtw.lottery.listener.ShowSelectNumbersInterface;
 import com.international.wtw.lottery.listener.StateInterface;
-import com.international.wtw.lottery.newJason.PK10Rate;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MemoryCacheManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -58,7 +56,7 @@ public class PK10Fragment1 extends BetBaseFragment implements
     private List<NewOddsBean> currentOddBeans = new ArrayList<>();  //请求到的赔率数据
     private RecyclerViewDialog mDialog;
 
-    private PK10Rate.DataBean.ListPlayGroupBean listPlayGroupBean;
+    private PK10RateModel.DataBean.ListPlayGroupBean listPlayGroupBean;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -57,10 +57,7 @@ public class LotteryPropertyView extends LinearLayout {
 //                break;
             case LotteryId.BJSCPK10://北京赛车
             case LotteryId.Miaosufeiting://秒速飞艇
-//            case Constants.LOTTERY_TYPE.SPEED_CAR://极速赛车
-//            case Constants.LOTTERY_TYPE.HORSE_88://88赛马
-//
-//            case Constants.LOTTERY_TYPE.VENICE_SPEEDBOAT://威尼斯赛艇
+            case LotteryId.MiaosuSaiche://秒速赛车
                 //冠亚和属性
                 int sum1 = Integer.parseInt(numbers.get(0)) + Integer.parseInt(numbers.get(1));
                 addPropertyTitleView("冠亚和", 2);

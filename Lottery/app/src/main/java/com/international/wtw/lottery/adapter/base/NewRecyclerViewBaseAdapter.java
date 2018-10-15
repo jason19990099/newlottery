@@ -8,16 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.newJason.Lotteryinfo;
+import com.international.wtw.lottery.newJason.LotteryinfoModel;
+
 import java.util.List;
 
 
 public class NewRecyclerViewBaseAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<Lotteryinfo> mDatas;
+    private List<LotteryinfoModel> mDatas;
 
-    public NewRecyclerViewBaseAdapter(Context mContext, List<Lotteryinfo> mDatas) {
+    public NewRecyclerViewBaseAdapter(Context mContext, List<LotteryinfoModel> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
     }

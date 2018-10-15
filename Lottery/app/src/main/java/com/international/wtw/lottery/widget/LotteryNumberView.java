@@ -56,7 +56,7 @@ public class LotteryNumberView extends LinearLayout {
             switch (gameCode) {
                 case LotteryId.BJSCPK10://北京赛车PK10
                 case LotteryId.Miaosufeiting://秒速飛艇
-//                case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY://幸运农场
+                case LotteryId.MiaosuSaiche://秒速赛车
 //                case Constants.LOTTERY_TYPE.JS_QUICK_3://江苏快3
                     //这几个彩种直接使用图片作为背景, 且图片中已包含了数字, 不再设置号码
                     break;

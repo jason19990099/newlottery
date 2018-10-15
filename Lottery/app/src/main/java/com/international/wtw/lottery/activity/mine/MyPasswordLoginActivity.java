@@ -16,6 +16,7 @@ import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.utils.LogUtil;
+import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 
@@ -88,9 +89,10 @@ public class MyPasswordLoginActivity extends BaseActivity implements View.OnClic
                     ToastDialog.error("新密码不能与旧密码相同").show(getSupportFragmentManager());
                     return;
                 }
-
+                String psw_old= MD5util.MD5Encode(MD5util.MD5Encode(pwd_old,"utf-8"),"utf-8");
+                String psw_new= MD5util.MD5Encode(MD5util.MD5Encode(pwd_new,"utf-8"),"utf-8");
                 String token = SharePreferencesUtil.getString(MyPasswordLoginActivity.this, LotteryId.TOKEN, null);
-                HttpRequest.getInstance().getLoginPassword(MyPasswordLoginActivity.this, token, pwd_old, pwd_new, new HttpCallback<BaseModel>() {
+                HttpRequest.getInstance().getLoginPassword(MyPasswordLoginActivity.this, token, psw_old, psw_new, new HttpCallback<BaseModel>() {
                     @Override
                     public void onSuccess(BaseModel data) {
                         ToastDialog.success(getString(R.string.updatelogin_xgcg)).setDismissListener(new ToastDialog.OnDismissListener() {

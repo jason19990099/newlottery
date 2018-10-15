@@ -32,9 +32,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by XIAOYAN on 2017/9/28.
- */
 
 public class BetRecordNewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 

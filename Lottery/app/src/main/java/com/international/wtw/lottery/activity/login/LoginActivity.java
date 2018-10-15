@@ -25,11 +25,10 @@ import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.LoginEvent;
 import com.international.wtw.lottery.json.UserModel;
-import com.international.wtw.lottery.newJason.GetUserinfo;
-import com.international.wtw.lottery.newJason.Login;
+import com.international.wtw.lottery.newJason.GetUserinfoModel;
+import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.BitmapUtil;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.EventBus;
@@ -173,9 +172,9 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
      */
     private void getCheckcode() {
         String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
-        HttpRequest.getInstance().getCheckCode(LoginActivity.this, token, new HttpCallback<Login>() {
+        HttpRequest.getInstance().getCheckCode(LoginActivity.this, token, new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(Login data)  {
+            public void onSuccess(LoginModel data)  {
                 iv_showCode.setImageBitmap(BitmapUtil.stringToBitmap(data.getData()));
             }
 
@@ -223,9 +222,9 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
                 pwd=MD5util.MD5Encode(pwd,"utf-8");
 
                 String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
-                HttpRequest.getInstance().login(LoginActivity.this,token, name, pwd,edittext_yzm.getText().toString().trim(), new HttpCallback<Login>() {
+                HttpRequest.getInstance().login(LoginActivity.this,token, name, pwd,edittext_yzm.getText().toString().trim(), new HttpCallback<LoginModel>() {
                     @Override
-                    public void onSuccess(Login data) {
+                    public void onSuccess(LoginModel data) {
                         SharePreferencesUtil.addString(getApplicationContext(), LotteryId.TOKEN, data.getData());
                             ToastDialog.success("登录成功").setDismissListener(new ToastDialog.OnDismissListener() {
                                 @Override
@@ -302,9 +301,9 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
 
     private void getLoginInfo() {
         String token= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
-        HttpRequest.getInstance().getLoginfo(LoginActivity.this,token, new HttpCallback<GetUserinfo>() {
+        HttpRequest.getInstance().getLoginfo(LoginActivity.this,token, new HttpCallback<GetUserinfoModel>() {
             @Override
-            public void onSuccess(GetUserinfo data)  {
+            public void onSuccess(GetUserinfoModel data)  {
                 Login_Main();
                 EventBus.getDefault().postSticky(new LoginEvent());
                 finish();

@@ -34,7 +34,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        initalOKHttpClient();
         mRequestClient = RequestClient.getSingleInstance();
         mViewHolder = new ViewHolder(getLayoutInflater(), null, getLayoutId());
         setContentView(mViewHolder.getRootView());
@@ -117,16 +116,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    protected void initalOKHttpClient() {
-        interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        // 配置 client
-        client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)                // 设置拦截器
-                .retryOnConnectionFailure(true)             // 是否重试
-                .connectTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)        // 连接超时事件
-                .readTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)           // 读取超时时间
-                .build();
-    }
+
 
 }

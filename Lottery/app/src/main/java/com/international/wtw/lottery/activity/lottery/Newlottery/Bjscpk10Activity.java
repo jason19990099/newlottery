@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Html;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,21 +12,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
-import com.international.wtw.lottery.event.BetGo;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10GuanyaheFragment;
 import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10LiangmianpanFragment;
-import com.international.wtw.lottery.newJason.PK10Rate;
-import com.international.wtw.lottery.utils.LogUtil;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-import com.international.wtw.lottery.widget.ClearableEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,7 +30,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 北京赛车
@@ -125,9 +117,9 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
      */
     private void getPK10rate() {
         String token = SharePreferencesUtil.getString(Bjscpk10Activity.this, LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token, getLotteryType(), new HttpCallback<PK10Rate>() {
+        HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token, getLotteryType(), new HttpCallback<PK10RateModel>() {
             @Override
-            public void onSuccess(PK10Rate data) {
+            public void onSuccess(PK10RateModel data) {
                 EventBus.getDefault().postSticky(new Pk10RateEvent(data));
             }
 

@@ -438,6 +438,7 @@ public class LotteryUtil {
         switch (gameCode) {
             case LotteryId.BJSCPK10://北京赛车
             case LotteryId.Miaosufeiting://秒速飞艇
+            case LotteryId.MiaosuSaiche://秒速赛车
                 return getItemBg0(number);
 //            case Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY://香港六合彩:
 //            case Constants.LOTTERY_TYPE.SPEED_MARK_SIX://极速六合彩:

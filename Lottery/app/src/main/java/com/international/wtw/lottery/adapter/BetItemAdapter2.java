@@ -10,19 +10,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.event.BetSelectData;
-import com.international.wtw.lottery.newJason.BetData;
-import com.international.wtw.lottery.newJason.PK10Rate;
-import com.international.wtw.lottery.utils.LogUtil;
+import com.international.wtw.lottery.newJason.BetDataModel;
+import com.international.wtw.lottery.newJason.PK10RateModel;
 
 import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 
 public class BetItemAdapter2 extends BaseAdapter {
-    private List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
+    private List<PK10RateModel.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate;
     private Context context;
     private boolean IsFeng;
-    public  BetItemAdapter2(Context context,List<PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate,boolean IsFeng){
+    public  BetItemAdapter2(Context context, List<PK10RateModel.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean> listPlayRate, boolean IsFeng){
         this.context=context;
         this.listPlayRate=listPlayRate;
         this.IsFeng=IsFeng;
@@ -57,7 +56,7 @@ public class BetItemAdapter2 extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        PK10Rate.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean  listPlayRateBean=listPlayRate.get(position);
+        PK10RateModel.DataBean.ListPlayGroupBean.ListPlayBean.ListPlayRateBean  listPlayRateBean=listPlayRate.get(position);
         viewHolder.tv_item_name.setText(listPlayRateBean.getName());
 
         if (IsFeng) {
@@ -103,7 +102,7 @@ public class BetItemAdapter2 extends BaseAdapter {
                         viewHolder.ly_item_bjpk10.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_selected_item));
                         viewHolder.tv_item_odds.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_selected_bottom_item));
                     }
-                    BetData betData=new BetData();
+                    BetDataModel betData=new BetDataModel();
                     betData.setPlayGroupCode(listPlayRateBean.getPlayGroupCode());
                     betData.setPlayCode(listPlayRateBean.getPlayCode());
                     betData.setPlayRateCode(listPlayRateBean.getCode());

@@ -9,7 +9,6 @@ import com.international.wtw.lottery.json.MoneyInfo;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * Created by XiaoXin on 2017/10/6.
  * 描述：用户信息(用户名/余额/银行卡/等管理)
  */
 
