@@ -8,24 +8,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.mine.MsgDetailActivity;
-import com.international.wtw.lottery.json.MessageBean;
+import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.utils.MyTextView;
-
+import com.international.wtw.lottery.utils.TImeUtil;
 import java.util.List;
 
-/**
- * Created by XIAOYAN on 2017/12/5.
- */
 
 public class MyMessageAdapter extends BaseAdapter {
 
     private Context context;
-    private List<MessageBean.MsgListBean> list;
+    private List<MessageModel.DataBean> list;
 
-    public MyMessageAdapter(Context context, List<MessageBean.MsgListBean> list) {
+    public MyMessageAdapter(Context context, List<MessageModel.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -60,19 +56,14 @@ public class MyMessageAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        if (list.get(position).getIsRead() == 0) {
-            viewHolder.tv_new.setVisibility(View.VISIBLE);
-        }
 
-        viewHolder.tv_time.setText(list.get(position).getAddtime());
-        viewHolder.tv_context.setText(list.get(position).getComment());
+        viewHolder.tv_time.setText(TImeUtil.getDateStringByTimeSTamp(list.get(position).getCreateTime(),"yyyy-MM-dd HH:mm:ss"));
+        viewHolder.tv_context.setText(list.get(position).getContent());
         viewHolder.ll_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MsgDetailActivity.class);
                 intent.putExtra("id", list.get(position).getId());
-                intent.putExtra("time", list.get(position).getAddtime());
-                intent.putExtra("text", list.get(position).getComment());
                 context.startActivity(intent);
             }
         });

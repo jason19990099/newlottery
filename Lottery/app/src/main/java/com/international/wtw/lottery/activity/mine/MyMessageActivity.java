@@ -14,9 +14,10 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
 import com.international.wtw.lottery.base.app.ViewHolder;
 import com.international.wtw.lottery.dialog.ToastDialog;
-import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
+
+import java.util.List;
 
 
 public class MyMessageActivity extends BaseActivity implements View.OnClickListener {
@@ -53,11 +54,6 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
         tv_tltle_infor.setText(title);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SetData();
-    }
 
     @Override
     public void onClick(View v) {
@@ -76,16 +72,17 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
         HttpRequest.getInstance().getMessageList(MyMessageActivity.this, token,"1","100", new HttpCallback<MessageModel>() {
             @Override
             public void onSuccess(MessageModel data) {
-//                List<MessageBean.MsgListBean> msgList = data.getMsgList();
-//                if (null != msgList && msgList.size() != 0) {
-//                    adapter = new MyMessageAdapter(MyMessageActivity.this, msgList);
-//                    listView.setAdapter(adapter);
-//                    listView.setVisibility(View.VISIBLE);
-//                    fl_no_deposit.setVisibility(View.GONE);
-//                } else {
-//                    listView.setVisibility(View.GONE);
-//                    fl_no_deposit.setVisibility(View.VISIBLE);
-//                }
+                List<MessageModel.DataBean> list = data.getData();
+                if (null != list && list.size() != 0) {
+                    adapter = new MyMessageAdapter(MyMessageActivity.this, list);
+                    listView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    listView.setVisibility(View.VISIBLE);
+                    fl_no_deposit.setVisibility(View.GONE);
+                } else {
+                    listView.setVisibility(View.GONE);
+                    fl_no_deposit.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

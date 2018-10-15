@@ -29,6 +29,7 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
@@ -91,8 +92,14 @@ public interface ApiService {
     /**
      * 消息列表
      */
-    @POST("MessageModel/List")
+    @POST("Message/List")
     Call<MessageModel> getMessageList(@Body RequestBody body);
+
+    /**
+     *  消息详情
+     */
+    @POST("Message/Get")
+    Call<MessageDetailModel> getMessageDetail(@Body RequestBody body);
 
     /**
      * 获取余额

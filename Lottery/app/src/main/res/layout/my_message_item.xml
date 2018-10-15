@@ -12,6 +12,17 @@
         android:orientation="vertical"
         android:padding="@dimen/dimen_10">
 
+        <com.international.wtw.lottery.utils.MyTextView
+            android:id="@+id/tv_context_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/gray"
                 android:textSize="@dimen/sp_14" />
 
             <TextView
@@ -38,16 +49,7 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <com.international.wtw.lottery.utils.MyTextView
-            android:id="@+id/tv_context_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_5"
-            android:ellipsize="end"
-            android:lines="2"
-            android:text=""
-            android:textColor="@color/gray_4c4c4c"
-            android:textSize="@dimen/sp_15" />
+
 
 
     </LinearLayout>

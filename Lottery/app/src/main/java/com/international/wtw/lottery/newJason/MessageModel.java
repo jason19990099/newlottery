@@ -80,7 +80,7 @@ public class MessageModel extends BaseModel {
         private int Sort;
         private boolean IsDisable;
         private String CreateBy;
-        private int CreateTime;
+        private long CreateTime;
         private String UpdateBy;
         private long UpdateTime;
 
@@ -252,12 +252,12 @@ public class MessageModel extends BaseModel {
             this.CreateBy = CreateBy;
         }
 
-        public int getCreateTime() {
+        public long getCreateTime() {
             return CreateTime;
         }
 
-        public void setCreateTime(int CreateTime) {
-            this.CreateTime = CreateTime;
+        public void setCreateTime(long createTime) {
+            CreateTime = createTime;
         }
 
         public String getUpdateBy() {
