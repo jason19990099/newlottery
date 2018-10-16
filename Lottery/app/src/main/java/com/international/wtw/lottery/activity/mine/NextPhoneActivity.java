@@ -34,9 +34,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-/**
- * Created by XIAOYAN on 2017/10/13.
- */
 
 public class NextPhoneActivity extends BaseActivity implements View.OnClickListener {
 
@@ -53,9 +50,7 @@ public class NextPhoneActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initViews(ViewHolder holder, View root) {
-
         InitView();
-
     }
 
     private void InitView() {

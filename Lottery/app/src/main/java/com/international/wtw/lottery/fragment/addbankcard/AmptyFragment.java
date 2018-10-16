@@ -50,7 +50,6 @@ public class AmptyFragment extends NewBaseFragment {
 
     @OnClick(R.id.iv_addbank)
     public void onViewClicked() {
-        LogUtil.e("============000=======");
         AddcardEvent messageEvent = new AddcardEvent();
         EventBus.getDefault().post(messageEvent);
     }

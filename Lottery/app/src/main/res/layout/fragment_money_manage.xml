@@ -90,21 +90,28 @@
             android:checked="true"
             android:drawableBottom="@drawable/selector_triangle_indicator"
             android:drawableTop="@drawable/ic_triangle_transparent"
-            android:text="@string/recharge"/>
+            android:text="存款"/>
 
         <RadioButton
             android:id="@+id/rb_withdraw"
             style="@style/RadioCapitalStyle"
             android:drawableBottom="@drawable/selector_triangle_indicator"
             android:drawableTop="@drawable/ic_triangle_transparent"
-            android:text="@string/withdraw"/>
+            android:text="取款"/>
+
+        <RadioButton
+            android:id="@+id/rb_depositrecord"
+            style="@style/RadioCapitalStyle"
+            android:drawableBottom="@drawable/selector_triangle_indicator"
+            android:drawableTop="@drawable/ic_triangle_transparent"
+            android:text="存款记录"/>
 
         <RadioButton
             android:id="@+id/rb_record"
             style="@style/RadioCapitalStyle"
             android:drawableBottom="@drawable/selector_triangle_indicator"
             android:drawableTop="@drawable/ic_triangle_transparent"
-            android:text="@string/rb_record"/>
+            android:text="取款记录"/>
     </RadioGroup>
 
     <android.support.v4.view.ViewPager

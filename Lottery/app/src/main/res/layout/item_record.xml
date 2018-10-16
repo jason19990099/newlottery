@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_5"
-            android:text="2017-09-08 12:34:44"
+            android:text="2017-01-00 00:00:00"
             android:textColor="@color/gray"/>
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_time"
             android:layout_marginTop="@dimen/dimen_5"
-            android:text="存入：333,444元"
+            android:text="存入：0元"
             android:textColor="@color/gray_666666"
             android:textSize="@dimen/sp_16"/>
 

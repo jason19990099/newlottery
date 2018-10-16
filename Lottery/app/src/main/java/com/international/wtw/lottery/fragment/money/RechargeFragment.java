@@ -21,12 +21,15 @@ import com.international.wtw.lottery.activity.manager.OnlinePaymentActivity;
 import com.international.wtw.lottery.adapter.PayWaysAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
+import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.json.OfflinePayModel;
 import com.international.wtw.lottery.json.OnlinePayChannel;
 import com.international.wtw.lottery.json.OnlinePayModel;
 import com.international.wtw.lottery.json.PayInModel;
 import com.international.wtw.lottery.json.PayInTitle;
+import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 
 import java.io.Serializable;
@@ -120,33 +123,48 @@ public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLay
     }
 
     private void requestPayInWays() {
-        HttpRequest.getInstance().requestPayInWays(this, new HttpCallback<PayInModel>() {
+//        HttpRequest.getInstance().requestPayInWays(this, new HttpCallback<PayInModel>() {
+//            @Override
+//            public void onSuccess(PayInModel model) {
+//                if (mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) {
+//                    mSwipeRefreshLayout.setRefreshing(false);
+//                }
+//                dealPayInData(model);
+//            }
+//
+//            @Override
+//            public void onFailure(String msgCode, String errorMsg) {
+//                if (mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) {
+//                    mSwipeRefreshLayout.setRefreshing(false);
+//                }
+//                View emptyView = LayoutInflater.from(mActivity).inflate(R.layout.layout_empty_view, null);
+//                TextView tvNotice = (TextView) emptyView.findViewById(R.id.tv_error);
+//                tvNotice.setText(errorMsg);
+//                emptyView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mAdapter.setEmptyView(R.layout.listview_loading, (ViewGroup) mRecyclerView.getParent());
+//                        requestPayInWays();
+//                    }
+//                });
+//                mAdapter.setEmptyView(emptyView);
+//            }
+//        });
+
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().recharge(this, token, "200", new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(PayInModel model) {
-                if (mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) {
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
-                dealPayInData(model);
+            public void onSuccess(LoginModel data) throws Exception {
+
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                if (mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) {
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
-                View emptyView = LayoutInflater.from(mActivity).inflate(R.layout.layout_empty_view, null);
-                TextView tvNotice = (TextView) emptyView.findViewById(R.id.tv_error);
-                tvNotice.setText(errorMsg);
-                emptyView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mAdapter.setEmptyView(R.layout.listview_loading, (ViewGroup) mRecyclerView.getParent());
-                        requestPayInWays();
-                    }
-                });
-                mAdapter.setEmptyView(emptyView);
+
             }
         });
+
+
     }
 
     /**

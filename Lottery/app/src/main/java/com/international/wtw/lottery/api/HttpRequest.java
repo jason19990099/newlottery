@@ -40,6 +40,7 @@ import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
+import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -385,8 +386,7 @@ public class HttpRequest {
     /**
      * 投注
      */
-    public void saveOrders(Object tag, String token, String gameCode, String expectNo, Object betdata,
-                           HttpCallback<LoginModel> callback) {
+    public void saveOrders(Object tag, String token, String gameCode, String expectNo, Object betdata, HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -396,6 +396,77 @@ public class HttpRequest {
                 .addParam("Data", betdata)
                 .build();
         Call<LoginModel> call = mService.saveOrders(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 提现记录列表
+     */
+    public void getWithdrawRecord(Object tag, String token, int pageIndex, int pageSize,
+                           HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("pageIndex", pageIndex)
+                .addParam("pageSize", pageSize)
+                .build();
+        Call<LoginModel> call = mService.getWithdrawRecord(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+    /**
+     * 充值记录列表
+     */
+    public void rechargeRecord(Object tag, String token, int pageIndex, int pageSize,
+                                  HttpCallback<PayinRecordMoudel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("pageIndex", pageIndex)
+                .addParam("pageSize", pageSize)
+                .build();
+        Call<PayinRecordMoudel> call = mService.rechargeRecord(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 查询开奖结果
+     */
+    public void getCollectResult(Object tag, String token, String GameCode, String OpenDate, HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("GameCode", GameCode)
+                .addParam("OpenDate", OpenDate)
+                .build();
+        Call<LoginModel> call = mService.getCollectResult(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 充值
+     */
+    public void recharge(Object tag, String token, String amount, HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("amount", amount)
+                .build();
+        Call<LoginModel> call = mService.recharge(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -412,8 +483,7 @@ public class HttpRequest {
 
 
 
-
-
+//======================================================================================================================
 
 
 

@@ -87,7 +87,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 if (type_name.equals(getString(R.string.wd_xxzx))) {
                     Intent intetn = new Intent(getActivity(), MyMessageActivity.class);
-                    intetn.putExtra("title", "我的消息");
+                    intetn.putExtra("title", "信息中心");
                     startActivity(intetn);
                 }
                 if (type_name.equals(getString(R.string.wd_lsjl))) {
@@ -136,7 +136,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     private void getUserInfoMoney() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        LogUtil.e("========token==" + token);
         HttpRequest.getInstance().getBalance(getActivity(), token, new HttpCallback<LoginModel>() {
             @Override
             public void onSuccess(LoginModel data) {

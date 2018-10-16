@@ -11,8 +11,9 @@ import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.FragmentAdapter;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
+import com.international.wtw.lottery.fragment.money.PayinRecordFragment;
 import com.international.wtw.lottery.fragment.money.RechargeFragment;
-import com.international.wtw.lottery.fragment.money.TradeRecordFragment;
+import com.international.wtw.lottery.fragment.money.WithdrawRecordFragment;
 import com.international.wtw.lottery.fragment.money.WithdrawFragment;
 import com.international.wtw.lottery.json.MoneyInfo;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
@@ -43,7 +44,10 @@ public class MoneyManageFragment extends NewBaseFragment {
     private List<Fragment> mFragments = new ArrayList<>();
     private RechargeFragment mRechargeFragment;
     private WithdrawFragment mWithdrawFragment;
-    private TradeRecordFragment mRecordFragment;
+    private PayinRecordFragment payinRecordFragment;
+    private WithdrawRecordFragment mRecordFragment;
+
+
     private int position = 0;
 
     @Override
@@ -59,12 +63,16 @@ public class MoneyManageFragment extends NewBaseFragment {
         if (null == mWithdrawFragment) {
             mWithdrawFragment = new WithdrawFragment();
         }
+        if (null == payinRecordFragment) {
+            payinRecordFragment = new PayinRecordFragment();
+        }
         if (null == mRecordFragment) {
-            mRecordFragment = new TradeRecordFragment();
+            mRecordFragment = new WithdrawRecordFragment();
         }
         mFragments.clear();
         mFragments.add(mRechargeFragment);
         mFragments.add(mWithdrawFragment);
+        mFragments.add(payinRecordFragment);
         mFragments.add(mRecordFragment);
         if (getArguments() != null) {
             position = getArguments().getInt("position");
@@ -116,6 +124,9 @@ public class MoneyManageFragment extends NewBaseFragment {
                         mRadioGroup.check(R.id.rb_withdraw);
                         break;
                     case 2:
+                        mRadioGroup.check(R.id.rb_depositrecord);
+                        break;
+                    case 3:
                         mRadioGroup.check(R.id.rb_record);
                         break;
                 }
@@ -137,9 +148,13 @@ public class MoneyManageFragment extends NewBaseFragment {
                     case R.id.rb_withdraw:
                         mViewPager.setCurrentItem(1);
                         break;
-                    case R.id.rb_record:
+                    case R.id.rb_depositrecord:
                         mViewPager.setCurrentItem(2);
                         break;
+                    case R.id.rb_record:
+                        mViewPager.setCurrentItem(3);
+                        break;
+
                 }
                 KeyBoardUtils.hideInputForce(mActivity);
             }

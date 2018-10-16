@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * Created by 18Steven on 2017/7/11. 彩票的fragementAdapter
+ *   彩票的fragementAdapter
  */
 
 public class FragmentAdapter extends FragmentPagerAdapter {

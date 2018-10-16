@@ -2,6 +2,8 @@ package com.international.wtw.lottery.activity.mine;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
@@ -17,7 +19,6 @@ public class MsgDetailActivity extends BaseActivity {
     private TextView tv_time, tv_title;
     private com.international.wtw.lottery.utils.MyTextView tv_context;
     private String id;
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_msgdetail;
@@ -29,7 +30,6 @@ public class MsgDetailActivity extends BaseActivity {
         tv_time = (TextView) findViewById(R.id.tv_time);
         tv_context = (com.international.wtw.lottery.utils.MyTextView) findViewById(R.id.tv_context);
         tv_title = (TextView) findViewById(R.id.tv_title);
-
 
         findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +56,9 @@ public class MsgDetailActivity extends BaseActivity {
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
+                Toast.makeText(MsgDetailActivity.this,"获取信息详情失败",Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
 
 }

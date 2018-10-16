@@ -15,7 +15,7 @@ import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.FragmentAdapter;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.fragment.money.RechargeFragment;
-import com.international.wtw.lottery.fragment.money.TradeRecordFragment;
+import com.international.wtw.lottery.fragment.money.WithdrawRecordFragment;
 import com.international.wtw.lottery.fragment.money.WithdrawFragment;
 import com.international.wtw.lottery.json.AgAccountBalance;
 import com.international.wtw.lottery.json.MoneyInfo;
@@ -57,7 +57,7 @@ public class AGMoneyActivity extends NewBaseActivity {
     private List<Fragment> mFragments = new ArrayList<>();
     private RechargeFragment mRechargeFragment;
     private WithdrawFragment mWithdrawFragment;
-    private TradeRecordFragment mRecordFragment;
+    private WithdrawRecordFragment mRecordFragment;
 
     @Override
     protected int getLayoutId() {
@@ -91,7 +91,7 @@ public class AGMoneyActivity extends NewBaseActivity {
             mWithdrawFragment = WithdrawFragment.newInstance("AG");
         }
         if (null == mRecordFragment) {
-            mRecordFragment = TradeRecordFragment.newInstance("AG");
+            mRecordFragment = WithdrawRecordFragment.newInstance("AG");
         }
         mFragments.clear();
         mFragments.add(mRechargeFragment);
