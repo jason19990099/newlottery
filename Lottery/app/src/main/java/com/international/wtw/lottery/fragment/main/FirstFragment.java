@@ -129,7 +129,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
         if (null != getActivity()) {
             if (NetWorkUtils.isNetworkAvailable(getActivity())) {
-                getBannerData(getActivity());
+//                getBannerData(getActivity());
             }
         }
 

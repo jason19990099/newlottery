@@ -41,6 +41,7 @@ import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
+import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -472,9 +473,19 @@ public class HttpRequest {
     }
 
 
-
-
-
+    /**
+     *  详情
+     */
+    public void getDetail(Object tag, String token, HttpCallback<PersonalModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<PersonalModel> call = mService.getDetail(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

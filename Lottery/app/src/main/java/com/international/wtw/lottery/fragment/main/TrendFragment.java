@@ -15,7 +15,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.mine.LotteryHistoryActivity;
-import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -25,21 +24,15 @@ import com.international.wtw.lottery.dialog.easypopup.HorizontalGravity;
 import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
 import com.international.wtw.lottery.json.HomeResultBean;
 import com.international.wtw.lottery.json.HomeResultMsgBean;
-import com.international.wtw.lottery.json.LotteryWebsite;
 import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.LotteryNumberView;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 import com.international.wtw.lottery.widget.TitleBar;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * 描述：开奖趋势
@@ -131,44 +124,9 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
             }
         });
         initListener();
-        //获取开奖网链接
-        requestLotteryWebsiteUrl();
+
     }
 
-    private void requestLotteryWebsiteUrl() {
-        HttpRequest.getInstance().getLotteryWebsite(this, new Callback<LotteryWebsite>() {
-            @Override
-            public void onResponse(Call<LotteryWebsite> call, Response<LotteryWebsite> response) {
-                if (response.isSuccessful()) {
-                    LotteryWebsite lotteryWebsite = response.body();
-                    if (lotteryWebsite != null && !TextUtils.isEmpty(lotteryWebsite.domain)) {
-                        String website = lotteryWebsite.domain
-                                .replace("https://", "")
-                                .replace("http://", "")
-                                .replace("www.", "")
-                                .replace("/", "");
-                        mTvWebsite.setText(website);
-                        mRlWebsite.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                                intent.putExtra(WebViewActivity.EXTRA_WEB_TITLE, "开奖网");
-                                intent.putExtra(WebViewActivity.EXTRA_WEB_URL, lotteryWebsite.domain);
-                                intent.putExtra(WebViewActivity.EXTRA_IS_THIRD, true);
-                                intent.putExtra(WebViewActivity.EXTRA_HIDE_TITLE, true);
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LotteryWebsite> call, Throwable t) {
-
-            }
-        });
-    }
 
     private void initListener() {
         mTitleBar.setOnRightTextClickListener(new View.OnClickListener() {

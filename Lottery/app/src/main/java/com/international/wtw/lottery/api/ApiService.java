@@ -33,6 +33,7 @@ import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
+import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 
 import java.util.Map;
@@ -133,7 +134,6 @@ public interface ApiService {
     @POST("Game/GetGame")
     Call<AllgameModel> getAllgames(@Body RequestBody body);
 
-
     /**
      * 获取当前期进行投注的期号和时间
      */
@@ -158,13 +158,11 @@ public interface ApiService {
     @POST("User/WithdrawRecord")
     Call<LoginModel> getWithdrawRecord(@Body RequestBody body);
 
-
     /**
      * 充值记录列表
      */
     @POST("User/RechargeRecord")
     Call<PayinRecordMoudel> rechargeRecord(@Body RequestBody body);
-
 
     /**
      * 查询开奖结果
@@ -172,12 +170,32 @@ public interface ApiService {
     @POST("Game/GetCollectResult")
     Call<LoginModel> getCollectResult(@Body RequestBody body);
 
-
     /**
      * 充值
      */
     @POST("User/Recharge")
     Call<LoginModel> recharge(@Body RequestBody body);
+
+    /**
+     *  个人信息详情
+     */
+    @POST("User/Get")
+    Call<PersonalModel> getDetail(@Body RequestBody body);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
