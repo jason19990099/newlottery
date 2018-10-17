@@ -12,9 +12,6 @@ import com.international.wtw.lottery.json.BettingHistoryBean;
 
 import java.util.List;
 
-/**
- * Created by Steven on 2017/6/21.  下注历史listview
- */
 
 public class AccountHistoryAdpater extends BaseAdapter {
     private LayoutInflater mInflater;

@@ -333,6 +333,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
 
+        <activity
+            android:name=".activity.mine.BetrecordActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="597d38dcf5ade42621001d67"/>

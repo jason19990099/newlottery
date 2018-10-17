@@ -17,6 +17,7 @@ import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
 import com.international.wtw.lottery.activity.mine.BankcardContralActivity;
+import com.international.wtw.lottery.activity.mine.BetrecordActivity;
 import com.international.wtw.lottery.activity.mine.MyMessageActivity;
 import com.international.wtw.lottery.activity.mine.MyPasswordLoginActivity;
 import com.international.wtw.lottery.activity.mine.PersonalActiovity;
@@ -114,6 +115,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 if (type_name.equals(getString(R.string.wd_jryj))) {
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
+                    startActivity(new Intent(getActivity(),BetrecordActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_kfjl))) {
                     String serviceUrl = SharePreferencesUtil.getString(getActivity(), LotteryId.SERVICE_URL, "");

@@ -35,6 +35,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
@@ -42,6 +43,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
+import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -319,6 +321,26 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     *   设置用户的银行卡
+     */
+    public void setUserbank(Object tag, String token,String UserId,String BankId, String BankAccount,String BankAccountName,
+                            String BankAddress,String Description,HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("UserId", UserId)
+                .addParam("BankId", BankId)
+                .addParam("BankAccount", BankAccount)
+                .addParam("BankAccountName", BankAccountName)
+                .addParam("BankAddress",BankAddress)
+                .addParam("Description",Description)
+                .build();
+        Call<LoginModel> call = mService.setUserbank(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
     /**
      * 查询所有游戏
@@ -486,6 +508,51 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     * 获取一周的下注列表
+     */
+    public void getBetreportWeekdate(Object tag, String token, HttpCallback<WeekdateModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<WeekdateModel> call = mService.getWeekDate(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 下注报表
+     */
+    public void getBetReportByDate(Object tag, String token,String beginTime,String endTime, HttpCallback<BetrecordBydateModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("beginTime", beginTime)
+                .addParam("endTime", endTime)
+                .build();
+        Call<BetrecordBydateModel> call = mService.getBetReportByDate(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

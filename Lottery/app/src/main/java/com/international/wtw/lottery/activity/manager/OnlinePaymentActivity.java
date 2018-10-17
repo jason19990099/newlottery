@@ -298,4 +298,9 @@ public class OnlinePaymentActivity extends NewBaseActivity {
         intent.putExtra(WebOnlinePayActivity.BANK_NAME, mBankName);
         startActivity(intent);
     }
+
+    @Override
+    protected boolean useEventBus() {
+        return  false;
+    }
 }

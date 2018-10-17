@@ -5,9 +5,6 @@ import android.util.AttributeSet;
 import android.widget.GridView;
 import android.widget.ListView;
 
-/**
- * Created by XIAOYAN on 2017/6/15.
- */
 
 public class CustomGridView extends GridView {
     public CustomGridView(Context context) {

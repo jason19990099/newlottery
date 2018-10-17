@@ -93,6 +93,10 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
         refresh();
     }
 
+    @Override
+    protected boolean useEventBus() {
+        return  false;
+    }
     private void initTitle() {
         mTvBetTitle.setText(LotteryUtil.get().getPageTitle(mGameCode));
         if (mGameCode == Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY) {
@@ -268,4 +272,6 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
         pagePopup.setCurrentPage(pageIndex, mPageCount);
         pagePopup.showAtLocation(rlBottom, Gravity.BOTTOM, 0, 0);
     }
+
+
 }

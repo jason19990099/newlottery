@@ -372,4 +372,9 @@ public class BetActivity extends NewBaseActivity {
         EventBus.getDefault().unregister(this);//注销eventBus订阅
         super.onDestroy();
     }
+
+    @Override
+    protected boolean useEventBus() {
+        return  false;
+    }
 }

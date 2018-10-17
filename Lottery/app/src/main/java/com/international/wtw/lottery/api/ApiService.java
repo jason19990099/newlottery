@@ -27,6 +27,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
@@ -34,6 +35,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
+import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 
 import java.util.Map;
@@ -127,11 +129,16 @@ public interface ApiService {
     @POST("User/GetUserBank")
     Call<LoginModel> getUserbank(@Body RequestBody body);
 
+    /**
+     * 设置用户银行卡
+     */
+    @POST("User/SetUserBank")
+    Call<LoginModel> setUserbank(@Body RequestBody body);
 
     /**
      * 查询所有游戏
      */
-    @POST("Game/GetGame")
+    @POST("game/GetGameInfo")
     Call<AllgameModel> getAllgames(@Body RequestBody body);
 
     /**
@@ -182,12 +189,15 @@ public interface ApiService {
     @POST("User/Get")
     Call<PersonalModel> getDetail(@Body RequestBody body);
 
+    /**
+     * 下注列表 最近一周的时间
+     */
+    @POST("BetReport/WeekDate")
+    Call<WeekdateModel> getWeekDate(@Body RequestBody body);
 
 
-
-
-
-
+    @POST("BetReport/BetReportByDate")
+    Call<BetrecordBydateModel> getBetReportByDate(@Body RequestBody body);
 
 
 

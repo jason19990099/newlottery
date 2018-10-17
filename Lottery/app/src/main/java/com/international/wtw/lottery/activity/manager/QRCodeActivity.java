@@ -216,4 +216,9 @@ public class QRCodeActivity extends NewBaseActivity {
         }
         return false;
     }
+
+    @Override
+    protected boolean useEventBus() {
+        return  false;
+    }
 }

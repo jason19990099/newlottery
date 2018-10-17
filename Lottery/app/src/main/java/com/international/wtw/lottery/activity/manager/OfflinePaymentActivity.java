@@ -404,4 +404,9 @@ public class OfflinePaymentActivity extends NewBaseActivity {
             }
         });
     }
+
+    @Override
+    protected boolean useEventBus() {
+        return  false;
+    }
 }

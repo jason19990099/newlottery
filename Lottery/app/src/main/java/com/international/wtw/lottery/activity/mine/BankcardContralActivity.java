@@ -15,7 +15,7 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.event.AddcardEvent;
 import com.international.wtw.lottery.fragment.addbankcard.AddcardsFragment;
-import com.international.wtw.lottery.fragment.addbankcard.AmptyFragment;
+import com.international.wtw.lottery.fragment.addbankcard.EmptyFragment;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.Subscribe;
@@ -47,6 +47,10 @@ public class BankcardContralActivity extends NewBaseActivity {
         getBankcard();
     }
 
+    @Override
+    protected boolean useEventBus() {
+       return  true;
+    }
 
     private void getBankcard() {
         String token = SharePreferencesUtil.getString(BankcardContralActivity.this, LotteryId.TOKEN, null);
@@ -55,7 +59,7 @@ public class BankcardContralActivity extends NewBaseActivity {
             public void onSuccess(LoginModel data) {
                 FragmentManager fm = BankcardContralActivity.this.getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fl_container, new AmptyFragment()).commit();
+                ft.replace(R.id.fl_container, new EmptyFragment()).commit();
             }
 
             @Override
@@ -81,6 +85,8 @@ public class BankcardContralActivity extends NewBaseActivity {
 
         }
     }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(AddcardEvent messageEvent) {
