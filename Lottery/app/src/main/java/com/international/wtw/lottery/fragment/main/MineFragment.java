@@ -21,6 +21,7 @@ import com.international.wtw.lottery.activity.mine.BetrecordActivity;
 import com.international.wtw.lottery.activity.mine.MyMessageActivity;
 import com.international.wtw.lottery.activity.mine.MyPasswordLoginActivity;
 import com.international.wtw.lottery.activity.mine.PersonalActiovity;
+import com.international.wtw.lottery.activity.mine.SettledOrdersActivity;
 import com.international.wtw.lottery.activity.mine.TakeoutMoneyPasswordActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.MineAdapter;
@@ -113,6 +114,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     startActivity(intent);
                 }
                 if (type_name.equals(getString(R.string.wd_jryj))) {
+                    startActivity(new Intent(getActivity(),SettledOrdersActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
                     startActivity(new Intent(getActivity(),BetrecordActivity.class));

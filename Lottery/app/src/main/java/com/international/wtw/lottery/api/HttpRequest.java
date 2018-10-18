@@ -35,6 +35,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
@@ -43,6 +44,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
+import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
@@ -541,14 +543,39 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     *  根据时间查询下注数据
+     */
+    public void getBetReportByDay(Object tag, String token,String beginTime, HttpCallback<BetDetailModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("beginTime", beginTime)
+                .build();
+        Call<BetDetailModel> call = mService.getBetReportByDay(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
-
-
-
-
-
-
+    /**
+     *  查詢今日已结投注记录
+     */
+    public void getTodaySettledOrders(Object tag, String token,String GameCode,String ExpectNo, int pageIndex,int pageSize,  HttpCallback<SettledOrdersModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("GameCode", GameCode)
+                .addParam("ExpectNo", ExpectNo)
+                .addParam("pageIndex", pageIndex)
+                .addParam("pageSize", pageSize)
+                .build();
+        Call<SettledOrdersModel> call = mService.getTodaySettledOrders(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

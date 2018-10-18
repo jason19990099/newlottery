@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_left_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_back"
+            android:layout_centerHorizontal="true"
+            android:text="下注明细"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:background="@color/white_ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:padding="@dimen/dimen_10"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="彩种"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_15"/>
+
+        <TextView
+            android:padding="@dimen/dimen_10"
+            android:text="笔数"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_15"/>
+
+
+
+        <TextView
+            android:padding="@dimen/dimen_10"
+            android:text="下注金额"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_15"/>
+
+
+        <TextView
+            android:padding="@dimen/dimen_10"
+            android:text="输赢"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp_15"/>
+
+    </LinearLayout>
+
+
+        <ListView
+            android:background="@color/white_ffffff"
+            android:id="@+id/lv_listdata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+</LinearLayout>

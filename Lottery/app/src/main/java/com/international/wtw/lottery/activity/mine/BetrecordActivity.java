@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.BetdatasAdapter;
@@ -48,7 +49,7 @@ public class BetrecordActivity extends NewBaseActivity {
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
+                Toast.makeText(BetrecordActivity.this,"请求数据失败，请重试！",Toast.LENGTH_SHORT).show();
             }
         });
     }

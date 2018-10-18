@@ -27,6 +27,7 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
@@ -35,6 +36,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
+import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 
@@ -199,8 +201,18 @@ public interface ApiService {
     @POST("BetReport/BetReportByDate")
     Call<BetrecordBydateModel> getBetReportByDate(@Body RequestBody body);
 
+    /**
+     *  根据单一时间查询下注数据
+     */
+    @POST("BetReport/BetReportByDay")
+    Call<BetDetailModel> getBetReportByDay(@Body RequestBody body);
 
 
+    /**
+     *  今日已结
+     */
+    @POST("Game/GetTodaySettledOrders")
+    Call<SettledOrdersModel> getTodaySettledOrders(@Body RequestBody body);
 
 
 
