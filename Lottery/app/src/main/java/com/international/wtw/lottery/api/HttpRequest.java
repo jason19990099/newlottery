@@ -35,6 +35,8 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BankcardModel;
+import com.international.wtw.lottery.newJason.BankcardsModel;
 import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
@@ -46,6 +48,7 @@ import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
+import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
@@ -312,13 +315,13 @@ public class HttpRequest {
     /**
      * 查询用户银行卡
      */
-    public void getUserBank(Object tag, String token, HttpCallback<LoginModel> callback) {
+    public void getUserBank(Object tag, String token, HttpCallback<BankcardsModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .build();
-        Call<LoginModel> call = mService.getUserbank(body);
+        Call<BankcardsModel> call = mService.getUserbank(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -430,7 +433,7 @@ public class HttpRequest {
      * 提现记录列表
      */
     public void getWithdrawRecord(Object tag, String token, int pageIndex, int pageSize,
-                           HttpCallback<LoginModel> callback) {
+                           HttpCallback<WithdrawRecordModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
@@ -438,7 +441,7 @@ public class HttpRequest {
                 .addParam("pageIndex", pageIndex)
                 .addParam("pageSize", pageSize)
                 .build();
-        Call<LoginModel> call = mService.getWithdrawRecord(body);
+        Call<WithdrawRecordModel> call = mService.getWithdrawRecord(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -496,6 +499,21 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     *  提现
+     */
+    public void withdraw(Object tag, String token, String Amount, String WithdrawPassword, HttpCallback<BaseModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("Amount", Amount)
+                .addParam("WithdrawPassword", WithdrawPassword)
+                .build();
+        Call<BaseModel> call = mService.withdraw(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
     /**
      *  详情
@@ -578,7 +596,20 @@ public class HttpRequest {
     }
 
 
-
+    /**
+     *   获取所有的字典
+     */
+    public void getdictionaryAll(Object tag, String token,String dictionaryGroupId,HttpCallback<BankcardModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("dictionaryGroupId", dictionaryGroupId)
+                .build();
+        Call<BankcardModel> call = mService.getDictionaryAll(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

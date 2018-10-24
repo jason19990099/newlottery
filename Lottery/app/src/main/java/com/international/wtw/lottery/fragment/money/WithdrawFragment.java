@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
@@ -22,55 +26,55 @@ import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.json.AgAccountBalance;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.MoneyInfo;
+import com.international.wtw.lottery.newJason.BankcardsModel;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
+import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-import com.international.wtw.lottery.utils.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
- *  入款的面页
+ * 出款的面页
  */
 public class WithdrawFragment extends NewBaseFragment {
 
-    public static final String GAME_NAME = "game_name";
-
-    @BindView(R.id.iv_bank_logo)
-    ImageView mIvBankLogo;
-    @BindView(R.id.tv_bank_name)
-    TextView mTvBankName;
-    @BindView(R.id.tv_bank_card_number)
-    TextView mTvBankcardId;
-    @BindView(R.id.rl_bankcard_info)
     RelativeLayout mRlBankInfo;
     @BindView(R.id.rl_add_bankcard)
-    RelativeLayout mRlAddBank;
+    LinearLayout mRlAddBank;
     @BindView(R.id.tv_account_balance)
     TextView mTvAccountBalance;
     @BindView(R.id.et_embodied_amount)
     EditText mEtAmount;
     @BindView(R.id.edt_tx_psd)
     EditText mEtPayPassword;
+    @BindView(R.id.tv_embodied_amount)
+    TextView tvEmbodiedAmount;
+    @BindView(R.id.btn_confirm)
+    Button btnConfirm;
+    @BindView(R.id.ll_havabankcard)
+    LinearLayout llHavabankcard;
+    @BindView(R.id.btn_addbankcard)
+    Button btnAddbankcard;
+    Unbinder unbinder;
     private boolean isDemo;//是否是试玩
     private MoneyInfo moneyInfo;
     private String mBankName;
     private String mBankcardId;
     private String mAmount;
     private String mPayPassword;
-
-    private String mGameName;
     private AgAccountBalance.BalanceBean agInfo;
 
     public static WithdrawFragment newInstance(String gameName) {
         WithdrawFragment fragment = new WithdrawFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(GAME_NAME, gameName);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -82,10 +86,21 @@ public class WithdrawFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
-        if (getArguments() != null) {
-            mGameName = getArguments().getString(GAME_NAME);
-        }
         isDemo = SharePreferencesUtil.getBoolean(mActivity, LotteryId.IS_SHI_WAN, false);
+
+        /**
+         * 初始化view
+         */
+        initViews();
+
+        /**
+         *  获取银行卡信息
+         */
+
+        getBankCardInfo();
+    }
+
+    private void initViews() {
         mEtAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,6 +159,27 @@ public class WithdrawFragment extends NewBaseFragment {
         });
     }
 
+    private void getBankCardInfo() {
+        String token = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, null);
+        HttpRequest.getInstance().getUserBank(getActivity(), token, new HttpCallback<BankcardsModel>() {
+            @Override
+            public void onSuccess(BankcardsModel data) {
+                if (null == data.getData()) {
+                    mRlAddBank.setVisibility(View.VISIBLE);
+                    llHavabankcard.setVisibility(View.GONE);
+                } else {
+                    mRlAddBank.setVisibility(View.GONE);
+                    llHavabankcard.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                Toast.makeText(getActivity(), "请求银行卡信息失败，请重试", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void setBankInfo() {
         mBankName = moneyInfo.getBank_name();
         mBankcardId = moneyInfo.getBank_code();
@@ -153,20 +189,10 @@ public class WithdrawFragment extends NewBaseFragment {
         } else {
             mRlBankInfo.setVisibility(View.VISIBLE);
             mRlAddBank.setVisibility(View.GONE);
-            mTvBankName.setText(mBankName);
-            mIvBankLogo.setBackgroundResource(getImageRes(mBankName));
-            mTvBankcardId.setText(StringUtils.formatBankcardId(mBankcardId));
         }
         String name = "账户";
-        if (!TextUtils.isEmpty(mGameName)) {
-            name = mGameName;
-            agInfo = MoneyInfoManager.get().getAgInfo();
-            if (agInfo != null) {
-                mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", name, agInfo.getAgBalance()));
-            }
-        } else {
-            mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", name, moneyInfo.getMoney()));
-        }
+        mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", name, moneyInfo.getMoney()));
+
     }
 
     @Override
@@ -185,24 +211,20 @@ public class WithdrawFragment extends NewBaseFragment {
     @Subscribe
     public void onEvent(AgAccountBalance.BalanceBean bean) {
         agInfo = bean;
-        mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", mGameName, bean.getAgBalance()));
+//        mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", mGameName, bean.getAgBalance()));
     }
 
-    @OnClick({R.id.rl_bankcard_info, R.id.rl_add_bankcard, R.id.btn_confirm, R.id.btn_reset})
+    @OnClick({R.id.rl_add_bankcard, R.id.btn_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.rl_bankcard_info:
-                toBankcardActivity(getString(R.string.modify_bank_info), true);
-                break;
             case R.id.rl_add_bankcard:
                 toBankcardActivity(getString(R.string.add_bank_info), false);
                 break;
             case R.id.btn_confirm:
                 withdraw();
                 break;
-            case R.id.btn_reset:
-                resetInput();
-                break;
+
+
         }
     }
 
@@ -229,31 +251,26 @@ public class WithdrawFragment extends NewBaseFragment {
         if (mAmount.endsWith(".")) {
             mAmount = mAmount.replace(".", "");
         }
+
         mPayPassword = mEtPayPassword.getText().toString().trim();
+        mPayPassword= MD5util.MD5Encode(MD5util.MD5Encode(mPayPassword,"utf-8"),"utf-8");
+
         if (isDemo) {
             ToastDialog.error(getString(R.string.no_permission)).show(getFragmentManager());
-        } else if (moneyInfo == null || ("AG".equals(mGameName) && agInfo == null)) {
-            ToastDialog.error(getString(R.string.is_loading_user_info)).show(getFragmentManager());
-        } else if (TextUtils.isEmpty(mBankName) || TextUtils.isEmpty(mBankcardId)) {
-            ToastDialog.error(getString(R.string.bind_bankcard_first)).show(getFragmentManager());
-        } else if (TextUtils.isEmpty(mAmount)) {
-            ToastDialog.error(getString(R.string.input_tx_amount)).show(getFragmentManager());
-        } else if (Double.valueOf(mAmount.replace(",", "")) < 100.00) {
-            ToastDialog.error(getString(R.string.money_beyond1)).show(getFragmentManager());
+        }
+        if (TextUtils.isEmpty(mAmount)) {
+            Toast.makeText(getActivity(),getString(R.string.input_tx_amount),Toast.LENGTH_SHORT).show();
+        }
+        if (Double.valueOf(mAmount.replace(",", "")) < 100.00) {
+            Toast.makeText(getActivity(),getString(R.string.money_beyond1),Toast.LENGTH_SHORT).show();
         } else {
-            double balance = "AG".equals(mGameName) ? agInfo.getAgBalance() : moneyInfo.getMoney();
-            if (Double.valueOf(mAmount.replace(",", "")) > balance) {
-                ToastDialog.error(String.format(Locale.CHINESE, getString(R.string.money_beyond), balance)).show(getFragmentManager());
-            } else if (TextUtils.isEmpty(mPayPassword)) {
-                ToastDialog.error(getString(R.string.input_tx_pwd)).show(getFragmentManager());
-            } else if (mPayPassword.length() != 4) {
-                ToastDialog.error(getString(R.string.input_tx_pwd1)).show(getFragmentManager());
-            } else {
-                requestWithdraw();
-            }
+            requestWithdraw();
         }
     }
 
+    /**
+     * 重置数据
+     */
     private void resetInput() {
         mEtAmount.setText("");
         mEtPayPassword.setText("");
@@ -264,29 +281,21 @@ public class WithdrawFragment extends NewBaseFragment {
      */
     private void requestWithdraw() {
         showLoadingDialog();
-        HttpRequest.getInstance().requestWithdraw(this, mAmount, mPayPassword, mBankName,
-                moneyInfo.getBank_address(), mBankcardId, mGameName, new HttpCallback<BaseModel>() {
-                    @Override
-                    public void onSuccess(BaseModel data) {
-                        dismissLoadingDialog();
-                        if (TextUtils.isEmpty(mGameName)) {
-                            MoneyInfoManager.get().requestMoneyInfo();
-                        } else if ("AG".equals(mGameName)) {
-                            MoneyInfoManager.get().requestAgInfo();
-                        }
-                        ToastDialog.success(getString(R.string.operation_success)).show(getFragmentManager());
-                        resetInput();
-                    }
+        String token = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, null);
+        HttpRequest.getInstance().withdraw(this, token, mAmount, mPayPassword, new HttpCallback<BaseModel>() {
+            @Override
+            public void onSuccess(BaseModel data) {
+                dismissLoadingDialog();
+                resetInput();
+                Toast.makeText(getActivity(),"提现成功",Toast.LENGTH_SHORT).show();
+            }
 
-                    @Override
-                    public void onFailure(String msgCode, String errorMsg) {
-                        dismissLoadingDialog();
-                        if ("AG".equals(mGameName)) {
-                            MoneyInfoManager.get().requestAgInfo();
-                        }
-                        ToastDialog.error(errorMsg).show(getFragmentManager());
-                    }
-                });
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                dismissLoadingDialog();
+                Toast.makeText(getActivity(),errorMsg,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private int getImageRes(String bankName) {
@@ -330,4 +339,7 @@ public class WithdrawFragment extends NewBaseFragment {
         }
         return R.mipmap.bank_car_icon;
     }
+
+
+
 }

@@ -38,6 +38,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ *   充值
+ */
 public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     public static final String GAME_NAME = "game_name";
     @BindView(R.id.swipeRefreshLayout)

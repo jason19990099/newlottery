@@ -48,7 +48,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_log;
     private ImageView img_show_pwd, img_show_pwd2;
     private boolean isShowPwd, isShowPwd2;
-    private String   psw;
+    private String   psw,withdrawpsw;
 
     @Override
     protected int getLayoutId() {
@@ -177,7 +177,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     view_5.setBackgroundColor(ContextCompat.getColor(RegisterActivity.this, R.color.color_cccc));
                 } else {
                     view_5.setBackgroundColor(ContextCompat.getColor(RegisterActivity.this, R.color.middle_blue));
-                    if (s.length() == 32) {
+                    if (s.length() == 4) {
                         KeyBoardUtils.closeKeyboard(RegisterActivity.this, withdraw_password);
                     } else {
                         KeyBoardUtils.openKeyboard(RegisterActivity.this, withdraw_password);
@@ -332,7 +332,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
         psw=password.getText().toString();
         psw= MD5util.MD5Encode(MD5util.MD5Encode(psw,"utf-8"),"utf-8");
-        HttpRequest.getInstance().register(RegisterActivity.this,edittext_tuijianren.getText().toString(), account.getText().toString(), psw, real_name.getText().toString(), withdraw_password.getText().toString(), email.getText().toString(), new HttpCallback<BaseModel>() {
+
+        withdrawpsw=withdraw_password.getText().toString();
+        withdrawpsw= MD5util.MD5Encode(MD5util.MD5Encode(withdrawpsw,"utf-8"),"utf-8");
+
+
+
+        HttpRequest.getInstance().register(RegisterActivity.this,edittext_tuijianren.getText().toString(), account.getText().toString(), psw, real_name.getText().toString(),withdrawpsw, email.getText().toString(), new HttpCallback<BaseModel>() {
             @Override
             public void onSuccess(BaseModel data) {
                 ToastDialog.success("注冊成功").show(getSupportFragmentManager());

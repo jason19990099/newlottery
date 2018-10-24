@@ -180,7 +180,6 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
             }
         });
     }
@@ -212,8 +211,6 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
                     ToastDialog.error(getString(R.string.yzm_empty)).show(getSupportFragmentManager());
                     return;
                 }
-
-
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_username_remember, name);
                 SharePreferencesUtil.addString(getApplicationContext(), LotteryId.Login_paw_remember, pwd);
 

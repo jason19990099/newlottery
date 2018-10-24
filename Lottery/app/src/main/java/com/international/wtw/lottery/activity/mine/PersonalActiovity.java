@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -56,7 +57,7 @@ public class PersonalActiovity extends BaseActivity {
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
+                Toast.makeText(PersonalActiovity.this,"网络异常",Toast.LENGTH_SHORT).show();
             }
         });
     }

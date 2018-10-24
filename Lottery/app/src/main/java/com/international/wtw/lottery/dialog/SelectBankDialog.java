@@ -1,18 +1,14 @@
 package com.international.wtw.lottery.dialog;
-
 import android.view.View;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.base.app.BaseApplication;
 import com.international.wtw.lottery.dialog.nice.BaseNiceDialog;
 import com.international.wtw.lottery.dialog.nice.ViewHolder;
 import com.weigan.loopview.LoopView;
-
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Abin on 2017/9/14.
  * 描述：绑定银行卡弹窗
  */
 
@@ -21,10 +17,10 @@ public class SelectBankDialog extends BaseNiceDialog implements View.OnClickList
     private List<String> mBankList;
     private LoopView mWheelView;
     private BankSelectListener mListener;
-
     public static SelectBankDialog newInstance() {
         return new SelectBankDialog();
     }
+
 
     public SelectBankDialog setListener(BankSelectListener listener) {
         mListener = listener;
@@ -47,6 +43,8 @@ public class SelectBankDialog extends BaseNiceDialog implements View.OnClickList
         }
     }
 
+
+
     @Override
     public int intLayoutId() {
         return R.layout.popup_layout_select_bank;
@@ -58,8 +56,7 @@ public class SelectBankDialog extends BaseNiceDialog implements View.OnClickList
         holder.setOnClickListener(R.id.tv_cancel, this);
         mWheelView = holder.getView(R.id.wheel_bank);
         //获取银行名称列表
-        String[] bankNames = BaseApplication.getAppContext()
-                .getResources().getStringArray(R.array.bank_name_items);
+        String[] bankNames = BaseApplication.getAppContext().getResources().getStringArray(R.array.bank_name_items);
         mBankList = Arrays.asList(bankNames);
         mWheelView.setItems(mBankList);
         mWheelView.setNotLoop();

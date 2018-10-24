@@ -27,6 +27,8 @@ import com.international.wtw.lottery.json.TimeInfoBean;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
+import com.international.wtw.lottery.newJason.BankcardModel;
+import com.international.wtw.lottery.newJason.BankcardsModel;
 import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
@@ -38,6 +40,7 @@ import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
+import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 
 import java.util.Map;
@@ -129,7 +132,7 @@ public interface ApiService {
      *  查询用户银行卡
      */
     @POST("User/GetUserBank")
-    Call<LoginModel> getUserbank(@Body RequestBody body);
+    Call<BankcardsModel> getUserbank(@Body RequestBody body);
 
     /**
      * 设置用户银行卡
@@ -165,7 +168,7 @@ public interface ApiService {
      * 提现记录列表
      */
     @POST("User/WithdrawRecord")
-    Call<LoginModel> getWithdrawRecord(@Body RequestBody body);
+    Call<WithdrawRecordModel> getWithdrawRecord(@Body RequestBody body);
 
     /**
      * 充值记录列表
@@ -184,6 +187,12 @@ public interface ApiService {
      */
     @POST("User/Recharge")
     Call<LoginModel> recharge(@Body RequestBody body);
+
+    /**
+     *  提现
+     */
+    @POST("User/Withdraw")
+    Call<BaseModel> withdraw(@Body RequestBody body);
 
     /**
      *  个人信息详情
@@ -213,6 +222,20 @@ public interface ApiService {
      */
     @POST("Game/GetTodaySettledOrders")
     Call<SettledOrdersModel> getTodaySettledOrders(@Body RequestBody body);
+
+
+    /**
+     * 获取所有的字典
+     */
+    @POST("Dictionary/GetAll")
+    Call<BankcardModel> getDictionaryAll(@Body RequestBody body);
+
+
+
+
+
+
+
 
 
 

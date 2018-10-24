@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.TradeRecordAdapter;
+import com.international.wtw.lottery.adapter.TradeRecordAdapter2;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -19,6 +20,8 @@ import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.dialog.RecordDetailDialog;
 import com.international.wtw.lottery.json.TransactionRecord;
 import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.PayinRecordMoudel;
+import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
 import java.util.Iterator;
@@ -39,10 +42,8 @@ public class WithdrawRecordFragment extends NewBaseFragment implements SwipeRefr
     RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
     private int pageIndex = 1;
-    private String mGameName;
-    private TradeRecordAdapter mAdapter;
+    private TradeRecordAdapter2 mAdapter;
     private boolean isPrepare;
 
     public static WithdrawRecordFragment newInstance(String gameName) {
@@ -61,14 +62,11 @@ public class WithdrawRecordFragment extends NewBaseFragment implements SwipeRefr
     @Override
     protected void initData() {
         isPrepare = true;
-        if (getArguments() != null) {
-            mGameName = getArguments().getString(GAME_NAME);
-        }
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.color_primary));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new TradeRecordAdapter();
+        mAdapter = new TradeRecordAdapter2();
         mAdapter.setOnLoadMoreListener(this, mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setEmptyView(R.layout.listview_loading, (ViewGroup) mRecyclerView.getParent());
@@ -108,98 +106,31 @@ public class WithdrawRecordFragment extends NewBaseFragment implements SwipeRefr
      * 获取取款记录
      */
     private void requestTransactionRecord() {
-//        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-//        HttpRequest.getInstance().getWithdrawRecord(this, token, pageIndex, PAGE_SIZE, new HttpCallback<LoginModel>() {
-//            @Override
-//            public void onSuccess(LoginModel data) throws Exception {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(String msgCode, String errorMsg) {
-//
-//            }
-//        });
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getWithdrawRecord(this, token, pageIndex, PAGE_SIZE, new HttpCallback<WithdrawRecordModel>() {
+            @Override
+            public void onSuccess(WithdrawRecordModel data) throws Exception {
+                if (mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+                List<WithdrawRecordModel.DataBean> res = data.getData();
+                if (res.size() < PAGE_SIZE ) {
+                    mAdapter.loadMoreEnd();
+                } else {
+                    mAdapter.loadMoreComplete();
+                }
+                if (pageIndex == 1) {
+                    mAdapter.setNewData(res);
+                    mAdapter.disableLoadMoreIfNotFullPage();
+                } else {
+                    mAdapter.addData(res);
+                }
+            }
 
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        HttpRequest.getInstance().requestRecords(this, pageIndex, PAGE_SIZE, mGameName, new HttpCallback<TransactionRecord>() {
-//            @Override
-//            public void onSuccess(TransactionRecord data) {
-//                if (mSwipeRefreshLayout.isRefreshing()) {
-//                    mSwipeRefreshLayout.setRefreshing(false);
-//                }
-//
-//                List<TransactionRecord.ResBean> res = data.getRes();
-//
-//                if (res.size() < PAGE_SIZE || mAdapter.getData().size() >= data.getPage().getAllnmb()) {
-//                    mAdapter.loadMoreEnd();
-//                } else {
-//                    mAdapter.loadMoreComplete();
-//                }
-//
-//                Iterator<TransactionRecord.ResBean> iterator = res.iterator();
-//                //坑啊, 后台返回的数据还需要自己来过滤一遍..
-//                if ("AG".equals(mGameName)) {
-//                    while (iterator.hasNext()) {
-//                        TransactionRecord.ResBean item = iterator.next();
-//                        if (item.getTransfer() == 1 && "AG".equals(item.getBank_name())) {
-//                            iterator.remove();
-//                        }
-//                    }
-//                } else {
-//                    while (iterator.hasNext()) {
-//                        TransactionRecord.ResBean item = iterator.next();
-//                        if (item.getTransfer() == 1) {
-//                            iterator.remove();
-//                        }
-//                    }
-//                }
-//                if (pageIndex == 1) {
-//                    mAdapter.setNewData(res);
-//                    mAdapter.disableLoadMoreIfNotFullPage();
-//                } else {
-//                    mAdapter.addData(res);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(String msgCode, String errorMsg) {
-//                if (mSwipeRefreshLayout != null) {
-//                    mSwipeRefreshLayout.setRefreshing(false);
-//                }
-//                if (pageIndex == 1) {
-//                    View emptyView = LayoutInflater.from(mActivity).inflate(R.layout.layout_empty_view, null);
-//                    TextView tvNotice = (TextView) emptyView.findViewById(R.id.tv_error);
-//                    tvNotice.setText(errorMsg);
-//                    emptyView.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            mAdapter.setEmptyView(R.layout.listview_loading, (ViewGroup) mRecyclerView.getParent());
-//                            requestTransactionRecord();
-//                        }
-//                    });
-//                    mAdapter.setEmptyView(emptyView);
-//                } else {
-//                    mAdapter.loadMoreFail();
-//                }
-//            }
-//        });
+            }
+        });
     }
 }
