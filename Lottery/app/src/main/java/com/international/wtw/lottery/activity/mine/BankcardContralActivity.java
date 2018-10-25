@@ -17,15 +17,13 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.event.AddcardEvent;
 import com.international.wtw.lottery.fragment.addbankcard.AddcardsFragment;
-import com.international.wtw.lottery.fragment.addbankcard.CardListFragment;
+import com.international.wtw.lottery.fragment.addbankcard.CardInfoFragment;
 import com.international.wtw.lottery.fragment.addbankcard.EmptyFragment;
 import com.international.wtw.lottery.newJason.BankcardsModel;
-import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -66,7 +64,7 @@ public class BankcardContralActivity extends NewBaseActivity {
                 if (data.getData()==null){
                     ft.replace(R.id.fl_container, new EmptyFragment()).commit();
                 }else{
-                    ft.replace(R.id.fl_container, new CardListFragment()).commit();
+                    ft.replace(R.id.fl_container, new CardInfoFragment()).commit();
                 }
             }
             @Override
@@ -76,14 +74,6 @@ public class BankcardContralActivity extends NewBaseActivity {
         });
 
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-    }
-
-
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -101,7 +91,6 @@ public class BankcardContralActivity extends NewBaseActivity {
             case R.id.iv_back:
                 finish();
                 break;
-
         }
     }
 

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
@@ -59,7 +60,7 @@ public class SplashActivity extends BaseActivity {
             }
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-
+                Toast.makeText(SplashActivity.this,"获取数据失败,请重试。",Toast.LENGTH_SHORT).show();
             }
         });
 

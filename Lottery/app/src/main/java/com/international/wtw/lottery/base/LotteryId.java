@@ -65,7 +65,7 @@ public class LotteryId {
     public static final String BJSCPK10 = "bjscpk10"; //北京赛车PK10
     public static final String Miaosufeiting = "msft"; //秒速飛艇
     public static final String MiaosuSaiche = "mssc"; //秒速飛艇
-     public static final String Miaosusscai = "msssc"; //秒速飛艇
+    public static final String Miaosusscai = "msssc"; //秒速飛艇
 
     public static final String sourcetype = "4";
     public static final String version = "1.0";

@@ -140,6 +140,7 @@ public class AddcardsFragment extends NewBaseFragment {
             @Override
             public void onSuccess(LoginModel data) throws Exception {
                 Toast.makeText(getActivity(),"操作成功。",Toast.LENGTH_SHORT).show();
+                AddcardsFragment.this.getActivity().finish();
             }
 
             @Override

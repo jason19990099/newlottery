@@ -154,18 +154,20 @@ public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLay
 //            }
 //        });
 
-        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().recharge(this, token, "200", new HttpCallback<LoginModel>() {
-            @Override
-            public void onSuccess(LoginModel data) throws Exception {
 
-            }
 
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
-
-            }
-        });
+//        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+//        HttpRequest.getInstance().recharge(this, token, "200", new HttpCallback<LoginModel>() {
+//            @Override
+//            public void onSuccess(LoginModel data) throws Exception {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(String msgCode, String errorMsg) {
+//
+//            }
+//        });
 
 
     }
