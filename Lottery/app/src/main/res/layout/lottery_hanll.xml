@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_margin="@dimen/dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_lottery"
+            android:layout_width="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_40"
+            android:src="@mipmap/beijing"
+            />
+
+
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/iv_lottery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+            <TextView
+                android:text="**彩票"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:id="@+id/tv_lotteryname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="**"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:id="@+id/tv_lotterytime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -42,6 +42,7 @@ import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
+import com.international.wtw.lottery.newJason.GameOpentimeModel2;
 
 import java.util.Map;
 
@@ -151,6 +152,13 @@ public interface ApiService {
      */
     @POST("Game/GetGameOpenTime")
     Call<getGameOpentimeModel> getGameOpenTime(@Body RequestBody body);
+
+
+    /**
+     * 获取当前期进行投注的期号和时间
+     */
+    @POST("Game/GetGameOpenTime")
+    Call<GameOpentimeModel2> getGameOpenTime2(@Body RequestBody body);
 
     /**
      * 获取玩法赔率

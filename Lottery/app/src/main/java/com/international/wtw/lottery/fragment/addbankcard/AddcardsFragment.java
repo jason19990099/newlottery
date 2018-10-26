@@ -27,7 +27,6 @@ import butterknife.OnClick;
  * 添加银行卡的面页
  */
 public class AddcardsFragment extends NewBaseFragment {
-
     @BindView(R.id.tv_tips)
     TextView tvTips;
     @BindView(R.id.tv_real_name)
@@ -50,7 +49,6 @@ public class AddcardsFragment extends NewBaseFragment {
     private BaseNiceDialog mBankDialog;
     private String userid,bankid,username;
     private BankcardModel mdata;
-
 
     @Override
     protected int getLayoutId() {
@@ -80,14 +78,11 @@ public class AddcardsFragment extends NewBaseFragment {
                 username=data.getData().getTrueName();
                 tvRealName.setText(data.getData().getTrueName());
             }
-
             @Override
             public void onFailure(String msgCode, String errorMsg) {
                 Toast.makeText(getActivity(),"网络异常",Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
 
@@ -111,7 +106,6 @@ public class AddcardsFragment extends NewBaseFragment {
                     .setListener(new SelectBankDialog.BankSelectListener() {
                         @Override
                         public void onBankSelect(String bank) {
-
                             tvSelectBankcard.setText(bank);
                             if (null!=mdata.getData()){
                                 for (int i=0;i<mdata.getData().size();i++){

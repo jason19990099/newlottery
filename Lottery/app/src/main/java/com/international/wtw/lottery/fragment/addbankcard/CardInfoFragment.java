@@ -52,7 +52,7 @@ public class CardInfoFragment extends NewBaseFragment {
                     tvBanklastNum.setText("✱✱✱");
                 }
 
-
+                ivBanklogo.setImageResource(getBankLogo(data.getData().getBankName()));
 
             }
 
@@ -68,6 +68,35 @@ public class CardInfoFragment extends NewBaseFragment {
     public void onViewClicked() {
         AddcardEvent messageEvent = new AddcardEvent();
         EventBus.getDefault().post(messageEvent);
+    }
+
+
+    public int getBankLogo(String name) {
+        switch (name) {
+            case "中国银行":
+                return R.mipmap.china;
+            case "工商银行":
+                return R.mipmap.gongshang;
+            case "建设银行":
+                return R.mipmap.construction;
+            case "农业银行":
+                return R.mipmap.agricultural;
+            case "招商银行":
+                return R.mipmap.merchants;
+            case "交通银行":
+                return R.mipmap.communications;
+            case "民生银行":
+                return R.mipmap.communications;
+            case "平安银行":
+                return R.mipmap.pingan;
+            case "北京银行":
+                return R.mipmap.beijing;
+            case "兴业银行":
+                return R.mipmap.industrial;
+            case "中信银行":
+                return R.mipmap.citic;
+        }
+        return R.mipmap.china;
     }
 
 

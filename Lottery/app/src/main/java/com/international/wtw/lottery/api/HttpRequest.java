@@ -50,6 +50,7 @@ import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
+import com.international.wtw.lottery.newJason.GameOpentimeModel2;
 import com.international.wtw.lottery.utils.JsonUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -377,6 +378,22 @@ public class HttpRequest {
                 .addParam("version", LotteryId.version)
                 .build();
         Call<getGameOpentimeModel> call = mService.getGameOpenTime(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 获取最新期号的开奖时间
+     *  游戏大厅的接口
+     */
+    public void getGameOpenTime2(Object tag, String token, String gameCode, HttpCallback<GameOpentimeModel2> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("gameCode", gameCode)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<GameOpentimeModel2> call = mService.getGameOpenTime2(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
@@ -22,16 +20,13 @@ import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.dialog.MenuPopupWindow;
 import com.international.wtw.lottery.dialog.easypopup.HorizontalGravity;
 import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
-import com.international.wtw.lottery.json.HomeResultBean;
-import com.international.wtw.lottery.json.HomeResultMsgBean;
+import com.international.wtw.lottery.newJason.GameOpentimeModel2;
+import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.utils.TimeFormatter;
-import com.international.wtw.lottery.widget.LotteryNumberView;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 import com.international.wtw.lottery.widget.TitleBar;
-
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import butterknife.BindView;
 
 /**
@@ -42,7 +37,6 @@ import butterknife.BindView;
  */
 
 public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-
     @BindView(R.id.title_bar)
     TitleBar mTitleBar;
     @BindView(R.id.recycler_view)
@@ -53,7 +47,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     RelativeLayout mRlWebsite;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
-    private BaseQuickAdapter<HomeResultMsgBean, BaseViewHolder> mAdapter;
+    private BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder> mAdapter;
     private MenuPopupWindow mMenuPopup;
     private Handler mHandler;
     private Runnable mCountDownAction;
@@ -72,27 +66,19 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView.addItemDecoration(new RecyclerViewDivider(getContext(),
-                RecyclerViewDivider.HORIZONTAL_DIVIDER, R.drawable.shape_divider_line));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mAdapter = new BaseQuickAdapter<HomeResultMsgBean, BaseViewHolder>(R.layout.item_lottery_hall) {
+        mRecyclerView.addItemDecoration(new RecyclerViewDivider(getContext(), RecyclerViewDivider.HORIZONTAL_DIVIDER, R.drawable.shape_divider_line));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity,2));
+        mAdapter = new BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder>(R.layout.lottery_hanll) {
             @Override
-            protected void convert(BaseViewHolder helper, HomeResultMsgBean item) {
-                helper.setText(R.id.tv_game_name, item.getGame_name());
-                helper.setText(R.id.tv_round_number, String.format(Locale.CHINESE, "%s期", item.getRound()));
-                LotteryNumberView lotteryNumberView = helper.getView(R.id.lotteryNumberView);
-                String[] numbers = item.getResult().split(" ");
-//                lotteryNumberView.setNumbers(item.getGame_code(), Arrays.asList(numbers));
-                if (null != item.getIsOpen() && item.getIsOpen().equals("1") && !TextUtils.isEmpty(item.getTime()) && item.getServerTime() != null) {
-                    int openTime = (int) (Long.parseLong(item.getTime()) - item.getServerTime());
+            protected void convert(BaseViewHolder helper, GameOpentimeModel2.DataBean item) {
+                helper.setText(R.id.tv_lotteryname,item.getGameCode() );
+
+                    int openTime = (int) (item.getCloseTime() - item.getServerTime());
                     if (openTime > 0) {
-                        helper.setText(R.id.tv_lottery_time, TimeFormatter.seconds2Time(openTime));
+                        helper.setText(R.id.tv_lotterytime,"距截止:"+ TimeFormatter.seconds2Time(openTime));
                     } else {
-                        helper.setText(R.id.tv_lottery_time, "封盘");
+                        helper.setText(R.id.tv_lotterytime, "开奖中");
                     }
-                } else {
-                    helper.setText(R.id.tv_lottery_time, "封盘");
-                }
             }
 
             @Override
@@ -100,9 +86,9 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 if (!payloads.isEmpty()) {
                     int openTime = (int) payloads.get(0);
                     if (openTime > 0) {
-                        holder.setText(R.id.tv_lottery_time, TimeFormatter.seconds2Time(openTime));
+                        holder.setText(R.id.tv_lotterytime,"距截止:"+ TimeFormatter.seconds2Time(openTime));
                     } else {
-                        holder.setText(R.id.tv_lottery_time, "封盘");
+                        holder.setText(R.id.tv_lotterytime, "开奖中");
                     }
                 } else {
                     super.onBindViewHolder(holder, position, payloads);
@@ -114,12 +100,12 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                HomeResultMsgBean item = (HomeResultMsgBean) adapter.getItem(position);
+                GameOpentimeModel2.DataBean item = (GameOpentimeModel2.DataBean) adapter.getItem(position);
                 if (item == null) {
                     return;
                 }
                 Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
-                intent.putExtra(LotteryId.GAME_CODE, item.getGame_code());
+                intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
                 startActivity(intent);
             }
         });
@@ -197,50 +183,50 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     }
 
     private void requestGameCloseTime() {
-        HttpRequest.getInstance().requestGameCloseTime(this, new HttpCallback<HomeResultBean>() {
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getGameOpenTime2(this,token, "", new HttpCallback<GameOpentimeModel2>() {
             @Override
-            public void onSuccess(HomeResultBean data) {
+            public void onSuccess(GameOpentimeModel2 data) {
                 if (getActivity() != null && isAdded()) {
                     mHandler.removeCallbacks(mCountDownAction);
                     mSwipeRefreshLayout.setRefreshing(false);
-                    List<HomeResultMsgBean> newData = data.getTimeStamp();
-                    //Collections.sort(newData);
-
-                    if (newData != null && !newData.isEmpty()) {
-                        //这个接口返回的list里面某些item可能为null, 需要过滤掉.
-                        Iterator<HomeResultMsgBean> iterator = newData.iterator();
+                    List<GameOpentimeModel2.DataBean> dates = data.getData();
+                    //去除控的选项
+                    if (dates != null && !dates.isEmpty()) {
+                        Iterator<GameOpentimeModel2.DataBean> iterator = dates.iterator();
                         while (iterator.hasNext()) {
-                            HomeResultMsgBean item = iterator.next();
+                            GameOpentimeModel2.DataBean item = iterator.next();
                             if (item == null) {
                                 iterator.remove();
                             }
                         }
-                        mAdapter.setNewData(newData);
-                        startCountDown(newData);
+                        mAdapter.setNewData(dates);
+                        startCountDown(dates);
                     }
                 }
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                if (getActivity() != null && isAdded()) {
+                  if (getActivity() != null && isAdded()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             }
         });
     }
 
-    private void startCountDown(List<HomeResultMsgBean> list) {
+
+
+
+    private void startCountDown(List<GameOpentimeModel2.DataBean> list) {
         if (null == list)
             return;
         int[] openTime = new int[list.size()];
         int[] isOpen = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
-            HomeResultMsgBean item = list.get(i);
-            isOpen[i] = Integer.valueOf(item.getIsOpen());
-            if (isOpen[i] == 1) {
-                openTime[i] = (int) (Long.parseLong(item.getTime()) - item.getServerTime());
-            }
+            GameOpentimeModel2.DataBean item = list.get(i);
+            openTime[i] = (int) (item.getCloseTime() - item.getServerTime());
+
         }
         //倒计时Runnable
         mCountDownAction = new Runnable() {
@@ -251,7 +237,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 boolean refresh = false;
                 for (int i = 0; i < openTime.length; i++) {
                     //开盘状态才进行倒计时
-                    if (isOpen[i] == 1) {
+                    if (openTime[i]> 0) {
                         openTime[i]--;
                         mAdapter.notifyItemChanged(i, openTime[i]);
                         if (openTime[i] == 0) {
