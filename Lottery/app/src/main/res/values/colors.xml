@@ -4,6 +4,8 @@
     <color name="black_333333">#333333</color>
     <color name="textcolortrue">#4169E1</color>
     <color name="colorPrimary">#FFFFFF</color>
+    <color name="color_select">#5B93FA</color>
+    <color name="color_normal">#4A4A4A</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#DB3937</color>
     <color name="diy_red">#DB3937</color>

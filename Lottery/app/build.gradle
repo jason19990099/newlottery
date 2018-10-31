@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
 //    signingConfigs {
 //        ruiyinSign {
-//            keyAlias 'ruiyinsports'
+//            keyAlias 'key0'
 //            keyPassword '775854'
-//            storeFile file('F:/develop/AndroidStudioSDK/ruiyinsports.jks')
+//            storeFile file('D:/Signature/500cp.jks')
 //            storePassword '775854'
 //        }
 //    }
@@ -51,18 +51,18 @@ android {
     }
 
 //    //---------------- 这个是多渠道一起打包的方法start----------------------------
-
+//
 //    android.applicationVariants.all { variant ->
 //        variant.outputs.all {
 //            outputFileName = "${variant.productFlavors[0].name}-${defaultConfig.versionName}-${defaultConfig.versionCode}" +
 //                    "-${releaseTime()}-${variant.buildType.name}.apk"
 //        }
 //    }
-
-    // 打包的渠道
-    productFlavors {
-        ali {}
-    }
+//
+//    // 打包的渠道
+//    productFlavors {
+//        aigoucai {}
+//    }
     //---------------- 这个是多渠道一起打包的方法end------------------------
 }
 

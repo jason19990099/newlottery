@@ -50,7 +50,7 @@ public class PersonalActiovity extends BaseActivity {
         String token = SharePreferencesUtil.getString(PersonalActiovity.this, LotteryId.TOKEN, "");
         HttpRequest.getInstance().getDetail(this, token, new HttpCallback<PersonalModel>() {
             @Override
-            public void onSuccess(PersonalModel data) throws Exception {
+            public void onSuccess(PersonalModel data)  {
                 oerTvZh.setText(data.getData().getName());
                 oerTvZsxm.setText(data.getData().getTrueName());
             }

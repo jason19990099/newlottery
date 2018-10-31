@@ -69,7 +69,7 @@ public class WithdrawRecordModel extends BaseModel {
         private String UserId;
         private String Username;
         private String TrueName;
-        private int Amount;
+        private String Amount;
         private int BankId;
         private String BankInfo;
         private String PageUrl;
@@ -141,12 +141,12 @@ public class WithdrawRecordModel extends BaseModel {
             this.TrueName = TrueName;
         }
 
-        public int getAmount() {
+        public String getAmount() {
             return Amount;
         }
 
-        public void setAmount(int Amount) {
-            this.Amount = Amount;
+        public void setAmount(String amount) {
+            Amount = amount;
         }
 
         public int getBankId() {

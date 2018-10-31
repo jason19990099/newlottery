@@ -270,7 +270,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().Loginout(MineFragment.this, token, new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(LoginModel data) throws Exception {
+            public void onSuccess(LoginModel data) {
                  //重新获取token
                 getToken();
             }

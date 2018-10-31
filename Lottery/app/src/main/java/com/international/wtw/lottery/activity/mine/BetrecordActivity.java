@@ -51,7 +51,7 @@ public class BetrecordActivity extends NewBaseActivity {
         String token = SharePreferencesUtil.getString(this, LotteryId.TOKEN, "");
         HttpRequest.getInstance().getBetreportWeekdate(this, token, new HttpCallback<WeekdateModel>() {
             @Override
-            public void onSuccess(WeekdateModel data) throws Exception {
+            public void onSuccess(WeekdateModel data) {
                 getDataBytime(token, data.getData().get(data.getData().size() - 1), data.getData().get(0));
             }
 
@@ -66,7 +66,7 @@ public class BetrecordActivity extends NewBaseActivity {
     private void getDataBytime(String token, String beginTime, String endTime) {
         HttpRequest.getInstance().getBetReportByDate(this, token, beginTime, endTime, new HttpCallback<BetrecordBydateModel>() {
             @Override
-            public void onSuccess(BetrecordBydateModel data) throws Exception {
+            public void onSuccess(BetrecordBydateModel data) {
                 if (data.getData().size()==0){
                     llTitle.setVisibility(View.GONE);
                     ivEmpty.setVisibility(View.VISIBLE);

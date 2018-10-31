@@ -73,7 +73,7 @@ public class AddcardsFragment extends NewBaseFragment {
 
         HttpRequest.getInstance().getDetail(this, token, new HttpCallback<PersonalModel>() {
             @Override
-            public void onSuccess(PersonalModel data) throws Exception {
+            public void onSuccess(PersonalModel data)  {
                 userid=data.getData().getId();
                 username=data.getData().getTrueName();
                 tvRealName.setText(data.getData().getTrueName());
@@ -132,7 +132,7 @@ public class AddcardsFragment extends NewBaseFragment {
 
         HttpRequest.getInstance().setUserbank(AddcardsFragment.this, token, userid, bankid, bankcardNum, username, etOpenAddress.getText().toString(), "", new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(LoginModel data) throws Exception {
+            public void onSuccess(LoginModel data)  {
                 Toast.makeText(getActivity(),"操作成功。",Toast.LENGTH_SHORT).show();
                 AddcardsFragment.this.getActivity().finish();
             }

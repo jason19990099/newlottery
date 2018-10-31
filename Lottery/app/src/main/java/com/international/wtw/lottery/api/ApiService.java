@@ -35,6 +35,7 @@ import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
+import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
@@ -238,7 +239,11 @@ public interface ApiService {
     @POST("Dictionary/GetAll")
     Call<BankcardModel> getDictionaryAll(@Body RequestBody body);
 
-
+    /**
+     * 获取公告列表
+     */
+    @POST("Notice/List")
+    Call<NoticeListModel> getNoticerlist(@Body RequestBody body);
 
 
 

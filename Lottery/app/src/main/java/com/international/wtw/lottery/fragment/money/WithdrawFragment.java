@@ -63,7 +63,6 @@ public class WithdrawFragment extends NewBaseFragment {
     LinearLayout llHavabankcard;
     @BindView(R.id.btn_addbankcard)
     Button btnAddbankcard;
-    Unbinder unbinder;
     private boolean isDemo;//是否是试玩
     private MoneyInfo moneyInfo;
     private String mBankName;
@@ -92,7 +91,11 @@ public class WithdrawFragment extends NewBaseFragment {
          * 初始化view
          */
         initViews();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         /**
          *  获取银行卡信息
          */

@@ -23,7 +23,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
-import com.international.wtw.lottery.activity.first.InfoCenterActivity;
 import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
@@ -56,6 +55,7 @@ import com.international.wtw.lottery.json.PreferentialProBean;
 import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
 import com.international.wtw.lottery.newJason.LotteryinfoModel;
+import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;
 import com.international.wtw.lottery.utils.ScreenUtils;
@@ -74,84 +74,90 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 /**
- *  首页
+ * 首页
  */
 
 public class FirstFragment extends BaseFragment implements View.OnClickListener {
-    private CustomGridView recycle_menu;
-    private RelativeLayout rl_home_logo;
-    private View view;
-    private ImageView img_default;
-    private TextView tv_user_name;
-    private NewRecyclerViewBaseAdapter menuAdapter;
-    private MarqueeView noteTextView;
-    private ImageView img_menu;
+    @BindView(R.id.img_shiwan)
+    Button imgShiwan;
+    @BindView(R.id.img_login_reg)
+    Button imgLoginReg;
+    @BindView(R.id.rl_home_logo)
+    RelativeLayout rlHomeLogo;
+    @BindView(R.id.img_user_default)
+    ImageView imgUserDefault;
+    @BindView(R.id.tv_user_name)
+    TextView tvUserName;
+    @BindView(R.id.ll_user)
+    LinearLayout llUser;
+    @BindView(R.id.btn_shiwan_reg)
+    Button btnShiwanReg;
+    @BindView(R.id.img_menu)
+    ImageView imgMenu;
+    @BindView(R.id.topTitle)
+    RelativeLayout topTitle;
+    @BindView(R.id.img_default)
+    ImageView imgDefault;
+    @BindView(R.id.banner_cont)
+    RelativeLayout bannerCont;
+    @BindView(R.id.marquee)
+    MarqueeView marquee;
+    @BindView(R.id.img_jiantou)
+    ImageView imgJiantou;
+    @BindView(R.id.recycle_menu)
+    CustomGridView recycleMenu;
+    @BindView(R.id.img_more)
+    ImageView imgMore;
+    @BindView(R.id.bottom_recycler)
+    RecyclerView bottomRecycler;
+    Unbinder unbinder;
     private List<LotteryinfoModel> list2 = new ArrayList<>();
-    private RecyclerView bottom_recycler;
-    private LunbotuBean lunbotus;
-    private ImageView img_user_default;
-    private Button btn_shiwan_reg;
-    private LinearLayout ll_user;
-    private ImageView img_more;
+    private NewRecyclerViewBaseAdapter menuAdapter;
     private EasyPopup mMenuPopup;
-    private RelativeLayout topTitle;
     private List<PreferentialProBean> promotions;
     private BaseQuickAdapter<PreferentialProBean, BaseViewHolder> mBottomAdapter;
-    private String serviceUrl;
     private Handler mHandler = new Handler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_firstview_un, null);
-        view.findViewById(R.id.img_shiwan).setOnClickListener(this);
-        view.findViewById(R.id.img_login_reg).setOnClickListener(this);
-        topTitle = (RelativeLayout) view.findViewById(R.id.topTitle);
-        noteTextView = (MarqueeView) view.findViewById(R.id.marquee);
-        view.findViewById(R.id.marquee).setOnClickListener(this);
-        bottom_recycler = (RecyclerView) view.findViewById(R.id.bottom_recycler);
-        img_more = (ImageView) view.findViewById(R.id.img_more);
-        img_more.setOnClickListener(this);
+      View view = inflater.inflate(R.layout.fragment_firstview_un, null);
 
-        tv_user_name = (TextView) view.findViewById(R.id.tv_user_name);
-        img_menu = (ImageView) view.findViewById(R.id.img_menu);
-        img_user_default = (ImageView) view.findViewById(R.id.img_user_default);
-        btn_shiwan_reg = (Button) view.findViewById(R.id.btn_shiwan_reg);
-        ll_user = (LinearLayout) view.findViewById(R.id.ll_user);
-        ll_user.setOnClickListener(this);
-        btn_shiwan_reg.setOnClickListener(this);
-        img_menu.setOnClickListener(this);
-        recycle_menu = (CustomGridView) view.findViewById(R.id.recycle_menu);
-        view.findViewById(R.id.iv_laba).setOnClickListener(this);
+        unbinder = ButterKnife.bind(this, view);
+
+
         view.findViewById(R.id.img_jiantou).setOnClickListener(this);
-        //轮播图
-        setDefaultImag();
 
-        if (null != getActivity()) {
-            if (NetWorkUtils.isNetworkAvailable(getActivity())) {
-                getBannerData(getActivity());
-            }
-        }
 
         //获取彩票信息
         getLotteryInfo();
         setBottomActivities(3);
+
+        //轮播图
+        setDefaultImag();
+
         initBottomRecycler();
-        noteTextView.setOnTouchListener(new View.OnTouchListener() {
+        marquee.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        noteTextView.pause();
+                        marquee.pause();
                         break;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_OUTSIDE:
-                        noteTextView.start();
+                        marquee.start();
                         break;
                 }
                 return true;
             }
         });
+
         return view;
     }
 
@@ -164,8 +170,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         HttpRequest.getInstance().getAllgames(FirstFragment.this, token, new HttpCallback<AllgameModel>() {
             @Override
             public void onSuccess(AllgameModel data) {
-                int  size=data.getData().size();
-                for (int i=0;i<size;i++){
+                int size = data.getData().size();
+                for (int i = 0; i < size; i++) {
                     list2.add(new LotteryinfoModel(data.getData().get(i).getName(),
                             data.getData().get(i).getGameTypeCode(), data.getData().get(i).getCode(),
                             R.mipmap.ic_launcher));
@@ -176,7 +182,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                Toast.makeText(getActivity(),errorMsg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -194,10 +200,10 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 helper.setText(R.id.tv_promotion_desc, item.getText());
             }
         };
-        bottom_recycler.setHasFixedSize(true);
-        bottom_recycler.setNestedScrollingEnabled(true);
-        bottom_recycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        bottom_recycler.setAdapter(mBottomAdapter);
+        bottomRecycler.setHasFixedSize(true);
+        bottomRecycler.setNestedScrollingEnabled(true);
+        bottomRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        bottomRecycler.setAdapter(mBottomAdapter);
         mBottomAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -215,14 +221,14 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private void initLotteryData(List<LotteryinfoModel> msgBeen) {
         if (null == getActivity())
             return;
-        recycle_menu.setFocusable(false);
+        recycleMenu.setFocusable(false);
         menuAdapter = new NewRecyclerViewBaseAdapter(getActivity(), msgBeen);
-        recycle_menu.setAdapter(menuAdapter);
-        recycle_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        recycleMenu.setAdapter(menuAdapter);
+        recycleMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LotteryinfoModel lotteryinfo = list2.get(position);
-                navToTargetActivity(lotteryinfo.getCode(),lotteryinfo.getName());
+                navToTargetActivity(lotteryinfo.getCode(), lotteryinfo.getName());
             }
         });
     }
@@ -246,55 +252,56 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        rl_home_logo = (RelativeLayout) view.findViewById(R.id.rl_home_logo);
         String token = SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN, "");
         if (null != getActivity()) {
             if (SharePreferencesUtil.getBoolean(getActivity(), LotteryId.IS_SHI_WAN, false)) {
                 if (token.equals("")) {
-                    rl_home_logo.setVisibility(View.GONE);
-                    img_user_default.setVisibility(View.VISIBLE);
-                    tv_user_name.setVisibility(View.VISIBLE);
-                    ll_user.setVisibility(View.VISIBLE);
-                    btn_shiwan_reg.setVisibility(View.VISIBLE);
-                    img_menu.setVisibility(View.VISIBLE);
+                    rlHomeLogo.setVisibility(View.GONE);
+                    imgUserDefault.setVisibility(View.VISIBLE);
+                    tvUserName.setVisibility(View.VISIBLE);
+                    llUser.setVisibility(View.VISIBLE);
+                    btnShiwanReg.setVisibility(View.VISIBLE);
+                    imgMenu.setVisibility(View.VISIBLE);
                 } else {
-                    img_user_default.setVisibility(View.GONE);
-                    tv_user_name.setVisibility(View.GONE);
-                    btn_shiwan_reg.setVisibility(View.GONE);
-                    img_menu.setVisibility(View.GONE);
-                    ll_user.setVisibility(View.VISIBLE);
-                    rl_home_logo.setVisibility(View.VISIBLE);
+                    imgUserDefault.setVisibility(View.GONE);
+                    tvUserName.setVisibility(View.GONE);
+                    btnShiwanReg.setVisibility(View.GONE);
+                    imgMenu.setVisibility(View.GONE);
+                    llUser.setVisibility(View.VISIBLE);
+                    rlHomeLogo.setVisibility(View.VISIBLE);
                 }
                 String userName = SharePreferencesUtil.getString(getActivity(), LotteryId.Login_username, null);
                 if (!TextUtils.isEmpty(userName)) {
-                    tv_user_name.setText(userName);
+                    tvUserName.setText(userName);
                 }
             } else {
                 if (token.equals("")) {
-                    img_user_default.setVisibility(View.VISIBLE);
-                    tv_user_name.setVisibility(View.VISIBLE);
-                    rl_home_logo.setVisibility(View.GONE);
-                    btn_shiwan_reg.setVisibility(View.GONE);
-                    ll_user.setVisibility(View.VISIBLE);
-                    img_menu.setVisibility(View.VISIBLE);
+                    imgUserDefault.setVisibility(View.VISIBLE);
+                    tvUserName.setVisibility(View.VISIBLE);
+                    rlHomeLogo.setVisibility(View.GONE);
+                    btnShiwanReg.setVisibility(View.GONE);
+                    llUser.setVisibility(View.VISIBLE);
+                    imgMenu.setVisibility(View.VISIBLE);
                 } else {
-                    img_user_default.setVisibility(View.GONE);
-                    tv_user_name.setVisibility(View.GONE);
-                    rl_home_logo.setVisibility(View.VISIBLE);
-                    btn_shiwan_reg.setVisibility(View.GONE);
-                    ll_user.setVisibility(View.VISIBLE);
-                    img_menu.setVisibility(View.GONE);
+                    imgUserDefault.setVisibility(View.GONE);
+                    tvUserName.setVisibility(View.GONE);
+                    rlHomeLogo.setVisibility(View.VISIBLE);
+                    llUser.setVisibility(View.VISIBLE);
+                    imgMenu.setVisibility(View.GONE);
                 }
                 String userName = SharePreferencesUtil.getString(getActivity(), LotteryId.Login_username, null);
                 if (!TextUtils.isEmpty(userName)) {
-                    tv_user_name.setText(userName);
+                    tvUserName.setText(userName);
                 }
             }
         }
 
-//        if (!TextUtils.isEmpty(Login_oid)) {
-//            MoneyInfoManager.get().requestMoneyInfo();
-//        }
+        if (null != getActivity()) {
+            if (NetWorkUtils.isNetworkAvailable(getActivity())) {
+                getBannerData(getActivity());
+            }
+        }
+
     }
 
 
@@ -303,27 +310,27 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      *
      * @param lotteryType
      */
-    private void navToTargetActivity(String lotteryType,String lotteryname) {
+    private void navToTargetActivity(String lotteryType, String lotteryname) {
         if (null == getActivity())
             return;
         Intent intent = null;
         switch (lotteryType) {
             case LotteryId.Miaosusscai:   //秒速时时彩
-                intent =new Intent(getActivity(), MiaosusscActivity.class);
+                intent = new Intent(getActivity(), MiaosusscActivity.class);
                 break;
             case LotteryId.Miaosufeiting:  //秒速飞艇
-                intent =new Intent(getActivity(), MiaosufeitingActivity.class);
+                intent = new Intent(getActivity(), MiaosufeitingActivity.class);
                 break;
             case LotteryId.BJSCPK10:  //北京赛车PK10
-                intent=new Intent(getActivity(), Bjscpk10Activity.class);
+                intent = new Intent(getActivity(), Bjscpk10Activity.class);
                 break;
             case LotteryId.MiaosuSaiche:  //秒速赛车
-                intent=new Intent(getActivity(), MiaosusaicheActivity.class);
+                intent = new Intent(getActivity(), MiaosusaicheActivity.class);
                 break;
 
         }
-            intent.putExtra("lotteryname",lotteryname);
-            getActivity().startActivity(intent);
+        intent.putExtra("lotteryname", lotteryname);
+        getActivity().startActivity(intent);
     }
 
     @Override
@@ -349,6 +356,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                         EventBus.getDefault().postSticky(new LoginEvent());
                         ToastDialog.success(getString(R.string.login_success)).show(getFragmentManager());
                     }
+
                     @Override
                     public void onFailure(String msgCode, String errorMsg) {
                         ToastDialog.error(errorMsg).show(getFragmentManager());
@@ -357,15 +365,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.img_menu:
                 SetMenu();
-                break;
-            case R.id.iv_laba:
-            case R.id.img_jiantou:
-                if (null != lunbotus) {
-                    Intent intetn = new Intent(getActivity(), InfoCenterActivity.class);
-                    intetn.putExtra(LotteryId.LUN_BO_TU, lunbotus);
-                    intetn.putExtra("title", getString(R.string.info_center));
-                    startActivity(intetn);
-                }
                 break;
             case R.id.img_more:
                 startActivity(new Intent(getActivity(), PreferentialActivity.class));
@@ -379,36 +378,26 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      * @param context
      */
     public void getBannerData(Context context) {
-        HttpRequest.getInstance().getBanner(context, new HttpCallback<LunbotuBean>() {
+        String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getNoticeList(FirstFragment.this, token, new HttpCallback<NoticeListModel>() {
             @Override
-            public void onSuccess(LunbotuBean lunbotu) {
-                lunbotus = lunbotu;
-                List<String> list = new ArrayList<>();
-                if (null != lunbotu && lunbotu.getCode() == 1) {
-                    if (null != lunbotu.getRotations() && lunbotu.getRotations().size() > 0
-                            && null != lunbotu.getAnnouncements() && lunbotu.getAnnouncements().size() > 0) {
-                        int size = lunbotu.getRotations().size();
-                        for (int i = 0; i < size; i++) {
-                            list.add(lunbotu.getRotations().get(i));
-                        }
-                        setLunBo(list, lunbotu.getAnnouncements());
-                    }
-                    if (null != lunbotu.getCustomerSer().getKefu()) {
-                        serviceUrl = lunbotu.getCustomerSer().getKefu();
-                        if (!TextUtils.isEmpty(serviceUrl)) {
-                            SharePreferencesUtil.addString(getContext(), LotteryId.SERVICE_URL, serviceUrl);
-                        }
-                    }
+            public void onSuccess(NoticeListModel data) {
+                StringBuilder buffer = new StringBuilder();
+                int size = data.getData().size();
+                for (int i = 0; i < size; i++) {
+                    buffer.append(data.getData().get(i).getContent()).append("    ");
                 }
+                marquee.setText(String.valueOf(buffer));
+                marquee.start();
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                noteTextView.setText("欢迎加入爱购彩，祝您游戏开心。。、");
-                noteTextView.start();
+                marquee.setText("欢迎光临，祝您游戏愉快。");
+                marquee.start();
+
             }
         });
-
     }
 
     public void SetMenu() {
@@ -423,13 +412,12 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      * 设置默认的图片
      */
     private void setDefaultImag() {
-        img_default = (ImageView) view.findViewById(R.id.img_default);
         int bannerHeight = (int) ((ScreenUtils.getScreenWidth(getActivity()) * 0.4f));
-        ViewGroup.LayoutParams params = img_default.getLayoutParams();
+        ViewGroup.LayoutParams params = imgDefault.getLayoutParams();
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         params.height = bannerHeight;
-        img_default.setLayoutParams(params);
-        img_default.setVisibility(View.VISIBLE);
+        imgDefault.setLayoutParams(params);
+        imgDefault.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -439,23 +427,13 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      * @param announcements
      */
     private void setLunBo(List<String> list, List<LunbotuBean.AnnouncementsBean> announcements) {
-        if (null != announcements) {
-            StringBuilder buffer = new StringBuilder();
-            int size = announcements.size();
-            for (int i = 0; i < size; i++) {
-                buffer.append(announcements.get(i).getContent()).append("    ");
-            }
-            noteTextView.setText(buffer.toString());
-            noteTextView.start();
 
-        }
 
         if (null != getActivity() && null != list) {
-            RelativeLayout bannerContent = (RelativeLayout) view.findViewById(R.id.banner_cont);
             BannerBaseView banner = new MainBannerView(getActivity());
-            bannerContent.addView(banner);
+            bannerCont.addView(banner);
             banner.update(list);
-            img_default.setVisibility(View.GONE);
+            imgDefault.setVisibility(View.GONE);
         }
 
     }
@@ -485,11 +463,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         }, 1000);
     }
 
-    @Override
-    public void onDestroy() {
-        mHandler.removeCallbacksAndMessages(null);
-        super.onDestroy();
-    }
 
     private void getLoginNotice() {
         HttpRequest.getInstance().getLoginNotice(this, new HttpCallback<Notice>() {
@@ -530,5 +503,32 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 }).setMargin(35)
                 .setOutCancel(true)
                 .showDialog(getFragmentManager());
+    }
+
+
+    @Override
+    public void onDestroy() {
+        mHandler.removeCallbacksAndMessages(null);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.img_shiwan, R.id.img_login_reg, R.id.btn_shiwan_reg, R.id.img_more})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_shiwan:
+                break;
+            case R.id.img_login_reg:
+                break;
+            case R.id.btn_shiwan_reg:
+                break;
+            case R.id.img_more:
+                break;
+        }
     }
 }

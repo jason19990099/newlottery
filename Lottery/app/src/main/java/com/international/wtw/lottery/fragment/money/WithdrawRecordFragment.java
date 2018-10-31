@@ -109,7 +109,7 @@ public class WithdrawRecordFragment extends NewBaseFragment implements SwipeRefr
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().getWithdrawRecord(this, token, pageIndex, PAGE_SIZE, new HttpCallback<WithdrawRecordModel>() {
             @Override
-            public void onSuccess(WithdrawRecordModel data) throws Exception {
+            public void onSuccess(WithdrawRecordModel data)  {
                 if (mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }

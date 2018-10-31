@@ -1,14 +1,19 @@
 package com.international.wtw.lottery.fragment.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
@@ -23,11 +28,16 @@ import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
 import com.international.wtw.lottery.newJason.GameOpentimeModel2;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.utils.TimeFormatter;
+import com.international.wtw.lottery.widget.MarqueeView;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 import com.international.wtw.lottery.widget.TitleBar;
+
 import java.util.Iterator;
 import java.util.List;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 描述：开奖趋势
@@ -41,12 +51,11 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     TitleBar mTitleBar;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    @BindView(R.id.tv_website)
-    TextView mTvWebsite;
-    @BindView(R.id.rl_website)
-    RelativeLayout mRlWebsite;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.marquee)
+    MarqueeView marquee;
+    Unbinder unbinder;
     private BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder> mAdapter;
     private MenuPopupWindow mMenuPopup;
     private Handler mHandler;
@@ -60,6 +69,10 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
 
     @Override
     protected void initData() {
+
+        marquee.setText("欢迎加入爱购彩，祝您游戏开心。。、");
+        marquee.start();
+
         mHandler = new Handler();
         mSwipeRefreshLayout.setRefreshing(true);
         mSwipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.color_primary));
@@ -67,18 +80,18 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(getContext(), RecyclerViewDivider.HORIZONTAL_DIVIDER, R.drawable.shape_divider_line));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity,2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
         mAdapter = new BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder>(R.layout.lottery_hanll) {
             @Override
             protected void convert(BaseViewHolder helper, GameOpentimeModel2.DataBean item) {
-                helper.setText(R.id.tv_lotteryname,item.getGameCode() );
+                helper.setText(R.id.tv_lotteryname, item.getGameCode());
 
-                    int openTime = (int) (item.getCloseTime() - item.getServerTime());
-                    if (openTime > 0) {
-                        helper.setText(R.id.tv_lotterytime,"距截止:"+ TimeFormatter.seconds2Time(openTime));
-                    } else {
-                        helper.setText(R.id.tv_lotterytime, "开奖中");
-                    }
+                int openTime = (int) (item.getCloseTime() - item.getServerTime());
+                if (openTime > 0) {
+                    helper.setText(R.id.tv_lotterytime, "距截止:" + TimeFormatter.seconds2Time(openTime));
+                } else {
+                    helper.setText(R.id.tv_lotterytime, "开奖中");
+                }
             }
 
             @Override
@@ -86,7 +99,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 if (!payloads.isEmpty()) {
                     int openTime = (int) payloads.get(0);
                     if (openTime > 0) {
-                        holder.setText(R.id.tv_lotterytime,"距截止:"+ TimeFormatter.seconds2Time(openTime));
+                        holder.setText(R.id.tv_lotterytime, "距截止:" + TimeFormatter.seconds2Time(openTime));
                     } else {
                         holder.setText(R.id.tv_lotterytime, "开奖中");
                     }
@@ -143,6 +156,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     public void onDestroyView() {
         mHandler.removeCallbacksAndMessages(null);
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
@@ -184,7 +198,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
 
     private void requestGameCloseTime() {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getGameOpenTime2(this,token, "", new HttpCallback<GameOpentimeModel2>() {
+        HttpRequest.getInstance().getGameOpenTime2(this, token, "", new HttpCallback<GameOpentimeModel2>() {
             @Override
             public void onSuccess(GameOpentimeModel2 data) {
                 if (getActivity() != null && isAdded()) {
@@ -208,14 +222,12 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                  if (getActivity() != null && isAdded()) {
+                if (getActivity() != null && isAdded()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             }
         });
     }
-
-
 
 
     private void startCountDown(List<GameOpentimeModel2.DataBean> list) {
@@ -237,7 +249,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 boolean refresh = false;
                 for (int i = 0; i < openTime.length; i++) {
                     //开盘状态才进行倒计时
-                    if (openTime[i]> 0) {
+                    if (openTime[i] > 0) {
                         openTime[i]--;
                         mAdapter.notifyItemChanged(i, openTime[i]);
                         if (openTime[i] == 0) {
@@ -253,5 +265,13 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
             }
         };
         mHandler.postDelayed(mCountDownAction, 1000);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

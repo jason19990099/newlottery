@@ -48,7 +48,7 @@ public class SettledOrdersActivity extends NewBaseActivity {
         String token = SharePreferencesUtil.getString(this, LotteryId.TOKEN, "");
         HttpRequest.getInstance().getTodaySettledOrders(this, token, "", "", 1, 10, new HttpCallback<SettledOrdersModel>() {
             @Override
-            public void onSuccess(SettledOrdersModel data) throws Exception {
+            public void onSuccess(SettledOrdersModel data) {
                 if (data.getData().getData().size() == 0) {
                     llTitle.setVisibility(View.GONE);
                     ivEmpty.setVisibility(View.VISIBLE);

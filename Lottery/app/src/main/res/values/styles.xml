@@ -61,9 +61,9 @@
 
     <style name="betting_tab">
         <item name="android:padding">10dp</item>
-        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_width">@dimen/dimen_90</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textSize">@dimen/sp_16</item>
         <item name="android:layout_weight">1.0</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>

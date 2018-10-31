@@ -282,9 +282,9 @@
     <string name="select_betting_item">请选择投注项</string>
     <string name="typein_betmoney">请输入投注金额</string>
     <string name="two_face_betting">两面盘</string>
-    <string name="win_two_three_he">冠亚组合</string>
-    <string name="first_five">一~五名</string>
-    <string name="six_ten">六~十名</string>
+    <string name="win_two_three_he">冠亚合</string>
+    <string name="first_five">1~5名</string>
+    <string name="six_ten">6~10名</string>
     <string name="service_online">在线客服</string>
     <string name="real_video">真人视讯</string>
     <string name="real_more">更多彩种</string>

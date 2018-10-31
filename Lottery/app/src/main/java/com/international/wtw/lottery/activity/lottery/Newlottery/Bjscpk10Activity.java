@@ -21,6 +21,8 @@ import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10GuanyaheFragment;
 import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10LiangmianpanFragment;
+import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10No1to5Fragment;
+import com.international.wtw.lottery.fragmentnew.bjscpk10.PK10No6to10Fragment;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -67,8 +69,9 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private int current = 0;
     private PK10LiangmianpanFragment fragment1;
     private PK10GuanyaheFragment fragment2;
-//    private PK10LiangmianpanFragment fragment3;
-//    private PK10LiangmianpanFragment fragment4;
+    private PK10No1to5Fragment fragment3;
+    private PK10No6to10Fragment fragment4;
+
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;
@@ -173,22 +176,22 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                     transaction.show(fragment2);
                 }
                 break;
-//            case 2:
-//                if (fragment3 == null) {
-//                    fragment3 = new PK10LiangmianpanFragment();
-//                    transaction.add(R.id.frameLayout, fragment3);
-//                } else {
-//                    transaction.show(fragment3);
-//                }
-//                break;
-//            case 3:
-//                if (fragment4 == null) {
-//                    fragment4 = new PK10LiangmianpanFragment();
-//                    transaction.add(R.id.frameLayout, fragment4);
-//                } else {
-//                    transaction.show(fragment4);
-//                }
-//                break;
+            case 2:
+                if (fragment3 == null) {
+                    fragment3 = new PK10No1to5Fragment();
+                    transaction.add(R.id.frameLayout, fragment3);
+                } else {
+                    transaction.show(fragment3);
+                }
+                break;
+            case 3:
+                if (fragment4 == null) {
+                    fragment4 = new PK10No6to10Fragment();
+                    transaction.add(R.id.frameLayout, fragment4);
+                } else {
+                    transaction.show(fragment4);
+                }
+                break;
         }
         transaction.commit();
     }
@@ -201,12 +204,12 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         if (fragment2 != null) {
             fragmentTransaction.hide(fragment2);
         }
-//        if (fragment3 != null) {
-//            fragmentTransaction.hide(fragment3);
-//        }
-//        if (fragment4 != null) {
-//            fragmentTransaction.hide(fragment4);
-//        }
+        if (fragment3 != null) {
+            fragmentTransaction.hide(fragment3);
+        }
+        if (fragment4 != null) {
+            fragmentTransaction.hide(fragment4);
+        }
     }
 
 

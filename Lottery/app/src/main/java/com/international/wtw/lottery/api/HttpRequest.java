@@ -43,6 +43,7 @@ import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
+import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
 import com.international.wtw.lottery.newJason.PersonalModel;
@@ -629,7 +630,19 @@ public class HttpRequest {
     }
 
 
-
+    /**
+     * 获取公告列表
+     */
+    public void getNoticeList(Object tag, String token,HttpCallback<NoticeListModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<NoticeListModel> call = mService.getNoticerlist(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

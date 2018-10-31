@@ -45,9 +45,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by A Bin on 2017/7/12.
- */
 
 public class MarkSixActivity extends BetBaseActivity implements RadioGroup.OnCheckedChangeListener,
         ViewPager.OnPageChangeListener, ShowSelectNumbersInterface {

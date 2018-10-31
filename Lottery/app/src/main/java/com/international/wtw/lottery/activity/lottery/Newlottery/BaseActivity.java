@@ -164,7 +164,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         String token = SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().saveOrders(BaseActivity.this, token, getLotteryType(), expectNo, betjason, new HttpCallback<LoginModel>() {
             @Override
-            public void onSuccess(LoginModel data) throws Exception {
+            public void onSuccess(LoginModel data)  {
                 Toast.makeText(BaseActivity.this, "投注成功", Toast.LENGTH_LONG).show();
                 EventBus.getDefault().postSticky(new BetSelectData(false,null,true));
             }

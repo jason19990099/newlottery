@@ -95,7 +95,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         }
     }
 
-    public abstract void onSuccess(T data) throws Exception;
+    public abstract void onSuccess(T data) ;
 
     public abstract void onFailure(String msgCode, String errorMsg);
 }

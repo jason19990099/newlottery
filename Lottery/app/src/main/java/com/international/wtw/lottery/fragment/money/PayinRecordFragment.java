@@ -108,7 +108,7 @@ public class PayinRecordFragment extends NewBaseFragment implements SwipeRefresh
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
         HttpRequest.getInstance().rechargeRecord(this, token, pageIndex, PAGE_SIZE, new HttpCallback<PayinRecordMoudel>() {
             @Override
-            public void onSuccess(PayinRecordMoudel data) throws Exception {
+            public void onSuccess(PayinRecordMoudel data)  {
                 if (mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
