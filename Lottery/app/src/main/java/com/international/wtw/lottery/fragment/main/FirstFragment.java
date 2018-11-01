@@ -127,20 +127,13 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View view = inflater.inflate(R.layout.fragment_firstview_un, null);
-
         unbinder = ButterKnife.bind(this, view);
-
-
         view.findViewById(R.id.img_jiantou).setOnClickListener(this);
-
-
         //获取彩票信息
         getLotteryInfo();
         setBottomActivities(3);
-
         //轮播图
         setDefaultImag();
-
         initBottomRecycler();
         marquee.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -244,6 +237,9 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
                 ToastDialog.error(errorMsg).show(getFragmentManager());
+
+
+
             }
         });
     }

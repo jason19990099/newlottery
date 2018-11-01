@@ -44,9 +44,7 @@ import com.international.wtw.lottery.newJason.WeekdateModel;
 import com.international.wtw.lottery.newJason.WithdrawRecordModel;
 import com.international.wtw.lottery.newJason.getGameOpentimeModel;
 import com.international.wtw.lottery.newJason.GameOpentimeModel2;
-
 import java.util.Map;
-
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -55,6 +53,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
+
 
 public interface ApiService {
     /**

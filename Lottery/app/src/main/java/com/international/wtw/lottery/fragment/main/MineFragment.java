@@ -33,7 +33,6 @@ import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
 import com.international.wtw.lottery.fragment.BaseFragment;
 import com.international.wtw.lottery.json.MineBean;
 import com.international.wtw.lottery.newJason.LoginModel;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -60,6 +59,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mine, null);
+        unbinder = ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
         InitView();
         getData();
@@ -132,7 +132,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
-        unbinder = ButterKnife.bind(this, view);
+
         return view;
     }
 

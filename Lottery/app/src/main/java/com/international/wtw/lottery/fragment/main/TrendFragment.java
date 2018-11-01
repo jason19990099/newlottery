@@ -1,23 +1,19 @@
 package com.international.wtw.lottery.fragment.main;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.mine.LotteryHistoryActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusaicheActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusscActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -31,13 +27,9 @@ import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.MarqueeView;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 import com.international.wtw.lottery.widget.TitleBar;
-
 import java.util.Iterator;
 import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 描述：开奖趋势
@@ -55,7 +47,6 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.marquee)
     MarqueeView marquee;
-    Unbinder unbinder;
     private BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder> mAdapter;
     private MenuPopupWindow mMenuPopup;
     private Handler mHandler;
@@ -117,13 +108,34 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 if (item == null) {
                     return;
                 }
-                Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
-                intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
-                startActivity(intent);
+//                Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
+//                intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
+//                startActivity(intent);
+                if (null == getActivity())
+                    return;
+                Intent intent = null;
+                switch (item.getGameCode()) {
+                    case LotteryId.Miaosusscai:   //秒速时时彩
+                        intent = new Intent(getActivity(), MiaosusscActivity.class);
+                        intent.putExtra("lotteryname", "秒速时时彩");
+                        break;
+                    case LotteryId.Miaosufeiting:  //秒速飞艇
+                        intent = new Intent(getActivity(), MiaosufeitingActivity.class);
+                        intent.putExtra("lotteryname", "秒速飞艇");
+                        break;
+                    case LotteryId.BJSCPK10:  //北京赛车PK10
+                        intent = new Intent(getActivity(), Bjscpk10Activity.class);
+                        intent.putExtra("lotteryname", "北京赛车PK10");
+                        break;
+                    case LotteryId.MiaosuSaiche:  //秒速赛车
+                        intent = new Intent(getActivity(), MiaosusaicheActivity.class);
+                        intent.putExtra("lotteryname", "秒速赛车");
+                        break;
+                }
+                getActivity().startActivity(intent);
             }
         });
         initListener();
-
     }
 
 
@@ -132,8 +144,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
             @Override
             public void onClick(View v) {
                 if (mMenuPopup == null) {
-                    mMenuPopup = new MenuPopupWindow(getActivity())
-                            .createPopup();
+                    mMenuPopup = new MenuPopupWindow(getActivity()).createPopup();
                 }
                 mMenuPopup.showAtAnchorView(mTitleBar, VerticalGravity.BELOW, HorizontalGravity.ALIGN_RIGHT);
             }
@@ -156,7 +167,6 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
     public void onDestroyView() {
         mHandler.removeCallbacksAndMessages(null);
         super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override
@@ -267,11 +277,4 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mHandler.postDelayed(mCountDownAction, 1000);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 }
