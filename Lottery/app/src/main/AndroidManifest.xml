@@ -95,12 +95,24 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".activity.lottery.Newlottery.ChongqingsscActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".activity.lottery.Newlottery.MiaosusaicheActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".activity.lottery.Newlottery.MiaosusscActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.TJSSCActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.XJSSCActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
@@ -338,6 +350,10 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".activity.mine.TodaySettledOrdersActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".activity.mine.BetDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
@@ -346,7 +362,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
 
-        SettledOrdersActivity
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="597d38dcf5ade42621001d67"/>

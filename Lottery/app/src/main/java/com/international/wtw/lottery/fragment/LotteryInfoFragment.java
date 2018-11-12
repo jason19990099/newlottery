@@ -23,6 +23,8 @@ import com.international.wtw.lottery.widget.LotteryPropertyView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -84,28 +86,9 @@ public class LotteryInfoFragment extends NewBaseFragment {
     @Override
     protected void initData() {
         gameCode = getArguments().getString(GAME_CODE);
-//        if (Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY == gameCode || Constants.LOTTERY_TYPE.SPEED_MARK_SIX == gameCode) {
-//            mLlTime.setVisibility(View.GONE);
-//            mLlTime2.setVisibility(View.VISIBLE);
-//            mTvLotteryTime.setText("00:00:00");
-//        } else {
-//            mLlTime.setVisibility(View.VISIBLE);
-//            mLlTime2.setVisibility(View.GONE);
-//            mTvLotteryTime.setText("00:00");
-//        }
-
         mLlTime.setVisibility(View.VISIBLE);
         mLlTime2.setVisibility(View.GONE);
         mTvLotteryTime.setText("00:00");
-
-//        ll_lottery_history.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
-//                intent.putExtra(LotteryId.GAME_CODE, gameCode);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     public String getNextRound() {
@@ -247,8 +230,9 @@ public class LotteryInfoFragment extends NewBaseFragment {
             mTvTimeMinute.setText("--:--");
         }
 
+
         //如果上一期的号码一直没开出来，5秒刷新一次
-        if (Integer.valueOf(data.getData().getExpectNoNext())-Integer.valueOf(data.getData().getExpectNo())>1){
+        if (Long.valueOf(data.getData().getExpectNoNext())-Long.valueOf(data.getData().getExpectNo())>1){
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -257,27 +241,6 @@ public class LotteryInfoFragment extends NewBaseFragment {
             },8*1000);
         }
 
-//        if (closeSeconds > 0) {
-//            String hour = TimeFormatter.getHour(closeSeconds);
-//            String minute = TimeFormatter.getMinuteOfHour(closeSeconds);
-//            String second = TimeFormatter.getSecondOfMinute(closeSeconds);
-//            if (!"00".equals(hour)) {
-//                mLlTime.setVisibility(View.GONE);
-//                mLlTime2.setVisibility(View.VISIBLE);
-//                mTvTimeHour.setText(isClose ? "--" : hour);
-//                mTvTimeMinute2.setText(isClose ? "--" : minute);
-//                mTvTimeSeconds2.setText(isClose ? "--" : second);
-//            } else {
-//                mLlTime.setVisibility(View.VISIBLE);
-//                mLlTime2.setVisibility(View.GONE);
-//                mTvTimeMinute.setText(isClose ? "--" : minute);
-//            }
-//        } else {
-//            mTvTimeHour.setText("--");
-//            mTvTimeMinute.setText("--");
-//            mTvTimeMinute2.setText("--");
-//            mTvTimeSeconds2.setText("--");
-//        }
     }
 
     /**
@@ -286,10 +249,12 @@ public class LotteryInfoFragment extends NewBaseFragment {
     private void showLastLotteryNumbers(long time, String round, List<String> numbers) {
         mTvLastRound.setText(String.format("%s期：", round));
         mLotteryNumberView.setNumbers(gameCode, numbers);
-        if (mLotteryPropertyView.getVisibility() != View.VISIBLE) {
-            mLotteryPropertyView.setVisibility(View.VISIBLE);
-        }
-        mLotteryPropertyView.setNumbers(time, gameCode, numbers);
+            if (mLotteryPropertyView.getVisibility() != View.VISIBLE) {
+                mLotteryPropertyView.setVisibility(View.VISIBLE);
+            }
+            mLotteryPropertyView.setNumbers(time, gameCode, numbers);
+
+
     }
 
     @Override

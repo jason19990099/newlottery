@@ -61,13 +61,18 @@ public class LotteryId {
     public static final String PLAY_RINGTONE = "play_ringtone";//是否开启开奖音效
 
 
+    public static final String sourcetype = "4";
 
+    public static final String version = "1.0";
     public static final String BJSCPK10 = "bjscpk10"; //北京赛车PK10
     public static final String Miaosufeiting = "msft"; //秒速飛艇
-    public static final String MiaosuSaiche = "mssc"; //秒速飛艇
-    public static final String Miaosusscai = "msssc"; //秒速飛艇
-
-    public static final String sourcetype = "4";
-    public static final String version = "1.0";
+    public static final String MiaosuSaiche = "mssc"; //秒速赛车
+    public static final String Miaosusscai = "msssc"; //秒速时时彩
+    public static final String CQSSC = "cqssc"; //重庆时时彩
+    public static final String TJSSC = "tjssc"; //重庆时时彩
+    public static final String XJSSC = "xjssc"; //新疆时时彩
+    public static final String PCDD = "pcdd"; //PC蛋蛋
+    public static final String GDKLSF = "gdklsf"; //广东快乐十分
+    public static final String CQXYNC = "cqxync"; //广东快乐十分
 
 }

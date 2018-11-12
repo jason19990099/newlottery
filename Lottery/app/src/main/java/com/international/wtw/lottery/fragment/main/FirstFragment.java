@@ -27,9 +27,12 @@ import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.ChongqingsscActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusaicheActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusscActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.TJSSCActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.XJSSCActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -323,8 +326,21 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             case LotteryId.MiaosuSaiche:  //秒速赛车
                 intent = new Intent(getActivity(), MiaosusaicheActivity.class);
                 break;
-
+            case LotteryId.CQSSC:  //秒速赛车
+                intent = new Intent(getActivity(), ChongqingsscActivity.class);
+                break;
+            case LotteryId.TJSSC:  //天津时时彩
+                intent = new Intent(getActivity(), TJSSCActivity.class);
+                break;
+            case LotteryId.XJSSC:  //新疆时时彩
+                intent = new Intent(getActivity(), XJSSCActivity.class);
+                break;
+            case LotteryId.PCDD:  //PC蛋蛋
+                intent = new Intent(getActivity(), XJSSCActivity.class);
+                break;
         }
+        if (null==intent)
+            return;
         intent.putExtra("lotteryname", lotteryname);
         getActivity().startActivity(intent);
     }
@@ -344,7 +360,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 //                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.img_login_reg:
-                HttpRequest.getInstance().loginDemo(getActivity(), new HttpCallback<UserModel>() {
+                String token= SharePreferencesUtil.getString(getActivity(), LotteryId.TOKEN,"");
+                HttpRequest.getInstance().loginDemo(getActivity(),token, new HttpCallback<UserModel>() {
                     @Override
                     public void onSuccess(UserModel data) {
                         SharePreferencesUtil.addString(getContext(), LotteryId.TOKEN, data.getOid());

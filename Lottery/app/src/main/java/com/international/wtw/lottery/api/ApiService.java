@@ -33,6 +33,7 @@ import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.LotteryHistoryModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.NoticeListModel;
@@ -90,7 +91,7 @@ public interface ApiService {
      * 试玩登录
      */
     @POST("index/LoginTry")
-    Call<UserModel> loginDemo();
+    Call<UserModel> loginDemo(@Body RequestBody body);
 
 
     /**
@@ -226,7 +227,7 @@ public interface ApiService {
 
 
     /**
-     *  今日已结
+     *  今日已结投注明細
      */
     @POST("Game/GetTodaySettledOrders")
     Call<SettledOrdersModel> getTodaySettledOrders(@Body RequestBody body);
@@ -245,9 +246,11 @@ public interface ApiService {
     Call<NoticeListModel> getNoticerlist(@Body RequestBody body);
 
 
-
-
-
+    /**
+     *  查询开奖结果
+     */
+    @POST("Game/GetCollectResultByPages")
+    Call<LotteryHistoryModel> getCollectResultByPages(@Body RequestBody body);
 
 
 

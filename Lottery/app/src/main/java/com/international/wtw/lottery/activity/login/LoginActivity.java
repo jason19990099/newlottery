@@ -272,7 +272,8 @@ public class   LoginActivity extends BaseActivity implements View.OnClickListene
             //试玩
             case R.id.bt_shi_wan:
                 isShi = true;
-                HttpRequest.getInstance().loginDemo(LoginActivity.this, new HttpCallback<UserModel>() {
+                String token2= SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN,"");
+                HttpRequest.getInstance().loginDemo(LoginActivity.this,token2, new HttpCallback<UserModel>() {
                     @Override
                     public void onSuccess(UserModel data) {
 

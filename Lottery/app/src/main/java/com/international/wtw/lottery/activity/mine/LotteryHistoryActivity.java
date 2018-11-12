@@ -23,12 +23,17 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.dialog.CalendarDialog;
 import com.international.wtw.lottery.dialog.SwitchGamePopupWindow;
+import com.international.wtw.lottery.dialog.SwitchGamePopupWindow2;
 import com.international.wtw.lottery.dialog.SwitchPagePopup;
 import com.international.wtw.lottery.dialog.easypopup.HorizontalGravity;
 import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
 import com.international.wtw.lottery.dialog.nice.BaseNiceDialog;
 import com.international.wtw.lottery.json.HistoryResult;
+import com.international.wtw.lottery.newJason.LotteryHistoryModel;
+import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.utils.LotteryUtil;
+import com.international.wtw.lottery.utils.LotteryUtil2;
+import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
 
 import java.text.DateFormat;
@@ -39,10 +44,12 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
+/**
+ *  开奖历史
+ */
 public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefreshLayout.OnRefreshListener {
-
     public static final int PAGE_SIZE = 20;
-
     @BindView(R.id.tv_bet_title)
     TextView mTvBetTitle;
     @BindView(R.id.ll_title)
@@ -66,11 +73,9 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     @BindView(R.id.tvNextPage)
     TextView tvNextPage;
 
-    //当网络请求出错时显示
     private View mErrorView;
     private TextView mTvError;
-
-    private int mGameCode;
+    private String mGameCode;
     private int pageIndex = 1;
     private String dateStr;
     private LotteryHistoryAdapter mAdapter;
@@ -85,23 +90,33 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        mGameCode = getIntent().getIntExtra(LotteryId.GAME_CODE, Constants.LOTTERY_TYPE.PJ_PK_10);
+        mGameCode = getIntent().getStringExtra(LotteryId.GAME_CODE);
         initTitle();
         initEmptyView();
         initRecycler();
+
+
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        dateStr=sdf.format(d);
+
+
         //获取历史开奖数据
         refresh();
+
+
     }
 
     @Override
     protected boolean useEventBus() {
         return  false;
     }
+
     private void initTitle() {
-        mTvBetTitle.setText(LotteryUtil.get().getPageTitle(mGameCode));
-        if (mGameCode == Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY) {
-            mIvCalendar.setVisibility(View.GONE);
-        }
+        mTvBetTitle.setText(LotteryUtil2.get().getPageTitle(mGameCode));
+//        if (mGameCode == Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY) {
+//            mIvCalendar.setVisibility(View.GONE);
+//        }
     }
 
     private void initRecycler() {
@@ -126,8 +141,7 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
         });
     }
 
-    @OnClick({R.id.iv_back, R.id.ll_title, R.id.tv_calendar, R.id.tvPreviousPage,
-            R.id.tvNextPage, R.id.llCurrentPage})
+    @OnClick({R.id.iv_back, R.id.ll_title, R.id.tv_calendar, R.id.tvPreviousPage, R.id.tvNextPage, R.id.llCurrentPage})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -200,16 +214,17 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     }
 
     private void requestLotteryHistory() {
+        String token = SharePreferencesUtil.getString(LotteryHistoryActivity.this, LotteryId.TOKEN, "");
         HttpRequest.getInstance()
-                .getLotteryHistory(this, mGameCode, pageIndex, PAGE_SIZE, dateStr, new HttpCallback<HistoryResult>() {
+                .getCollectResultByPages(this,token, mGameCode,dateStr, pageIndex, PAGE_SIZE,  new HttpCallback<LotteryHistoryModel>() {
                     @Override
-                    public void onSuccess(HistoryResult data) {
+                    public void onSuccess(LotteryHistoryModel data) {
                         if (mSwipeRefreshLayout.isRefreshing()) {
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
-                        mAdapter.setNewData(data.getResult());
+                        mAdapter.setNewData(data.getData());
                         mRecyclerView.scrollToPosition(0);
-                        initPages(data.getAllnumb());
+                        initPages(data.getCount());
                     }
 
                     @Override
@@ -233,16 +248,21 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     }
 
     private void showSwitchGamePopup() {
-        new SwitchGamePopupWindow(this, mGameCode)
-                .setOnItemClickListener(new SwitchGamePopupWindow.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(int gameCode) {
-                        getIntent().putExtra(LotteryId.GAME_CODE, gameCode);
-                        recreate();
-                    }
-                })
-                .createPopup()
-                .showAtAnchorView(mLlTitle, VerticalGravity.BELOW, HorizontalGravity.CENTER);
+//        new SwitchGamePopupWindow2(this, mGameCode)
+//                .setOnItemClickListener(new SwitchGamePopupWindow2.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int gameCode) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onItemClick(String gameCode) {
+//                        getIntent().putExtra(LotteryId.GAME_CODE, gameCode);
+//                        recreate();
+//                    }
+//                })
+//                .createPopup()
+//                .showAtAnchorView(mLlTitle, VerticalGravity.BELOW, HorizontalGravity.CENTER);
     }
 
     private void showSwitchPagePopup() {

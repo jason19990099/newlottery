@@ -22,6 +22,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
+/**
+ *  下注记录
+ */
 public class BetrecordActivity extends NewBaseActivity {
     @BindView(R.id.lv_listdata)
     ListView lvListdata;

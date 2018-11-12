@@ -23,6 +23,13 @@ android {
         aaptOptions.useNewCruncher = false
     }
 
+
+    lintOptions {
+        //解除application黄色报警
+        disable 'GoogleAppIndexingWarning'
+        baseline file("lint-baseline.xml")
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']

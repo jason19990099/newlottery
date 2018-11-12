@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Toast;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseActivity;
@@ -23,7 +22,6 @@ import com.international.wtw.lottery.fragment.main.MoneyManageFragment;
 import com.international.wtw.lottery.fragment.main.TrendFragment;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.orhanobut.logger.Logger;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -73,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 //        //首次注册的新用户,弹出充值引导弹窗
 //        initRechargeDialog();
+
 
     }
 

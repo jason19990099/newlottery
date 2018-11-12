@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.fragmentnew;
+package com.international.wtw.lottery.fragment;
 
 import android.support.v4.app.Fragment;
 import org.greenrobot.eventbus.EventBus;

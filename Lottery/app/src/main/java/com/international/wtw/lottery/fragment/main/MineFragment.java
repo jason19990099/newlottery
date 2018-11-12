@@ -11,12 +11,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
 import com.international.wtw.lottery.activity.mine.BankcardContralActivity;
+import com.international.wtw.lottery.activity.mine.BetDetailActivity;
 import com.international.wtw.lottery.activity.mine.BetrecordActivity;
 import com.international.wtw.lottery.activity.mine.MyMessageActivity;
 import com.international.wtw.lottery.activity.mine.MyPasswordLoginActivity;
@@ -35,12 +35,14 @@ import com.international.wtw.lottery.json.MineBean;
 import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,7 +116,13 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     startActivity(intent);
                 }
                 if (type_name.equals(getString(R.string.wd_jryj))) {
-                    startActivity(new Intent(getActivity(),SettledOrdersActivity.class));
+                    Date d = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+                    String dateStr=sdf.format(d);
+                    Intent intent=new Intent(getActivity(),BetDetailActivity.class);
+                    intent.putExtra("day",dateStr);
+                    getActivity().startActivity(intent);
+//                    startActivity(new Intent(getActivity(),SettledOrdersActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
                     startActivity(new Intent(getActivity(),BetrecordActivity.class));

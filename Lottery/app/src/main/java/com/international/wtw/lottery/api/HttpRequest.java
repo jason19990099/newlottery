@@ -41,6 +41,7 @@ import com.international.wtw.lottery.newJason.BetDetailModel;
 import com.international.wtw.lottery.newJason.BetrecordBydateModel;
 import com.international.wtw.lottery.newJason.GetUserinfoModel;
 import com.international.wtw.lottery.newJason.LoginModel;
+import com.international.wtw.lottery.newJason.LotteryHistoryModel;
 import com.international.wtw.lottery.newJason.MessageDetailModel;
 import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.NoticeListModel;
@@ -197,8 +198,13 @@ public class HttpRequest {
     /**
      * 用户试玩登录
      */
-    public void loginDemo(Object tag, Callback<UserModel> callback) {
-        Call<UserModel> call = mService.loginDemo();
+    public void loginDemo(Object tag , String token,Callback<UserModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<UserModel> call = mService.loginDemo(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -598,13 +604,15 @@ public class HttpRequest {
     /**
      *  查詢今日已结投注记录
      */
-    public void getTodaySettledOrders(Object tag, String token,String GameCode,String ExpectNo, int pageIndex,int pageSize,  HttpCallback<SettledOrdersModel> callback) {
+    public void getTodaySettledOrders(Object tag, String token,String GameCode,String ExpectNo, String beginTime,String endTime,int pageIndex,int pageSize,  HttpCallback<SettledOrdersModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .addParam("GameCode", GameCode)
                 .addParam("ExpectNo", ExpectNo)
+                .addParam("beginTime", beginTime)
+                .addParam("endTime", endTime)
                 .addParam("pageIndex", pageIndex)
                 .addParam("pageSize", pageSize)
                 .build();
@@ -643,6 +651,28 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+    /**
+     *   查询开奖结果
+     */
+    public void getCollectResultByPages(Object tag, String token,String GameCode,String OpenDate,
+           int pageIndex,int pageSize, HttpCallback<LotteryHistoryModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("GameCode", GameCode)
+                .addParam("OpenDate", OpenDate)
+                .addParam("pageIndex",pageIndex)
+                .addParam("pageSize", pageSize)
+                .build();
+        Call<LotteryHistoryModel> call = mService.getCollectResultByPages(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
 
 
 

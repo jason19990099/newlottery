@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.mine.TodaySettledOrdersActivity;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.newJason.BetDetailModel;
+import com.international.wtw.lottery.newJason.SettledOrdersModel;
+
 import java.util.List;
 
-public class BetdetailAdapter extends BaseAdapter {
+public class BetdetailSettledAdapter extends BaseAdapter {
     private Context context;
-    private List<BetDetailModel.DataBean> data;
-    private String day;
-
-    public BetdetailAdapter(Context context,List<BetDetailModel.DataBean> data,String day){
+    private List<SettledOrdersModel.DataBeanX.DataBean> data ;
+    public BetdetailSettledAdapter(Context context, List<SettledOrdersModel.DataBeanX.DataBean> data){
         this.context=context;
         this.data=data;
-        this.day=day;
     }
     @Override
     public int getCount() {
@@ -44,7 +44,7 @@ public class BetdetailAdapter extends BaseAdapter {
         viewHolder viewHolder;
         if (view == null) {
             viewHolder = new viewHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.adapter_betdetail, null);
+            view = LayoutInflater.from(context).inflate(R.layout.adapter_settleddetail, null);
             viewHolder.tv_lotterytype= (TextView) view.findViewById(R.id.tv_lotterytype);
             viewHolder.tv_betnum= (TextView) view.findViewById(R.id.tv_betnum);
             viewHolder.tv_bet_money= (TextView) view.findViewById(R.id.tv_bet_money);
@@ -54,19 +54,10 @@ public class BetdetailAdapter extends BaseAdapter {
         } else {
             viewHolder =(viewHolder) view.getTag();
         }
-        viewHolder.tv_lotterytype.setText(data.get(position).getGameName());
-        viewHolder.tv_betnum.setText(String.valueOf(data.get(position).getCount())+"注");
-        viewHolder.tv_win_money.setText(String.valueOf(data.get(position).getWinLoseAmount())+"元");
+        viewHolder.tv_lotterytype.setText(data.get(position).getGameName()+"\n"+data.get(position).getExpectNo());
+        viewHolder.tv_betnum.setText(String.valueOf(data.get(position).getPlayGroupName()+"\n"+data.get(position).getPlayName()));
         viewHolder.tv_bet_money.setText(String.valueOf(data.get(position).getAmount())+"元");
-        viewHolder.ll_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context,TodaySettledOrdersActivity.class);
-                intent.putExtra(LotteryId.GAME_CODE,data.get(position).getGameCode());
-                intent.putExtra("day",day);
-                context.startActivity(intent);
-            }
-        });
+        viewHolder.tv_win_money.setText(String.valueOf(data.get(position).getWinLoseAmount())+"元");
         return view;
     }
 

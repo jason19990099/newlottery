@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.fragmentnew.bjscpk10;
+package com.international.wtw.lottery.fragment.bjscpk10;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +12,7 @@ import com.international.wtw.lottery.adapter.PK10adapter;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
-import com.international.wtw.lottery.fragmentnew.NewBaseFragment;
+import com.international.wtw.lottery.fragment.NewBaseFragment;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.LogUtil;
 
@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class PK10No6to10Fragment extends NewBaseFragment {
+public class PK10No1to5Fragment extends NewBaseFragment {
     @BindView(R.id.lv_item)
     ListView lvItem;
     Unbinder unbinder;
@@ -44,7 +44,8 @@ public class PK10No6to10Fragment extends NewBaseFragment {
         //找到兩面盤的數據
         int size = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().size();
         for (int i = 0; i < size; i++) {
-            if (pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("no6~10")) {
+            if (pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("no1~5")||
+                    pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("qianzhonghou")) {
                 listPlayGroupBean = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i);
             }
         }
@@ -58,7 +59,7 @@ public class PK10No6to10Fragment extends NewBaseFragment {
     public void onEvent(OpenAndClosedEvent event) {
         LogUtil.e("=======PK10GuanyaheFragment========="+event.getGameCode());
         if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)
-                ||event.getGameCode().equals(LotteryId.MiaosuSaiche)) {
+                ||event.getGameCode().equals(LotteryId.MiaosuSaiche)||event.getGameCode().equals(LotteryId.Miaosusscai)) {
             if (event.isClearSelect()){
                 int size=listPlayGroupBean.getListPlay().size();
                 for (int i=0;i<size;i++){

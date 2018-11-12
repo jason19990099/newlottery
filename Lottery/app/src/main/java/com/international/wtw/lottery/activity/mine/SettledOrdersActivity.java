@@ -16,12 +16,20 @@ import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.newJason.SettledOrdersModel;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ *  今日已结
+ */
 public class SettledOrdersActivity extends NewBaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -46,9 +54,13 @@ public class SettledOrdersActivity extends NewBaseActivity {
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
         String token = SharePreferencesUtil.getString(this, LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getTodaySettledOrders(this, token, "", "", 1, 10, new HttpCallback<SettledOrdersModel>() {
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        String dateStr=sdf.format(d);
+        HttpRequest.getInstance().getTodaySettledOrders(this, token, "", "", dateStr,dateStr,1, 100, new HttpCallback<SettledOrdersModel>() {
             @Override
             public void onSuccess(SettledOrdersModel data) {
+                LogUtil.e("==========data.size()======"+data.getData().getData().size());
                 if (data.getData().getData().size() == 0) {
                     llTitle.setVisibility(View.GONE);
                     ivEmpty.setVisibility(View.VISIBLE);

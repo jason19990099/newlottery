@@ -7,12 +7,8 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.base.Constants;
 import com.international.wtw.lottery.base.LotteryId;
-import com.international.wtw.lottery.utils.LotteryUtil;
-
 import java.util.List;
 
 /**
@@ -71,47 +67,48 @@ public class LotteryPropertyView extends LinearLayout {
                     addPropertyView(property > 0 ? "龙" : "虎");
                 }
                 break;
-//            case Constants.LOTTERY_TYPE.GD_HAPPY_LOTTERY://广东快乐十分
-//            case Constants.LOTTERY_TYPE.CJ_LUCKY_LOTTERY://重庆幸运农场
-//                //总和
-//                addPropertyTitleView("总和", 2);
-//                addPropertyView(sum);
-//                //尾大小
-//                addPropertyTitleView("尾大小", 2);
-//                addPropertyView(Integer.parseInt(sum) % 10 >= 5 ? "尾大" : "尾小");
-//                //1-4球属性
-//                addPropertyTitleView("1-4球", 2);
-//                for (int i = 0; i < 4; i++) {
-//                    int property = Integer.parseInt(numbers.get(i)) - Integer.parseInt(numbers.get(numbers.size() - 1 - i));
-//                    addPropertyView(property > 0 ? "龙" : "虎");
-//                }
-//                break;
-//            case Constants.LOTTERY_TYPE.CJ_LOTTERY://重庆时时彩
-//            case Constants.LOTTERY_TYPE.ROME_LOTTERY://罗马时时彩
-//            case Constants.LOTTERY_TYPE.SPEED_SSC://极速时时彩
-//                //总和
-//                addPropertyTitleView("总和", 2);
-//                addPropertyView(sum);
-//                addPropertyView(Integer.parseInt(sum) >= 23 ? "大" : "小");
-//                addPropertyView(Integer.parseInt(sum) % 2 == 0 ? "双" : "单");
-//                //龙虎
-//                addPropertyTitleView("龙虎", 2);
-//                int property = Integer.parseInt(numbers.get(0)) - Integer.parseInt(numbers.get(4));
-//                if (property > 0) {
-//                    addPropertyView("龙");
-//                } else if (property < 0) {
-//                    addPropertyView("虎");
-//                } else {
-//                    addPropertyView("和");
-//                }
-//                break;
-//            case Constants.LOTTERY_TYPE.LUCKY_28_LOTTERY://PC蛋蛋
-//                //总和(大小单双)
-//                addPropertyTitleView("总和", 0);
-//                addPropertyView(sum);
-//                addPropertyView(Integer.parseInt(sum) >= 14 ? "大" : "小");
-//                addPropertyView(Integer.parseInt(sum) % 2 == 0 ? "双" : "单");
-//                break;
+            case LotteryId.GDKLSF://广东快乐十分
+            case LotteryId.CQXYNC://重庆幸运农场
+                //总和
+                addPropertyTitleView("总和", 2);
+                addPropertyView(sum);
+                //尾大小
+                addPropertyTitleView("尾大小", 2);
+                addPropertyView(Integer.parseInt(sum) % 10 >= 5 ? "尾大" : "尾小");
+                //1-4球属性
+                addPropertyTitleView("1-4球", 2);
+                for (int i = 0; i < 4; i++) {
+                    int property = Integer.parseInt(numbers.get(i)) - Integer.parseInt(numbers.get(numbers.size() - 1 - i));
+                    addPropertyView(property > 0 ? "龙" : "虎");
+                }
+                break;
+            case LotteryId.CQSSC://重庆时时彩
+            case LotteryId.Miaosusscai://秒速时时彩
+            case LotteryId.TJSSC://天津时时彩
+            case LotteryId.XJSSC://天津时时彩
+                //总和
+                addPropertyTitleView("总和", 2);
+                addPropertyView(sum);
+                addPropertyView(Integer.parseInt(sum) >= 23 ? "大" : "小");
+                addPropertyView(Integer.parseInt(sum) % 2 == 0 ? "双" : "单");
+                //龙虎
+                addPropertyTitleView("龙虎", 2);
+                int property = Integer.parseInt(numbers.get(0)) - Integer.parseInt(numbers.get(4));
+                if (property > 0) {
+                    addPropertyView("龙");
+                } else if (property < 0) {
+                    addPropertyView("虎");
+                } else {
+                    addPropertyView("和");
+                }
+                break;
+            case LotteryId.PCDD://PC蛋蛋
+                //总和(大小单双)
+                addPropertyTitleView("总和", 0);
+                addPropertyView(sum);
+                addPropertyView(Integer.parseInt(sum) >= 14 ? "大" : "小");
+                addPropertyView(Integer.parseInt(sum) % 2 == 0 ? "双" : "单");
+                break;
 //            case Constants.LOTTERY_TYPE.JS_QUICK_3://江苏快3
 //                //总和
 //                addPropertyTitleView("总和", 2);

@@ -14,6 +14,7 @@ import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activit
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusaicheActivity;
 import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusscActivity;
+import com.international.wtw.lottery.activity.mine.LotteryHistoryActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -22,6 +23,7 @@ import com.international.wtw.lottery.dialog.MenuPopupWindow;
 import com.international.wtw.lottery.dialog.easypopup.HorizontalGravity;
 import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
 import com.international.wtw.lottery.newJason.GameOpentimeModel2;
+import com.international.wtw.lottery.utils.LotteryUtil2;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.utils.TimeFormatter;
 import com.international.wtw.lottery.widget.MarqueeView;
@@ -75,8 +77,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mAdapter = new BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder>(R.layout.lottery_hanll) {
             @Override
             protected void convert(BaseViewHolder helper, GameOpentimeModel2.DataBean item) {
-                helper.setText(R.id.tv_lotteryname, item.getGameCode());
-
+                helper.setText(R.id.tv_lotteryname, LotteryUtil2.get().getPageTitle(item.getGameCode()));
                 int openTime = (int) (item.getCloseTime() - item.getServerTime());
                 if (openTime > 0) {
                     helper.setText(R.id.tv_lotterytime, "距截止:" + TimeFormatter.seconds2Time(openTime));
@@ -108,31 +109,31 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 if (item == null) {
                     return;
                 }
-//                Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
-//                intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
-//                startActivity(intent);
-                if (null == getActivity())
-                    return;
-                Intent intent = null;
-                switch (item.getGameCode()) {
-                    case LotteryId.Miaosusscai:   //秒速时时彩
-                        intent = new Intent(getActivity(), MiaosusscActivity.class);
-                        intent.putExtra("lotteryname", "秒速时时彩");
-                        break;
-                    case LotteryId.Miaosufeiting:  //秒速飞艇
-                        intent = new Intent(getActivity(), MiaosufeitingActivity.class);
-                        intent.putExtra("lotteryname", "秒速飞艇");
-                        break;
-                    case LotteryId.BJSCPK10:  //北京赛车PK10
-                        intent = new Intent(getActivity(), Bjscpk10Activity.class);
-                        intent.putExtra("lotteryname", "北京赛车PK10");
-                        break;
-                    case LotteryId.MiaosuSaiche:  //秒速赛车
-                        intent = new Intent(getActivity(), MiaosusaicheActivity.class);
-                        intent.putExtra("lotteryname", "秒速赛车");
-                        break;
-                }
-                getActivity().startActivity(intent);
+                Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
+                intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
+                startActivity(intent);
+//                if (null == getActivity())
+//                    return;
+//                Intent intent = null;
+//                switch (item.getGameCode()) {
+//                    case LotteryId.Miaosusscai:   //秒速时时彩
+//                        intent = new Intent(getActivity(), MiaosusscActivity.class);
+//                        intent.putExtra("lotteryname", "秒速时时彩");
+//                        break;
+//                    case LotteryId.Miaosufeiting:  //秒速飞艇
+//                        intent = new Intent(getActivity(), MiaosufeitingActivity.class);
+//                        intent.putExtra("lotteryname", "秒速飞艇");
+//                        break;
+//                    case LotteryId.BJSCPK10:  //北京赛车PK10
+//                        intent = new Intent(getActivity(), Bjscpk10Activity.class);
+//                        intent.putExtra("lotteryname", "北京赛车PK10");
+//                        break;
+//                    case LotteryId.MiaosuSaiche:  //秒速赛车
+//                        intent = new Intent(getActivity(), MiaosusaicheActivity.class);
+//                        intent.putExtra("lotteryname", "秒速赛车");
+//                        break;
+//                }
+//                getActivity().startActivity(intent);
             }
         });
         initListener();
