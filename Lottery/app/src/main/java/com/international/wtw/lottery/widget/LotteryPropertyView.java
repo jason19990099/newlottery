@@ -85,7 +85,7 @@ public class LotteryPropertyView extends LinearLayout {
             case LotteryId.CQSSC://重庆时时彩
             case LotteryId.Miaosusscai://秒速时时彩
             case LotteryId.TJSSC://天津时时彩
-            case LotteryId.XJSSC://天津时时彩
+            case LotteryId.XJSSC://新疆是时时彩
                 //总和
                 addPropertyTitleView("总和", 2);
                 addPropertyView(sum);
@@ -103,6 +103,7 @@ public class LotteryPropertyView extends LinearLayout {
                 }
                 break;
             case LotteryId.PCDD://PC蛋蛋
+            case LotteryId.XYDD://幸运蛋蛋
                 //总和(大小单双)
                 addPropertyTitleView("总和", 0);
                 addPropertyView(sum);

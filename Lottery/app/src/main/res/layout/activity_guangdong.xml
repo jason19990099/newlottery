@@ -30,29 +30,46 @@
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:visibility="gone"
                         android:id="@+id/radio_lmp"
                         style="@style/betting_tab"
                         android:checked="true"
-                        android:text="@string/two_face_betting" />
+                        android:text="两面盘" />
 
                     <RadioButton
-                        android:visibility="gone"
-                        android:id="@+id/radio_gyjh"
+                        android:id="@+id/radio_1"
                         style="@style/betting_tab"
-                        android:text="@string/win_two_three_he" />
+                        android:text="第一球" />
 
                     <RadioButton
-                        android:visibility="gone"
-                        android:id="@+id/radio_1_5"
+                        android:id="@+id/radio_2"
                         style="@style/betting_tab"
-                        android:text="@string/first_five" />
+                        android:text="第二球" />
 
                     <RadioButton
-                        android:visibility="gone"
-                        android:id="@+id/radio_6_10"
+                        android:id="@+id/radio_3"
                         style="@style/betting_tab"
-                        android:text="@string/six_ten" />
+                        android:text="第三球" />
+                    <RadioButton
+                        android:id="@+id/radio_4"
+                        style="@style/betting_tab"
+                        android:text="第四球" />
+                    <RadioButton
+                        android:id="@+id/radio_5"
+                        style="@style/betting_tab"
+                        android:text="第五球" />
+                    <RadioButton
+                        android:id="@+id/radio_6"
+                        style="@style/betting_tab"
+                        android:text="第六球" />
+                    <RadioButton
+                        android:id="@+id/radio_7"
+                        style="@style/betting_tab"
+                        android:text="第7球" />
+                    <RadioButton
+                        android:id="@+id/radio_8"
+                        style="@style/betting_tab"
+                        android:text="第八球" />
+
                 </RadioGroup>
 
                 <FrameLayout

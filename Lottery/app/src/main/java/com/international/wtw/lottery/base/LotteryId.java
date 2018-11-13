@@ -72,6 +72,7 @@ public class LotteryId {
     public static final String TJSSC = "tjssc"; //重庆时时彩
     public static final String XJSSC = "xjssc"; //新疆时时彩
     public static final String PCDD = "pcdd"; //PC蛋蛋
+    public static final String XYDD = "xydd"; //幸运蛋蛋
     public static final String GDKLSF = "gdklsf"; //广东快乐十分
     public static final String CQXYNC = "cqxync"; //广东快乐十分
 

@@ -1,19 +1,14 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery;
-
-
+package com.international.wtw.lottery.activity.lottery.Newlottery.happytime;
 import com.international.wtw.lottery.base.LotteryId;
 
 /**
- * 秒速飞艇
+ * 重庆幸运农场
  */
-public class MiaosufeitingActivity extends  Bjscpk10Activity{
-
+public class ChongqingFarmActivity  extends Guangdonghappy10Activity {
     @Override
     public String getLotteryType() {
-        return LotteryId.Miaosufeiting;
+        return LotteryId.CQXYNC;
     }
-
-
 
     @Override
     public String getLotteryname() {

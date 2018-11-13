@@ -28,6 +28,7 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
     private PK10RateModel.DataBean.ListPlayGroupBean listPlayGroupBean;
     private PK10adapter adapter;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
         //找到兩面盤的數據
         int size = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().size();
         for (int i = 0; i < size; i++) {
-            if (pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("liangmianpan")) {
+            if (pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("liangmianpan")
+                    || pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i).getCode().equals("hunhe")) {
                 listPlayGroupBean = pk10RateEvent.getPk10Rate().getData().get(0).getListPlayGroup().get(i);
             }
         }
@@ -53,8 +55,8 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void onEvent(OpenAndClosedEvent event) {
-        if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)
-                ||event.getGameCode().equals(LotteryId.MiaosuSaiche)||event.getGameCode().equals(LotteryId.Miaosusscai)) {
+//        if (event.getGameCode().equals(LotteryId.BJSCPK10)||event.getGameCode().equals(LotteryId.Miaosufeiting)
+//                ||event.getGameCode().equals(LotteryId.MiaosuSaiche)||event.getGameCode().equals(LotteryId.Miaosusscai)) {
             if (event.isClearSelect()){
                 int size=listPlayGroupBean.getListPlay().size();
                 for (int i=0;i<size;i++){
@@ -68,7 +70,7 @@ public class PK10LiangmianpanFragment extends NewBaseFragment {
             lvItem.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
-    }
+//    }
 
     @Override
     public void onDestroyView() {

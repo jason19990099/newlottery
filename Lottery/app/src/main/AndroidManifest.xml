@@ -91,37 +91,52 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".activity.lottery.Newlottery.Bjscpk10Activity"
+            android:name=".activity.lottery.Newlottery.saiche.Bjscpk10Activity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.lottery.Newlottery.ChongqingsscActivity"
+            android:name=".activity.lottery.Newlottery.ssc.ChongqingsscActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.lottery.Newlottery.MiaosusaicheActivity"
+            android:name=".activity.lottery.Newlottery.saiche.MiaosusaicheActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".activity.lottery.Newlottery.MiaosusscActivity"
+            android:name=".activity.lottery.Newlottery.ssc.MiaosusscActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.lottery.Newlottery.TJSSCActivity"
+            android:name=".activity.lottery.Newlottery.ssc.TJSSCActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.lottery.Newlottery.XJSSCActivity"
+            android:name=".activity.lottery.Newlottery.ssc.XJSSCActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".activity.lottery.Newlottery.MiaosufeitingActivity"
+            android:name=".activity.lottery.Newlottery.saiche.MiaosufeitingActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.dandan.PCDDActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.dandan.XYDDActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.Newlottery.happytime.Guangdonghappy10Activity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-
+        <activity
+            android:name=".activity.lottery.Newlottery.happytime.ChongqingFarmActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.login.RegisterActivity"
             android:launchMode="singleTask"

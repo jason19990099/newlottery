@@ -1,7 +1,12 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery;
+package com.international.wtw.lottery.activity.lottery.Newlottery.ssc;
 
+import com.international.wtw.lottery.activity.lottery.Newlottery.saiche.Bjscpk10Activity;
 import com.international.wtw.lottery.base.LotteryId;
 
+
+/**
+ * 重庆时时彩
+ */
 public class ChongqingsscActivity extends Bjscpk10Activity {
     @Override
     public String getLotteryType() {

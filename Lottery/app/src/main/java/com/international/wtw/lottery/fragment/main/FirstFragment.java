@@ -26,13 +26,17 @@ import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.Bjscpk10Activity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.ChongqingsscActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosufeitingActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusaicheActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.MiaosusscActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.TJSSCActivity;
-import com.international.wtw.lottery.activity.lottery.Newlottery.XJSSCActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.happytime.ChongqingFarmActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.happytime.Guangdonghappy10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.saiche.Bjscpk10Activity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.ssc.ChongqingsscActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.saiche.MiaosufeitingActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.saiche.MiaosusaicheActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.ssc.MiaosusscActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.dandan.PCDDActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.ssc.TJSSCActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.ssc.XJSSCActivity;
+import com.international.wtw.lottery.activity.lottery.Newlottery.dandan.XYDDActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.adapter.base.NewRecyclerViewBaseAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -336,7 +340,16 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 intent = new Intent(getActivity(), XJSSCActivity.class);
                 break;
             case LotteryId.PCDD:  //PC蛋蛋
-                intent = new Intent(getActivity(), XJSSCActivity.class);
+                intent = new Intent(getActivity(), PCDDActivity.class);
+                break;
+            case LotteryId.XYDD:  //PC蛋蛋
+                intent = new Intent(getActivity(), XYDDActivity.class);
+                break;
+            case LotteryId.GDKLSF:  //PC蛋蛋
+                intent = new Intent(getActivity(), Guangdonghappy10Activity.class);
+                break;
+            case LotteryId.CQXYNC:  //PC蛋蛋
+                intent = new Intent(getActivity(), ChongqingFarmActivity.class);
                 break;
         }
         if (null==intent)
