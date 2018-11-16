@@ -39,6 +39,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
+import com.international.wtw.lottery.newJason.PaymentMethodModel;
 import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
@@ -253,10 +254,11 @@ public interface ApiService {
     Call<LotteryHistoryModel> getCollectResultByPages(@Body RequestBody body);
 
 
-
-
-
-
+    /**
+     *  获取支付方式
+     */
+    @POST("User/GetPaymentMethod")
+    Call<PaymentMethodModel> getPaymentMethod(@Body RequestBody body);
 
 
 

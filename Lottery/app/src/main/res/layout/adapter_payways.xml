@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:id="@+id/rl_all"
+    android:background="@color/white_ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:id="@+id/iv_pay_type"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/beijing"
+        />
+
+
+
+       <TextView
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="@dimen/dimen_10"
+          android:layout_toRightOf="@+id/iv_pay_type"
+           android:textColor="@color/black"
+           android:id="@+id/tv_pay_method"
+           android:textSize="@dimen/sp_16"
+           android:text="支付方式"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+
+
+
+    <ImageView
+        android:layout_marginRight="@dimen/dimen_10"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/right_arrow"
+        />
+
+
+
+</RelativeLayout>

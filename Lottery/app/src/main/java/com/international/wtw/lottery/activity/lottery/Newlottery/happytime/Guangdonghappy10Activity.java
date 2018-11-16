@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.lottery.Newlottery.BaseActivity;
 import com.international.wtw.lottery.api.HttpCallback;
@@ -21,19 +20,13 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.bjscpk10.GuangdonghappyqiuFragment;
-import com.international.wtw.lottery.fragment.bjscpk10.PK10GuanyaheFragment;
 import com.international.wtw.lottery.fragment.bjscpk10.PK10LiangmianpanFragment;
-import com.international.wtw.lottery.fragment.bjscpk10.PK10No1to5Fragment;
-import com.international.wtw.lottery.fragment.bjscpk10.PK10No6to10Fragment;
 import com.international.wtw.lottery.newJason.PK10RateModel;
-import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.ClearableEditText;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

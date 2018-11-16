@@ -47,6 +47,7 @@ import com.international.wtw.lottery.newJason.MessageModel;
 import com.international.wtw.lottery.newJason.NoticeListModel;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.newJason.PayinRecordMoudel;
+import com.international.wtw.lottery.newJason.PaymentMethodModel;
 import com.international.wtw.lottery.newJason.PersonalModel;
 import com.international.wtw.lottery.newJason.SettledOrdersModel;
 import com.international.wtw.lottery.newJason.WeekdateModel;
@@ -672,8 +673,19 @@ public class HttpRequest {
     }
 
 
-
-
+    /**
+     * 获取支付方式
+     */
+    public void getPaymentMethod(Object tag, String token, HttpCallback<PaymentMethodModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .build();
+        Call<PaymentMethodModel> call = mService.getPaymentMethod(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 
