@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery.saiche;
+package com.international.wtw.lottery.activity.lottery.dandan;
 
 
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.lottery.Newlottery.BaseActivity;
+import com.international.wtw.lottery.activity.lottery.BaseActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -23,8 +23,6 @@ import com.international.wtw.lottery.event.OpenAndClosedEvent;
 import com.international.wtw.lottery.event.Pk10RateEvent;
 import com.international.wtw.lottery.fragment.bjscpk10.PK10GuanyaheFragment;
 import com.international.wtw.lottery.fragment.bjscpk10.PK10LiangmianpanFragment;
-import com.international.wtw.lottery.fragment.bjscpk10.PK10No1to5Fragment;
-import com.international.wtw.lottery.fragment.bjscpk10.PK10No6to10Fragment;
 import com.international.wtw.lottery.newJason.PK10RateModel;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 
@@ -36,9 +34,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 北京赛车
+ * PC蛋蛋
  */
-public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class PCDDActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.textView_lotteryTypeName)
     TextView textViewLotteryTypeName;
@@ -71,9 +69,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private int current = 0;
     private PK10LiangmianpanFragment fragment1;
     private PK10GuanyaheFragment fragment2;
-    private PK10No1to5Fragment fragment3;
-    private PK10No6to10Fragment fragment4;
-
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;
@@ -89,28 +84,15 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         getPK10rate();
 
         radioLmp.setVisibility(View.VISIBLE);
-        radioLmp.setText("两面盘");
+        radioLmp.setText("混合");
         radioGyjh.setVisibility(View.VISIBLE);
-        radioGyjh.setText("冠亚合");
-        radio15.setVisibility(View.VISIBLE);
-        radio610.setVisibility(View.VISIBLE);
-        if (getLotteryType().equals(LotteryId.Miaosusscai)||getLotteryType().equals(LotteryId.CQSSC)
-                ||getLotteryType().equals(LotteryId.TJSSC)||getLotteryType().equals(LotteryId.XJSSC)){
-            radio15.setText("前中后");
-            radio610.setText("斗牛");
-        }else {
-            radio15.setText("1-5名");
-            radio610.setText("6-10名");
-        }
-
-
-
+        radioGyjh.setText("特码");
 
     }
 
     @Override
     public String getLotteryType() {
-        return LotteryId.BJSCPK10;
+        return LotteryId.PCDD;
     }
 
     @Override
@@ -140,8 +122,8 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
      * 获取PK10的投注数据
      */
     private void getPK10rate() {
-        String token = SharePreferencesUtil.getString(Bjscpk10Activity.this, LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getPlayRate(Bjscpk10Activity.this, token, getLotteryType(), new HttpCallback<PK10RateModel>() {
+        String token = SharePreferencesUtil.getString(PCDDActivity.this, LotteryId.TOKEN, "");
+        HttpRequest.getInstance().getPlayRate(PCDDActivity.this, token, getLotteryType(), new HttpCallback<PK10RateModel>() {
             @Override
             public void onSuccess(PK10RateModel data) {
                 EventBus.getDefault().postSticky(new Pk10RateEvent(data));
@@ -163,12 +145,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
             case R.id.radio_gyjh:
                 current = 1;
                 break;
-            case R.id.radio_1_5:
-                current = 2;
-                break;
-            case R.id.radio_6_10:
-                current = 3;
-                break;
+
         }
         showView(current);
     }
@@ -197,22 +174,8 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
                     transaction.show(fragment2);
                 }
                 break;
-            case 2:
-                if (fragment3 == null) {
-                    fragment3 = new PK10No1to5Fragment();
-                    transaction.add(R.id.frameLayout, fragment3);
-                } else {
-                    transaction.show(fragment3);
-                }
-                break;
-            case 3:
-                if (fragment4 == null) {
-                    fragment4 = new PK10No6to10Fragment();
-                    transaction.add(R.id.frameLayout, fragment4);
-                } else {
-                    transaction.show(fragment4);
-                }
-                break;
+
+
         }
         transaction.commit();
     }
@@ -225,15 +188,7 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
         if (fragment2 != null) {
             fragmentTransaction.hide(fragment2);
         }
-        if (fragment3 != null) {
-            fragmentTransaction.hide(fragment3);
-        }
-        if (fragment4 != null) {
-            fragmentTransaction.hide(fragment4);
-        }
+
     }
-
-
-
 
 }

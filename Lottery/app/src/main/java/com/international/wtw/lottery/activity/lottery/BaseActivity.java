@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery;
+package com.international.wtw.lottery.activity.lottery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,8 +31,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**

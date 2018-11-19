@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery.happytime;
+package com.international.wtw.lottery.activity.lottery.happytime;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.lottery.Newlottery.BaseActivity;
+import com.international.wtw.lottery.activity.lottery.BaseActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;

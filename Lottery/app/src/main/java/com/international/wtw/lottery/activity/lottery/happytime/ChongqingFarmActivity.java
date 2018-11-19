@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery.happytime;
+package com.international.wtw.lottery.activity.lottery.happytime;
 import com.international.wtw.lottery.base.LotteryId;
 
 /**

@@ -1,6 +1,5 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery.saiche;
+package com.international.wtw.lottery.activity.lottery.saiche;
 
-import com.international.wtw.lottery.activity.lottery.Newlottery.saiche.Bjscpk10Activity;
 import com.international.wtw.lottery.base.LotteryId;
 
 /**

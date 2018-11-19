@@ -14,7 +14,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.lottery.BetActivity;
-import com.international.wtw.lottery.activity.lottery.Quick3Activity;
 import com.international.wtw.lottery.api.ArrayCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.app.BaseApplication;
@@ -280,9 +279,6 @@ public class BetDetailDialog extends BaseNiceDialog implements View.OnClickListe
         if (activity instanceof BetActivity) {
             BetActivity betActivity = (BetActivity) activity;
             betActivity.clearSelection();
-        } else if (activity instanceof Quick3Activity) {
-            Quick3Activity activity1 = (Quick3Activity) activity;
-            activity1.clearSelection();
         }
     }
 

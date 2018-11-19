@@ -1,4 +1,4 @@
-package com.international.wtw.lottery.activity.lottery.Newlottery.dandan;
+package com.international.wtw.lottery.activity.lottery.dandan;
 
 import com.international.wtw.lottery.base.LotteryId;
 
