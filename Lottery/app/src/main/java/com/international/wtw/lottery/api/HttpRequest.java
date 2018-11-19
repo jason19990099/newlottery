@@ -7,17 +7,10 @@ import android.text.TextUtils;
 import com.google.gson.JsonElement;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.BaseApplication;
-import com.international.wtw.lottery.json.AGChangeBean;
-import com.international.wtw.lottery.json.AgAccountBalance;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.BetResultBean;
-import com.international.wtw.lottery.json.HistoryResult;
 import com.international.wtw.lottery.json.HomeResultBean;
-import com.international.wtw.lottery.json.LotterySortingModel;
 import com.international.wtw.lottery.json.LotteryVersion;
-import com.international.wtw.lottery.json.LotteryWebsite;
-import com.international.wtw.lottery.json.LunbotuBean;
-import com.international.wtw.lottery.json.MessageBean;
 import com.international.wtw.lottery.json.MoneyInfo;
 import com.international.wtw.lottery.json.MultiBetItem;
 import com.international.wtw.lottery.json.NewOddsBean;
@@ -698,17 +691,6 @@ public class HttpRequest {
 
 
 
-    /**
-     * 获取Banner及公告数据
-     */
-    public void getBanner(Object tag, Callback<LunbotuBean> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(OID, getOid())
-                .build();
-        Call<LunbotuBean> call = mService.getBanner(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
     public void getPromotions(Object tag, int num, Callback<PreferentialBean> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -1013,57 +995,10 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 获取账户和AG余额
-     */
-    public void requestAccountAndAGBalance(Object tag, HttpCallback<AgAccountBalance> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(OID, getOid())
-                .build();
-        Call<AgAccountBalance> call = mService.requestAccountAndAGBalance(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
 
-    public void getLotteryHistory(Object tag, int gameCode, int pageIndex, int pageSize, String date,
-                                  HttpCallback<HistoryResult> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(GAME_CODE, gameCode)
-                .addParam("page", pageIndex)
-                .addParam("number", pageSize)
-                .addParam("date", date)
-                .build();
-        Call<HistoryResult> call = mService.getLotteryHistory(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
-    /**
-     * 账户和AG余额互相转换
-     */
-    public void agQuotaConversion(Object tag, String amount, String type, HttpCallback<AGChangeBean> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(OID, getOid())
-                .addParam("amount", amount)
-                .addParam("transfer_io", type)
-                .build();
-        Call<AGChangeBean> call = mService.agQuotaConversion(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
-    /**
-     * 获取AG链接
-     */
-    public void getAgGameLink(Object tag, int type, HttpCallback<AGChangeBean> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(OID, getOid())
-                .build();
-        Call<AGChangeBean> call = mService.getAgGameLink(type, body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
     public void getLoginNotice(Object tag, HttpCallback<Notice> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -1100,19 +1035,6 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 新闻中心
-     *
-     * @param oid 用户id
-     */
-    public void getNewsCenter(Object tag, String oid, HttpCallback<LunbotuBean> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(LotteryId.OID, oid)
-                .build();
-        Call<LunbotuBean> call = mService.getNewsCenter(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
     /**
      * 个人资料
@@ -1147,19 +1069,7 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 我的消息
-     *
-     * @param oid 用户id
-     */
-    public void getMyMessage(Object tag, String oid, HttpCallback<MessageBean> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(LotteryId.OID, oid)
-                .build();
-        Call<MessageBean> call = mService.getMyMessage(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
+
 
     /**
      * 下注记录-未结数
@@ -1235,18 +1145,5 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 首页彩种排序
-     */
-    public void getLotterySorting(Object tag, Callback<LotterySortingModel> callback) {
-        Call<LotterySortingModel> call = mService.getLotterySorting();
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
-    public void getLotteryWebsite(Object tag, Callback<LotteryWebsite> callback) {
-        Call<LotteryWebsite> call = mService.getLotteryWebsite();
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 }

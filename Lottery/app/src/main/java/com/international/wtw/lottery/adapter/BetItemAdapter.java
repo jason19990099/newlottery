@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.lottery.PK10Activity;
 import com.international.wtw.lottery.json.NewOddsBean;
 import java.util.List;
 

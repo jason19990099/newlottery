@@ -1,8 +1,6 @@
 package com.international.wtw.lottery.api;
 
 import com.google.gson.JsonElement;
-import com.international.wtw.lottery.json.AGChangeBean;
-import com.international.wtw.lottery.json.AgAccountBalance;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.BetRecord;
 import com.international.wtw.lottery.json.HistoryResult;
@@ -373,11 +371,7 @@ public interface ApiService {
     Call<BetRecord> requestBetRecord(@Body RequestBody body);
 
 
-    /**
-     * 获取账户和AG余额
-     */
-    @POST("aginfo/getAgInfo")
-    Call<AgAccountBalance> requestAccountAndAGBalance(@Body RequestBody body);
+
 
 
     /**
@@ -392,20 +386,6 @@ public interface ApiService {
     @POST("user/getResult")
     Call<HistoryResult> getLotteryHistory(@Body RequestBody body);
 
-
-    /**
-     * 账户和AG余额互相转换
-     */
-    @POST("aginfo/agQuotaConversion")
-    Call<AGChangeBean> agQuotaConversion(@Body RequestBody body);
-
-
-    /**
-     * 账户和AG余额互相转换
-     */
-    @POST("aginfo/getAgGameLink/{type}")
-    Call<AGChangeBean> getAgGameLink(@Path("type") int type, @Body RequestBody body);
-
     @POST("user/getLoginNotice")
     Call<Notice> getLoginNotice(@Body RequestBody body);
 
@@ -414,18 +394,12 @@ public interface ApiService {
 
     /**
      * 新闻中心
-     *
-     * @param body
-     * @return
      */
     @POST("user/getIndexContent")
     Call<LunbotuBean> getNewsCenter(@Body RequestBody body);
 
     /**
      * 个人资料
-     *
-     * @param body
-     * @return
      */
     @POST("user/getPersonalCenter")
     Call<PersonalBean> getPersonalData(@Body RequestBody body);
@@ -434,9 +408,6 @@ public interface ApiService {
 
     /**
      * 修改支付密码
-     *
-     * @param body
-     * @return
      */
     @POST("user/info")
     Call<BaseModel> getPayPassword(@Body RequestBody body);
@@ -477,15 +448,5 @@ public interface ApiService {
     @POST("getinfo/getMissedOrHasClosedBet")
     Call<SummaryDetailsBean> getOutStandHave(@Body RequestBody body);
 
-    /**
-     * 首页彩种排序
-     */
-    @GET("systems/game_sort")
-    Call<LotterySortingModel> getLotterySorting();
 
-    /**
-     * 获取开奖网链接
-     */
-    @GET("systems/openWebsiteUrl")
-    Call<LotteryWebsite> getLotteryWebsite();
 }

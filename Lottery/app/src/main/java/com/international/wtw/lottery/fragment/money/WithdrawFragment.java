@@ -23,7 +23,6 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
-import com.international.wtw.lottery.json.AgAccountBalance;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.MoneyInfo;
 import com.international.wtw.lottery.newJason.BankcardsModel;
@@ -69,7 +68,6 @@ public class WithdrawFragment extends NewBaseFragment {
     private String mBankcardId;
     private String mAmount;
     private String mPayPassword;
-    private AgAccountBalance.BalanceBean agInfo;
 
     public static WithdrawFragment newInstance(String gameName) {
         WithdrawFragment fragment = new WithdrawFragment();
@@ -211,11 +209,6 @@ public class WithdrawFragment extends NewBaseFragment {
         }
     }
 
-    @Subscribe
-    public void onEvent(AgAccountBalance.BalanceBean bean) {
-        agInfo = bean;
-//        mTvAccountBalance.setText(String.format(Locale.US, "(%s余额%.2f)", mGameName, bean.getAgBalance()));
-    }
 
     @OnClick({R.id.rl_add_bankcard, R.id.btn_confirm})
     public void onViewClicked(View view) {

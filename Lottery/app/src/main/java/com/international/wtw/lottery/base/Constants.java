@@ -2,8 +2,8 @@ package com.international.wtw.lottery.base;
 
 
 public class Constants {
-    public static final String BASE_URL = "http://22660.vip";//此行链接不允许改动
-//public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许改动
+//    public static final String BASE_URL = "http://22660.vip";//此行链接不允许改动
+public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许改动
 
     public static final String GAME_WEBSITE = "http://wap.alcp66.com/#/todayRule";//游戏规则
     public static final String USER_MSGBYID = "user/getMsgById";//消息详情
