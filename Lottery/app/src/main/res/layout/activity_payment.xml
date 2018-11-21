@@ -4,4 +4,61 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+
+    <include layout="@layout/activity_lottery_title" />
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_56"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:background="@drawable/shape_solid_white_stroke_gray_corners_5dp"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/dimen_10"
+        android:paddingStart="@dimen/dimen_10">
+
+
+
+        <EditText
+            android:id="@+id/et_recharge_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:background="@null"
+            android:hint="@string/input_amount"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textColor="@color/gray_4c4c4c"
+            android:textColorHint="@color/text_hint"
+            android:textSize="@dimen/sp_18"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_56"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:background="@drawable/shape_solid_white_stroke_gray_corners_5dp"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/dimen_10"
+        android:paddingStart="@dimen/dimen_10">
+
+
+
+        <TextView
+            android:text="请选择"
+            android:id="@+id/tv_selectpaystyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:hint="@string/input_amount"
+            android:textColor="@color/black_5151"
+            android:textColorHint="@color/text_hint"
+            android:textSize="@dimen/sp_18"/>
+    </LinearLayout>
+
 </LinearLayout>

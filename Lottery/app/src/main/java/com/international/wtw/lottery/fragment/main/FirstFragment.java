@@ -27,6 +27,7 @@ import com.international.wtw.lottery.activity.first.InfoDetailActivity;
 import com.international.wtw.lottery.activity.first.PreferentialActivity;
 import com.international.wtw.lottery.activity.login.RegisterActivity;
 import com.international.wtw.lottery.activity.lottery.happytime.ChongqingFarmActivity;
+import com.international.wtw.lottery.activity.lottery.happytime.GD11X5Activity;
 import com.international.wtw.lottery.activity.lottery.happytime.Guangdonghappy10Activity;
 import com.international.wtw.lottery.activity.lottery.saiche.Bjscpk10Activity;
 import com.international.wtw.lottery.activity.lottery.ssc.ChongqingsscActivity;
@@ -342,15 +343,20 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             case LotteryId.PCDD:  //PC蛋蛋
                 intent = new Intent(getActivity(), PCDDActivity.class);
                 break;
-            case LotteryId.XYDD:  //PC蛋蛋
+            case LotteryId.XYDD:  //幸运蛋蛋
                 intent = new Intent(getActivity(), XYDDActivity.class);
                 break;
-            case LotteryId.GDKLSF:  //PC蛋蛋
+            case LotteryId.GDKLSF:  //广东快乐十分
                 intent = new Intent(getActivity(), Guangdonghappy10Activity.class);
                 break;
-            case LotteryId.CQXYNC:  //PC蛋蛋
+            case LotteryId.CQXYNC:  //重庆幸运农场
                 intent = new Intent(getActivity(), ChongqingFarmActivity.class);
                 break;
+            case LotteryId.GD11X5:  //广东11选5
+                intent = new Intent(getActivity(), GD11X5Activity.class);
+                break;
+
+
         }
         if (null==intent)
             return;

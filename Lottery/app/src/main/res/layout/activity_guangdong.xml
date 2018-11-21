@@ -64,7 +64,7 @@
                     <RadioButton
                         android:id="@+id/radio_7"
                         style="@style/betting_tab"
-                        android:text="第7球" />
+                        android:text="第七球" />
                     <RadioButton
                         android:id="@+id/radio_8"
                         style="@style/betting_tab"

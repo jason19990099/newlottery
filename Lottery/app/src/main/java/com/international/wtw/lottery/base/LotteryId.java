@@ -75,5 +75,8 @@ public class LotteryId {
     public static final String XYDD = "xydd"; //幸运蛋蛋
     public static final String GDKLSF = "gdklsf"; //广东快乐十分
     public static final String CQXYNC = "cqxync"; //广东快乐十分
+    public static final String GD11X5 = "gd11x5";
+
+
 
 }

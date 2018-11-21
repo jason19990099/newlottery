@@ -69,6 +69,7 @@ public class LotteryPropertyView extends LinearLayout {
                 break;
             case LotteryId.GDKLSF://广东快乐十分
             case LotteryId.CQXYNC://重庆幸运农场
+            case LotteryId.GD11X5://广东11选5
                 //总和
                 addPropertyTitleView("总和", 2);
                 addPropertyView(sum);

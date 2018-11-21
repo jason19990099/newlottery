@@ -102,10 +102,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
             radio15.setText("1-5名");
             radio610.setText("6-10名");
         }
-
-
-
-
     }
 
     @Override

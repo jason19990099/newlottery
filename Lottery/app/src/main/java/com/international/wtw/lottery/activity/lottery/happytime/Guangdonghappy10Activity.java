@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -78,16 +79,12 @@ public class Guangdonghappy10Activity extends BaseActivity implements RadioGroup
     Button llBottomRemove;
     @BindView(R.id.btn_bet)
     Button btnBet;
-
     private int current = 0;
     private PK10LiangmianpanFragment fragment_liangmianpan;
     private GuangdonghappyqiuFragment fragment1,fragment2,fragment3,fragment4,fragment5,fragment6,fragment7,fragment8;
-
-
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +93,11 @@ public class Guangdonghappy10Activity extends BaseActivity implements RadioGroup
         betbjpk10TabRadioGroup.setOnCheckedChangeListener(this);
         mFragmentManager = getSupportFragmentManager();
         onCheckedChanged(betbjpk10TabRadioGroup, R.id.radio_lmp);
+        if (getLotteryType().equals(LotteryId.GD11X5)){
+            radio6.setVisibility(View.GONE);
+            radio7.setVisibility(View.GONE);
+            radio8.setVisibility(View.GONE);
+        }
         getPK10rate();
     }
 

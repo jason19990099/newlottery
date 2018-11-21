@@ -63,7 +63,7 @@ public class PaywayAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent  intent=new Intent(context,PaymentActivity.class);
-                intent.putExtra("data",  data.get(position));
+                intent.putExtra("paydata",  data.get(position));
                 context.startActivity(intent);
             }
         });

@@ -82,7 +82,6 @@ public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLay
                 if (mSwipeRefreshLayout != null && mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
-
                 paywayAdapter=new PaywayAdapter(getActivity(),data.getData());
                 listPayways.setAdapter(paywayAdapter);
                 paywayAdapter.notifyDataSetChanged();
@@ -96,7 +95,6 @@ public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLay
                 View emptyView = LayoutInflater.from(mActivity).inflate(R.layout.layout_empty_view, null);
                 TextView tvNotice = (TextView) emptyView.findViewById(R.id.tv_error);
                 tvNotice.setText(errorMsg);
-
             }
         });
 
