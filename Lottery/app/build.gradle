@@ -99,6 +99,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
 }
 repositories {
     mavenCentral()

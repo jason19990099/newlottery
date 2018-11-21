@@ -190,11 +190,7 @@ public interface ApiService {
     @POST("Game/GetCollectResult")
     Call<LoginModel> getCollectResult(@Body RequestBody body);
 
-    /**
-     * 充值
-     */
-    @POST("User/Recharge")
-    Call<LoginModel> recharge(@Body RequestBody body);
+
 
     /**
      *  提现
@@ -259,10 +255,25 @@ public interface ApiService {
     Call<PaymentMethodModel> getPaymentMethod(@Body RequestBody body);
 
 
+    /**
+     * 充值
+     */
+    @POST("User/Recharge")
+    Call<LoginModel> recharge(@Body RequestBody body);
 
 
+    /**
+     * 手机app请求第三方支付充值
+     */
+    @POST("payment/PhoneDeposit")
+    Call<LoginModel> phoneDeposit(@Body RequestBody body);
 
 
+    /**
+     * 手机app请求第三方二维码充值
+     */
+    @POST("payment/PhoneQrcode")
+    Call<LoginModel> PhoneQrcode(@Body RequestBody body);
 
 
 

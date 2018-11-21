@@ -505,12 +505,16 @@ public class HttpRequest {
     /**
      * 充值
      */
-    public void recharge(Object tag, String token, String amount, HttpCallback<LoginModel> callback) {
+    public void recharge(Object tag, String token, String amount,String PaymentModeCode,String  PaymentMethodCode,
+                         String BankCode,HttpCallback<LoginModel> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(LotteryId.TOKEN, token)
                 .addParam("sourcetype", LotteryId.sourcetype)
                 .addParam("version", LotteryId.version)
                 .addParam("amount", amount)
+                .addParam("PaymentModeCode", PaymentModeCode)
+                .addParam("PaymentMethodCode", PaymentMethodCode)
+                .addParam("BankCode", BankCode)
                 .build();
         Call<LoginModel> call = mService.recharge(body);
         putCall(tag, call);
@@ -681,9 +685,36 @@ public class HttpRequest {
     }
 
 
+    /**
+     * 手机app请求第三方充值
+     */
+    public void phoneDeposit(Object tag, String token,String orderNo, HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("orderNo", orderNo)
+                .build();
+        Call<LoginModel> call = mService.phoneDeposit(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
-
+    /**
+     * 手机app请求第三方充值
+     */
+    public void PhoneQrcode(Object tag, String token,String orderNo, HttpCallback<LoginModel> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(LotteryId.TOKEN, token)
+                .addParam("sourcetype", LotteryId.sourcetype)
+                .addParam("version", LotteryId.version)
+                .addParam("orderNo", orderNo)
+                .build();
+        Call<LoginModel> call = mService.PhoneQrcode(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 //======================================================================================================================
 
 
