@@ -380,7 +380,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED"/>
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
@@ -458,7 +457,7 @@
         <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
         <meta-data
             android:name="JPUSH_CHANNEL"
-            android:value="ali"/>
+            android:value="aigoucai"/>
         <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"

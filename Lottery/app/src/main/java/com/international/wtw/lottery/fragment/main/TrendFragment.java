@@ -245,7 +245,6 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         for (int i = 0; i < list.size(); i++) {
             GameOpentimeModel2.DataBean item = list.get(i);
             openTime[i] = (int) (item.getCloseTime() - item.getServerTime());
-
         }
         //倒计时Runnable
         mCountDownAction = new Runnable() {

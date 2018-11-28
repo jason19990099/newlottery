@@ -19,7 +19,6 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
-import com.international.wtw.lottery.activity.mine.WebViewActivity;
 import com.international.wtw.lottery.activity.mine.WebViewActivity2;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
@@ -29,12 +28,8 @@ import com.international.wtw.lottery.newJason.LoginModel;
 import com.international.wtw.lottery.newJason.PaymentMethodModel;
 import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-import com.international.wtw.lottery.zxing.QRCode;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.international.wtw.lottery.activity.mine.WebViewActivity.EXTRA_WEB_URL;
@@ -83,11 +78,11 @@ public class PaymentActivity extends NewBaseActivity {
                 options2Items.add(arrayList);
             }
         }
-
+        LogUtil.e("==========="+new Gson().toJson(dataBean));
         initOptionPicker();
         textViewLotteryTypeName.setText(dataBean.getName());
 
-        LogUtil.e("==========="+new Gson().toJson(dataBean));
+
 
     }
 
@@ -118,7 +113,7 @@ public class PaymentActivity extends NewBaseActivity {
         String PaymentModeCode =dataBean.getCode();
         String PaymentMethodCode= dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getCode();
         String token = SharePreferencesUtil.getString(getApplicationContext(), LotteryId.TOKEN, "");
-        String BankCode= dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getListPaymentMethodBank().get(options12).getPaymentBank().getCode();
+        String BankCode= dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getId()+"";
         HttpRequest.getInstance().recharge(this, token, etRechargeAmount.getText().toString(), PaymentModeCode, PaymentMethodCode,BankCode, new HttpCallback<LoginModel>() {
             @Override
             public void onSuccess(LoginModel data) {
@@ -180,8 +175,8 @@ public class PaymentActivity extends NewBaseActivity {
                 options12 = options2;
                 tvMoneyLimit.setVisibility(View.VISIBLE);
                 tvMoneyLimit.setText("充值范围:"+dataBean.getListPaymentModePaymentMethod().get(options1).getPaymentMethod().getMinAmount()+"~"+dataBean.getListPaymentModePaymentMethod().get(options1).getPaymentMethod().getMaxAmount());
-                tvSelectpaystyle.setText(dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getName() + "--" +
-                        dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getListPaymentMethodBank().get(options12).getPaymentBank().getName());
+                tvSelectpaystyle.setText(dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getName() + "--" );
+//                        dataBean.getListPaymentModePaymentMethod().get(options11).getPaymentMethod().getListPaymentMethodBank().get(options12).getPaymentBank().getName());
             }
         })
                 .setTitleText(dataBean.getName())
@@ -196,20 +191,20 @@ public class PaymentActivity extends NewBaseActivity {
                 .setTextColorCenter(Color.BLACK)
                 .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .setLabels("省", "市", "区")
+                .setLabels("", "", "")
                 .setBackgroundId(0x00000000) //设置外部遮罩颜色
                 .setOptionsSelectChangeListener(new OnOptionsSelectChangeListener() {
                     @Override
                     public void onOptionsSelectChanged(int options1, int options2, int options3) {
-                        String str = "options1: " + options1 + "\noptions2: " + options2 + "\noptions3: " + options3;
-                        Toast.makeText(PaymentActivity.this, str, Toast.LENGTH_SHORT).show();
+                        String str = "options1: " + options1 + "\noptions2: " + options2 ;
+                        LogUtil.e("=======str======="+str);
                     }
                 })
                 .build();
 
 //        pvOptions.setSelectOptions(1,1);
-        /*pvOptions.setPicker(options1Items);//一级选择器*/
-        pvOptions.setPicker(options1Items, options2Items);//二级选择器
+        pvOptions.setPicker(options1Items);//一级选择器*/
+//        pvOptions.setPicker(options1Items, options2Items);//二级选择器
         /*pvOptions.setPicker(options1Items, options2Items,options3Items);//三级选择器*/
     }
 

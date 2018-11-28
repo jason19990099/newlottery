@@ -34,7 +34,7 @@
                 android:layout_marginStart="@dimen/dimen_40"
                 android:layout_marginTop="@dimen/dimen_36"
                 android:background="@drawable/bg_btn_blue"
-                android:text="添加銀行卡"
+                android:text="添加银行卡"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_big"/>
 

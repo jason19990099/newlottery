@@ -2,6 +2,7 @@ package com.international.wtw.lottery.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.manager.PaymentActivity;
 import com.international.wtw.lottery.newJason.PaymentMethodModel;
-import com.international.wtw.lottery.utils.LogUtil;
 
 import java.util.List;
 
@@ -62,9 +62,14 @@ public class PaywayAdapter extends BaseAdapter {
         viewHolder.rl_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent=new Intent(context,PaymentActivity.class);
-                intent.putExtra("paydata",  data.get(position));
-                context.startActivity(intent);
+                if (data.get(position).getListPaymentModePaymentMethod().size()==0){
+                    Toast.makeText(context,"请选择其他支付方式。",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent  intent=new Intent(context,PaymentActivity.class);
+                    intent.putExtra("paydata",  data.get(position));
+                    context.startActivity(intent);
+                }
+
             }
         });
         return view;

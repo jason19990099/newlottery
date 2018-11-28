@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFragmentManager = getSupportFragmentManager();
         changeShowFragment(0);
 
-//        //首次注册的新用户,弹出充值引导弹窗
+        //首次注册的新用户,弹出充值引导弹窗
 //        initRechargeDialog();
 
 

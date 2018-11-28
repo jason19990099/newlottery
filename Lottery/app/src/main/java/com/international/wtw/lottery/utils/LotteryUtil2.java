@@ -54,6 +54,7 @@ public class LotteryUtil2 {
         return SingletonHolder.instance;
     }
 
+
     public String getPageTitle(String gameCode) {
         String titles = "";
         switch (gameCode) {
@@ -68,6 +69,30 @@ public class LotteryUtil2 {
                 break;
             case LotteryId.Miaosusscai:
                 titles = "秒速时时彩";
+                break;
+            case LotteryId.CQSSC:
+                titles = "重庆时时彩";
+                break;
+            case LotteryId.TJSSC:
+                titles = "天津时时彩";
+                break;
+            case LotteryId.XJSSC:
+                titles = "新疆时时彩";
+                break;
+            case LotteryId.PCDD:
+                titles = "PC蛋蛋";
+                break;
+            case LotteryId.XYDD:
+                titles = "幸运蛋蛋";
+                break;
+            case LotteryId.GDKLSF:
+                titles = "广东快乐十分";
+                break;
+            case LotteryId.CQXYNC:
+                titles = "重庆幸运农场";
+                break;
+            case LotteryId.GD11X5:
+                titles = "广东11选5";
                 break;
         }
         return titles;

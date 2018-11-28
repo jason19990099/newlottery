@@ -1,22 +1,20 @@
 package com.international.wtw.lottery.fragment.money;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.manager.BankcardActivity;
+import com.international.wtw.lottery.activity.mine.BankcardContralActivity;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
 import com.international.wtw.lottery.base.LotteryId;
@@ -27,18 +25,14 @@ import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.MoneyInfo;
 import com.international.wtw.lottery.newJason.BankcardsModel;
 import com.international.wtw.lottery.utils.KeyBoardUtils;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.MD5util;
 import com.international.wtw.lottery.utils.MoneyInfoManager;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
-
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.Locale;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 出款的面页
@@ -210,11 +204,15 @@ public class WithdrawFragment extends NewBaseFragment {
     }
 
 
-    @OnClick({R.id.rl_add_bankcard, R.id.btn_confirm})
+    @OnClick({R.id.rl_add_bankcard, R.id.btn_confirm,R.id.btn_addbankcard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_add_bankcard:
-                toBankcardActivity(getString(R.string.add_bank_info), false);
+            case R.id.btn_addbankcard:
+//                toBankcardActivity(getString(R.string.add_bank_info), false);
+                Intent intent = new Intent(getActivity(), BankcardContralActivity.class);
+                intent.putExtra("is_shi_wan", false);
+                startActivity(intent);
                 break;
             case R.id.btn_confirm:
                 withdraw();
@@ -294,47 +292,6 @@ public class WithdrawFragment extends NewBaseFragment {
         });
     }
 
-    private int getImageRes(String bankName) {
-        switch (bankName) {
-            case "工商银行":
-                return R.mipmap.icon_bank_logo_icbc;
-            case "建设银行":
-                return R.mipmap.icon_bank_logo_ccb;
-            case "招商银行":
-                return R.mipmap.icon_bank_logo_cmb;
-            case "农业银行":
-                return R.mipmap.icon_bank_logo_abc;
-            case "中国银行":
-                return R.mipmap.icon_bank_logo_bc;
-            case "邮政储蓄银行":
-                return R.mipmap.icon_bank_logo_psbc;
-            case "民生银行":
-                return R.mipmap.icon_bank_logo_cmbc;
-            case "兴业银行":
-                return R.mipmap.icon_bank_logo_ibc;
-            case "中信银行":
-                return R.mipmap.icon_bank_logo_cib;
-            case "渤海银行":
-                return R.mipmap.icon_bank_logo_cbhb;
-            case "光大银行":
-                return R.mipmap.icon_bank_logo_ceb;
-            case "广发银行":
-                return R.mipmap.icon_bank_logo_gdb;
-            case "华夏银行":
-                return R.mipmap.icon_bank_logo_hxb;
-            case "平安银行":
-                return R.mipmap.icon_bank_logo_pab;
-            case "浦发银行":
-                return R.mipmap.icon_bank_logo_spdb;
-            case "北京农商银行":
-                return R.mipmap.icon_bank_logo_brcb;
-            case "上海银行":
-                return R.mipmap.icon_bank_logo_bs;
-            case "交通银行":
-                return R.mipmap.icon_bank_logo_bcomm;
-        }
-        return R.mipmap.bank_car_icon;
-    }
 
 
 
