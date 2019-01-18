@@ -34,7 +34,9 @@ import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import org.greenrobot.eventbus.EventBus;
 
 
-public class   LoginActivity extends BaseActivity implements View.OnClickListener {
+public class
+
+LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText username;
     private EditText password;
     private EditText edittext_yzm;

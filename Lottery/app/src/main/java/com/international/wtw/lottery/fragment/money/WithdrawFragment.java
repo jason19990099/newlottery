@@ -92,7 +92,7 @@ public class WithdrawFragment extends NewBaseFragment {
          *  获取银行卡信息
          */
 
-        getBankCardInfo();
+//        getBankCardInfo();
     }
 
     private void initViews() {

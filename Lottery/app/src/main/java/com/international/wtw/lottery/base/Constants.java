@@ -2,7 +2,6 @@ package com.international.wtw.lottery.base;
 
 
 public class Constants {
-//    public static final String BASE_URL = "http://22660.vip";//此行链接不允许改动
 public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许改动
 
     public static final String GAME_WEBSITE = "http://wap.alcp66.com/#/todayRule";//游戏规则
@@ -38,38 +37,7 @@ public static final String BASE_URL = "http://10.7.0.4/";//此行链接不允许
     }
 
 
-    public class PK_10_PLAY_TYPE_SERVER {
-        public static final int DOUBLE_SIDE = 0;
-        public static final int GOLD_SILVER_COMBINE = 1;
-        public static final int ONE_TO_FIVE = 2;
-        public static final int SIX_TO_TEN = 3;
-    }
 
-    public class LUCKY_28_PLAY_TYPE_SERVER {
-        public static final int MIX_TYPE = 0;
-        public static final int SPECIAL_CODE = 1;
-    }
-
-    public class CJ_LOTTERY_PLAY_TYPE {
-        public static final int DOUBLE_SIDE = 0;
-        public static final int NUMBER_SIDE = 1;
-        public static final int FRONT_MINDDLE_BACK = 2;
-    }
-
-    public class GD_HAPPY_PLAY_TYPE {
-        public static final int DOUBLE_SIDE = 0;
-        public static final int FIRST_POINT = 1;
-        public static final int SECOND_POINT = 2;
-        public static final int THIRD_POINT = 3;
-        public static final int FORTH_POINT = 4;
-        public static final int FIFTH_POINT = 5;
-        public static final int SIXTH_POINT = 6;
-        public static final int SEVENTH_POINT = 7;
-        public static final int EIGHTH_POINT = 8;
-        public static final int JOINT_MARK = 9;
-        public static final int ONE_TO_FOUR = 10;
-        public static final int FIVE_TO_EIGHT = 11;
-    }
 
     public static String getErrorCodeInfo(String errorCode) {
         if (null == errorCode) {

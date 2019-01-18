@@ -13,34 +13,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.adapter.LotteryHistoryAdapter;
 import com.international.wtw.lottery.api.HttpCallback;
 import com.international.wtw.lottery.api.HttpRequest;
-import com.international.wtw.lottery.base.Constants;
 import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.NewBaseActivity;
 import com.international.wtw.lottery.dialog.CalendarDialog;
-import com.international.wtw.lottery.dialog.SwitchGamePopupWindow;
-import com.international.wtw.lottery.dialog.SwitchGamePopupWindow2;
 import com.international.wtw.lottery.dialog.SwitchPagePopup;
-import com.international.wtw.lottery.dialog.easypopup.HorizontalGravity;
-import com.international.wtw.lottery.dialog.easypopup.VerticalGravity;
 import com.international.wtw.lottery.dialog.nice.BaseNiceDialog;
-import com.international.wtw.lottery.json.HistoryResult;
 import com.international.wtw.lottery.newJason.LotteryHistoryModel;
-import com.international.wtw.lottery.newJason.NoticeListModel;
-import com.international.wtw.lottery.utils.LotteryUtil;
-import com.international.wtw.lottery.utils.LotteryUtil2;
 import com.international.wtw.lottery.utils.SharePreferencesUtil;
 import com.international.wtw.lottery.widget.RecyclerViewDivider;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -72,10 +60,9 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     TextView tvPreviousPage;
     @BindView(R.id.tvNextPage)
     TextView tvNextPage;
-
     private View mErrorView;
     private TextView mTvError;
-    private String mGameCode;
+    private String mGameCode,mGameName;
     private int pageIndex = 1;
     private String dateStr;
     private LotteryHistoryAdapter mAdapter;
@@ -91,20 +78,12 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
         mGameCode = getIntent().getStringExtra(LotteryId.GAME_CODE);
+        mGameName= getIntent().getStringExtra(LotteryId.GAME_NAME);
         initTitle();
         initEmptyView();
         initRecycler();
-
-
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
-        dateStr=sdf.format(d);
-
-
         //获取历史开奖数据
         refresh();
-
-
     }
 
     @Override
@@ -113,10 +92,14 @@ public class LotteryHistoryActivity extends NewBaseActivity implements SwipeRefr
     }
 
     private void initTitle() {
-        mTvBetTitle.setText(LotteryUtil2.get().getPageTitle(mGameCode));
+        mTvBetTitle.setText(mGameName);
 //        if (mGameCode == Constants.LOTTERY_TYPE.HK_MARK_SIX_LOTTERY) {
 //            mIvCalendar.setVisibility(View.GONE);
 //        }
+
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        dateStr=sdf.format(d);
     }
 
     private void initRecycler() {

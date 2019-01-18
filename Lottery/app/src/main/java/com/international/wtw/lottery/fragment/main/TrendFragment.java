@@ -73,12 +73,12 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         mAdapter = new BaseQuickAdapter<GameOpentimeModel2.DataBean, BaseViewHolder>(R.layout.lottery_hanll) {
             @Override
             protected void convert(BaseViewHolder helper, GameOpentimeModel2.DataBean item) {
-                helper.setText(R.id.tv_lotteryname, LotteryUtil2.get().getPageTitle(item.getGameCode()));
-                int openTime = (int) (item.getCloseTime() - item.getServerTime());
+                helper.setText(R.id.tv_lotteryname, null!=item.getGameName()?item.getGameName():"");
+                int openTime =item.getCloseTime() - item.getServerTime();
                 if (openTime > 0) {
                     helper.setText(R.id.tv_lotterytime, "距截止:" + TimeFormatter.seconds2Time(openTime));
                 } else {
-                    helper.setText(R.id.tv_lotterytime, "开奖中");
+                    helper.setText(R.id.tv_lotterytime, "开奖中...");
                 }
             }
 
@@ -89,7 +89,7 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                     if (openTime > 0) {
                         holder.setText(R.id.tv_lotterytime, "距截止:" + TimeFormatter.seconds2Time(openTime));
                     } else {
-                        holder.setText(R.id.tv_lotterytime, "开奖中");
+                        holder.setText(R.id.tv_lotterytime, "开奖中...");
                     }
                 } else {
                     super.onBindViewHolder(holder, position, payloads);
@@ -107,29 +107,8 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
                 }
                 Intent intent = new Intent(mActivity, LotteryHistoryActivity.class);
                 intent.putExtra(LotteryId.GAME_CODE, item.getGameCode());
+                intent.putExtra(LotteryId.GAME_NAME, item.getGameName());
                 startActivity(intent);
-//                if (null == getActivity())
-//                    return;
-//                Intent intent = null;
-//                switch (item.getGameCode()) {
-//                    case LotteryId.Miaosusscai:   //秒速时时彩
-//                        intent = new Intent(getActivity(), MiaosusscActivity.class);
-//                        intent.putExtra("lotteryname", "秒速时时彩");
-//                        break;
-//                    case LotteryId.Miaosufeiting:  //秒速飞艇
-//                        intent = new Intent(getActivity(), MiaosufeitingActivity.class);
-//                        intent.putExtra("lotteryname", "秒速飞艇");
-//                        break;
-//                    case LotteryId.BJSCPK10:  //北京赛车PK10
-//                        intent = new Intent(getActivity(), Bjscpk10Activity.class);
-//                        intent.putExtra("lotteryname", "北京赛车PK10");
-//                        break;
-//                    case LotteryId.MiaosuSaiche:  //秒速赛车
-//                        intent = new Intent(getActivity(), MiaosusaicheActivity.class);
-//                        intent.putExtra("lotteryname", "秒速赛车");
-//                        break;
-//                }
-//                getActivity().startActivity(intent);
             }
         });
         initListener();
@@ -241,7 +220,6 @@ public class TrendFragment extends NewBaseFragment implements SwipeRefreshLayout
         if (null == list)
             return;
         int[] openTime = new int[list.size()];
-        int[] isOpen = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             GameOpentimeModel2.DataBean item = list.get(i);
             openTime[i] = (int) (item.getCloseTime() - item.getServerTime());

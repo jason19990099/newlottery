@@ -284,6 +284,22 @@ public interface ApiService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 获取版本服务器apk信息
      */

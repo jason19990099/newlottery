@@ -74,9 +74,6 @@ public class HttpRequest {
     private ApiService mService = ApiClient.getInstance().mApiService;
     private static ArrayMap<Object, List<Call>> mCallMap = new ArrayMap<>();
 
-    private HttpRequest() {
-    }
-
     private static class SingletonHolder {
         private static HttpRequest instance = new HttpRequest();
     }

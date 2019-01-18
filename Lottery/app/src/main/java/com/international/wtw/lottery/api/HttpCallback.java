@@ -54,6 +54,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
     private void onApiFailure(T model) {
         String msgCode = model.getMsg();
         if (null!=msgCode&&msgCode.contains("登录")) {
+            LogUtil.e("=======model====LoginActivity==");
             FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
             Intent intent = new Intent(currActivity, LoginActivity.class);
             currActivity.startActivity(intent);
@@ -78,6 +79,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         LogUtil.e("=======Throwable.======="+t.toString());
         if (t instanceof JSONException || t instanceof JsonParseException || t instanceof ParseException) {
             onFailure("10011", Constants.getErrorCodeInfo("10011"));
+            LogUtil.e("=======JSONException====LoginActivity==");
             //TODO 解析错误去登录,等待修改
             FragmentActivity currActivity = (FragmentActivity) ActivityManager.getInstance().getCurrentActivity();
             Intent intent = new Intent(currActivity, LoginActivity.class);

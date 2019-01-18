@@ -62,7 +62,6 @@ public class LotteryId {
 
 
     public static final String sourcetype = "4";
-
     public static final String version = "1.0";
     public static final String BJSCPK10 = "bjscpk10"; //北京赛车PK10
     public static final String Miaosufeiting = "msft"; //秒速飛艇
@@ -76,7 +75,9 @@ public class LotteryId {
     public static final String GDKLSF = "gdklsf"; //广东快乐十分
     public static final String CQXYNC = "cqxync"; //广东快乐十分
     public static final String GD11X5 = "gd11x5";
-
-
-
+    public static final String JSKS = "jsk3";//江苏快3
+    public static final String BJKS = "bjk3";//北京快3
+    public static final String GSKS = "gsk3";//甘肃快3
+    public static final String GXKS = "gxk3";//广西快3
+    public static final String SHKS = "shk3";//上海快三
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.newJason.LotteryinfoModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -50,7 +51,10 @@ public class NewRecyclerViewBaseAdapter extends BaseAdapter {
         }
 
         viewHolder.tv_type_name.setText(mDatas.get(position).getName());
-        viewHolder.img_type.setImageResource(mDatas.get(position).getPic());
+        Picasso.with(mContext)
+                .load(mDatas.get(position).getImageUrl())
+                .into(viewHolder.img_type);
+
 
         return view;
     }

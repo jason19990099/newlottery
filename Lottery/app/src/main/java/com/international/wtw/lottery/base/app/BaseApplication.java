@@ -1,7 +1,4 @@
 package com.international.wtw.lottery.base.app;
-
-
-
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -13,6 +10,7 @@ import android.view.WindowManager;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.listener.RequestClient;
 import com.international.wtw.lottery.utils.ActivityManager;
+import com.international.wtw.lottery.utils.Apputil;
 import com.international.wtw.lottery.utils.Config;
 import com.international.wtw.lottery.utils.FunctionUtility;
 import com.international.wtw.lottery.widget.FloatView;
@@ -38,6 +36,9 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //去掉证书验证的问题/
+        Apputil.giveipTrust();
+
         sApp = this;
         RequestClient.init(this);
         FunctionUtility.setContext(this);

@@ -6,12 +6,15 @@ import java.util.List;
 
 public class GameOpentimeModel2 extends BaseModel {
 
+
     /**
-     * data : [{"GameCode":"msssc","ExpectNo":"","ExpectNoNext":"181026245","StartTime":1540528425,"Code":"","CloseTime":1540528485,"OpenTime":1540528500,"IsToday":false,"Sort":0,"ServerTime":1540528446},{"GameCode":"msft","ExpectNo":"","ExpectNoNext":"181026245","StartTime":1540528395,"Code":"","CloseTime":1540528455,"OpenTime":1540528470,"IsToday":false,"Sort":0,"ServerTime":1540528446},{"GameCode":"bjscpk10","ExpectNo":"","ExpectNoNext":"711355","StartTime":1540528350,"Code":"","CloseTime":1540528620,"OpenTime":1540528650,"IsToday":false,"Sort":0,"ServerTime":1540528446},{"GameCode":"mssc","ExpectNo":"181026244","ExpectNoNext":"181026245","StartTime":1540528425,"Code":"4,10,1,3,7,2,5,6,8,9","CloseTime":1540528485,"OpenTime":1540528500,"IsToday":false,"Sort":0,"ServerTime":1540528446}]
-     * timestamp : 1540528445
+     * timestamp : 1547792158
+     * data : [{"GameCode":"bjk3","GameName":"北京快3","ExpectNo":"","ExpectNoNext":"131471","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"bjscpk10","GameName":"北京赛车(PK10)","ExpectNo":"","ExpectNoNext":"726411","StartTime":1547791950,"Code":"","CloseTime":1547792220,"OpenTime":1547792250,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"cqssc","GameName":"重庆时时彩","ExpectNo":"","ExpectNoNext":"20190118050","StartTime":1547791800,"Code":"","CloseTime":1547792355,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"cqxync","GameName":"重庆幸运农场","ExpectNo":"","ExpectNoNext":"190118040","StartTime":1547791940,"Code":"","CloseTime":1547792420,"OpenTime":1547792540,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"gd11x5","GameName":"广东11选5","ExpectNo":"","ExpectNoNext":"19011832","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"gdklsf","GameName":"广东快乐十分","ExpectNo":"","ExpectNoNext":"2019011832","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"gsk3","GameName":"甘肃快3","ExpectNo":"","ExpectNoNext":"190118026","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"gxk3","GameName":"广西快3","ExpectNo":"","ExpectNoNext":"190118029","StartTime":1547791620,"Code":"","CloseTime":1547792100,"OpenTime":1547792220,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"gzk3","GameName":"贵州快3","ExpectNo":"","ExpectNoNext":"190118032","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"jsk3","GameName":"江苏快3","ExpectNo":"","ExpectNoNext":"190118035","StartTime":1547791680,"Code":"","CloseTime":1547792170,"OpenTime":1547792280,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"pcdd","GameName":"PC蛋蛋","ExpectNo":"","ExpectNoNext":"932389","StartTime":1547792100,"Code":"","CloseTime":1547792360,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"shk3","GameName":"上海快3","ExpectNo":"","ExpectNoNext":"190118033","StartTime":1547791680,"Code":"","CloseTime":1547792160,"OpenTime":1547792280,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"tjssc","GameName":"天津时时彩","ExpectNo":"","ExpectNoNext":"20190118033","StartTime":1547792100,"Code":"","CloseTime":1547792580,"OpenTime":1547792700,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"xjssc","GameName":"新疆时时彩","ExpectNo":"","ExpectNoNext":"2019011826","StartTime":1547791800,"Code":"","CloseTime":1547792280,"OpenTime":1547792400,"IsToday":false,"Sort":0,"ServerTime":1547792160},{"GameCode":"xydd","GameName":"幸运蛋蛋","ExpectNo":"","ExpectNoNext":"190118076","StartTime":1547791980,"Code":"","CloseTime":1547792220,"OpenTime":1547792280,"IsToday":false,"Sort":0,"ServerTime":1547792160}]
+     * clientip : 203.177.163.198
      */
 
     private int timestamp;
+    private String clientip;
     private List<DataBean> data;
 
     public int getTimestamp() {
@@ -20,6 +23,14 @@ public class GameOpentimeModel2 extends BaseModel {
 
     public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getClientip() {
+        return clientip;
+    }
+
+    public void setClientip(String clientip) {
+        this.clientip = clientip;
     }
 
     public List<DataBean> getData() {
@@ -32,107 +43,117 @@ public class GameOpentimeModel2 extends BaseModel {
 
     public static class DataBean {
         /**
-         * GameCode : msssc
+         * GameCode : bjk3
+         * GameName : 北京快3
          * ExpectNo :
-         * ExpectNoNext : 181026245
-         * StartTime : 1540528425
+         * ExpectNoNext : 131471
+         * StartTime : 1547791800
          * Code :
-         * CloseTime : 1540528485
-         * OpenTime : 1540528500
+         * CloseTime : 1547792280
+         * OpenTime : 1547792400
          * IsToday : false
          * Sort : 0
-         * ServerTime : 1540528446
+         * ServerTime : 1547792160
          */
 
         private String GameCode;
+        private String GameName;
         private String ExpectNo;
         private String ExpectNoNext;
-        private long StartTime;
+        private int StartTime;
         private String Code;
-        private long CloseTime;
-        private long OpenTime;
+        private int CloseTime;
+        private int OpenTime;
         private boolean IsToday;
         private int Sort;
-        private long ServerTime;
+        private int ServerTime;
 
         public String getGameCode() {
             return GameCode;
         }
 
-        public void setGameCode(String gameCode) {
-            GameCode = gameCode;
+        public void setGameCode(String GameCode) {
+            this.GameCode = GameCode;
+        }
+
+        public String getGameName() {
+            return GameName;
+        }
+
+        public void setGameName(String GameName) {
+            this.GameName = GameName;
         }
 
         public String getExpectNo() {
             return ExpectNo;
         }
 
-        public void setExpectNo(String expectNo) {
-            ExpectNo = expectNo;
+        public void setExpectNo(String ExpectNo) {
+            this.ExpectNo = ExpectNo;
         }
 
         public String getExpectNoNext() {
             return ExpectNoNext;
         }
 
-        public void setExpectNoNext(String expectNoNext) {
-            ExpectNoNext = expectNoNext;
+        public void setExpectNoNext(String ExpectNoNext) {
+            this.ExpectNoNext = ExpectNoNext;
         }
 
-        public long getStartTime() {
+        public int getStartTime() {
             return StartTime;
         }
 
-        public void setStartTime(long startTime) {
-            StartTime = startTime;
+        public void setStartTime(int StartTime) {
+            this.StartTime = StartTime;
         }
 
         public String getCode() {
             return Code;
         }
 
-        public void setCode(String code) {
-            Code = code;
+        public void setCode(String Code) {
+            this.Code = Code;
         }
 
-        public long getCloseTime() {
+        public int getCloseTime() {
             return CloseTime;
         }
 
-        public void setCloseTime(long closeTime) {
-            CloseTime = closeTime;
+        public void setCloseTime(int CloseTime) {
+            this.CloseTime = CloseTime;
         }
 
-        public long getOpenTime() {
+        public int getOpenTime() {
             return OpenTime;
         }
 
-        public void setOpenTime(long openTime) {
-            OpenTime = openTime;
+        public void setOpenTime(int OpenTime) {
+            this.OpenTime = OpenTime;
         }
 
-        public boolean isToday() {
+        public boolean isIsToday() {
             return IsToday;
         }
 
-        public void setToday(boolean today) {
-            IsToday = today;
+        public void setIsToday(boolean IsToday) {
+            this.IsToday = IsToday;
         }
 
         public int getSort() {
             return Sort;
         }
 
-        public void setSort(int sort) {
-            Sort = sort;
+        public void setSort(int Sort) {
+            this.Sort = Sort;
         }
 
-        public long getServerTime() {
+        public int getServerTime() {
             return ServerTime;
         }
 
-        public void setServerTime(long serverTime) {
-            ServerTime = serverTime;
+        public void setServerTime(int ServerTime) {
+            this.ServerTime = ServerTime;
         }
     }
 }

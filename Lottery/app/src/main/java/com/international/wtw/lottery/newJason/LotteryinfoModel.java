@@ -4,56 +4,49 @@ import java.io.Serializable;
 
 public class LotteryinfoModel implements Serializable {
 
-    private String name;
-    private String gameTypeCode;
-    private String code;
-    private int pic;
+    private String Name;
+    private String Code;
+    private String ImageUrl;
+    private boolean IsClose;
+
+    public LotteryinfoModel(String name, String code, String ImageUrl, boolean IsClose) {
+        this.Name=name;
+        this.Code=code;
+        this.ImageUrl=ImageUrl;
+        this.IsClose=IsClose;
+    }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGameTypeCode() {
-        return gameTypeCode;
-    }
-
-    public void setGameTypeCode(String gameTypeCode) {
-        this.gameTypeCode = gameTypeCode;
-    }
-
-    public int getPic() {
-        return pic;
-    }
-
-    public void setPic(int pic) {
-        this.pic = pic;
+        Name = name;
     }
 
     public String getCode() {
-        return code;
+        return Code;
     }
 
     public void setCode(String code) {
-        this.code = code;
+        Code = code;
     }
 
-    public LotteryinfoModel(String name, String gameTypeCode, String code, int pic) {
-        this.name = name;
-        this.code=code;
-        this.gameTypeCode = gameTypeCode;
-        this.pic = pic;
+    public String getImageUrl() {
+        return ImageUrl;
     }
 
-    @Override
-    public String toString() {
-        return "LotteryinfoModel{" +
-                "name='" + name + '\'' +
-                ", gameTypeCode='" + gameTypeCode + '\'' +
-                ", pic=" + pic +
-                '}';
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
     }
+
+    public boolean isClose() {
+        return IsClose;
+    }
+
+    public void setClose(boolean close) {
+        IsClose = close;
+    }
+
+
 }

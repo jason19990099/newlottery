@@ -32,7 +32,6 @@
                 android:id="@+id/tv_bet_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_drop_down_stroke"
                 android:drawablePadding="5dp"
                 android:text="@string/LotteryTypeNamePK10"
                 android:textColor="@color/white"

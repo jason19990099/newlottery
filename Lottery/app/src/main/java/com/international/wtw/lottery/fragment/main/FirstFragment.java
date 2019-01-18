@@ -64,6 +64,7 @@ import com.international.wtw.lottery.json.UserModel;
 import com.international.wtw.lottery.newJason.AllgameModel;
 import com.international.wtw.lottery.newJason.LotteryinfoModel;
 import com.international.wtw.lottery.newJason.NoticeListModel;
+import com.international.wtw.lottery.utils.LogUtil;
 import com.international.wtw.lottery.utils.NetWorkUtils;
 import com.international.wtw.lottery.utils.RoundedCornersTransformation;
 import com.international.wtw.lottery.utils.ScreenUtils;
@@ -174,8 +175,8 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 int size = data.getData().size();
                 for (int i = 0; i < size; i++) {
                     list2.add(new LotteryinfoModel(data.getData().get(i).getName(),
-                            data.getData().get(i).getGameTypeCode(), data.getData().get(i).getCode(),
-                            R.mipmap.ic_launcher));
+                            data.getData().get(i).getCode(),
+                            (String) data.getData().get(i).getImageUrl(), data.getData().get(i).isIsClose()));
                 }
 
                 initLotteryData(list2);
@@ -228,7 +229,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         recycleMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LotteryinfoModel lotteryinfo = list2.get(position);
+                LotteryinfoModel lotteryinfo = msgBeen.get(position);
                 navToTargetActivity(lotteryinfo.getCode(), lotteryinfo.getName());
             }
         });
@@ -245,9 +246,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
                 ToastDialog.error(errorMsg).show(getFragmentManager());
-
-
-
             }
         });
     }
@@ -311,13 +309,12 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
 
     /**
      * 跳转到对应的Activity
-     *
-     * @param lotteryType
      */
     private void navToTargetActivity(String lotteryType, String lotteryname) {
         if (null == getActivity())
             return;
         Intent intent = null;
+        LogUtil.e("=======lotteryType========"+lotteryType);
         switch (lotteryType) {
             case LotteryId.Miaosusscai:   //秒速时时彩
                 intent = new Intent(getActivity(), MiaosusscActivity.class);
@@ -355,8 +352,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             case LotteryId.GD11X5:  //广东11选5
                 intent = new Intent(getActivity(), GD11X5Activity.class);
                 break;
-
-
         }
         if (null==intent)
             return;
@@ -411,7 +406,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      */
     public void getBannerData(Context context) {
         String token = SharePreferencesUtil.getString(getContext(), LotteryId.TOKEN, "");
-        HttpRequest.getInstance().getNoticeList(FirstFragment.this, token, new HttpCallback<NoticeListModel>() {
+        HttpRequest.getInstance().getNoticeList(context, token, new HttpCallback<NoticeListModel>() {
             @Override
             public void onSuccess(NoticeListModel data) {
                 StringBuilder buffer = new StringBuilder();

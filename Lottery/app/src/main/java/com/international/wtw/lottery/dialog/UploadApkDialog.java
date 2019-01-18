@@ -178,7 +178,7 @@ public class UploadApkDialog extends Dialog implements View.OnClickListener {
 		intent.setDataAndType(Uri.parse("file://" + apkFile.toString()),
 				"application/vnd.android.package-archive");
 		if (null!=mContext)
-		mContext.startActivity(intent);
+			mContext.startActivity(intent);
 	}
 
 	@Override

@@ -61,7 +61,7 @@ public class BaseEvent<T> {
     /**
      * 判断是否获取实体类成功
      *
-     * @return ok
+     * @return giveipTrust
      */
     public boolean isOk() {
         return ok;

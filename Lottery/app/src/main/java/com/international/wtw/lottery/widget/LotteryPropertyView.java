@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.base.LotteryId;
+import com.international.wtw.lottery.utils.LotteryUtil;
+
 import java.util.List;
 
 /**
@@ -111,21 +113,25 @@ public class LotteryPropertyView extends LinearLayout {
                 addPropertyView(Integer.parseInt(sum) >= 14 ? "大" : "小");
                 addPropertyView(Integer.parseInt(sum) % 2 == 0 ? "双" : "单");
                 break;
-//            case Constants.LOTTERY_TYPE.JS_QUICK_3://江苏快3
-//                //总和
-//                addPropertyTitleView("总和", 2);
-//                addPropertyView(sum);
-//                if (numbers.get(0).equals(numbers.get(1)) && numbers.get(0).equals(numbers.get(2))) {
-//                    addPropertyView("通吃");
-//                } else {
-//                    addPropertyView(Integer.parseInt(sum) >= 11 ? "大" : "小");
-//                }
-//                //鱼虾蟹
-//                addPropertyTitleView("鱼虾蟹", 2);
-//                for (String number : numbers) {
-//                    addPropertyView(LotteryUtil.get().getYuXiaXie(number));
-//                }
-//                break;
+            case LotteryId.JSKS://江苏快3
+            case   LotteryId.BJKS:
+            case LotteryId.GSKS:
+            case LotteryId.GXKS:
+            case LotteryId.SHKS:
+                //总和
+                addPropertyTitleView("总和", 2);
+                addPropertyView(sum);
+                if (numbers.get(0).equals(numbers.get(1)) && numbers.get(0).equals(numbers.get(2))) {
+                    addPropertyView("通吃");
+                } else {
+                    addPropertyView(Integer.parseInt(sum) >= 11 ? "大" : "小");
+                }
+                //鱼虾蟹
+                addPropertyTitleView("鱼虾蟹", 2);
+                for (String number : numbers) {
+                    addPropertyView(LotteryUtil.get().getYuXiaXie(number));
+                }
+                break;
         }
     }
 
