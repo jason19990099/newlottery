@@ -30,8 +30,6 @@ public class RechargeFragment extends NewBaseFragment implements SwipeRefreshLay
     private String mGameName;
     private PaywayAdapter paywayAdapter;
 
-
-
     public static RechargeFragment newInstance(String gameName) {
         RechargeFragment fragment = new RechargeFragment();
         Bundle bundle = new Bundle();

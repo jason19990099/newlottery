@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_lottery_title" />
+
+        <LinearLayout
+            android:layout_weight="99"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_lottery_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <RadioGroup
+                    android:id="@+id/betbjpk10_tab_RadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:checked="true"
+                        android:id="@+id/radio_1"
+                        style="@style/betting_tab"
+                        android:text="和值" />
+
+                    <RadioButton
+                        android:id="@+id/radio_2"
+                        style="@style/betting_tab"
+                        android:text="三连号" />
+
+                    <RadioButton
+                        android:id="@+id/radio_3"
+                        style="@style/betting_tab"
+                        android:text="三同号" />
+                    <RadioButton
+                        android:id="@+id/radio_4"
+                        style="@style/betting_tab"
+                        android:text="二同号" />
+                    <RadioButton
+                        android:id="@+id/radio_5"
+                        style="@style/betting_tab"
+                        android:text="跨度" />
+                    <RadioButton
+                        android:id="@+id/radio_6"
+                        style="@style/betting_tab"
+                        android:text="牌点" />
+                    <RadioButton
+                        android:id="@+id/radio_7"
+                        style="@style/betting_tab"
+                        android:text="不出号码" />
+                    <RadioButton
+                        android:id="@+id/radio_8"
+                        style="@style/betting_tab"
+                        android:text="必出号码" />
+
+                </RadioGroup>
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                  />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    <include
+        layout="@layout/bet_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>

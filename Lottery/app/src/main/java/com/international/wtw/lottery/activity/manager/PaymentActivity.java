@@ -68,6 +68,7 @@ public class PaymentActivity extends NewBaseActivity {
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
         dataBean = (PaymentMethodModel.DataBean) getIntent().getSerializableExtra("paydata");
+
         int size = dataBean.getListPaymentModePaymentMethod().size();
         for (int i = 0; i < size; i++) {
             options1Items.add(dataBean.getListPaymentModePaymentMethod().get(i).getPaymentMethod().getName());
@@ -81,9 +82,6 @@ public class PaymentActivity extends NewBaseActivity {
         LogUtil.e("==========="+new Gson().toJson(dataBean));
         initOptionPicker();
         textViewLotteryTypeName.setText(dataBean.getName());
-
-
-
     }
 
     @Override

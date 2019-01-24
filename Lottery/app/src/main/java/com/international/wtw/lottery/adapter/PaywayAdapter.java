@@ -16,6 +16,7 @@ import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.manager.PaymentActivity;
 import com.international.wtw.lottery.newJason.PaymentMethodModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class PaywayAdapter extends BaseAdapter {
@@ -66,7 +67,7 @@ public class PaywayAdapter extends BaseAdapter {
                     Toast.makeText(context,"请选择其他支付方式。",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent  intent=new Intent(context,PaymentActivity.class);
-                    intent.putExtra("paydata",  data.get(position));
+                    intent.putExtra("paydata", data.get(position));
                     context.startActivity(intent);
                 }
 

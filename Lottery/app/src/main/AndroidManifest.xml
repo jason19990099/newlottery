@@ -133,6 +133,29 @@
             android:name=".activity.lottery.happytime.ChongqingFarmActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.lottery.kuai3.JSK3Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.lottery.kuai3.BJK3Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.kuai3.SHK3Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.kuai3.GSK3Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.kuai3.GZK3Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".activity.login.RegisterActivity"
             android:launchMode="singleTask"

@@ -29,6 +29,11 @@ import com.international.wtw.lottery.activity.login.RegisterActivity;
 import com.international.wtw.lottery.activity.lottery.happytime.ChongqingFarmActivity;
 import com.international.wtw.lottery.activity.lottery.happytime.GD11X5Activity;
 import com.international.wtw.lottery.activity.lottery.happytime.Guangdonghappy10Activity;
+import com.international.wtw.lottery.activity.lottery.kuai3.BJK3Activity;
+import com.international.wtw.lottery.activity.lottery.kuai3.GSK3Activity;
+import com.international.wtw.lottery.activity.lottery.kuai3.GZK3Activity;
+import com.international.wtw.lottery.activity.lottery.kuai3.JSK3Activity;
+import com.international.wtw.lottery.activity.lottery.kuai3.SHK3Activity;
 import com.international.wtw.lottery.activity.lottery.saiche.Bjscpk10Activity;
 import com.international.wtw.lottery.activity.lottery.ssc.ChongqingsscActivity;
 import com.international.wtw.lottery.activity.lottery.saiche.MiaosufeitingActivity;
@@ -351,6 +356,21 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case LotteryId.GD11X5:  //广东11选5
                 intent = new Intent(getActivity(), GD11X5Activity.class);
+                break;
+            case LotteryId.JSKS:  //江苏快3
+                intent = new Intent(getActivity(), JSK3Activity.class);
+                break;
+            case LotteryId.BJKS:  //北京快3
+                intent = new Intent(getActivity(), BJK3Activity.class);
+                break;
+            case LotteryId.GSKS:  //甘肅快3
+                intent = new Intent(getActivity(), GSK3Activity.class);
+                break;
+            case LotteryId.GZKS:  //貴州快3
+                intent = new Intent(getActivity(), GZK3Activity.class);
+                break;
+            case LotteryId.SHKS:  //上海快3
+                intent = new Intent(getActivity(), SHK3Activity.class);
                 break;
         }
         if (null==intent)
