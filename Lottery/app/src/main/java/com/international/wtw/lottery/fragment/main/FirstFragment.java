@@ -35,6 +35,8 @@ import com.international.wtw.lottery.activity.lottery.kuai3.GZK3Activity;
 import com.international.wtw.lottery.activity.lottery.kuai3.JSK3Activity;
 import com.international.wtw.lottery.activity.lottery.kuai3.SHK3Activity;
 import com.international.wtw.lottery.activity.lottery.saiche.Bjscpk10Activity;
+import com.international.wtw.lottery.activity.lottery.saiche.QixingfeitingActivity;
+import com.international.wtw.lottery.activity.lottery.saiche.QixingsaicheActivity;
 import com.international.wtw.lottery.activity.lottery.ssc.ChongqingsscActivity;
 import com.international.wtw.lottery.activity.lottery.saiche.MiaosufeitingActivity;
 import com.international.wtw.lottery.activity.lottery.saiche.MiaosusaicheActivity;
@@ -372,6 +374,12 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             case LotteryId.SHKS:  //上海快3
                 intent = new Intent(getActivity(), SHK3Activity.class);
                 break;
+            case LotteryId.QXSC:  //7星賽車
+                intent = new Intent(getActivity(), QixingsaicheActivity.class);
+                break;
+            case LotteryId.QXFT:  //7星飞艇
+                intent = new Intent(getActivity(), QixingfeitingActivity.class);
+                break;
         }
         if (null==intent)
             return;
@@ -474,8 +482,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
      * @param announcements
      */
     private void setLunBo(List<String> list, List<LunbotuBean.AnnouncementsBean> announcements) {
-
-
         if (null != getActivity() && null != list) {
             BannerBaseView banner = new MainBannerView(getActivity());
             bannerCont.addView(banner);

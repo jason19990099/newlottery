@@ -2,23 +2,20 @@ package com.international.wtw.lottery.newJason;
 
 import com.international.wtw.lottery.json.BaseModel;
 
+import java.util.List;
+
 public class BankcardsModel extends BaseModel {
 
+
     /**
-     * data : {"Sort":0,"IsDisable":false,"IsDelete":false,"CreateBy":181005161602202088,"CreateTime":"2018-10-23T16:00:02.747","UpdateBy":181005161602202088,"UpdateTime":"2018-10-23T16:00:03.433","Id":181023160002745700,"UserId":181005161602202088,"BankId":191,"BankName":"兴业银行","BankAccount":"5566666666666665888","BankAccountName":"小胖子","BankAddress":"寂寞吗","Description":"","IsDefault":false}
-     * timestamp : 1540282859
+     * timestamp : 1548318006
+     * data : [{"IsDelete":false,"Id":1001,"Name":"银行卡提现","MinValue":10,"MaxValue":10000,"UserBank":null,"pageIndex":1,"pageSize":10,"pageSort":null,"minAmount":0,"maxAmount":0,"beginTime":-2209017600,"endTime":-2209017600,"Sort":0,"IsDisable":false,"CreateBy":"0","CreateTime":-2209017600,"UpdateBy":"0","UpdateTime":-2209017600},{"IsDelete":false,"Id":1002,"Name":"微信提现","MinValue":10,"MaxValue":100,"UserBank":null,"pageIndex":1,"pageSize":10,"pageSort":null,"minAmount":0,"maxAmount":0,"beginTime":-2209017600,"endTime":-2209017600,"Sort":0,"IsDisable":false,"CreateBy":"0","CreateTime":-2209017600,"UpdateBy":"0","UpdateTime":-2209017600},{"IsDelete":false,"Id":1003,"Name":"支付宝提现","MinValue":10,"MaxValue":100,"UserBank":null,"pageIndex":1,"pageSize":10,"pageSort":null,"minAmount":0,"maxAmount":0,"beginTime":-2209017600,"endTime":-2209017600,"Sort":0,"IsDisable":false,"CreateBy":"0","CreateTime":-2209017600,"UpdateBy":"0","UpdateTime":-2209017600}]
+     * clientip : 10.1.246.46
      */
 
-    private DataBean data;
     private int timestamp;
-
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
-    }
+    private String clientip;
+    private List<DataBean> data;
 
     public int getTimestamp() {
         return timestamp;
@@ -28,42 +25,168 @@ public class BankcardsModel extends BaseModel {
         this.timestamp = timestamp;
     }
 
+    public String getClientip() {
+        return clientip;
+    }
+
+    public void setClientip(String clientip) {
+        this.clientip = clientip;
+    }
+
+    public List<DataBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
+
     public static class DataBean {
         /**
+         * IsDelete : false
+         * Id : 1001
+         * Name : 银行卡提现
+         * MinValue : 10.0
+         * MaxValue : 10000.0
+         * UserBank : null
+         * pageIndex : 1
+         * pageSize : 10
+         * pageSort : null
+         * minAmount : 0.0
+         * maxAmount : 0.0
+         * beginTime : -2209017600
+         * endTime : -2209017600
          * Sort : 0
          * IsDisable : false
-         * IsDelete : false
-         * CreateBy : 181005161602202088
-         * CreateTime : 2018-10-23T16:00:02.747
-         * UpdateBy : 181005161602202088
-         * UpdateTime : 2018-10-23T16:00:03.433
-         * Id : 181023160002745700
-         * UserId : 181005161602202088
-         * BankId : 191
-         * BankName : 兴业银行
-         * BankAccount : 5566666666666665888
-         * BankAccountName : 小胖子
-         * BankAddress : 寂寞吗
-         * Description :
-         * IsDefault : false
+         * CreateBy : 0
+         * CreateTime : -2209017600
+         * UpdateBy : 0
+         * UpdateTime : -2209017600
          */
 
+        private boolean IsDelete;
+        private int Id;
+        private String Name;
+        private double MinValue;
+        private double MaxValue;
+        private Object UserBank;
+        private int pageIndex;
+        private int pageSize;
+        private Object pageSort;
+        private double minAmount;
+        private double maxAmount;
+        private long beginTime;
+        private long endTime;
         private int Sort;
         private boolean IsDisable;
-        private boolean IsDelete;
-        private long CreateBy;
-        private String CreateTime;
-        private long UpdateBy;
-        private String UpdateTime;
-        private long Id;
-        private long UserId;
-        private int BankId;
-        private String BankName;
-        private String BankAccount;
-        private String BankAccountName;
-        private String BankAddress;
-        private String Description;
-        private boolean IsDefault;
+        private String CreateBy;
+        private long CreateTime;
+        private String UpdateBy;
+        private long UpdateTime;
+
+        public boolean isIsDelete() {
+            return IsDelete;
+        }
+
+        public void setIsDelete(boolean IsDelete) {
+            this.IsDelete = IsDelete;
+        }
+
+        public int getId() {
+            return Id;
+        }
+
+        public void setId(int Id) {
+            this.Id = Id;
+        }
+
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String Name) {
+            this.Name = Name;
+        }
+
+        public double getMinValue() {
+            return MinValue;
+        }
+
+        public void setMinValue(double MinValue) {
+            this.MinValue = MinValue;
+        }
+
+        public double getMaxValue() {
+            return MaxValue;
+        }
+
+        public void setMaxValue(double MaxValue) {
+            this.MaxValue = MaxValue;
+        }
+
+        public Object getUserBank() {
+            return UserBank;
+        }
+
+        public void setUserBank(Object UserBank) {
+            this.UserBank = UserBank;
+        }
+
+        public int getPageIndex() {
+            return pageIndex;
+        }
+
+        public void setPageIndex(int pageIndex) {
+            this.pageIndex = pageIndex;
+        }
+
+        public int getPageSize() {
+            return pageSize;
+        }
+
+        public void setPageSize(int pageSize) {
+            this.pageSize = pageSize;
+        }
+
+        public Object getPageSort() {
+            return pageSort;
+        }
+
+        public void setPageSort(Object pageSort) {
+            this.pageSort = pageSort;
+        }
+
+        public double getMinAmount() {
+            return minAmount;
+        }
+
+        public void setMinAmount(double minAmount) {
+            this.minAmount = minAmount;
+        }
+
+        public double getMaxAmount() {
+            return maxAmount;
+        }
+
+        public void setMaxAmount(double maxAmount) {
+            this.maxAmount = maxAmount;
+        }
+
+        public long getBeginTime() {
+            return beginTime;
+        }
+
+        public void setBeginTime(long beginTime) {
+            this.beginTime = beginTime;
+        }
+
+        public long getEndTime() {
+            return endTime;
+        }
+
+        public void setEndTime(long endTime) {
+            this.endTime = endTime;
+        }
 
         public int getSort() {
             return Sort;
@@ -81,116 +204,36 @@ public class BankcardsModel extends BaseModel {
             this.IsDisable = IsDisable;
         }
 
-        public boolean isIsDelete() {
-            return IsDelete;
-        }
-
-        public void setIsDelete(boolean IsDelete) {
-            this.IsDelete = IsDelete;
-        }
-
-        public long getCreateBy() {
+        public String getCreateBy() {
             return CreateBy;
         }
 
-        public void setCreateBy(long CreateBy) {
+        public void setCreateBy(String CreateBy) {
             this.CreateBy = CreateBy;
         }
 
-        public String getCreateTime() {
+        public long getCreateTime() {
             return CreateTime;
         }
 
-        public void setCreateTime(String CreateTime) {
+        public void setCreateTime(long CreateTime) {
             this.CreateTime = CreateTime;
         }
 
-        public long getUpdateBy() {
+        public String getUpdateBy() {
             return UpdateBy;
         }
 
-        public void setUpdateBy(long UpdateBy) {
+        public void setUpdateBy(String UpdateBy) {
             this.UpdateBy = UpdateBy;
         }
 
-        public String getUpdateTime() {
+        public long getUpdateTime() {
             return UpdateTime;
         }
 
-        public void setUpdateTime(String UpdateTime) {
+        public void setUpdateTime(long UpdateTime) {
             this.UpdateTime = UpdateTime;
-        }
-
-        public long getId() {
-            return Id;
-        }
-
-        public void setId(long Id) {
-            this.Id = Id;
-        }
-
-        public long getUserId() {
-            return UserId;
-        }
-
-        public void setUserId(long UserId) {
-            this.UserId = UserId;
-        }
-
-        public int getBankId() {
-            return BankId;
-        }
-
-        public void setBankId(int BankId) {
-            this.BankId = BankId;
-        }
-
-        public String getBankName() {
-            return BankName;
-        }
-
-        public void setBankName(String BankName) {
-            this.BankName = BankName;
-        }
-
-        public String getBankAccount() {
-            return BankAccount;
-        }
-
-        public void setBankAccount(String BankAccount) {
-            this.BankAccount = BankAccount;
-        }
-
-        public String getBankAccountName() {
-            return BankAccountName;
-        }
-
-        public void setBankAccountName(String BankAccountName) {
-            this.BankAccountName = BankAccountName;
-        }
-
-        public String getBankAddress() {
-            return BankAddress;
-        }
-
-        public void setBankAddress(String BankAddress) {
-            this.BankAddress = BankAddress;
-        }
-
-        public String getDescription() {
-            return Description;
-        }
-
-        public void setDescription(String Description) {
-            this.Description = Description;
-        }
-
-        public boolean isIsDefault() {
-            return IsDefault;
-        }
-
-        public void setIsDefault(boolean IsDefault) {
-            this.IsDefault = IsDefault;
         }
     }
 }

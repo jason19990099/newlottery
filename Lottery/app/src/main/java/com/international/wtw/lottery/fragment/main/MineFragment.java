@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.MainActivity;
 import com.international.wtw.lottery.activity.login.LoginActivity;
@@ -112,8 +114,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 if (type_name.equals(getString(R.string.wd_yhzh))) {
                     Intent intent = new Intent(getActivity(), BankcardContralActivity.class);
-                    intent.putExtra("is_shi_wan", aBoolean);
                     startActivity(intent);
+                    if (aBoolean){
+                        Toast.makeText(getActivity(),"请登录正式账号。",Toast.LENGTH_SHORT).show();
+                    }else{
+                        ((MainActivity) getActivity()).changeShowFragment(2);
+                    }
                 }
                 if (type_name.equals(getString(R.string.wd_jryj))) {
                     Date d = new Date();
@@ -122,7 +128,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     Intent intent=new Intent(getActivity(),BetDetailActivity.class);
                     intent.putExtra("day",dateStr);
                     getActivity().startActivity(intent);
-//                    startActivity(new Intent(getActivity(),SettledOrdersActivity.class));
                 }
                 if (type_name.equals(getString(R.string.wd_xzjl))) {
                     startActivity(new Intent(getActivity(),BetrecordActivity.class));

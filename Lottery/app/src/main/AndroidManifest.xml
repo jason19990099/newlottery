@@ -91,7 +91,20 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".activity.lottery.ssc.QXSSCactivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".activity.lottery.saiche.MiaosusaicheActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.saiche.QixingsaicheActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.lottery.saiche.QixingfeitingActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
@@ -345,6 +358,8 @@
             android:name=".activity.mine.SettledOrdersActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+
+
 
         <meta-data
             android:name="UMENG_APPKEY"

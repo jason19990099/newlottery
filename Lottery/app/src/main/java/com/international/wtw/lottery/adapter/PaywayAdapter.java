@@ -2,7 +2,6 @@ package com.international.wtw.lottery.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.international.wtw.lottery.R;
 import com.international.wtw.lottery.activity.manager.PaymentActivity;
 import com.international.wtw.lottery.newJason.PaymentMethodModel;
-
-import java.io.Serializable;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class PaywayAdapter extends BaseAdapter {
@@ -59,7 +56,11 @@ public class PaywayAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.tv_pay_method.setText(data.get(position).getName());
-//        viewHolder.iv_pay_type.setText(datas.get(position).getAllNum());
+
+        Picasso.with(context)
+                .load(data.get(position).getImageName())
+                .into(viewHolder.iv_pay_type);
+
         viewHolder.rl_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -36,7 +36,7 @@ public class MoneyInfoManager {
 
     public MoneyInfo getMoneyInfo() {
         if (sMoneyInfo == null) {
-            requestMoneyInfo();
+//            requestMoneyInfo();
         }
         return sMoneyInfo;
     }

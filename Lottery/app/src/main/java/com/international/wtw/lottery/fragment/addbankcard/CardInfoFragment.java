@@ -41,18 +41,18 @@ public class CardInfoFragment extends NewBaseFragment {
         HttpRequest.getInstance().getUserBank(getActivity(), token, new HttpCallback<BankcardsModel>() {
             @Override
             public void onSuccess(BankcardsModel data) {
-                tvBankUser.setText(data.getData().getBankAccountName());
-                tvBankName.setText(data.getData().getBankName());
-                tvBankAddress.setText(data.getData().getBankAddress());
-                int length=data.getData().getBankAccount().length();
-                if (length>3){
-                    String str=data.getData().getBankAccount().substring(length-3,length);
-                    tvBanklastNum.setText(str);
-                }else{
-                    tvBanklastNum.setText("✱✱✱");
-                }
-
-                ivBanklogo.setImageResource(getBankLogo(data.getData().getBankName()));
+//                tvBankUser.setText(data.getData().getBankAccountName());
+//                tvBankName.setText(data.getData().getBankName());
+//                tvBankAddress.setText(data.getData().getBankAddress());
+//                int length=data.getData().getBankAccount().length();
+//                if (length>3){
+//                    String str=data.getData().getBankAccount().substring(length-3,length);
+//                    tvBanklastNum.setText(str);
+//                }else{
+//                    tvBanklastNum.setText("✱✱✱");
+//                }
+//
+//                ivBanklogo.setImageResource(getBankLogo(data.getData().getBankName()));
 
             }
 

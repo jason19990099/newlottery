@@ -40,6 +40,7 @@ public class InfoCenterActivity extends BaseActivity implements View.OnClickList
             adaper.notifyDataSetChanged();
         }
 
+       
     }
 
     @Override

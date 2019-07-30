@@ -73,7 +73,6 @@ public class Bjscpk10Activity extends BaseActivity implements RadioGroup.OnCheck
     private PK10GuanyaheFragment fragment2;
     private PK10No1to5Fragment fragment3;
     private PK10No6to10Fragment fragment4;
-
     private FragmentManager mFragmentManager;  // Fragment管理器
     boolean IsFeng = false;
     private String expectNo;

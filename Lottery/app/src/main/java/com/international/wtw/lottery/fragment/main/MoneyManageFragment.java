@@ -32,7 +32,6 @@ import butterknife.BindView;
  */
 
 public class MoneyManageFragment extends NewBaseFragment {
-
     @BindView(R.id.tv_user_name)
     TextView mTvUserName;
     @BindView(R.id.tv_account_balance)
@@ -46,8 +45,6 @@ public class MoneyManageFragment extends NewBaseFragment {
     private WithdrawFragment mWithdrawFragment;
     private PayinRecordFragment payinRecordFragment;
     private WithdrawRecordFragment mRecordFragment;
-
-
     private int position = 0;
 
     @Override
@@ -138,6 +135,7 @@ public class MoneyManageFragment extends NewBaseFragment {
 
             }
         });
+
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {

@@ -81,4 +81,8 @@ public class LotteryId {
     public static final String GXKS = "gxk3";//广西快3
     public static final String SHKS = "shk3";//上海快三
     public static final String GZKS = "gzk3";//上海快三
+    public static final String QXSC = "qxsc";//七星賽車
+    public static final String QXFT = "qxft";//七星飞艇
+//    public static final String QXSC = "qxsc";//七星賽車
+//    public static final String QXSC = "qxsc";//七星賽車
 }

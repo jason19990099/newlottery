@@ -2,6 +2,8 @@ package com.international.wtw.lottery.fragment.money;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +23,8 @@ import com.international.wtw.lottery.base.LotteryId;
 import com.international.wtw.lottery.base.app.NewBaseFragment;
 import com.international.wtw.lottery.dialog.ToastDialog;
 import com.international.wtw.lottery.event.MoneyInfoRefreshEvent;
+import com.international.wtw.lottery.fragment.addbankcard.CardInfoFragment;
+import com.international.wtw.lottery.fragment.addbankcard.EmptyFragment;
 import com.international.wtw.lottery.json.BaseModel;
 import com.international.wtw.lottery.json.MoneyInfo;
 import com.international.wtw.lottery.newJason.BankcardsModel;
@@ -159,20 +163,20 @@ public class WithdrawFragment extends NewBaseFragment {
         HttpRequest.getInstance().getUserBank(getActivity(), token, new HttpCallback<BankcardsModel>() {
             @Override
             public void onSuccess(BankcardsModel data) {
-                if (null == data.getData()) {
-                    mRlAddBank.setVisibility(View.VISIBLE);
-                    llHavabankcard.setVisibility(View.GONE);
-                } else {
-                    mRlAddBank.setVisibility(View.GONE);
-                    llHavabankcard.setVisibility(View.VISIBLE);
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                if (data.getData()==null){
+                    ft.replace(R.id.fl_container, new EmptyFragment()).commit();
+                }else{
+                    ft.replace(R.id.fl_container, new CardInfoFragment()).commit();
                 }
             }
-
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                Toast.makeText(getActivity(), "请求银行卡信息失败，请重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"请求失败，请重试",Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void setBankInfo() {
